@@ -58,3 +58,5 @@ jobs:
       - name: Cleanup
         run: |
           git gc --prune=now
+          rm -rf .git/objects/pack/*.pack
+          rm -rf .git/objects/pack/*.idx
