@@ -30,7 +30,9 @@ jobs:
 
       - name: Fetch all branches from upstream
         run: |
-          git fetch upstream
+          git fetch --all --tags upstream
+          git push --all --progress "origin"
+          git push --tags --progress "origin"
 
       - name: Sync branches
         run: |
