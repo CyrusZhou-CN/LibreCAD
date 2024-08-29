@@ -22,17 +22,13 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git config pull.rebase false  # 配置为 merge 模式
-
-      - name: Add upstream remote
-        run: |
           git remote add upstream https://github.com/LibreCAD/LibreCAD.git
+          git remote set-url --push origin https://github.com/CyrusZhou-CN/LibreCAD.git
           git remote -v  # 验证添加的远程仓库是否正确
 
-      - name: Fetch all branches from upstream
+      - name: Fetch all branches and tags from upstream
         run: |
-          git fetch --all --tags upstream
-          git push --all --progress "origin"
-          git push --tags --progress "origin"
+          git fetch upstream --tags
 
       - name: Sync branches
         run: |
