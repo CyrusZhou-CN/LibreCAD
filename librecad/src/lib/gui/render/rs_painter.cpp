@@ -42,6 +42,14 @@
 
 
 namespace {
+
+namespace {
+const RS_Color colorBlack = RS_Color(Qt::black);
+const RS_Color colorWhite = RS_Color(Qt::white);
+const QColor qcolorBlack = colorBlack.toQColor();
+const QColor qcolorWhite = colorWhite.toQColor();
+}
+
 // Convert from LibreCAD line style pattern to QPen Dash Pattern.
 // QPen dash pattern by default is in the unit of pixel
     QVector<qreal> rsToQDashPattern(const RS2::LineType &t, double screenWidth, double dpmm, double &newDashOffset) {
@@ -77,16 +85,34 @@ namespace {
                 return Qt::CustomDashLine;
         }
     }
+
+    // RAII style QPainter
+    class PainterGuard {
+        QPainter* m_painter = nullptr;
+    public:
+    PainterGuard(QPainter& painter):
+            m_painter{&painter}
+        {
+        painter.save();
+        }
+    ~PainterGuard()
+        {
+        try{
+                m_painter->restore();
+            } catch(...) {
+            // should not happen
+        }
+        }
+    };
 }
 /**
  * Constructor.
  */
 // RVT_PORT changed from RS_PainterQt::RS_PainterQt( const QPaintDevice* pd)
 RS_Painter::RS_Painter( QPaintDevice* pd)
-    : QPainter{pd}, lastUsedPen() {
-    drawingMode = RS2::ModeFull;
-    drawSelectedEntities=false;
-    cachedDpmm = getDpmm();
+    : QPainter{pd}
+    , cachedDpmm{getDpmm()}
+{
 }
 
 /**
@@ -101,9 +127,8 @@ void RS_Painter::drawGridPoint(const double &x, const double &y) {
 }
 
 void RS_Painter::drawPointEntityWCS(const RS_Vector& wcsPos) {
-    double uiX, uiY;
-    toGui(wcsPos, uiX, uiY);
-    drawPointEntityUI(uiX, uiY, pointsMode, screenPointsSize);
+    RS_Vector uiPos = toGui(wcsPos);
+    drawPointEntityUI(uiPos.x, uiPos.y, pointsMode, screenPointsSize);
 }
 
 void RS_Painter::drawRefPointEntityWCS(const RS_Vector &wcsPos, int pdMode, double pdSize){
@@ -216,10 +241,9 @@ void RS_Painter::drawSolidWCS(const RS_Vector &wcsP0, const RS_Vector &wcsP1, co
 
 
 void RS_Painter::drawLineWCS(const RS_Vector& wcsP1, const RS_Vector& wcsP2){
-    double uiX1, uiY1, uiX2, uiY2;
-    toGui(wcsP1, uiX1, uiY1);
-    toGui(wcsP2, uiX2, uiY2);
-    drawLineUI(uiX1, uiY1, uiX2, uiY2);
+    const RS_Vector uiP1 = toGui(wcsP1);
+    const RS_Vector uiP2 = toGui(wcsP2);
+    drawLineUI(uiP1.x, uiP1.y, uiP2.x, uiP2.y);
 }
 
 /**
@@ -598,33 +622,28 @@ void RS_Painter::drawEllipseWCS(const RS_Vector& wcsCenter, double wcsMajorRadiu
 
     RS_Vector uiCenter = toGui(wcsCenter);
     const double uiAngleDegrees = toUCSAngleDegrees(wcsAngleDegrees);
+    // RAII style restoring painter status
+    PainterGuard painterGuard{*this};
     drawEllipseUI(uiCenter, {uiMajorRadius, uiMinorRadius}, uiAngleDegrees);
 }
 
 void RS_Painter::drawEllipseUI(const RS_Vector& uiCenter, const RS_Vector& uiRadii, double uiAngleDegrees) {
+
+    // ellipse transform
+    QTransform ellipseTransform;
+    ellipseTransform.translate(uiCenter.x, uiCenter.y);
+    ellipseTransform.rotate(-uiAngleDegrees);
+    setTransform(ellipseTransform, true);
+
+    QPointF radii{uiRadii.x, uiRadii.y};
     if (uiRadii.x < minEllipseMajorRadius){
-        QPainter::drawPoint(QPointF(uiCenter.x, uiCenter.y));
+        QPainter::drawPoint(QPointF{0., 0.});
     }
     else if (uiRadii.y < minEllipseMinorRadius) {//ellipse too small
-        QTransform t1;
-        t1.translate(uiCenter.x, uiCenter.y);
-        t1.rotate(-uiAngleDegrees);
-        t1.translate(-uiCenter.x, -uiCenter.y);
-        save();
-        setTransform(t1, false);
-        QPainter::drawLine(QPointF(uiCenter.x - uiRadii.x, uiCenter.y), QPointF(uiCenter.x + uiRadii.x, uiCenter.y));
-        restore();
+        QPainter::drawLine( - radii, radii);
     }
     else {
-        QTransform t1;
-        t1.translate(uiCenter.x, uiCenter.y);
-        t1.rotate(-uiAngleDegrees);
-        t1.translate(-uiCenter.x, -uiCenter.y);
-        save();
-        setTransform(t1, false);
-        const RS_Vector uiSize = uiRadii + uiRadii;
-        QPainter::drawEllipse(QRectF(uiCenter.x - uiRadii.x, uiCenter.y - uiRadii.y, uiSize.x, uiSize.y));
-        restore();
+        QPainter::drawEllipse(QRectF{- radii, radii});
     }
 }
 
@@ -968,12 +987,11 @@ void RS_Painter::drawImgWCS(QImage& img, const RS_Vector& wcsInsertionPoint,
     double magnitudeU = uVector.magnitude(); // fixme - sand - render - cache?
     double magnitudeV = vVector.magnitude(); // fixme - sand - render - cache?
     RS_Vector scale{toGuiDX(magnitudeU),toGuiDY(magnitudeV)};
-    double uiInsertX, uiInsertY;
-    toGui(wcsInsertionPoint, uiInsertX, uiInsertY);
-    drawImgUI(img,uiInsertX, uiInsertY,ucsUVector, ucsVVector, scale);
+    const RS_Vector uiInsert = toGui(wcsInsertionPoint);
+    drawImgUI(img, uiInsert, ucsUVector, ucsVVector, scale);
 }
 
-void RS_Painter::drawImgUI(QImage& img, double uiInsertX, double uiInsertY,
+void RS_Painter::drawImgUI(QImage& img, const RS_Vector& uiInsert,
                            const RS_Vector& uVector, const RS_Vector& vVector, const RS_Vector& factor) {
     save();
 
@@ -993,10 +1011,10 @@ void RS_Painter::drawImgUI(QImage& img, double uiInsertX, double uiInsertY,
     // Image mirroring is switching the handedness of u-v vectors pair which can be detected by
     // looking at the sign of the z component of their cross product. If z is negative image is mirrored.
     std::unique_ptr<QTransform> wm;
-    if(RS_Vector::crossP(uVector, vVector).z < 0) { // mirrored
-        wm = std::make_unique<QTransform>(un.x, -vn.x, -un.y, vn.y, uiInsertX, uiInsertY);
+    if(std::signbit(RS_Vector::crossP(uVector, vVector).z)) { // mirrored
+        wm = std::make_unique<QTransform>(un.x, -vn.x, -un.y, vn.y, uiInsert.x, uiInsert.y);
     } else {
-        wm = std::make_unique<QTransform>(un.x, vn.x, un.y, vn.y, uiInsertX, uiInsertY);
+        wm = std::make_unique<QTransform>(un.x, vn.x, un.y, vn.y, uiInsert.x, uiInsert.y);
     }
 
     wm->scale(factor.x, factor.y);
@@ -1081,13 +1099,6 @@ int RS_Painter::getHeight() const{
 
 RS_Pen RS_Painter::getPen() const{
     return lpen;
-}
-
-namespace {
-    const RS_Color colorBlack = RS_Color(Qt::black);
-    const RS_Color colorWhite = RS_Color(Qt::white);
-    const QColor qcolorBlack = colorBlack.toQColor();
-    const QColor qcolorWhite = colorWhite.toQColor();
 }
 
 void RS_Painter::noCapStyle(){
@@ -1313,10 +1324,8 @@ void RS_Painter::drawRectUI(const RS_Vector& p1, const RS_Vector& p2) {
 }
 
 void RS_Painter::drawHandleWCS(const RS_Vector& wcsPos, const RS_Color& c, int size) {
-    int doubleSize = 2 * size;
-    double uiX, uiY;
-    toGui(wcsPos, uiX, uiY);
-    fillRect((int)(uiX - size), (int)(uiY - size), doubleSize, doubleSize, c);
+    RS_Vector uiPos = toGui(wcsPos);
+    fillRect((int)(uiPos.x - size), (int)(uiPos.y - size), 2 * size, 2 * size, c);
 }
 
 void RS_Painter::setMinRenderableTextHeightInPx(int i) {
@@ -1408,9 +1417,7 @@ bool RS_Painter::isTextLineNotRenderable(double wcsLineHeight) {
 void RS_Painter::setViewPort(LC_GraphicViewport *v) {
     viewport = v;
     apply(viewport);
-    RS_Vector factor = v->getFactor();
-    viewPortFactorX = factor.x;
-    viewPortFactorY = factor.y;
+    m_viewPortFactor = v->getFactor();
     viewPortOffsetX = v->getOffsetX();
     viewPortOffsetY = v->getOffsetY();
     m_viewPortOffset.set(viewPortOffsetX, viewPortOffsetY);
@@ -1467,23 +1474,27 @@ RS_Vector RS_Painter::toGui(const RS_Vector& worldCoordinates) const
     if (m_hasUcs){
         uiPosition.move(-ucsOrigin).rotate(m_ucsRotation);
     }
-    uiPosition.scale({viewPortFactorX, viewPortFactorY}).move(m_viewPortOffset);
+    uiPosition.scale(m_viewPortFactor).move(m_viewPortOffset);
     uiPosition.y = viewPortHeight - uiPosition.y;
-    double uiX=0., uiY=0.;
-    const_cast<RS_Painter*>(this)->toGui(worldCoordinates, uiX, uiY);
-    using namespace RS_Math;
-    assert(equal(uiX, uiPosition.x) && equal(uiY, uiPosition.y));
+
+    // TODO: remove this
+    {
+        double uiX=0., uiY=0.;
+        const_cast<RS_Painter*>(this)->toGui(worldCoordinates, uiX, uiY);
+        using namespace RS_Math;
+        assert(equal(uiX, uiPosition.x) && equal(uiY, uiPosition.y));
+    }
     return uiPosition;
 }
 
 double RS_Painter::toGuiDX(double ucsDX) const {
 //    return viewport->toGuiDX(d);
-   return ucsDX * viewPortFactorX;
+   return ucsDX * m_viewPortFactor.x;
 }
 
 double RS_Painter::toGuiDY(double ucsDY) const {
 //    return viewport->toGuiDY(d);
-    return ucsDY * viewPortFactorY;
+    return ucsDY * m_viewPortFactor.y;
 }
 
 void RS_Painter::disableUCS(){
