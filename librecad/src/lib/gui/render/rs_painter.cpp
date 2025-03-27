@@ -224,19 +224,27 @@ void RS_Painter::drawPointEntityUI(double uiX, double uiY, int pdmode, int pdsiz
     }
 }
 
-void RS_Painter::drawSolidWCS(const RS_Vector &wcsP0, const RS_Vector &wcsP1, const RS_Vector &wcsP2, const RS_Vector &wcsP3) {
+void RS_Painter::drawSolidWCS(const RS_VectorSolutions& wcsVertices)
+{
+    QPolygonF uiPolygon;
+    for(const RS_Vector& wcsVertex: wcsVertices) {
+        if (wcsVertex.valid) {
+            const RS_Vector& uiVertex = toGui(wcsVertex);
+            uiPolygon.push_back({uiVertex.x, uiVertex.y});
+        }
+    }
 
-    double uiX0, uiX1, uiX2, uiY0, uiY1, uiY2;
+    // For quadrilaterals from RS_Solid, the point order is switched for corner3 and corner4.
+    if (uiPolygon.size() == 4)
+        std::swap(uiPolygon[2], uiPolygon.back());
+    fillPolygonUI(uiPolygon);
+}
 
-    toGui(wcsP0, uiX0, uiY0);
-    toGui(wcsP1, uiX1, uiY1);
-    toGui(wcsP2, uiX2, uiY2);
-
-    fillTriangleUI(uiX0, uiY0,uiX1, uiY1, uiX2, uiY2);
+void RS_Painter::drawSolidWCS(const RS_Vector &wcsP0, const RS_Vector &wcsP1, const RS_Vector &wcsP2, const RS_Vector &wcsP3)
+{
+    drawSolidWCS({wcsP0, wcsP1, wcsP2});
     if (wcsP3.valid) {
-        double uiX3, uiY3;
-        toGui(wcsP3, uiX3, uiY3);
-        fillTriangleUI(uiX0,uiY0, uiX1, uiY1, uiX3, uiY3);
+        drawSolidWCS({wcsP1, wcsP3, wcsP2});
     }
 }
 
@@ -1070,6 +1078,17 @@ void RS_Painter::fillRect(int x1, int y1, int w, int h,
     QPainter::fillRect(x1, y1, w, h, col);
 }
 
+void RS_Painter::fillPolygonUI( const QPolygonF& uiPolygon)
+{
+    if (uiPolygon.size() <= 2)
+        return;
+
+    const QBrush brushSaved = brush();
+    setBrushColor(RS_Color(pen().color()));
+    QPainter::drawPolygon(uiPolygon, Qt::OddEvenFill);
+    QPainter::setBrush(brushSaved);
+}
+
 void RS_Painter::fillTriangleUI(
     const RS_Vector &uiP1,
     const RS_Vector &uiP2,
@@ -1470,22 +1489,23 @@ void RS_Painter::setViewPort(LC_GraphicViewport *v) {
 void RS_Painter::toGui(const RS_Vector &wcsCoordinate, double &uiX, double &uiY) const {
 //    viewport->toUI(pos, x,y);
 
-    if (m_hasUcs){
+    if (hasUCS()){
 //   ucsToUCS(wcsCoordinate.x, wcsCoordinate.y, uiX, uiY);
 // the code below is equivalent to
 
 /*
         RS_Vector wcs = RS_Vector(wcsCoordinate.x, wcsCoordinate.y);
-        RS_Vector newPos = wcs-ucsOrigin;
+        RS_Vector newPos = wcs-m_ucsOrigin;
         newPos.rotate(xAxisAngle);
         uiY = newPos.x;
         uiX = newPos.y;
 */
-        double ucsPositionX = wcsCoordinate.x - ucsOrigin.x;
-        double ucsPositionY = wcsCoordinate.y - ucsOrigin.y;
+        double ucsPositionX = wcsCoordinate.x - getUcsOrigin().x;
+        double ucsPositionY = wcsCoordinate.y - getUcsOrigin().y;
 
-        double ucsX = ucsPositionX * cosXAngle - ucsPositionY * sinXAngle;
-        double ucsY = ucsPositionX * sinXAngle + ucsPositionY * cosXAngle;
+        const RS_Vector& ucsRotation = getUcsRotation();
+        double ucsX = ucsPositionX * ucsRotation.x - ucsPositionY * ucsRotation.y;
+        double ucsY = ucsPositionX * ucsRotation.y + ucsPositionY * ucsRotation.x;
 
 //        uiX = toGuiX(uiX);
         uiX = ucsX * viewPortFactorX + viewPortOffsetX;
@@ -1503,8 +1523,8 @@ void RS_Painter::toGui(const RS_Vector &wcsCoordinate, double &uiX, double &uiY)
 RS_Vector RS_Painter::toGui(const RS_Vector& worldCoordinates) const
 {
     RS_Vector uiPosition = worldCoordinates;
-    if (m_hasUcs) {
-        uiPosition.move(-ucsOrigin).rotate(m_ucsRotation);
+    if (hasUCS()) {
+        uiPosition.move(-getUcsOrigin()).rotate(getUcsRotation());
     }
     uiPosition.scale(m_viewPortFactor).move(m_viewPortOffset);
     uiPosition.y = viewPortHeight - uiPosition.y;
@@ -1525,17 +1545,7 @@ RS_Vector RS_Painter::toGui(const RS_Vector& worldCoordinates) const
         }
     }
 
-//    return uiPosition;
-
-    /*
-     //    double x, y;
-     //    viewport->toUI(worldCoordinates, x, y);
-     //    return RS_Vector(x,y);
-     */
-     double x, y;
-     toGui(worldCoordinates, x, y);
-     return RS_Vector(x, y);
-
+   return uiPosition;
 }
 
 double RS_Painter::toGuiDX(double ucsDX) const {
@@ -1549,7 +1559,7 @@ double RS_Painter::toGuiDY(double ucsDY) const {
 }
 
 void RS_Painter::disableUCS(){
-    m_hasUcs = false;
+    useUCS(false);
 }
 
 bool RS_Painter::isFullyWithinBoundingRect(RS_Entity* e){

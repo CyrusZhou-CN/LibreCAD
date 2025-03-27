@@ -29,6 +29,7 @@
 #ifndef RS_ENTITY_H
 #define RS_ENTITY_H
 
+#include <iosfwd>
 #include <memory>
 
 #include "lc_drawable.h"
@@ -464,7 +465,7 @@ public:
      * Implementations must rotate the entity by the given angle around
      * the given center.
      */
-    virtual void rotate(const RS_Vector &center, const double &angle) = 0;
+    virtual void rotate(const RS_Vector &center, double angle) = 0;
     virtual void rotate(const RS_Vector &center, const RS_Vector &angleVector) = 0;
     /**
      * Implementations must scale the entity by the given factors.
