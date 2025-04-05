@@ -1,4 +1,3 @@
-#cmake_minimum_required(VERSION 3.28)
 cmake_minimum_required(VERSION 3.30)
 project(LibreCAD VERSION 2.2.2)
 
@@ -8,8 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(MIN_GW_PATH_PREFIX "c:\\DevTools\\QT\\6.7.2\\mingw_64")
 set(MIN_GW_PATH_PREFIX "d:\\Qt\\QT6\\6.7.0\\mingw_64")
 #set(MIN_GW_PATH_PREFIX "c:\\DevTools\\QT\\6.7.2\\mingw_64")
-set(BOOST_DIR "c:\\Local\\boost_1_84_0")
-set(Boost_INCLUDE_DIR "c:\\Local\\boost_1_84_0")
 
 #set(CMAKE_PREFIX_PATH "${MIN_GW_PATH_PREFIX}\\lib\\cmake\\Qt6")
 
@@ -41,16 +38,17 @@ find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
 find_package(Boost REQUIRED COMPONENTS)
 
+find_package(Freetype REQUIRED)
+
 #set(CMAKE_AUTOMOC ON)
 #set(CMAKE_AUTOUIC OFF)
 #set(CMAKE_AUTORCC ON)
 
 #qt5_wrap_cpp(plugins/asciifile.cpp)
 
-
 include_directories(${MIN_GW_PATH_PREFIX}\\include\\QtSvg)
 
-include_directories(${Boost_INCLUDE_DIRS})
+#include_directories(${Boost_INCLUDE_DIRS})
 
 #include_directories(desktop/res_old/actions)
 #include_directories(desktop/res_old/extui)
@@ -1605,6 +1603,11 @@ qt_add_executable(librecad
 # add constants like M_PI to cmath
 if(WIN32)
     target_compile_definitions(librecad PRIVATE _USE_MATH_DEFINES)
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS}) 
+    target_link_libraries(librecad ${Boost_LIBRARIES})
+endif(Boost_FOUND)
+
 endif(WIN32)
 
 
@@ -1694,6 +1697,14 @@ set(PLUGIN_SOURCES
 	../libraries/lciconendine/lc_svgiconengine.h
 	../libraries/lciconendine/lc_svgiconengine.h
 )
+
+if(NOT win32)
+add_executable(ttf2lff
+	tools/ttf2lff/main.cpp)
+target_link_libraries(ttf2lff ${FREETYPE_LIBRARIES})
+target_include_directories(ttf2lff PRIVATE
+	${FREETYPE_INCLUDE_DIRS})
+endif(NOT win32)
 
 #qt_internal_add_plugin(QSvgIconPlugin
 #		OUTPUT_NAME lc_svgicon
