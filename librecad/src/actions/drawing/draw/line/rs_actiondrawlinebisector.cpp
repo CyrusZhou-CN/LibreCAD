@@ -24,7 +24,9 @@
 **
 **********************************************************************/
 
+#include "qg_linebisectoroptions.h"
 #include "rs_actiondrawlinebisector.h"
+#include "rs_actioninterface.h"
 #include "rs_commandevent.h"
 #include "rs_creation.h"
 #include "rs_debug.h"
@@ -33,13 +35,11 @@
 #include "rs_line.h"
 #include "rs_math.h"
 #include "rs_preview.h"
-#include "qg_linebisectoroptions.h"
-#include "rs_actioninterface.h"
 
 namespace {
 
     //list of entity types supported by current action - only lines so far
-    const auto enTypeList = EntityTypeList{RS2::EntityLine};
+    const auto g_enTypeList = EntityTypeList{RS2::EntityLine};
 }
 
 
@@ -104,7 +104,7 @@ void RS_ActionDrawLineBisector::onMouseMoveEvent(int status, LC_MouseEvent *e) {
     deleteSnapper();
     switch (status) {
         case SetLine1: {
-            RS_Entity *en = catchAndDescribe(e, enTypeList, RS2::ResolveAll);
+            RS_Entity *en = catchAndDescribe(e, g_enTypeList, RS2::ResolveAll);
             if (en != nullptr){
                 highlightHover(en);
             }
@@ -113,7 +113,7 @@ void RS_ActionDrawLineBisector::onMouseMoveEvent(int status, LC_MouseEvent *e) {
         case SetLine2: {
             highlightSelected(line1);
             pPoints->coord2 = mouse;
-            RS_Entity *en = catchAndDescribe(e, enTypeList, RS2::ResolveAll);
+            RS_Entity *en = catchAndDescribe(e, g_enTypeList, RS2::ResolveAll);
             if (en == line1){
                 line2 = nullptr;
             } else if (en != nullptr){
@@ -161,7 +161,7 @@ void RS_ActionDrawLineBisector::onMouseLeftButtonRelease(int status, LC_MouseEve
     switch (status) {
         case SetLine1: {
             pPoints->coord1 = mouse;
-            RS_Entity *en = RS_Snapper::catchEntity(mouse,enTypeList,RS2::ResolveAll);
+            RS_Entity *en = RS_Snapper::catchEntity(mouse,g_enTypeList,RS2::ResolveAll);
             if (isLine(en)){
                 line1 = dynamic_cast<RS_Line *>(en);
                 line2 = nullptr;
@@ -202,7 +202,7 @@ bool RS_ActionDrawLineBisector::doProcessCommand(int status, const QString &c) {
             break;
         }
         case SetLength: {
-            bool ok;
+            bool ok = false;
             double l = RS_Math::eval(c, &ok);
             if (ok){
                 accept = true;
@@ -215,8 +215,8 @@ bool RS_ActionDrawLineBisector::doProcessCommand(int status, const QString &c) {
             break;
         }
         case SetNumber: {
-            bool ok;
-            int n = (int) RS_Math::eval(c, &ok);
+            bool ok = false;
+            int n = std::lround(RS_Math::eval(c, &ok));
             if (ok){
                 accept= true;
                 if (n > 0 && n <= 200)

@@ -25,7 +25,6 @@
 
 #include "rs_undoable.h"
 #include "rs_vector.h"
-#include "rs_graphicview.h"
 
 class LC_GraphicViewport;
 
@@ -34,7 +33,8 @@ class LC_UndoableRelZero:public RS_Undoable
 public:
     LC_UndoableRelZero(LC_GraphicViewport* view, const RS_Vector &mFrom, const RS_Vector &mTo);
     void undoStateChanged(bool undone) override;
-protected:
+
+private:
     LC_GraphicViewport* viewport = nullptr;
     RS_Vector m_From = RS_Vector(0,0,0);
     RS_Vector m_To = RS_Vector(0,0,0);
