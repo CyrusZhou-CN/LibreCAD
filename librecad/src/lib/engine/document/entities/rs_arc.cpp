@@ -62,6 +62,40 @@ void RS_ArcData::reset() {
 	reversed = false;
 }
 
+void RS_Arc::setCenter(const RS_Vector& center) {
+    data.center = center;
+    calculateBorders();
+}
+
+void RS_Arc::setRadius(double radius) {
+    if (!RS_Math::equal(data.radius, radius)) {
+        data.radius = radius;
+        calculateBorders();
+    }
+}
+
+void RS_Arc::setAngle1(double a1) {
+    if (!RS_Math::equal(data.angle1, a1)) {
+        data.angle1 = a1;
+        calculateBorders();
+    }
+}
+
+/** Sets new end angle. */
+void RS_Arc::setAngle2(double a2) {
+    if (!RS_Math::equal(data.angle2, a2)) {
+        data.angle2 = a2;
+        calculateBorders();
+    }
+}
+
+void RS_Arc::setReversed(bool r) {
+    if (data.reversed != r) {
+        data.reversed = r;
+        std::swap(m_startPoint, m_endPoint);
+    }
+}
+
 bool RS_ArcData::isValid() const{
 	return (center.valid && radius>RS_TOLERANCE &&
 			fabs(remainder(angle1-angle2, 2.*M_PI))>RS_TOLERANCE_ANGLE);
@@ -301,7 +335,6 @@ RS_Vector RS_Arc::getStartpoint() const{
 /** @return End point of the entity. */
 RS_Vector RS_Arc::getEndpoint() const{
     return m_endPoint;
-    return data.center + RS_Vector::polar(data.radius, data.angle2);
 }
 
 RS_VectorSolutions RS_Arc::getRefPoints() const{
@@ -1015,8 +1048,7 @@ void RS_Arc::updateMiddlePoint() {
     } else {
         a += RS_Math::correctAngle(b - a) * 0.5;
     }
-    RS_Vector ret(a);
-    middlePoint =  getCenter() + ret * getRadius();
+    middlePoint =  getCenter() + RS_Vector::polar(getRadius(), a);
 }
 
 void RS_Arc::moveMiddlePoint(const RS_Vector& vector) {
