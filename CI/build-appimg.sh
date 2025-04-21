@@ -35,22 +35,16 @@ mkdir -p appdir/usr/share/metainfo
 mkdir -p appdir/usr/share/doc/librecad
 mkdir -p appdir/usr/share/icons/hicolor/256x256/apps
 mkdir -p appdir/usr/share/icons/hicolor/scalable/apps
-mkdir -p appdir/usr/share/librecad
-mkdir -p appdir/usr/lib/x86_64-linux-gnu/qt6
-#export QPA_PLUGIN_FOLDER="$(find ../Qt -type d -name plugins -print)"
-echo "copying plugins"
-export QPA_PLUGIN_FOLDER="$(find /usr/lib/x86_64-linux-gnu/qt6/ -type d -name plugins -print)"
-rsync -Par ${QPA_PLUGIN_FOLDER} appdir/usr/lib/x86_64-linux-gnu/qt6/
-rsync -Par ${QPA_PLUGIN_FOLDER}/platforms appdir/usr/bin/
+mkdir -p appdir/usr/share/librecad/qm
 
 # strip binaries
 strip unix/librecad
-strip unix/resources/plugins/*.so
+strip unix/resources/plugins/*/*.so
 
 # copy executables and binary resources
 cp unix/librecad appdir/usr/bin/
-cp unix/resources/plugins/*.so appdir/usr/lib/librecad/
-cp -r unix/resources/qm appdir/usr/share/librecad/
+cp unix/resources/plugins/*/*.so appdir/usr/lib/librecad/
+cp -r unix/*.qm appdir/usr/share/librecad/qm/
 
 cp desktop/librecad.desktop appdir/usr/share/applications/
 cp desktop/org.librecad.librecad.appdata.xml appdir/usr/share/metainfo/
