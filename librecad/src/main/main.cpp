@@ -181,11 +181,12 @@ int execApplication(LC_Application& app) {
     return return_code;
 }
 
+//
 bool setupDebugLevel(char level) {
     switch(level){
         case '?' : {
             showDebugSetupHelpMessage();
-            return true;
+            return false;
         }
         case '0' + RS_Debug::D_NOTHING : {
             RS_DEBUG->setLevel(RS_Debug::D_NOTHING);
@@ -220,7 +221,7 @@ bool setupDebugLevel(char level) {
             break;
         }
     }
-    return false;
+    return true;
 }
 
 /**
@@ -295,7 +296,7 @@ int main(int argc, char** argv) {
             // if no level follows, the debugging level is set
             argstr.remove(QRegularExpression("^"+lpDebugSwitch0));
             argstr.remove(QRegularExpression("^"+lpDebugSwitch1));
-            char level;
+            char level = '3';
             if(argstr.size()==0){
                 if(i+1<argc){
                     if(QRegularExpression(R"(\d*)").match(argv[i+1]).hasMatch()){
