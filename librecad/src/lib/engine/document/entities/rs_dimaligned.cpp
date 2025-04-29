@@ -25,6 +25,7 @@
 **********************************************************************/
 
 #include <iostream>
+
 #include "rs_dimaligned.h"
 
 #include "rs_constructionline.h"
@@ -34,11 +35,6 @@
 #include "rs_math.h"
 #include "rs_settings.h"
 #include "rs_units.h"
-
-RS_DimAlignedData::RS_DimAlignedData():
-    extensionPoint1(false),
-    extensionPoint2(false)
-{}
 
 /**
  * Constructor with initialisation.
@@ -71,8 +67,11 @@ std::ostream& operator << (std::ostream& os,
 RS_DimAligned::RS_DimAligned(RS_EntityContainer* parent,
                              const RS_DimensionData& d,
                              const RS_DimAlignedData& ed)
-    : RS_Dimension(parent, d), edata(ed) {
+    : RS_Dimension(parent, d), edata(ed)
+{
 
+    updateDimensions();
+    RS_DimAligned::updateDim();
     calculateBorders();
 }
 
@@ -87,8 +86,9 @@ RS_DimAligned::RS_DimAligned(RS_EntityContainer* parent,
 //}
 
 RS_Entity* RS_DimAligned::clone() const{
-	RS_DimAligned* d = new RS_DimAligned(*this);
+    RS_DimAligned* d = new RS_DimAligned(getParent(), getData(), getEData());
 	d->setOwner(isOwner());
+    d->init();
 	return d;
 }
 
@@ -228,6 +228,19 @@ void RS_DimAligned::getDimPoints(RS_Vector& dimP1, RS_Vector& dimP2){
     dimP2 = edata.extensionPoint2 + e1*extLength;
 }
 
+
+double RS_DimAligned::getDistanceToPoint(const RS_Vector& coord,
+                          RS_Entity** entity,
+                          RS2::ResolveLevel level,
+                          double solidDist) const
+{
+    return RS_EntityContainer::getDistanceToPoint(
+        coord,
+        entity,
+        level,
+        solidDist);
+}
+
 void RS_DimAligned::updateDimPoint(){
     // temporary construction line
     RS_ConstructionLine tmpLine( nullptr,
@@ -237,7 +250,8 @@ void RS_DimAligned::updateDimPoint(){
     data.definitionPoint += edata.extensionPoint2 - tmpP1;
 }
 
-bool RS_DimAligned::hasEndpointsWithinWindow(const RS_Vector& v1, const RS_Vector& v2) {
+bool RS_DimAligned::hasEndpointsWithinWindow(const RS_Vector& v1, const RS_Vector& v2) const
+{
     return (edata.extensionPoint1.isInWindow(v1, v2) ||
             edata.extensionPoint2.isInWindow(v1, v2));
 }
