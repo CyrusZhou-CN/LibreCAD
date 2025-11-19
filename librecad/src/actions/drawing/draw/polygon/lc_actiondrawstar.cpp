@@ -21,7 +21,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 **********************************************************************/
 #include "lc_actiondrawstar.h"
-
+#include "lc_containertraverser.h"
 #include "lc_linemath.h"
 #include "lc_staroptions.h"
 #include "rs_line.h"
@@ -223,8 +223,7 @@ void LC_ActionDrawStar::addPolylineToEntitiesList(RS_Polyline *polyline, QList<R
                 list << polyline;
             }
             else{
-                for (RS_Entity *entity = polyline->firstEntity(RS2::ResolveAll); entity;
-                     entity = polyline->nextEntity(RS2::ResolveAll)) {
+                for(RS_Entity* entity: lc::LC_ContainerTraverser{*polyline, RS2::ResolveAll}.entities()) {
                     if (entity != nullptr){
                         RS_Entity *clone = entity->clone(); // use clone for safe deletion of polyline
                         clone->reparent(m_container);
@@ -670,4 +669,16 @@ void LC_ActionDrawStar::setSymmetric(bool value){
 
 LC_ActionOptionsWidget* LC_ActionDrawStar::createOptionsWidget(){
     return new LC_StarOptions();
+}
+
+bool LC_ActionDrawStar::doUpdateDistanceByInteractiveInput(const QString& tag, double distance) {
+    if (tag == "radiusInner") {
+        setRadiusInner(distance);
+        return true;
+    }
+    if (tag == "radiusOuter") {
+        setRadiusOuter(distance);
+        return true;
+    }
+    return false;
 }

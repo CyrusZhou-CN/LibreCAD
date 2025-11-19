@@ -38,6 +38,7 @@ QG_RoundOptions::QG_RoundOptions()
     ui->setupUi(this);
     connect(ui->leRadius, &QLineEdit::editingFinished, this, &QG_RoundOptions::onRadiusEditingFinished);
     connect(ui->cbTrim, &QCheckBox::toggled, this, &QG_RoundOptions::onTrimToggled);
+    pickDistanceSetup("radius", ui->tbPickRadius, ui->leRadius);
 }
 
 /*
@@ -88,9 +89,12 @@ void QG_RoundOptions::setTrimToActionAndView(bool checked){
 }
 
 void QG_RoundOptions::setRadiusToActionAndView(const QString &strValue){
-    double radius;
-    if (toDouble(strValue, radius, 1.0, false)){
-        m_action->setRadius(radius);
-        ui->leRadius->setText(fromDouble(radius));
+    bool okay = false;
+    double radius = RS_Math::eval(strValue, &okay);
+    if (!okay) {
+        radius = 1.;
     }
+
+    m_action->setRadius(radius);
+    ui->leRadius->setText(fromDouble(radius));
 }

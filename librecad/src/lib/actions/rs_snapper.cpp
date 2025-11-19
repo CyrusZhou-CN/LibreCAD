@@ -28,6 +28,7 @@
 #include <QMouseEvent>
 
 #include "lc_actioncontext.h"
+#include "lc_containertraverser.h"
 #include "lc_crosshair.h"
 #include "lc_cursoroverlayinfo.h"
 #include "lc_defaults.h"
@@ -298,6 +299,7 @@ void RS_Snapper::finish() {
     m_finished = true;
     deleteSnapper();
     deleteInfoCursor();
+
 }
 
 void RS_Snapper::setSnapMode(const RS_SnapMode& snapMode) {
@@ -766,8 +768,9 @@ RS_Entity* RS_Snapper::catchEntity(const RS_Vector& pos, RS2::EntityType enType,
     }
 
     // fixme - iteration over all elements of drawing
-    for(RS_Entity* en= m_container->firstEntity(level);en;en=m_container->nextEntity(level)){
-        if(en->isVisible()==false) continue;
+    for(RS_Entity* en: lc::LC_ContainerTraverser{*m_container, level}.entities()){
+        if(!en->isVisible())
+            continue;
         if(en->rtti() != enType && isContainer){
             //whether this entity is a member of member of the type enType
             RS_Entity* parent(en->getParent());

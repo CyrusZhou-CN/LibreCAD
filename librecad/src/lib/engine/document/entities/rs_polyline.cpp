@@ -2,6 +2,7 @@
 **
 ** This file is part of the LibreCAD project, a 2D CAD program
 **
+** Copyright (C) 2025 Dongxu Li (github.com/dxli)
 ** Copyright (C) 2010 R. van Twisk (librecad@rvt.dds.nl)
 ** Copyright (C) 2001-2003 RibbonSoft. All rights reserved.
 **
@@ -27,13 +28,13 @@
 
 #include <iostream>
 
-#include "rs_polyline.h"
-
 #include <QObject>
 
+#include "lc_containertraverser.h"
 #include "rs_arc.h"
 #include "rs_debug.h"
 #include "rs_dialogfactory.h"
+#include "rs_ellipse.h"
 #include "rs_dialogfactoryinterface.h"
 #include "rs_ellipse.h"
 #include "rs_information.h"
@@ -41,13 +42,13 @@
 #include "rs_math.h"
 #include "rs_painter.h"
 #include "rs_pen.h"
+#include "rs_polyline.h"
 
 RS_PolylineData::RS_PolylineData(const RS_Vector& _startpoint,
                                  const RS_Vector& _endpoint,
                                  bool _closed):
     startpoint(_startpoint)
-    ,endpoint(_endpoint)
-{
+    ,endpoint(_endpoint){
     if (_closed) {
         setFlag(RS2::FlagClosed);
     }
@@ -64,8 +65,7 @@ std::ostream& operator << (std::ostream& os,
  * Constructor.
  */
 RS_Polyline::RS_Polyline(RS_EntityContainer* parent)
-    :RS_EntityContainer(parent, true)
-{
+    :RS_EntityContainer(parent, true){
 }
 
 /**
@@ -75,13 +75,12 @@ RS_Polyline::RS_Polyline(RS_EntityContainer* parent)
 RS_Polyline::RS_Polyline(RS_EntityContainer* parent,
                          const RS_PolylineData& d)
     :RS_EntityContainer(parent, true)
-    ,data(d)
-{
+    ,data(d){
     calculateBorders();
 }
 
 RS_Entity* RS_Polyline::clone() const {
-    RS_Polyline* p = new RS_Polyline(*this);
+    auto* p = new RS_Polyline(*this);
     p->setOwner(isOwner());
     p->detach();
     return p;
@@ -108,7 +107,6 @@ void RS_Polyline::removeLastVertex() {
     }
 }
 
-
 /**
  * Adds a vertex from the endpoint of the last segment or
  * from the startpoint of the first segment to 'v' or
@@ -124,7 +122,6 @@ void RS_Polyline::removeLastVertex() {
  *         was the first vertex added.
  */
 RS_Entity* RS_Polyline::addVertex(const RS_Vector& v, double bulge, bool prepend) {
-
     RS_Entity* entity=nullptr;
     //static double nextBulge = 0.0;
 
@@ -155,7 +152,6 @@ RS_Entity* RS_Polyline::addVertex(const RS_Vector& v, double bulge, bool prepend
     return entity;
 }
 
-
 /**
  * Appends a vertex list from the endpoint of the last segment
  * sets the startpoint to the first point if not exist.
@@ -169,7 +165,9 @@ RS_Entity* RS_Polyline::addVertex(const RS_Vector& v, double bulge, bool prepend
  */
 void RS_Polyline::appendVertexs(const std::vector< std::pair<RS_Vector, double> >& vl) {
     //static double nextBulge = 0.0;
-    if (!vl.size()) return;
+    if (!vl.size()) {
+        return;
+    }
     size_t idx = 0;
     // very first vertex:
     if (!data.startpoint.valid) {
@@ -190,7 +188,6 @@ void RS_Polyline::appendVertexs(const std::vector< std::pair<RS_Vector, double> 
     endPolyline();
 }
 
-
 /**
  * Creates a vertex from the endpoint of the last element or
  * sets the startpoint to the point 'v'.
@@ -205,7 +202,6 @@ void RS_Polyline::appendVertexs(const std::vector< std::pair<RS_Vector, double> 
  *         was the first vertex added.
  */
 std::unique_ptr<RS_Entity> RS_Polyline::createVertex(const RS_Vector& v, double bulge, bool prepend) {
-
     std::unique_ptr<RS_Entity> entity;
 
     RS_DEBUG->print("RS_Polyline::createVertex: %f/%f to %f/%f bulge: %f",
@@ -239,23 +235,12 @@ std::unique_ptr<RS_Entity> RS_Polyline::createVertex(const RS_Vector& v, double 
 
         // Issue #1946: always create Ellipse for fonts
         // Issue #2067: limit elliptic segments for fonts
-        if (isFont()) {
-            RS_EllipseData const d{
-                center,
-                RS_Vector{radius, 0.},
-                1.,
-                startAngle, endAngle,
-                reversed};
 
-            entity = std::make_unique<RS_Ellipse>(this, d);
-        }
-        else{
-            RS_ArcData const d(center, radius,
-                               startAngle, endAngle,
-                               reversed);
+        RS_ArcData const d(center, radius,
+                           startAngle, endAngle,
+                           reversed);
 
-            entity = std::make_unique<RS_Arc>(this, d);
-        }
+        entity = std::make_unique<RS_Arc>(this, d);
     }
     entity->setSelected(isSelected());
     entity->setPen(RS_Pen(RS2::FlagInvalid));
@@ -354,7 +339,9 @@ double RS_Polyline::getClosingBulge() const{
 }
 
 bool RS_Polyline::isClosed() const {
-    return data.getFlag(RS2::FlagClosed);
+    // Issue #2360, test coincidence of end points for closed polylines
+    return (count() > 2 && getStartpoint() == getEndpoint())
+        || data.getFlag(RS2::FlagClosed);
 }
 
 void RS_Polyline::setClosed(bool cl) {
@@ -370,17 +357,22 @@ void RS_Polyline::setClosed(bool cl) {
  * Sets the polylines start and endpoint to match the first and last vertex.
  */
 void RS_Polyline::updateEndpoints() {
+    using namespace lc;
+    LC_ContainerTraverser traverser{*this, RS2::ResolveNone};
     RS_Entity* e1 = firstEntity();
-    if (e1 && e1->isAtomic()) {
+    if (e1 != nullptr && e1->isAtomic()) {
         RS_Vector const& v = e1->getStartpoint();
         setStartpoint(v);
     }
 
-    RS_Entity const* e2 = last();
+    // last two entities
+    LC_ContainerTraverser revTraverser{*this, RS2::ResolveNone, LC_ContainerTraverser::Direction::Backword};
+
+    RS_Entity const* e2 = revTraverser.first();
     if (isClosed()) {
-        e2 = prevEntity();
+        e2 = revTraverser.next();
     }
-    if (e2 && e2->isAtomic()) {
+    if (e2 != nullptr && e2->isAtomic()) {
         RS_Vector const& v = e2->getEndpoint();
         setEndpoint(v);
     }
@@ -395,18 +387,9 @@ void RS_Polyline::updateEndpoints() {
 void RS_Polyline::addEntity(RS_Entity* /*entity*/) {
     RS_DEBUG->print(RS_Debug::D_WARNING, "RS_Polyline::addEntity:"
                                          " should never be called\n"
-                                         "use addVertex() or addSegment() instead"
-    );
+                                         "use addVertex() or addSegment() instead");
     assert(false);
 }
-
-/**
- * Adds a segment to the polyline.
- */
-/*void RS_Polyline::addSegment(RS_Entity* entity) {
-        RS_EntityContainer::addEntity(entity);
-        // TODO: reorder and check polyline
-}*/
 
 RS_VectorSolutions RS_Polyline::getRefPoints() const{
     RS_VectorSolutions ret{{data.startpoint}};
@@ -435,17 +418,6 @@ RS_Vector RS_Polyline::getNearestSelectedRef( const RS_Vector& coord,
     // use RS_Entity instead for vertex dragging
     return RS_Entity::getNearestSelectedRef( coord, dist);
 }
-/*
-void RS_Polyline::reorder() {
-        // current point:
-        RS_Vector cp;
-
-        bool done = false;
-        do {
-
-        } while(!done);
-}
-*/
 
 /**
   * this should handle modifyOffset
@@ -467,17 +439,20 @@ bool RS_Polyline::offset(const RS_Vector& coord, const double& distance){
         RS_Vector vEnd(en0->getEndpoint());
         double d0 = 0., d1 = 0.;
         en1->getNearestEndpoint(vStart,&d0);
-        en1->getNearestEndpoint(vEnd,&d1);
-        if(d0<d1) en0->revertDirection();
+        en1->getNearestEndpoint(vEnd, &d1);
+        if (d0 < d1) {
+            en0->revertDirection();
+        }
         for(int i=1;i<length;i++){
             //linked to head-tail chain
-            en1=entityAt(i);
-            vStart=en1->getStartpoint();
-            vEnd=en1->getEndpoint();
+            en1 = entityAt(i);
+            vStart = en1->getStartpoint();
+            vEnd = en1->getEndpoint();
             en0->getNearestEndpoint(vStart, &d0);
             en0->getNearestEndpoint(vEnd, &d1);
-            if(d0>d1)
+            if(d0>d1) {
                 en1->revertDirection();
+            }
             intersections[i-1]=(en0->getEndpoint()+en1->getStartpoint())*0.5;
             en0=en1;
         }
@@ -506,7 +481,7 @@ bool RS_Polyline::offset(const RS_Vector& coord, const double& distance){
     pnew->entityAt(i)->offset(coord,distance);
     //offset all
     //fixme, this is too ugly
-    for(i=indexNearest-1;i>=0;i--){
+    for (i = indexNearest - 1; i >= 0; i--) {
         RS_VectorSolutions sol0=RS_Information::getIntersection(pnew->entityAt(previousIndex),entityAt(i),true);
 //        RS_VectorSolutions sol1;
         double dmax(RS_TOLERANCE15);
@@ -514,9 +489,9 @@ bool RS_Polyline::offset(const RS_Vector& coord, const double& distance){
         for(const RS_Vector& vp: sol0){
 
             double d0 = (vp - pnew->entityAt(previousIndex)->getStartpoint()).squared();//potential bug, need to trim better
-            if(d0>dmax) {
-                dmax=d0;
-                trimP=vp;
+            if (d0 > dmax) {
+                dmax = d0;
+                trimP = vp;
             }
         }
         RS_Vector vp;
@@ -538,44 +513,49 @@ bool RS_Polyline::offset(const RS_Vector& coord, const double& distance){
 //        RS_VectorSolutions sol1;
         double dmax(RS_TOLERANCE15);
         RS_Vector trimP(false);
-        for(const RS_Vector& vp: sol0){
-            double d0( (vp - pnew->entityAt(previousIndex)->getEndpoint()).squared());//potential bug, need to trim better
-            if(d0>dmax) {
-                dmax=d0;
-                trimP=vp;
+        for (const RS_Vector& vp : sol0) {
+            double d0((vp - pnew->entityAt(previousIndex)->getEndpoint()).squared());
+            //potential bug, need to trim better
+            if (d0 > dmax) {
+                dmax = d0;
+                trimP = vp;
             }
         }
         RS_Vector vp;
-        if(trimP.valid){
+        if (trimP.valid) {
             static_cast<RS_AtomicEntity*>(pnew->entityAt(previousIndex))->trimEndpoint(trimP);
             static_cast<RS_AtomicEntity*>(pnew->entityAt(i))->trimStartpoint(trimP);
-            vp=pnew->entityAt(previousIndex)->getMiddlePoint();
-        }else{
-            vp=pnew->entityAt(previousIndex)->getEndpoint();
-            vp.rotate(entityAt(previousIndex)->getEndpoint(),entityAt(i)->getDirection1()-entityAt(previousIndex)->getDirection2()+M_PI);
+            vp = pnew->entityAt(previousIndex)->getMiddlePoint();
         }
-        pnew->entityAt(i)->offset(vp,distance);
-        previousIndex=i;
+        else {
+            vp = pnew->entityAt(previousIndex)->getEndpoint();
+            vp.rotate(entityAt(previousIndex)->getEndpoint(),
+                      entityAt(i)->getDirection1() - entityAt(previousIndex)->getDirection2() + M_PI);
+        }
+        pnew->entityAt(i)->offset(vp, distance);
+        previousIndex = i;
     }
     //trim
     //connect and trim        RS_Modification m(*container, graphicView);
-    for(i=0;i<length;i++){
+    for (i = 0; i < length; i++) {
         RS_Entity* en0;
         RS_Entity* en1;
-        if (i<length-1){
-            en0=pnew->entityAt(i);
-            en1=pnew->entityAt(i+1);
-        }else{
+        if (i < length - 1) {
+            en0 = pnew->entityAt(i);
+            en1 = pnew->entityAt(i + 1);
+        }
+        else {
             if (isClosed()) {
-                en0=pnew->entityAt(i);
-                en1=pnew->entityAt(0);
-            }else{
+                en0 = pnew->entityAt(i);
+                en1 = pnew->entityAt(0);
+            }
+            else {
                 break;
             }
         }
-        RS_VectorSolutions sol0=RS_Information::getIntersection(en0,en1,true);
-        if(sol0.getNumber()==0){
-            sol0=RS_Information::getIntersection(en0,en1);
+        RS_VectorSolutions sol0 = RS_Information::getIntersection(en0, en1, true);
+        if (sol0.getNumber() == 0) {
+            sol0 = RS_Information::getIntersection(en0, en1);
 //            RS_Vector vp0(pnew->entityAt(i)->getEndpoint());
 //            RS_Vector vp1(pnew->entityAt(i+1)->getStartpoint());
 //            double a0(intersections.at(i).angleTo(vp0));
@@ -590,12 +570,13 @@ bool RS_Polyline::offset(const RS_Vector& coord, const double& distance){
 //		sol1.push_back(vp);
             //    }
             //}
-            sol1=sol0;
-            if(sol1.getNumber()==0) continue;
+            sol1 = sol0;
+            if (sol1.getNumber() == 0) continue;
             RS_Vector trimP(sol1.getClosest(intersections.at(i)));
             static_cast<RS_AtomicEntity*>(en0)->trimEndpoint(trimP);
             static_cast<RS_AtomicEntity*>(en1)->trimStartpoint(trimP);
-        }else{
+        }
+        else {
             RS_Vector trimP(sol0.getClosest(intersections.at(i)));
             static_cast<RS_AtomicEntity*>(en0)->trimEndpoint(trimP);
             static_cast<RS_AtomicEntity*>(en1)->trimStartpoint(trimP);
@@ -625,11 +606,22 @@ void RS_Polyline::rotate(const RS_Vector& center, const RS_Vector& angleVector) 
 }
 
 void RS_Polyline::scale(const RS_Vector& center, const RS_Vector& factor) {
-    // fixme - Umgh.... is it really nice design to mix UI logic to entity? It seems that the check and message should be outside of this....
-    // todo - it seems that either proper scaling is needed, or at least message should be moved to the place of invocation (that might be tough)
-    // fixme - check this
-    if (containsArc() && !RS_Math::equal(factor.x, factor.y)) {
-        RS_DIALOGFACTORY->commandMessage(QObject::tr("Polyline contains arc segments, and scaling by different xy-factors will generate incorrect results"));
+    if (!RS_Math::equal(factor.x, factor.y)) {
+        for (int i = 0; i < count(); ++i) {
+            RS_Entity* e = entityAt(i);
+            if (e->rtti() == RS2::EntityArc) {
+                RS_Arc* arc = static_cast<RS_Arc*>(e);
+                RS_Vector majorP(arc->getRadius(), 0.0);
+                RS_EllipseData ed{arc->getCenter(), majorP, 1.0,
+                                  arc->getAngle1(), arc->getAngle2(),
+                                  arc->isReversed()};
+                RS_Ellipse* ellipse = new RS_Ellipse(this, ed);
+                ellipse->setSelected(arc->isSelected());
+                ellipse->setPen(RS_Pen(RS2::FlagInvalid));
+                ellipse->setLayer(nullptr);
+                setEntityAt(i, ellipse);
+            }
+        }
     }
     RS_EntityContainer::scale(center, factor);
     data.startpoint.scale(center, factor);
@@ -637,8 +629,7 @@ void RS_Polyline::scale(const RS_Vector& center, const RS_Vector& factor) {
     calculateBorders();
 }
 
-bool RS_Polyline::containsArc() const
-{
+bool RS_Polyline::containsArc() const{
     return std::any_of(cbegin(), cend(), [](const RS_Entity* entity) {
         return entity->rtti() == RS2::EntityArc;
     });
@@ -670,10 +661,7 @@ void RS_Polyline::revertDirection() {
     data.endpoint = tmp;
 }
 
-void RS_Polyline::stretch(const RS_Vector& firstCorner,
-                          const RS_Vector& secondCorner,
-                          const RS_Vector& offset) {
-
+void RS_Polyline::stretch(const RS_Vector& firstCorner, const RS_Vector& secondCorner, const RS_Vector& offset) {
     if (data.startpoint.isInWindow(firstCorner, secondCorner)) {
         data.startpoint.move(offset);
     }
@@ -684,7 +672,6 @@ void RS_Polyline::stretch(const RS_Vector& firstCorner,
     RS_EntityContainer::stretch(firstCorner, secondCorner, offset);
     calculateBorders();
 }
-
 
 /**
  * Slightly optimized drawing for polylines.
@@ -700,16 +687,79 @@ void RS_Polyline::drawAsChild(RS_Painter *painter) {
     painter->drawEntityPolyline(this);
 }
 
+RS_Ellipse* RS_Polyline::convertToEllipse(const std::pair<RS_Arc*, double>& arcPair) {
+    RS_Arc* arc = arcPair.first;
+    double scaleRatio = arcPair.second;
+    double radius = arc->getRadius();
+    double major, ratio;
+    RS_Vector majorP;
+    bool reversed = arc->isReversed();
+    if (scaleRatio >= 1.0) {
+        // Major along y
+        major = radius * scaleRatio;
+        ratio = 1.0 / scaleRatio;
+        majorP = RS_Vector(0.0, major);
+    } else {
+        // Major along x
+        major = radius;
+        ratio = scaleRatio;
+        majorP = RS_Vector(major, 0.0);
+    }
+
+    RS_EllipseData d{arc->getCenter(), majorP, ratio,
+                     arc->getAngle1(), arc->getAngle2(), reversed};
+
+    RS_Ellipse* ellipse = new RS_Ellipse(arc->getParent(), d);
+    ellipse->setSelected(arc->isSelected());
+    ellipse->setPen(RS_Pen(RS2::FlagInvalid));
+    ellipse->setLayer(nullptr);
+
+    return ellipse;
+}
+
+std::pair<RS_Arc*, double> RS_Polyline::convertToArcPair(const RS_Ellipse* ellipse) {
+    double elRatio = ellipse->getRatio();
+    RS_Vector elMajorP = ellipse->getMajorP();
+    double majorRadius = elMajorP.magnitude();
+    double angle = elMajorP.angle();
+    bool alongX = (fabs(angle) < RS_TOLERANCE || fabs(angle - M_PI) < RS_TOLERANCE);
+    bool alongY = (fabs(angle - M_PI_2) < RS_TOLERANCE || fabs(angle - 3 * M_PI_2) < RS_TOLERANCE);
+
+    if (!alongX && !alongY) {
+        // Not axis-aligned, cannot convert simply
+        RS_DEBUG->print(RS_Debug::D_WARNING, "convertToArcPair: Ellipse not axis-aligned");
+        return {nullptr, 0.0};
+    }
+
+    double scaleRatio;
+    double arcRadius;
+    if (alongX) {
+        arcRadius = majorRadius;
+        scaleRatio = elRatio;
+    } else { // alongY
+        arcRadius = majorRadius * elRatio; // since minor is along x, arcRadius as x semi
+        scaleRatio = 1.0 / elRatio;
+    }
+
+    RS_ArcData d(ellipse->getCenter(), arcRadius,
+                 ellipse->getAngle1(), ellipse->getAngle2(),
+                 ellipse->isReversed());
+
+    RS_Arc* arc = new RS_Arc(ellipse->getParent(), d);
+    arc->setSelected(ellipse->isSelected());
+    arc->setPen(RS_Pen(RS2::FlagInvalid));
+    arc->setLayer(nullptr);
+
+    return {arc, scaleRatio};
+}
+
 /**
  * Dumps the point's data to stdout.
  */
 std::ostream& operator << (std::ostream& os, const RS_Polyline& l) {
     os << " Polyline: " << l.getData() << " {\n";
-
     os << (RS_EntityContainer&)l;
-
     os << "\n}\n";
-
     return os;
 }
 /**
@@ -724,7 +774,7 @@ RS_Vector RS_Polyline::getRefPointAdjacentDirection(bool previousSegment, RS_Vec
         return entityAt(0)->getEndpoint();
     }
     bool breakOnNextVertex = false;
-    for (RS_Entity *entity = firstEntity(RS2::ResolveAll); entity; entity = nextEntity(RS2::ResolveAll)) {
+    for (RS_Entity *entity: lc::LC_ContainerTraverser{*this, RS2::ResolveAll}.entities()) {
         RS_Vector segmentEndPoint = entity->getEndpoint();
         if (breakOnNextVertex){
             return segmentEndPoint;
@@ -744,10 +794,24 @@ RS_Vector RS_Polyline::getRefPointAdjacentDirection(bool previousSegment, RS_Vec
     return previous;
 }
 
-bool RS_Polyline::isFont() const
-{
-    // fixme - sand - temporary disabled elliptic arcs until painting for them is fixed and save is solved
-    // const RS_EntityContainer* parent = getParent();
-    // return parent != nullptr && parent->rtti() == RS2::EntityFontChar;
-    return false;
+RS_Arc* RS_Polyline::arcFromBulge(const RS_Vector& start, const RS_Vector& end, double bulge) {
+    if (std::abs(bulge) < RS_TOLERANCE || std::abs(bulge) >= RS_MAXDOUBLE) {
+        return nullptr;
+    }
+    bool reversed = std::signbit(bulge);
+    double alpha = std::atan(std::abs(bulge)) * 4.0;
+    RS_Vector middle = (start + end) / 2.0;
+    double dist = start.distanceTo(end) / 2.0;
+    double angle = start.angleTo(end);
+    double radius = std::abs(dist / std::sin(alpha / 2.0));
+    double wu = std::abs(radius * radius - dist * dist);
+    double h = (std::abs(alpha) > M_PI) ? -std::sqrt(wu) : std::sqrt(wu);
+    double angleNew = reversed ? angle - M_PI_2 : angle + M_PI_2;
+    RS_Vector center = middle + RS_Vector::polar(h, angleNew);
+    double a1 = center.angleTo(start);
+    double a2 = center.angleTo(end);
+    if (reversed)
+        std::swap(a1, a2);
+    RS_ArcData d(center, radius, a1, a2, reversed);
+    return new RS_Arc(nullptr, d);
 }

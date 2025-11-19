@@ -22,26 +22,39 @@
 
 #include "lc_actionpolylinearcstolines.h"
 
+#include "lc_actioncontext.h"
+#include "lc_containertraverser.h"
+
 #include "rs_pen.h"
 #include "rs_polyline.h"
 
 LC_ActionPolylineArcsToLines::LC_ActionPolylineArcsToLines(LC_ActionContext *actionContext)
-    :RS_PreviewActionInterface("PolylineArcsToLines", actionContext, RS2::ActionPolylineArcsToLines) {
+    : RS_PreviewActionInterface("PolylineArcsToLines", actionContext, RS2::ActionPolylineArcsToLines),
+      m_polyline{nullptr} {
 }
 
-LC_ActionPolylineArcsToLines::~LC_ActionPolylineArcsToLines() {
+LC_ActionPolylineArcsToLines::~LC_ActionPolylineArcsToLines() = default;
+
+void LC_ActionPolylineArcsToLines::doInitWithContextEntity(RS_Entity* contextEntity, [[maybe_unused]]const RS_Vector& clickPos) {
+    setPolylineToModify(contextEntity);
+}
+
+void LC_ActionPolylineArcsToLines::init(int status) {
+    m_polyline = nullptr;
+    RS_PreviewActionInterface::init(status);
 }
 
 void LC_ActionPolylineArcsToLines::doTrigger() {
     // todo - move to RS_Modification?
-    auto* createdPolyline =  createPolyline(m_polyline);
+    if (hasArcsSegments(m_polyline)) {
+        auto* createdPolyline =  createPolyline(m_polyline);
 
-    createdPolyline->setLayer(m_polyline->getLayer());
-    createdPolyline->setPen(m_polyline->getPen(false));
+        createdPolyline->setLayer(m_polyline->getLayer());
+        createdPolyline->setPen(m_polyline->getPen(false));
 
-    m_container->addEntity(createdPolyline);
-    undoCycleReplace(m_polyline, createdPolyline);
-
+        m_container->addEntity(createdPolyline);
+        undoCycleReplace(m_polyline, createdPolyline);
+    }
     m_polyline = nullptr;
 }
 
@@ -57,18 +70,17 @@ void LC_ActionPolylineArcsToLines::onMouseMoveEvent([[maybe_unused]]int status, 
     }
 }
 
-void LC_ActionPolylineArcsToLines::onMouseLeftButtonRelease([[maybe_unused]] int status, LC_MouseEvent *e) {
-    auto entity = catchEntityByEvent(e, RS2::EntityPolyline);
-    if (entity != nullptr){
+void LC_ActionPolylineArcsToLines::setPolylineToModify(RS_Entity* entity) {
+    if (isPolyline(entity)) {
         m_polyline = dynamic_cast<RS_Polyline *>(entity);
         trigger();
     }
 }
 
-void LC_ActionPolylineArcsToLines::init(int status) {
-    RS_PreviewActionInterface::init(status);
-    if (status < 0){
-       m_polyline = nullptr;
+void LC_ActionPolylineArcsToLines::onMouseLeftButtonRelease([[maybe_unused]] int status, LC_MouseEvent *e) {
+    auto entity = catchEntityByEvent(e, RS2::EntityPolyline);
+    if (entity != nullptr){
+        setPolylineToModify(entity);
     }
 }
 
@@ -80,8 +92,7 @@ RS_Polyline *LC_ActionPolylineArcsToLines::createPolyline(RS_Polyline *original)
     auto* clone = new RS_Polyline(m_container);
 
     clone->addVertex(original->getStartpoint());
-
-    for (RS_Entity *entity = original->firstEntity(RS2::ResolveAll); entity; entity = original->nextEntity(RS2::ResolveAll)) {
+    for(RS_Entity* entity: lc::LC_ContainerTraverser{*original, RS2::ResolveAll}.entities()) {
         clone->addVertex(entity->getEndpoint());
     }
 
@@ -90,8 +101,9 @@ RS_Polyline *LC_ActionPolylineArcsToLines::createPolyline(RS_Polyline *original)
 }
 
 bool LC_ActionPolylineArcsToLines::hasArcsSegments(RS_Polyline *p) {
-    for (RS_Entity *entity = p->firstEntity(RS2::ResolveAll); entity; entity = p->nextEntity(RS2::ResolveAll)) {
-        int rtti = entity->rtti();
+    lc::LC_ContainerTraverser traverser{*p, RS2::ResolveAll};
+    for(RS_Entity* entity = traverser.first(); entity != nullptr; entity = traverser.next()) {
+        RS2::EntityType rtti = entity->rtti();
         if (rtti == RS2::EntityArc){
             return true;
         }

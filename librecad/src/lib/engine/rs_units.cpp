@@ -615,10 +615,13 @@ QString RS_Units::formatArchitecturalMetric(double length, RS2::Unit unit,
     // return values < 1.00m in cm (0.42 -> 42)
     const QChar zero = '0';
     if (ret.startsWith(zero)) {
-        ret = ret.split(".")[1];
-        // eliminate leading zeros (0.07 -> 7)
-        if (ret.startsWith(zero)) {
-            ret = ret.remove(0, 1);
+        auto parts = ret.split(".");
+        if (parts.size() > 1) {
+            ret = parts[1];
+            // eliminate leading zeros (0.07 -> 7)
+            if (ret.startsWith(zero)) {
+                ret = ret.remove(0, 1);
+            }
         }
     }
     if (showUnit) {
@@ -641,7 +644,11 @@ QString RS_Units::formatFractional(double length, RS2::Unit /*unit*/,
     if (!isAbsInRange(length))
         return "<Invalid length>";
 
-
+    // Issue #2218: negative number support
+    if (std::signbit(length)) {
+        QString sign = std::signbit(length + RS_TOLERANCE) ? QString{"- "} : QString{};
+        return sign + formatFractional(std::abs(length), RS2::Inch, prec, false);
+    }
     // number of complete inches (num' 7/128")
     unsigned num = (unsigned) std::abs(length);
 

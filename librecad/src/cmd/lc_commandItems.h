@@ -640,7 +640,7 @@ const LC_CommandItem g_commandList[] = {
         {
                 {{"dimordrebase", QObject::tr("dimordrebase", "dimension - ordinate")}},
                 {{"dor", QObject::tr("dor", "dimension - ordinate")}},
-                RS2::ActionDimOrdinateRebase
+                RS2::ActionDimOrdRebase
             },
         // dimension horizontal
         {
@@ -685,7 +685,7 @@ const LC_CommandItem g_commandList[] = {
         {
             {{"dimregen", QObject::tr("dimregen", "dimension - regenerate")}},
             {{"dg", QObject::tr("dg", "dimension - regenerate")}},
-            RS2::ActionToolRegenerateDimensions
+            RS2::ActionDimRegenerate
         },
 
         /* MODIFY COMMANDS */
@@ -1021,6 +1021,18 @@ const LC_CommandItem g_commandList[] = {
             {{"rg", QObject::tr("rg", "zoom - redraw")},
              {"zr", QObject::tr("zr", "zoom - redraw")}},
             RS2::ActionZoomRedraw
+        },
+        // zoom in
+        {
+            {{"zoomin", QObject::tr("zoomin", "zoom - in")}},
+            {{"zi", QObject::tr("zi", "zoom - in")}},
+            RS2::ActionZoomIn
+        },
+        // zoom out
+        {
+            {{"zoomout", QObject::tr("zoomout", "zoom - out")}},
+            {{"zo", QObject::tr("zo", "zoom - out")}},
+            RS2::ActionZoomOut
         },
         // zoom auto
         {

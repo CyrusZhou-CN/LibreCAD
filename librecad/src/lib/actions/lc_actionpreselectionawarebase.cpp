@@ -46,6 +46,15 @@ LC_ActionPreSelectionAwareBase::~LC_ActionPreSelectionAwareBase() {
     m_selectedEntities.clear();
 }
 
+void LC_ActionPreSelectionAwareBase::doInitWithContextEntity(RS_Entity* contextEntity, [[maybe_unused]]const RS_Vector& clickPos) {
+    if (isForceSelectContextEntity()) {
+        contextEntity->setSelected(true);
+        redrawDrawing();
+    }
+    m_selectedEntities.push_back(contextEntity);
+    onSelectionCompleted(true, true);
+}
+
 void LC_ActionPreSelectionAwareBase::init(int status) {
     RS_PreviewActionInterface::init(status);
     if (status < 0){
@@ -102,7 +111,8 @@ void LC_ActionPreSelectionAwareBase::onMouseLeftButtonRelease(int status, LC_Mou
     else{
         if (m_inBoxSelectionMode){
             RS_Vector mouse = e->graphPoint;
-            deletePreview();
+            // Issue #2299: also delete the overlay box for selection
+            deletePreviewAndHighlights();
 
             // restore selection box to ucs
             RS_Vector ucsP1 = toUCS(m_selectionCorner1);
