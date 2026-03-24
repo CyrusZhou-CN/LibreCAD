@@ -1510,7 +1510,6 @@ set(SHARED_SOURCES
     librecad/src/ui/main/workspaces/lc_workspacesinvoker.h
     librecad/src/ui/main/workspaces/lc_workspacesmanager.cpp
     librecad/src/ui/main/workspaces/lc_workspacesmanager.h
-    librecad/src/ui/not_used/LC_DlgParabola.cpp
     librecad/src/ui/qg_actionhandler.cpp
     librecad/src/ui/qg_actionhandler.h
     librecad/src/ui/view/lc_centralwidget.cpp
@@ -1634,7 +1633,7 @@ set(TS_FILES
     librecad/ts/librecad_he.ts
     librecad/ts/librecad_hi.ts
     librecad/ts/librecad_hu.ts
-    librecad/ts/librecad_id_ID.ts
+    librecad/ts/librecad_id_id.ts
     librecad/ts/librecad_it.ts
     librecad/ts/librecad_ja.ts
     librecad/ts/librecad_ka.ts
