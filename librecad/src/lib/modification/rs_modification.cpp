@@ -436,12 +436,14 @@ void RS_Modification::copy(const RS_Vector& ref, const bool cut) {
 
     RS_DEBUG->print(RS_Debug::D_DEBUGGING, "RS_Modification::copy");
 
-    if (!m_container) {
+    if (m_container == nullptr || m_graphic == nullptr) {
         RS_DEBUG->print(RS_Debug::D_ERROR, "RS_Modification::copy: no valid container");
         return;
     }
 
     RS_CLIPBOARD->clear();
+    RS_CLIPBOARD->getGraphic()->setUnit(m_graphic->getUnit());
+
     if (m_graphic) {
         RS_CLIPBOARD->getGraphic()->setUnit(m_graphic->getUnit());
     } else {
