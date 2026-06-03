@@ -5,6 +5,7 @@
 ** Copyright (C) 2021 A. Stebich (librecad@mail.lordofbikes.de)
 ** Copyright (C) 2010 R. van Twisk (librecad@rvt.dds.nl)
 ** Copyright (C) 2001-2003 RibbonSoft. All rights reserved.
+** Copyright (C) 2026 LibreCAD (librecad.org)
 **
 **
 ** This file may be distributed and/or modified under the terms of the
@@ -32,13 +33,15 @@
 #include <QMessageBox>
 #include <QApplication>
 #endif
+#include "rs_debug.h"
+#include "rs_dialogfactory.h"
+#include "rs_dialogfactoryinterface.h"
 #include "rs_fileio.h"
 #include "rs_filtercxf.h"
 #include "rs_filterdxf1.h"
+#include "rs_filterdxfrw.h"
 #include "rs_filterjww.h"
 #include "rs_filterlff.h"
-#include "rs_filterdxfrw.h"
-#include "rs_debug.h"
 
 /**
  * Calls the import method of the filter responsible for the format
@@ -68,20 +71,9 @@ bool RS_FileIO::fileImport(RS_Graphic& graphic, const QString& file,
 #ifdef DWGSUPPORT
             bool isDwg {file.endsWith( ".dwg", Qt::CaseInsensitive)};
             if (isDwg) {
-                QApplication::restoreOverrideCursor();  // disable WaitCursor for massagebox
-
-                // use QStringList to avoid "\n" in translation strings
-                QStringList info { QObject::tr("DWG support is not complete!"),
-                                   "",
-                                   QObject::tr("If this file fails to open try an older DWG format"),
-                                   QObject::tr("or try to find a converter to make it a DXF file.") };
-
-                QMessageBox::information( qApp->activeWindow(),
-                                          QObject::tr("Information"),
-                                          info.join( "\n"),
-                                          QMessageBox::Ok,
-                                          QMessageBox::NoButton);
-                QApplication::setOverrideCursor( QCursor(Qt::WaitCursor));
+              RS_DIALOGFACTORY->commandMessage(QObject::tr(
+                  "DWG support is not complete; if this file fails to open try "
+                  "an older DWG format or convert it to DXF."));
             }
 #endif
             bool bImported {filter->fileImport(graphic, file, t)};
@@ -160,8 +152,7 @@ RS2::FormatType RS_FileIO::detectFormat(QString const& file, bool forRead)
         {"cxf", RS2::FormatCXF},
         {"lff", RS2::FormatLFF}
     };
-// only read support for dwg
-    if(forRead) list["dwg"]=RS2::FormatDWG;
+    list["dwg"] = RS2::FormatDWG;
 
     QString const extension = QFileInfo(file).suffix().toLower();
     RS2::FormatType type=(list.find(extension)!=

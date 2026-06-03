@@ -49,16 +49,14 @@ void PathBuilder::append(RS_Entity* entity) {
   if (!entity || entity->isUndone()) return;
 
   RS_Vector startp = entity->getStartpoint();
-  if (m_hasLastPoint)
-    lineTo(startp);
-  else
-    moveTo(startp);
-  const double tol = 1e-6;
-  if (!m_hasLastPoint || m_lastPoint.distanceTo(startp) > tol) {
-    LC_ERR<<__func__<<": line "<<__LINE__<<": found gap at "<<m_lastPoint<<" to "<<startp;
+  if (startp.valid) {
+    if (m_hasLastPoint) {
+      lineTo(startp);
+    } else {
+      m_firstPoint = startp;
+      moveTo(startp);
+    }
   }
-  if (!m_hasLastPoint)
-    m_firstPoint = startp;
 
   RS2::EntityType type = entity->rtti();
 
@@ -75,7 +73,11 @@ void PathBuilder::append(RS_Entity* entity) {
   case RS2::EntityEllipse:
     appendEllipse(static_cast<RS_Ellipse*>(entity));
     break;
-  case RS2::EntitySpline:
+  case RS2::EntitySplinePoints:
+    // LC_SplinePoints (rtti EntitySplinePoints) — analytical quadratic
+    // segments via the spline-points helper. The legacy case label here
+    // was RS2::EntitySpline which never matched (RS_Spline is non-atomic
+    // and a different class); the cast to LC_SplinePoints* was unsound.
     appendSplinePoints(static_cast<LC_SplinePoints*>(entity));
     break;
   case RS2::EntityParabola:
@@ -124,15 +126,20 @@ QPointF PathBuilder::toGuiPoint(const RS_Vector& vp) const {
 
 void PathBuilder::appendLine(RS_Line* line) {
   if (!line) return;
-  m_path.moveTo(toGuiPoint(line->getStartpoint()));
   m_path.lineTo(toGuiPoint(line->getEndpoint()));
-  //LC_LOG<<"adding line: now at: "<<toGuiPoint(line->getEndpoint()).y();
 }
 
 void PathBuilder::appendArc(RS_Arc* arc) {
   if (!arc || !m_painter) return;
-  arc->createPainterPath(m_painter, m_path);
-  //LC_LOG<<"adding arc: now at: "<<m_path.currentPosition().y();
+  const double radius = arc->getRadius();
+  RS_Vector uiCenter = m_painter->toGui(arc->getCenter());
+  RS_Vector uiRadii{m_painter->toGuiDX(radius), m_painter->toGuiDY(radius)};
+  RS_Vector minCorner = uiCenter - uiRadii;
+  RS_Vector uiSize = uiRadii + uiRadii;
+  double startAngleDeg = m_painter->toUCSAngleDegrees(arc->getData().startAngleDegrees);
+  double angularLength = arc->getData().angularLength;
+  // arcTo without arcMoveTo connects from current position without starting a new subpath
+  m_path.arcTo(minCorner.x, minCorner.y, uiSize.x, uiSize.y, startAngleDeg, angularLength);
 }
 
 void PathBuilder::appendCircle(RS_Circle* circle) {
@@ -149,25 +156,47 @@ void PathBuilder::appendEllipse(RS_Ellipse* ellipse) {
 void PathBuilder::appendSplinePoints(LC_SplinePoints* spline) {
   if (!spline || !m_painter) return;
 
-  const auto& points = spline->getPoints();
-  if (points.empty()) return;
+  // Iterate quadratic segments using the same indexing as
+  // LC_SplinePoints::fillStrokePoints: i = 1..iSplines, where
+  //   closed: iSplines = N control points
+  //   open:   iSplines = N - 2 control points
+  // GetQuadPoints uses the internal control-point representation regardless
+  // of whether the source was useControlPoints=true or splinePoints-based
+  // (UpdateControlPoints regenerates them either way), so iterating over
+  // controlPoints is correct for both modes.
+  const size_t n = spline->getData().controlPoints.size();
+  if (n < 2)
+    return;
 
-  size_t n_points = points.size();
-  size_t num_segs = spline->isClosed() ? n_points : n_points - 1;
-  if (num_segs == 0) {
-    lineTo(spline->getEndpoint());
+  const bool closed = spline->isClosed();
+  const size_t iSplines = closed ? n : (n >= 3 ? n - 2 : 0);
+  if (iSplines == 0) {
+    // Degenerate: 2-point open spline degenerates to a line.
+    if (!closed && n == 2) {
+      lineTo(spline->getData().controlPoints[1]);
+    }
     return;
   }
 
-  // Current position assumed at start of first segment
-  for (size_t i = 0; i < num_segs; ++i) {
+  bool emittedMoveTo = false;
+  for (size_t i = 1; i <= iSplines; ++i) {
     RS_Vector start, ctrl, end;
-    if (spline->GetQuadPoints(int(i), &start, &ctrl, &end) != 0) {
-      m_path.moveTo(toGuiPoint(start));  // Ensure start (rare fallback)
-      m_path.quadTo(toGuiPoint(ctrl), toGuiPoint(end));
-    } else {
-      lineTo(end);  // Linear fallback
+    int npts = spline->GetQuadPoints(int(i), &start, &ctrl, &end);
+    if (npts < 3) {
+      if (npts >= 2 && start.valid && end.valid) {
+        if (!emittedMoveTo) {
+          m_path.moveTo(toGuiPoint(start));
+          emittedMoveTo = true;
+        }
+        m_path.lineTo(toGuiPoint(end));
+      }
+      continue;
     }
+    if (!emittedMoveTo) {
+      m_path.moveTo(toGuiPoint(start));
+      emittedMoveTo = true;
+    }
+    m_path.quadTo(toGuiPoint(ctrl), toGuiPoint(end));
   }
 }
 

@@ -40,16 +40,33 @@ if NOT exist windows\LibreCAD.exe (
     popd
     exit /b 1
 )
-rem Improved windeployqt: verbose, force copy, standard plugin subdirs
-echo windeployqt: Current directory is: %CD%
-dir windows\
-mkdir windows\ts
-windeployqt.exe --release windows\LibreCAD.exe --verbose 2 --force
-dir librecad\ts\*.ts
+echo windeployqt: deploying from %CD%
+windeployqt6.exe --release --compiler-runtime windows\LibreCAD.exe
+rem Copy MSVC runtime DLLs (VCRUNTIME140_1.dll, MSVCP140*.dll, ...) into windows\
+rem so the NSIS installer is self-contained. windeployqt --compiler-runtime on
+rem Qt 6 only copies vc_redist.<arch>.exe (when present), not the DLLs.
+rem Skip silently for non-MSVC builds where vswhere/VC143.CRT won't be available.
+where cl >nul 2>nul
+if %errorlevel% equ 0 (
+    set "LC_VC_ARCH=%LC_ARCH%"
+    if "!LC_VC_ARCH!"=="" (
+        if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
+            set "LC_VC_ARCH=ARM64"
+        ) else if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+            set "LC_VC_ARCH=AMD64"
+        ) else (
+            set "LC_VC_ARCH=x86"
+        )
+    )
+    echo Copying MSVC runtime DLLs for !LC_VC_ARCH! into windows\
+    powershell.exe -ExecutionPolicy Bypass -File "%~dp0copy-vc-runtime.ps1" -Architecture !LC_VC_ARCH! -Destination "%CD%\windows"
+    if errorlevel 1 (
+        echo [WARNING] copy-vc-runtime.ps1 failed; installer may be missing VCRUNTIME140_1.dll etc.
+    )
+)
 for %%f in (librecad\ts\*.ts plugins\ts\*.ts) do (
   lrelease.exe "%%f"
 )
-dir librecad\ts
 echo [INFO] Extracting version (SCMREVISION)...
 set SCMREVISION=unknown
 rem Parse default LC_VERSION from src.pro (find line starting with LC_VERSION= , allowing spaces)
@@ -112,21 +129,35 @@ set "VIProductVersion=!v1!.!v2!.!v3!.!v4!"
 popd
 call set-windows-env.bat
 echo "SCMREVISION=%SCMREVISION%"
+if "!LC_SKIP_NSIS!"=="1" (
+    echo [INFO] Skipping NSIS packaging ^(LC_SKIP_NSIS=1^)
+    exit /b 0
+)
 if _%LC_NSIS_FILE%==_ (
     set LC_NSIS_FILE=nsis-msvc.nsi
 )
 pushd postprocess-windows
-rem Detect architecture and pass appropriate defines to NSIS
+rem Use LC_ARCH env var if set; otherwise fall back to PROCESSOR_ARCHITECTURE
 set NSIS_FLAGS=/X"SetCompressor /FINAL lzma" /V4
-if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
-    set NSIS_FLAGS=%NSIS_FLAGS% /DWIN64 /DAMD64
-) else if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
-    set NSIS_FLAGS=%NSIS_FLAGS% /DWIN64 /DARM64
-    rem Pass Qt version for ARM64 (assumes Qt6; override in custom.nsh if needed)
-    set NSIS_FLAGS=%NSIS_FLAGS% /DQt_Version=6.7.2
+if not "!LC_ARCH!"=="" (
+    if /I "!LC_ARCH!"=="amd64" (
+        set NSIS_FLAGS=!NSIS_FLAGS! /DWIN64 /DAMD64
+    ) else if /I "!LC_ARCH!"=="arm64" (
+        set NSIS_FLAGS=!NSIS_FLAGS! /DWIN64 /DARM64
+    ) else (
+        echo [ERROR] Unknown LC_ARCH value: !LC_ARCH!
+        popd
+        exit /b 1
+    )
+) else (
+    if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
+        set NSIS_FLAGS=!NSIS_FLAGS! /DWIN64 /DAMD64
+    ) else if "%PROCESSOR_ARCHITECTURE%"=="ARM64" (
+        set NSIS_FLAGS=!NSIS_FLAGS! /DWIN64 /DARM64
+    )
 )
 rem Pass the extracted SCMREVISION to NSIS
 echo "SCMREVISION=%SCMREVISION%"
-set NSIS_FLAGS=%NSIS_FLAGS% /DSCMREVISION="!SCMREVISION!" /DVIProductVersion="!VIProductVersion!"
-makensis.exe %NSIS_FLAGS% %LC_NSIS_FILE%
+set NSIS_FLAGS=!NSIS_FLAGS! /DSCMREVISION="!SCMREVISION!" /DVIProductVersion="!VIProductVersion!"
+makensis.exe !NSIS_FLAGS! %LC_NSIS_FILE%
 popd

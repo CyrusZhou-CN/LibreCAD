@@ -1,20 +1,9 @@
 ; nsis-msvc.nsi
-; NSIS installer script optimized for MSVC Qt builds of LibreCAD
-; Features:
-; - Dynamic architecture detection (AMD64, ARM64) → -x86, -x64, or -arm64 in filename
-; - Dynamic InstallDir ($PROGRAMFILES vs $PROGRAMFILES64)
-; - Uses SCMREVISION passed from build-windows.bat (/DSCMREVISION=...)
-; - Falls back to generated_scmrev.nsh or default if not provided
-; - Packages LFF font files from librecad/support/fonts/ → resources/fonts/
-; - Packages hatch patterns from librecad/support/patterns/ → resources/patterns/
-; - Packages library parts from librecad/support/library/ → resources/library/ (with subfolders)
-; - Preselected file association for .dxf files (user selectable via components page)
-; Optimizations:
-; - Added SetRegView for proper 32/64-bit registry handling
-; - Added basic error checking for critical registry writes
-; - Removed commented-out unused code for clarity
-; - Used /SOLID lzma compression for smaller installer size
-; - Added version info to installer properties
+; NSIS installer script for qmake + MSVC builds of LibreCAD (build-windows.bat)
+; - Architecture-aware: x86, x64, ARM64 via /DAMD64 or /DARM64 from build-windows.bat
+; - Per-arch registry keys allow x64 and ARM64 to coexist
+; - Qt translations from Qt install dir + LibreCAD/plugin .qm from source tree
+; - windeployqt output in windows\ is the primary file source
 SetCompressor /SOLID lzma
 !include "MUI2.nsh"
 !include "LogicLib.nsh"
@@ -40,31 +29,37 @@ SetCompressor /SOLID lzma
 !ifndef APPNAME
     !define APPNAME "LibreCAD"
 !endif
-!define UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPNAME}"
-!define MUI_ICON "..\..\librecad\res\images\librecad.ico"
-!define MUI_UNICON "..\..\librecad\res\images\uninstall.ico"
+!define MUI_ICON  "..\..\librecad\res\images\librecad.ico"
+!define MUI_UNICON "..\..\desktop\res_old\main\uninstall.ico"
 ;--------------------------------
-; Dynamic architecture suffix, install directory, and registry view
+; Architecture suffix, install directory, and registry view
+; /DAMD64 or /DARM64 passed by build-windows.bat; default is x86
 !if defined(AMD64)
     !define ARCH_SUFFIX "x64"
     !define INSTALL_DIR "$PROGRAMFILES64\LibreCAD"
     !define REG_VIEW 64
 !elseif defined(ARM64)
     !define ARCH_SUFFIX "arm64"
-    !define INSTALL_DIR "$PROGRAMFILES\LibreCAD"
+    !define INSTALL_DIR "$PROGRAMFILES64\LibreCAD"
     !define REG_VIEW 64
 !else
     !define ARCH_SUFFIX "x86"
     !define INSTALL_DIR "$PROGRAMFILES\LibreCAD"
     !define REG_VIEW 32
 !endif
+; Per-architecture registry paths — allows x64 and ARM64 to coexist
+!define UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\LibreCAD-${ARCH_SUFFIX}"
+!define APPREG    "Software\LibreCAD\${ARCH_SUFFIX}"
 ;--------------------------------
 ; General - Dynamic output filename with version and architecture
 Name "${APPNAME} ${SCMREVISION}"
 OutFile "../../generated/LibreCAD-${SCMREVISION}-Windows-${ARCH_SUFFIX}.exe"
 InstallDir "${INSTALL_DIR}"
-InstallDirRegKey HKLM "Software\${APPNAME}" ""
+InstallDirRegKey HKLM "${APPREG}" ""
 RequestExecutionLevel admin
+!ifndef VIProductVersion
+    !define VIProductVersion "2.2.2.0"
+!endif
 VIProductVersion "${VIProductVersion}"
 VIAddVersionKey "ProductName" "${APPNAME}"
 VIAddVersionKey "FileVersion" "${SCMREVISION}"
@@ -124,7 +119,7 @@ VIAddVersionKey "LegalCopyright" "LibreCAD Team"
     !endif
 !endif
 !ifndef MSVC_Ver
-    !define MSVC_Ver "msvc2019${Arch_Suffix}"
+    !define MSVC_Ver "msvc2022${Arch_Suffix}"
 !endif
 !define QT_BIN_DIR "${Qt_Dir}\${Qt_Version}\${MSVC_Ver}\bin"
 !define PLUGINS_DIR "${Qt_Dir}\${Qt_Version}\${MSVC_Ver}\plugins"
@@ -133,7 +128,7 @@ VIAddVersionKey "LegalCopyright" "LibreCAD Team"
 ; Component descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
   !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} "The core files required to run LibreCAD."
-  !insertmacro MUI_DESCRIPTION_TEXT ${SecAssoc} "Associate .dxf files with LibreCAD so double-clicking them opens in the application."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecAssoc} "Associate .dxf and .dwg files with LibreCAD so double-clicking them opens in the application."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 ;--------------------------------
 ; Installer Sections
@@ -142,10 +137,13 @@ Section "Main Section" SecMain
   ; Set registry view based on architecture
   SetRegView ${REG_VIEW}
   SetOutPath "$INSTDIR"
-  ; Copy all built files (windeployqt already placed everything needed)
-  File /r /x "*.pdb" "..\..\windows\*.*"
-  File /nonfatal "${MUI_ICON}"
-  ; Fallback explicit plugin copies (non-fatal)
+  ; Copy all files from windeployqt output
+  File /r /x "*.pdb" /x "translations" "..\..\windows\*.*"
+  
+  ; Ensure application icon is installed (required for shortcuts and Add/Remove Programs)
+  File "${MUI_ICON}"
+  
+  ; Fallback Qt plugin copies (non-fatal; windeployqt should have handled these)
   SetOutPath "$INSTDIR\platforms"
   File /nonfatal "${PLUGINS_DIR}\platforms\qwindows.dll"
   File /nonfatal "${PLUGINS_DIR}\platforms\qminimal.dll"
@@ -158,12 +156,12 @@ Section "Main Section" SecMain
   File /nonfatal "${PLUGINS_DIR}\imageformats\qtiff.dll"
   SetOutPath "$INSTDIR\styles"
   File /nonfatal "${PLUGINS_DIR}\styles\qwindowsvistastyle.dll"
+  ; Translations — all three sources into resources\qm (where rs_system searches)
   SetOutPath "$INSTDIR\resources\qm"
   File /nonfatal "${TRANSLATIONS_DIR}\qt_*.qm"
   File /nonfatal "${TRANSLATIONS_DIR}\qtbase_*.qm"
   File /nonfatal "..\..\librecad\ts\*.qm"
-  File /nonfatal "..\..\windows\translations\*.qm"
-  File /nonfatal "..\..\generated\Release\translations\*.qm"
+  File /nonfatal "..\..\plugins\ts\*.qm"
   ; === Package LFF fonts ===
   SetOutPath "$INSTDIR\resources\fonts"
   File /r "..\..\librecad\support\fonts\*.lff"
@@ -174,13 +172,13 @@ Section "Main Section" SecMain
   SetOutPath "$INSTDIR\resources\library"
   File /r "..\..\librecad\support\library\*.dxf"
   ; Registry, shortcuts, uninstaller
-  WriteRegStr HKLM "Software\${APPNAME}" "" "$INSTDIR"
+  WriteRegStr HKLM "${APPREG}" "" "$INSTDIR"
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   SetShellVarContext all
   CreateDirectory "$SMPROGRAMS\${APPNAME}"
-  CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\LibreCAD.exe"
-  CreateShortCut "$SMPROGRAMS\${APPNAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
-  CreateShortCut "$DESKTOP\${APPNAME}.lnk" "$INSTDIR\LibreCAD.exe"
+  CreateShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\LibreCAD.exe" "" "$INSTDIR\librecad.ico"
+  CreateShortCut "$SMPROGRAMS\${APPNAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "${MUI_UNICON}"
+  CreateShortCut "$DESKTOP\${APPNAME}.lnk" "$INSTDIR\LibreCAD.exe" "" "$INSTDIR\librecad.ico"
   ; Add/Remove Programs entries - show architecture
   WriteRegStr HKLM "${UNINSTKEY}" "DisplayName" "${APPNAME} ${SCMREVISION} (${ARCH_SUFFIX})"
   WriteRegStr HKLM "${UNINSTKEY}" "DisplayIcon" "$INSTDIR\librecad.ico"
@@ -193,26 +191,43 @@ Section "Main Section" SecMain
   WriteRegDWORD HKLM "${UNINSTKEY}" "NoRepair" 1
   ; Check for errors on uninstaller registration
 SectionEnd
-Section "Associate .dxf files" SecAssoc
+Section "Associate .dxf and .dwg files" SecAssoc
   ; Set registry view (same as main section)
   SetRegView ${REG_VIEW}
-  ; File association for .dxf
-  ; Backup existing association if not already ours
+
+  ; ── .dxf ──────────────────────────────────────────────────────────────────
+  ; Back up existing association if not already ours
   ReadRegStr $R0 HKCR ".dxf" ""
   ${If} $R0 != "LibreCAD.DXF"
-    WriteRegStr HKLM "Software\${APPNAME}" "OldDXFAssoc" $R0
+    WriteRegStr HKLM "${APPREG}" "OldDXFAssoc" $R0
   ${EndIf}
-  ; Set new association
-  WriteRegStr HKCR ".dxf" "" "LibreCAD.DXF"
-  WriteRegStr HKCR "LibreCAD.DXF" "" "DXF File"
-  WriteRegStr HKCR "LibreCAD.DXF\DefaultIcon" "" "$INSTDIR\LibreCAD.ico,0"
+  ClearErrors
+  WriteRegStr HKCR ".dxf"                         "" "LibreCAD.DXF"
+  WriteRegStr HKCR "LibreCAD.DXF"                 "" "AutoCAD DXF Drawing"
+  WriteRegStr HKCR "LibreCAD.DXF\DefaultIcon"     "" "$INSTDIR\librecad.ico,0"
   WriteRegStr HKCR "LibreCAD.DXF\shell\open\command" "" '"$INSTDIR\LibreCAD.exe" "%1"'
-  ; Check for errors
-  ${IfErrors}
+  ${If} ${Errors}
     MessageBox MB_OK|MB_ICONEXCLAMATION "Failed to set .dxf file association!"
     Abort
   ${EndIf}
-  ; Notify Windows of changes
+
+  ; ── .dwg ──────────────────────────────────────────────────────────────────
+  ; Back up existing association if not already ours
+  ReadRegStr $R0 HKCR ".dwg" ""
+  ${If} $R0 != "LibreCAD.DWG"
+    WriteRegStr HKLM "${APPREG}" "OldDWGAssoc" $R0
+  ${EndIf}
+  ClearErrors
+  WriteRegStr HKCR ".dwg"                         "" "LibreCAD.DWG"
+  WriteRegStr HKCR "LibreCAD.DWG"                 "" "AutoCAD DWG Drawing"
+  WriteRegStr HKCR "LibreCAD.DWG\DefaultIcon"     "" "$INSTDIR\librecad.ico,0"
+  WriteRegStr HKCR "LibreCAD.DWG\shell\open\command" "" '"$INSTDIR\LibreCAD.exe" "%1"'
+  ${If} ${Errors}
+    MessageBox MB_OK|MB_ICONEXCLAMATION "Failed to set .dwg file association!"
+    Abort
+  ${EndIf}
+
+  ; Notify Windows Shell of all association changes at once
   System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
 SectionEnd
 Section "Uninstall"
@@ -222,19 +237,33 @@ Section "Uninstall"
   Delete "$DESKTOP\${APPNAME}.lnk"
   RMDir /r "$SMPROGRAMS\${APPNAME}"
   RMDir /r "$INSTDIR"
-  ; Restore file association for .dxf if it was ours
+  ; ── Restore .dxf association ────────────────────────────────────────────────
   DeleteRegKey HKCR "LibreCAD.DXF"
   ReadRegStr $R0 HKCR ".dxf" ""
   ${If} $R0 == "LibreCAD.DXF"
-    ReadRegStr $R1 HKLM "Software\${APPNAME}" "OldDXFAssoc"
+    ReadRegStr $R1 HKLM "${APPREG}" "OldDXFAssoc"
     ${If} $R1 == ""
       DeleteRegKey HKCR ".dxf"
     ${Else}
       WriteRegStr HKCR ".dxf" "" $R1
     ${EndIf}
-    ; Notify Windows of changes
-    System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
   ${EndIf}
-  DeleteRegKey HKLM "Software\${APPNAME}"
+
+  ; ── Restore .dwg association ────────────────────────────────────────────────
+  DeleteRegKey HKCR "LibreCAD.DWG"
+  ReadRegStr $R0 HKCR ".dwg" ""
+  ${If} $R0 == "LibreCAD.DWG"
+    ReadRegStr $R1 HKLM "${APPREG}" "OldDWGAssoc"
+    ${If} $R1 == ""
+      DeleteRegKey HKCR ".dwg"
+    ${Else}
+      WriteRegStr HKCR ".dwg" "" $R1
+    ${EndIf}
+  ${EndIf}
+
+  ; Notify Windows Shell of all association changes at once
+  System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
+
+  DeleteRegKey HKLM "${APPREG}"
   DeleteRegKey HKLM "${UNINSTKEY}"
 SectionEnd

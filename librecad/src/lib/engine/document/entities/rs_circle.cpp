@@ -39,6 +39,7 @@
 #include "rs_line.h"
 #include "rs_math.h"
 #include "rs_painter.h"
+#include "lc_secondmoment.h"
 
 
 namespace {
@@ -914,6 +915,10 @@ void RS_Circle::draw(RS_Painter* painter)
          // Build the actual path (fast or clipped depending on visibility)
   createPainterPath(painter, path);
 
+  // A circle is a closed contour; close the subpath so the stroke uses the
+  // pen's join style at the closure point rather than its cap style (which
+  // would otherwise leave a visible notch on thick strokes).
+  path.closeSubpath();
   painter->drawPath(path);
 }
 
@@ -967,9 +972,32 @@ LC_Quadratic RS_Circle::getQuadratic() const{
 * However, full ellipses and ellipse arcs are handled by RS_Ellipse
 * @return \pi r^2
 */
-double RS_Circle::areaLineIntegral() const{
-	const double r = getRadius();
-	return M_PI*r*r;
+/* =====================================================================
+   New exact moment support for RS_Circle (Green's theorem)
+   ===================================================================== */
+
+double RS_Circle::areaLineIntegral() const {
+  const double r = getRadius();
+  return M_PI * r * r;
+}
+
+LC_FirstMoment RS_Circle::firstMomentLineIntegral() const {
+  const double area = areaLineIntegral();
+  return {getCenter().x * area, getCenter().y * area};
+}
+
+LC_SecondMoment RS_Circle::secondMomentLineIntegral() const {
+  const double r   = getRadius();
+  const double cx  = getCenter().x;
+  const double cy  = getCenter().y;
+  const double r2  = r * r;
+  const double pir2 = M_PI * r2;
+
+  return {
+      pir2 * (cx * cx + r2 / 4.0),   // Ixx
+      pir2 * (cy * cy + r2 / 4.0),   // Iyy
+      pir2 * cx * cy                 // Ixy
+  };
 }
 
 /**

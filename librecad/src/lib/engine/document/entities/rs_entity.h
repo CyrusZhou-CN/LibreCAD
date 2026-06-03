@@ -28,9 +28,13 @@
 #ifndef RS_ENTITY_H
 #define RS_ENTITY_H
 
+#include <memory>
+#include <vector>
+
 #include <QString>
 
 #include "lc_drawable.h"
+#include "lc_secondmoment.h"
 #include "rs_undoable.h"
 #include "rs_vector.h"
 
@@ -43,6 +47,7 @@ class RS_Block;
 class RS_Graphic;
 class RS_EntityContainer;
 class LC_Quadratic;
+class DRW_Variant;
 
 /**
  * Base class for an entity (line, arc, circle, ...)
@@ -431,6 +436,17 @@ public:
     virtual bool offset(const RS_Vector & /*coord*/, const double & /*distance*/){return false;}
 
     /**
+     * Produce offset copies for entities whose offset cannot be expressed as
+     * an in-place mutation of the same type (e.g. ellipses → splines).
+     * Default returns empty so callers fall back to the in-place offset() path.
+     * Caller takes ownership of returned entities.
+     */
+    virtual std::vector<RS_Entity *> createOffset(const RS_Vector & /*coord*/,
+                                                  const double & /*distance*/) const {
+        return std::vector<RS_Entity *>();
+    }
+
+    /**
      * Implementations must offset the entity by the distance at both directions
      * used to generate tangential circles
      */
@@ -542,6 +558,30 @@ public:
     std::vector<QString> getAllKeys() const;
     void setUserDefVar(QString key, QString val);
     void delUserDefVar(QString key);
+
+    /// Extended Entity Data (XDATA / EED) — opaque DRW_Variant stream as
+    /// loaded from DXF/DWG. Stored verbatim so the import → save cycle
+    /// preserves application-defined data on every entity type. Empty
+    /// for entities that didn't carry any XDATA.
+    const std::vector<std::shared_ptr<DRW_Variant>> &getDrwExtData() const;
+    void setDrwExtData(std::vector<std::shared_ptr<DRW_Variant>> extData);
+    bool hasDrwExtData() const;
+
+    // Passive metadata sidecars — DXF/DWG fields that round-trip through
+    // LibreCAD without affecting equality, rendering, or any in-app
+    // behavior. Defaults are 0 = "ByLayer / no override" matching the
+    // libdxfrw sentinels (DRW::MaterialByLayer, DefaultPlotStyle, etc.).
+    quint32 materialHandle() const;
+    void setMaterialHandle(quint32 h);
+    quint32 plotStyleHandle() const;
+    void setPlotStyleHandle(quint32 h);
+    int shadowMode() const;
+    void setShadowMode(int mode);
+    quint32 fullVisualStyleHandle() const;
+    quint32 faceVisualStyleHandle() const;
+    quint32 edgeVisualStyleHandle() const;
+    void setVisualStyleHandles(quint32 full, quint32 face, quint32 edge);
+
     friend std::ostream &operator<<(std::ostream &os, RS_Entity &e);
     /** Recalculates the borders of this entity. */
     virtual void calculateBorders() = 0;
@@ -566,6 +606,34 @@ m0 x + m1 y + m2 =0
      * @return line integral \oint x dy along the entity
      */
     virtual double areaLineIntegral() const;
+
+    /**
+     * @brief firstMomentLineIntegral - computes the first-order moments of area
+     *        via Green's theorem contour integrals.
+     *
+     * Returns:
+     *   mx = ∬ x dA   (first moment with respect to y-axis)
+     *   my = ∬ y dA   (first moment with respect to x-axis)
+     *
+     * These values are used to compute the centroid: cx = mx / A, cy = my / A.
+     *
+     * @return LC_FirstMoment containing mx and my.
+     */
+    virtual LC_FirstMoment firstMomentLineIntegral() const;
+
+    /**
+     * @brief secondMomentLineIntegral - Green's theorem line integrals for the
+     * three second moments of area (∬ x² dA, ∬ y² dA, ∬ x·y dA).
+     *
+     * For a closed contour traversed counter-clockwise, summing the contributions
+     * of all boundary entities gives:
+     *   ixx = ∮ (x³/3) dy       →  ∬ x² dA
+     *   iyy = -∮ (y³/3) dx      →  ∬ y² dA
+     *   ixy = ∮ (x²·y/2) dy     →  ∬ x·y dA
+     *
+     * @return LC_SecondMoment containing the three line-integral contributions.
+     */
+    virtual LC_SecondMoment secondMomentLineIntegral() const;
     /**
      * @brief trimmable, whether the entity type can be trimmed
      * @return true, for trimmable entity types

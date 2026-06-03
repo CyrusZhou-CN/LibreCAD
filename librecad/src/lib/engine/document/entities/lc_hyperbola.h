@@ -94,27 +94,27 @@ public:
   RS_Entity *clone() const override;
 
   RS2::EntityType rtti() const override { return RS2::EntityHyperbola; }
-  bool isValid() const { return m_bValid; }
+  bool isValid() const { return m_valid; }
 
-  LC_HyperbolaData &getData() { return data; }
-  const LC_HyperbolaData &getData() const { return data; }
+  LC_HyperbolaData &getData() { return m_data; }
+  const LC_HyperbolaData &getData() const { return m_data; }
 
   // Core geometric accessors
   RS_VectorSolutions getFoci() const;
-  RS_Vector getFocus1() const { return data.getFocus1(); }
-  RS_Vector getFocus2() const { return data.getFocus2(); }
+  RS_Vector getFocus1() const { return m_data.getFocus1(); }
+  RS_Vector getFocus2() const { return m_data.getFocus2(); }
 
-  double getMajorRadius() const { return data.majorP.magnitude(); }
-  double getMinorRadius() const { return getMajorRadius() * data.ratio; }
-  double getRatio() const { return data.ratio; }
+  double getMajorRadius() const { return m_data.majorP.magnitude(); }
+  double getMinorRadius() const { return getMajorRadius() * m_data.ratio; }
+  double getRatio() const { return m_data.ratio; }
   double getEccentricity() const {
-    return std::sqrt(1.0 + data.ratio * data.ratio);
+    return std::sqrt(1.0 + m_data.ratio * m_data.ratio);
   }
 
   RS_Vector getPrimaryVertex() const;
 
-  double getAngle1() const { return data.angle1; }
-  double getAngle2() const { return data.angle2; }
+  double getAngle1() const { return m_data.angle1; }
+  double getAngle2() const { return m_data.angle2; }
 
   // Property editing support
   void setFocus1(const RS_Vector &f1);
@@ -122,8 +122,8 @@ public:
   void setPointOnCurve(const RS_Vector &p);
   void setRatio(double r);
   void setMinorRadius(double b);
-  void setAngle1(double a1) { data.angle1 = a1; }
-  void setAngle2(double a2) { data.angle2 = a2; }
+  void setAngle1(double a1) { m_data.angle1 = a1; }
+  void setAngle2(double a2) { m_data.angle2 = a2; }
 
   RS_VectorSolutions getRefPoints() const override;
 
@@ -137,6 +137,9 @@ public:
   bool isEdge() const override {
     return true;
   }
+
+  RS_Vector getNearestCenter(const RS_Vector &coord,
+                             double *dist = nullptr) const override;
 
   RS_Vector getNearestMiddle(const RS_Vector &coord, double *dist = nullptr,
                              int middlePoints = 1) const override;
@@ -183,16 +186,16 @@ public:
   RS_Vector getNearestOrthTan(const RS_Vector &coord, const RS_Line &normal,
                               bool onEntity = false) const override;
 
-  bool isReversed() const { return data.reversed; }
-  void setReversed(bool r) { data.reversed = r; }
+  bool isReversed() const { return m_data.reversed; }
+  void setReversed(bool r) { m_data.reversed = r; }
 
-  double getAngle() const { return data.majorP.angle(); }
+  double getAngle() const { return m_data.majorP.angle(); }
 
-  RS_Vector getCenter() const override { return data.center; }
-  void setCenter(const RS_Vector &c) { data.center = c; }
+  RS_Vector getCenter() const override { return m_data.center; }
+  void setCenter(const RS_Vector &c) { m_data.center = c; }
 
-  RS_Vector getMajorP() const { return data.majorP; }
-  void setMajorP(const RS_Vector &p) { data.majorP = p; }
+  RS_Vector getMajorP() const { return m_data.majorP; }
+  void setMajorP(const RS_Vector &p) { m_data.majorP = p; }
 
   void calculateBorders() override;
 
@@ -216,6 +219,8 @@ public:
   void scale(const RS_Vector &center, const RS_Vector &factor) override;
   void mirror(const RS_Vector &axisPoint1,
               const RS_Vector &axisPoint2) override;
+  RS_Entity &shear(double k) override;
+  void revertDirection() override;
 
   void draw(RS_Painter *painter) override;
 
@@ -284,10 +289,50 @@ public:
    * contribution)
    */
   double areaLineIntegral() const override;
+
+  /**
+   * @brief firstMomentLineIntegral - computes the first-order moments of area
+   *        via Green's theorem contour integrals.
+   *    * Returns:
+   *   mx = ∬ x dA   (first moment with respect to y-axis)
+   *   my = ∬ y dA   (first moment with respect to x-axis)
+   *    * These values are used to compute the centroid: cx = mx / A, cy = my / A.
+   *    * @return LC_FirstMoment containing mx and my.
+   * @note For bounded arcs: exact elementary antiderivatives in local frame,
+   *       then rotated and translated to world coordinates.
+   *       Unbounded hyperbolas return zero.
+   */
+  LC_FirstMoment firstMomentLineIntegral() const override;
+
+  /**
+   * @brief secondMomentLineIntegral - computes the second-order moments of area
+   *        via Green's theorem contour integrals.
+   *    * @return LC_SecondMoment {ixx, iyy, ixy}.
+   * @note Exact closed-form in local frame + transformation (replaces previous Gauss quadrature).
+   */
+  LC_SecondMoment secondMomentLineIntegral() const override;
+
+  /**
+   * @brief Arc length of the hyperbola between parameter values phi1 and phi2.
+   * @param phi1  Start hyperbolic parameter (dimensionless; argument of
+   * cosh/sinh).
+   * @param phi2  End hyperbolic parameter.
+   * @return Signed arc length: positive when phi2 > phi1, negative otherwise.
+   */
   double getArcLength(double phi1, double phi2) const;
 
-  // both angle1 and angle2 at 0, assumed to be infinite
+  /**
+   * @brief Returns true when both angle1 and angle2 are 0, meaning the
+   *        hyperbola is unbounded (infinite arc).
+   */
   bool isInfinite() const;
+
+private:
+  // Exact local antiderivatives (Green's theorem)
+  double computeLocalArea(double phi1, double phi2) const;
+  LC_FirstMoment computeLocalFirstMoment(double phi1, double phi2) const;
+  LC_SecondMoment computeLocalSecondMoment(double phi1, double phi2) const;
+
   /**
    * @brief worldToLocal convert from world coordinates to the local coordinates
    *        the hyperbola is centered in local coordinates, and with majorP along
@@ -303,8 +348,8 @@ private:
 
   void adaptiveSample(std::vector<RS_Vector> &out, double phiStart,
                       double phiEnd, bool rev, double maxError) const;
-  LC_HyperbolaData data;
-  bool m_bValid = false;
+  LC_HyperbolaData m_data;
+  bool m_valid = false;
 };
 
 #endif // LC_HYPERBOLA_H
