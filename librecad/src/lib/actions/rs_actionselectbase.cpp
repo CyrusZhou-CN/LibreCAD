@@ -25,34 +25,35 @@
 #include <QKeyEvent>
 
 #include "rs_debug.h"
-#include "rs_entitycontainer.h"
+#include "rs_document.h"
 #include "rs_selection.h"
 
-RS_ActionSelectBase::RS_ActionSelectBase(const char* name,LC_ActionContext *actionContext, RS2::ActionType actionType, QList<RS2::EntityType> entityTypeList)
-        :LC_OverlayBoxAction(name, actionContext, actionType),
-        m_catchForSelectionEntityTypes(std::move(entityTypeList)){
+RS_ActionSelectBase::RS_ActionSelectBase(const QString& name, LC_ActionContext* actionContext, const RS2::ActionType actionType,
+                                         QList<RS2::EntityType> entityTypeList)
+    : LC_OverlayBoxAction(name, actionContext, actionType), m_catchForSelectionEntityTypes(std::move(entityTypeList)) {
 }
 
-/**
- * Default behaviour of this method is triggering the predecesing
- * action and finishing this one when the enter key is pressed.
- */
-void RS_ActionSelectBase::keyReleaseEvent(QKeyEvent* e) {
-    if (e->key()==Qt::Key_Return && m_predecessor) {
-        finish(false);
-    }
-}
-
-void RS_ActionSelectBase::keyPressEvent(QKeyEvent *e){
-    int key = e->key();
-    switch (key){
-        case Qt::Key_Escape:{
+void RS_ActionSelectBase::keyPressEvent(QKeyEvent* e) {
+    const int key = e->key();
+    switch (key) {
+        case Qt::Key_Escape: {
             selectionFinishedByKey(e, true);
             break;
         }
-        case Qt::Key_Enter:{
-            if (m_container->countSelected() > 0){
+        // The main keyboard sends Return; only the keypad sends Enter. Both
+        // finish here, on the press, so the release cannot reach whichever
+        // action resumes next and finish that one too.
+        case Qt::Key_Return:
+        case Qt::Key_Enter: {
+            if (m_document->hasSelection()
+                || isAllowSelectionFinishByEnterForEmptySelection()) {
                 selectionFinishedByKey(e, false);
+            }
+            else if (m_predecessor != nullptr) {
+                // With nothing selected there is no selection to complete, so
+                // hand control back to the action that asked for one - what
+                // the key release used to do.
+                finish();
             }
             break;
         }
@@ -61,17 +62,16 @@ void RS_ActionSelectBase::keyPressEvent(QKeyEvent *e){
     }
 }
 
-RS2::CursorType RS_ActionSelectBase::doGetMouseCursor([[maybe_unused]] int status){
+RS2::CursorType RS_ActionSelectBase::doGetMouseCursor([[maybe_unused]] int status) {
     return RS2::SelectCursor;
 }
 
-bool RS_ActionSelectBase::selectEntity(RS_Entity* entityToSelect, bool selectContour) {
+bool RS_ActionSelectBase::selectEntity(RS_Entity* entityToSelect, const bool selectContour) const {
     bool result = false;
-    if (entityToSelect != nullptr){
-        bool selectionAllowed = isEntityAllowedToSelect(entityToSelect);
-        if (selectionAllowed){
+    if (entityToSelect != nullptr) {
+        const bool selectionAllowed = isEntityAllowedToSelect(entityToSelect);
+        if (selectionAllowed) {
             doSelectEntity(entityToSelect, selectContour);
-            updateSelectionWidget();
             result = true;
         }
     }
@@ -79,21 +79,21 @@ bool RS_ActionSelectBase::selectEntity(RS_Entity* entityToSelect, bool selectCon
         RS_DEBUG->print("RS_ActionSelectSingle::trigger: Entity is NULL\n");
     }
     return result;
-//    entityToSelect = nullptr;
+    //    entityToSelect = nullptr;
 }
 
-void RS_ActionSelectBase::doSelectEntity(RS_Entity* entityToSelect,  [[maybe_unused]]bool selectContour) const {
-    RS_Selection s(*m_container, m_viewport);
+void RS_ActionSelectBase::doSelectEntity(RS_Entity* entityToSelect, [[maybe_unused]] bool selectContour) const {
+    const RS_Selection s(m_document, m_viewport);
     s.selectSingle(entityToSelect);
 }
 
-RS_Entity* RS_ActionSelectBase::selectionMouseMove(LC_MouseEvent *event) {
+RS_Entity* RS_ActionSelectBase::selectionMouseMove(const LC_MouseEvent* event) {
     RS_Entity* result = nullptr;
-    auto ent = catchAndDescribe(event, m_catchForSelectionEntityTypes, RS2::ResolveNone);
-    if (ent != nullptr){
-        bool selectionAllowed = isEntityAllowedToSelect(ent);
-        if (selectionAllowed){
-            bool showRefPoints = isShowRefPointsOnHighlight();
+    const auto ent = catchAndDescribe(event, m_catchForSelectionEntityTypes, RS2::ResolveNone);
+    if (ent != nullptr) {
+        const bool selectionAllowed = isEntityAllowedToSelect(ent);
+        if (selectionAllowed) {
+            const bool showRefPoints = isShowRefPointsOnHighlight();
             highlightHoverWithRefPoints(ent, showRefPoints);
             result = ent;
         }
@@ -105,7 +105,7 @@ bool RS_ActionSelectBase::isShowRefPointsOnHighlight() {
     return m_highlightEntitiesRefPointsOnHover;
 }
 
-void RS_ActionSelectBase::deselectAll(){
-    RS_Selection s(*m_container, m_viewport);
+void RS_ActionSelectBase::deselectAll() const {
+    const RS_Selection s(m_document, m_viewport);
     s.selectAll(false);
 }

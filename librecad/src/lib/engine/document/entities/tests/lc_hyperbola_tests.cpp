@@ -1,12 +1,9 @@
-// File: lc_hyperbola_tests.cpp
-// Catch2 unit tests for LC_Hyperbola and related functionality
-
 /*
  * ********************************************************************************
  * This file is part of the LibreCAD project, a 2D CAD program
  *
- * Copyright (C) 2025 LibreCAD.org
- * Copyright (C) 2025 Dongxu Li (github.com/dxli)
+ * Copyright (C) 2026 LibreCAD.org
+ * Copyright (C) 2026 sand1024
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,10 +17,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
- * USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  * ********************************************************************************
  */
+
+// File: lc_hyperbola_tests.cpp
+// Catch2 unit tests for LC_Hyperbola and related functionality
 
 #include <cmath>
 #include <iostream>
@@ -88,7 +87,7 @@ TEST_CASE("Hyperbola ↔ DRW_Spline round-trip validation",
 
     // Basic spline structure checks
     REQUIRE(spl.degree == 2);
-    REQUIRE(spl.flags == 8);
+    REQUIRE(spl.flags == (0x08 | 0x04));
     REQUIRE(spl.controllist.size() == 3);
     REQUIRE(spl.weightlist.size() == 3);
     REQUIRE(spl.knotslist.size() == 6);
@@ -199,7 +198,7 @@ TEST_CASE("Hyperbola ↔ DRW_Spline round-trip validation",
 
     // === Validate spline structure ===
     REQUIRE(spl.degree == 2);
-    REQUIRE(spl.flags == 8);
+    REQUIRE(spl.flags == (0x08 | 0x04));
     REQUIRE(spl.controllist.size() == 3);
     REQUIRE(spl.weightlist.size() == 3);
 
@@ -974,6 +973,41 @@ TEST_CASE("LC_Hyperbola: getParamFromPoint round-trips on both branches (A17)",
   }
 }
 
+TEST_CASE("LC_Hyperbola: nearest point at a vertex does not produce NaN (#2722)",
+          "[hyperbola][nearest][regression]") {
+  // At a vertex the coordinate coincides with (cx + A, cy + C), so the quartic
+  // denominator (B*dx + D*dy) is exactly zero. The coefficients were computed
+  // before that was checked, so all four came out NaN and reached
+  // RS_Math::quarticSolverFull. Inside the complex branch of the cubic solver
+  // that becomes std::pow(complex, 1./3), which libstdc++ evaluates as
+  // std::polar(abs(x), ...) - and a NaN modulus trips the library's own
+  // assertion, aborting the process where the standard library is built with
+  // _GLIBCXX_ASSERTIONS (Arch Linux ships that by default).
+  //
+  // libc++ has no such assertion, so this asserts the observable consequence
+  // rather than the abort: the vertex must come back exactly, finite, and with
+  // a finite distance.
+  auto hb = makeCanonicalHyperbola(2.0, 1.0, -1.0, 1.0);
+  const RS_Vector vertex = hb.getPoint(0.0, false);
+  REQUIRE(vertex.valid);
+
+  double dist = -1.0;
+  const RS_Vector nearest = hb.getNearestPointOnEntity(vertex, true, &dist);
+
+  REQUIRE(nearest.valid);
+  CHECK_FALSE(std::isnan(nearest.x));
+  CHECK_FALSE(std::isnan(nearest.y));
+  CHECK(nearest.x == Approx(vertex.x).margin(1e-9));
+  CHECK(nearest.y == Approx(vertex.y).margin(1e-9));
+  CHECK_FALSE(std::isnan(dist));
+  CHECK(dist == Approx(0.0).margin(1e-9));
+
+  // The parameter recovered from the vertex must also be usable.
+  const double phi = hb.getParamFromPoint(nearest, false);
+  CHECK_FALSE(std::isnan(phi));
+  CHECK(phi == Approx(0.0).margin(1e-6));
+}
+
 TEST_CASE("LC_Hyperbola: moveStartpoint is trim, not drag (A6)",
           "[hyperbola][trim][regression]") {
   auto hb = makeCanonicalHyperbola(2.0, 1.0, -1.0, 1.0);
@@ -1119,4 +1153,68 @@ TEST_CASE("LC_Hyperbola: isInfinite() and getStartpoint stay consistent (A9)",
   REQUIRE_FALSE(hb2.isInfinite());
   REQUIRE(hb2.getStartpoint().valid);
   REQUIRE(hb2.getEndpoint().valid);
+}
+
+TEST_CASE("LC_Hyperbola: borders of a rotated arc hold the whole arc and no more",
+          "[hyperbola][borders][regression]") {
+  // Catching skips entities whose borders are farther away than the cursor
+  // range, so borders missing part of the arc make that part uncatchable.
+  const double phiStart = -2.0;
+  const double phiEnd = 1.5;
+  for (const double degrees : {0.0, 40.0, 90.0, 135.0, 250.0}) {
+    for (const bool reversed : {false, true}) {
+      const RS_Vector majorP =
+          RS_Vector::polar(1000.0, RS_Math::deg2rad(degrees));
+      LC_Hyperbola hb{nullptr,
+                      LC_HyperbolaData(RS_Vector{30.0, -20.0}, majorP, 0.7,
+                                       phiStart, phiEnd, reversed)};
+      hb.calculateBorders();
+
+      RS_Vector sampledMin{RS_MAXDOUBLE, RS_MAXDOUBLE};
+      RS_Vector sampledMax{-RS_MAXDOUBLE, -RS_MAXDOUBLE};
+      const int samples = 4000;
+      for (int i = 0; i <= samples; ++i) {
+        const RS_Vector p =
+            hb.getPoint(phiStart + (phiEnd - phiStart) * i / samples, reversed);
+        REQUIRE(p.valid);
+        sampledMin = RS_Vector::minimum(sampledMin, p);
+        sampledMax = RS_Vector::maximum(sampledMax, p);
+      }
+
+      INFO("rotation " << degrees << " reversed " << reversed);
+      const RS_Vector min = hb.getMin();
+      const RS_Vector max = hb.getMax();
+      CHECK(min.x <= sampledMin.x);
+      CHECK(min.y <= sampledMin.y);
+      CHECK(max.x >= sampledMax.x);
+      CHECK(max.y >= sampledMax.y);
+      // no looser than the sampling step allows
+      CHECK(sampledMin.x - min.x < 1.0);
+      CHECK(sampledMin.y - min.y < 1.0);
+      CHECK(max.x - sampledMax.x < 1.0);
+      CHECK(max.y - sampledMax.y < 1.0);
+    }
+  }
+}
+
+TEST_CASE("LC_Hyperbola: setters keep the borders current",
+          "[hyperbola][borders][regression]") {
+  auto hb = makeCanonicalHyperbola(2.0, 1.0, -0.5, 0.5);
+  hb.setCenter(RS_Vector{100.0, 50.0});
+  CHECK(hb.getMin().x > 90.0);
+  CHECK(hb.getMin().y > 40.0);
+
+  hb.setMajorP(RS_Vector{0.0, 2.0});
+  const RS_Vector vertex = hb.getPoint(0.0, hb.isReversed());
+  CHECK(vertex.x >= hb.getMin().x);
+  CHECK(vertex.x <= hb.getMax().x);
+  CHECK(vertex.y >= hb.getMin().y);
+  CHECK(vertex.y <= hb.getMax().y);
+
+  hb.setAngle2(1.5);
+  const RS_Vector end = hb.getEndpoint();
+  CHECK(end.x <= hb.getMax().x);
+  CHECK(end.y <= hb.getMax().y);
+  CHECK(end.x >= hb.getMin().x);
+  CHECK(end.y >= hb.getMin().y);
 }

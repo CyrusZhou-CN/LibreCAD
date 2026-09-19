@@ -24,7 +24,7 @@
 
 #include "lc_actionfileexportmakercam.h"
 
-#include <QFile>
+#include <QSaveFile>
 #include <QTextStream>
 
 #include "lc_makercamsvg.h"
@@ -37,78 +37,82 @@
 class LC_MakerCamSVG;
 
 namespace {
-
-    bool getSetting(const QString &entry) {
+    bool getSetting(const QString& entry) {
         return LC_GET_INT("" + entry, 0);
     }
 
-// create an SVG generator
-    std::unique_ptr<LC_MakerCamSVG> getGenerator()
-    {
+    // create an SVG generator
+    std::unique_ptr<LC_MakerCamSVG> getGenerator() {
         LC_GROUP_GUARD("ExportMakerCam");
         {
             auto generator = std::make_unique<LC_MakerCamSVG>(std::make_unique<LC_XMLWriterQXmlStreamWriter>(),
-                                                              LC_GET_BOOL("ExportInvisibleLayers"),
-                                                              LC_GET_BOOL("ExportConstructionLayers"),
-                                                              LC_GET_BOOL("WriteBlocksInline"),
-                                                              LC_GET_BOOL("ConvertEllipsesToBeziers"),
-                                                              LC_GET_BOOL("ExportImages"),
-                                                              LC_GET_BOOL("BakeDashDotLines"),
+                                                              LC_GET_BOOL("ExportInvisibleLayers"), LC_GET_BOOL("ExportConstructionLayers"),
+                                                              LC_GET_BOOL("WriteBlocksInline"), LC_GET_BOOL("ConvertEllipsesToBeziers"),
+                                                              LC_GET_BOOL("ExportImages"), LC_GET_BOOL("BakeDashDotLines"),
                                                               LC_GET_STR("DefaultElementWidth", "1.0").toDouble(),
                                                               LC_GET_STR("DefaultDashLinePatternLength").toDouble());
-            bool exportPoints = getSetting("ExportPoints");
+            const bool exportPoints = getSetting("ExportPoints");
             generator->setExportPoints(exportPoints);
             return generator;
         }
     }
 }
 
-LC_ActionFileExportMakerCam::LC_ActionFileExportMakerCam(LC_ActionContext *actionContext)
-    : RS_ActionInterface("Export as CAM/plain SVG...", actionContext, RS2::ActionFileExportMakerCam){
+LC_ActionFileExportMakerCam::LC_ActionFileExportMakerCam(LC_ActionContext* actionContext)
+    : RS_ActionInterface("Export as CAM/plain SVG...", actionContext, RS2::ActionFileExportMakerCam) {
 }
 
-
-void LC_ActionFileExportMakerCam::init(int status) {
+void LC_ActionFileExportMakerCam::init(const int status) {
     RS_ActionInterface::init(status);
     trigger();
 }
 
-bool LC_ActionFileExportMakerCam::writeSvg(const QString& fileName, RS_Graphic& graphic){
+bool LC_ActionFileExportMakerCam::writeSvg(const QString& fileName, RS_Graphic& graphic) {
     if (fileName.isEmpty()) {
-        LC_ERR<<__func__<<"(): empty file name, no SVG is generated";
+        LC_ERR << __func__ << "(): empty file name, no SVG is generated";
         return false;
     }
 
-    auto generator = getGenerator();
-    if (generator->generate(&graphic)) {
-        QFile file{fileName};
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            LC_ERR<<__func__<<"(): failed in creating file "<<fileName<<", no SVG is generated";
-            return false;
-        }
-
-        QTextStream out(&file);
-        out << QString::fromStdString(generator->resultAsString());
+    const auto generator = getGenerator();
+    if (!generator->generate(&graphic)) {
+        LC_ERR << __func__ << "(): failed in generating the SVG for " << fileName;
+        return false;
     }
+
+    // QSaveFile reports a write that fails after the file is open, and leaves an
+    // existing file alone until the new one is complete.
+    QSaveFile file{fileName};
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        LC_ERR << __func__ << "(): failed in creating file " << fileName << ", no SVG is generated";
+        return false;
+    }
+
+    QTextStream out(&file);
+    out << QString::fromStdString(generator->resultAsString());
+    out.flush();
+    if (out.status() != QTextStream::Ok || !file.commit()) {
+        LC_ERR << __func__ << "(): failed in writing file " << fileName;
+        return false;
+    }
+
     return true;
 }
 
-
 void LC_ActionFileExportMakerCam::trigger() {
-
-	RS_DEBUG->print("LC_ActionFileExportMakerCam::trigger()");
+    RS_DEBUG->print("LC_ActionFileExportMakerCam::trigger()");
 
     if (m_graphic != nullptr) {
-
-        bool accepted = RS_DIALOGFACTORY->requestOptionsMakerCamDialog();
+        const bool accepted = RS_DIALOGFACTORY->requestOptionsMakerCamDialog();
 
         if (accepted) {
-            QString filename = RS_DIALOGFACTORY->requestFileSaveAsDialog(tr("Export as"),
-                                                                         "",
-                                                                         "Scalable Vector Graphics (*.svg)");
-            writeSvg(filename, *m_graphic);
+            const QString filename = RS_DIALOGFACTORY->requestFileSaveAsDialog(tr("Export as"), "", "Scalable Vector Graphics (*.svg)");
+            // An empty name means the dialog was cancelled
+            if (!filename.isEmpty() && !writeSvg(filename, *m_graphic)) {
+                RS_DIALOGFACTORY->requestWarningDialog(
+                    tr("Cannot write the file\n%1\nPlease check the filename and permissions.").arg(filename));
+            }
         }
     }
 
-    finish(false);
+    finish();
 }

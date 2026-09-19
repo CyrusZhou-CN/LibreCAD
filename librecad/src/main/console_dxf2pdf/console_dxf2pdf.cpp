@@ -23,59 +23,79 @@
 **
 ******************************************************************************/
 
-#include <QtCore>
-#include <QCoreApplication>
-#include <QApplication>
+#include <cstdlib>
 
+#include "console_dxf2pdf.h"
+
+#include <QApplication>
+#include <QCoreApplication>
+#include <QtCore>
+
+#include "main.h"
+#include "pdf_print_loop.h"
 #include "rs_debug.h"
 #include "rs_fontlist.h"
 #include "rs_patternlist.h"
 #include "rs_settings.h"
 #include "rs_system.h"
 
+#include "console_command_utils.h"
 #include "main.h"
 
 #include "console_dxf2pdf.h"
 #include "pdf_print_loop.h"
 
 
-static RS_Vector parsePageSizeArg(QString);
-static void parsePagesNumArg(QString, PdfPrintParams&);
-static void parseMarginsArg(QString, PdfPrintParams&);
+static bool parsePageSizeArg(const QString& arg, RS_Vector& pageSize);
+static bool parsePagesNumArg(const QString&, PdfPrintParams&);
+static bool parseMarginsArg(const QString&, PdfPrintParams&);
 
+namespace {
 
-int console_dxf2pdf(int argc, char* argv[])
-{
+struct PdfCommandSpec {
+    QString commandName;
+    QString inputExt;
+    QString inputLabel;
+    QStringList acceptedExts;
+};
+
+int runPdfCommand(int argc, char* argv[], const PdfCommandSpec& spec) {
     RS_DEBUG->setLevel(RS_Debug::D_NOTHING);
 
-    QApplication app(argc, argv);
+    const LC_Console::CommandContext context =
+        LC_Console::contextForCommand(argc, argv, spec.commandName);
+    LC_Console::NormalizedArgv normalizedArgs(argc, argv, context);
+    int normalizedArgc = normalizedArgs.argc();
+    char** normalizedArgv = normalizedArgs.argv();
+
+    QApplication app(normalizedArgc, normalizedArgv);
     QCoreApplication::setOrganizationName("LibreCAD");
     QCoreApplication::setApplicationName("LibreCAD");
     QCoreApplication::setApplicationVersion(XSTR(LC_VERSION));
 
-    QFileInfo prgInfo(QFile::decodeName(argv[0]));
     RS_Settings::init(app.organizationName(), app.applicationName());
-    RS_SYSTEM->init( app.applicationName(), app.applicationVersion(), XSTR(QC_APPDIR), argv[0]);
+    RS_SYSTEM->init(app.applicationName(), app.applicationVersion(), XSTR(QC_APPDIR),
+                    normalizedArgv[0]);
 
     QCommandLineParser parser;
 
     QStringList appDesc;
-    QString librecad( prgInfo.filePath());
-    if (prgInfo.baseName() != "dxf2pdf") {
-        librecad += " dxf2pdf"; // executable is not dxf2pdf, thus argv[1] must be 'dxf2pdf'
-        appDesc << "";
-        appDesc << "dxf2pdf " + QObject::tr( "usage: ") + librecad + QObject::tr( " [options] <dxf_files>");
-    }
+    const QString command = context.displayCommand();
     appDesc << "";
-    appDesc << "Print a bunch of DXF files to PDF file(s).";
+    appDesc << spec.commandName + " " + QObject::tr("usage: ") + command +
+                   QObject::tr(" [options] <%1_files>").arg(spec.inputExt);
+    appDesc << "";
+    appDesc << QObject::tr("Print %1 file(s) to PDF file(s).").arg(spec.inputLabel);
+    if (spec.commandName == "dxf2pdf")
+        appDesc << QObject::tr("DWG input is accepted for compatibility; prefer dwg2pdf for DWG files.");
     appDesc << "";
     appDesc << "Examples:";
     appDesc << "";
-    appDesc << "  " + librecad + QObject::tr( " *.dxf");
-    appDesc << "    " + QObject::tr( "-- print all dxf files to pdf files with the same names.");
+    appDesc << "  " + command + QObject::tr(" *.%1").arg(spec.inputExt);
+    appDesc << "    " + QObject::tr("-- print all %1 files to PDF files with the same names.").arg(spec.inputExt.toUpper());
     appDesc << "";
-    appDesc << "  " + librecad + QObject::tr( " -o some.pdf *.dxf");
-    appDesc << "    " + QObject::tr( "-- print all dxf files to 'some.pdf' file.");
+    appDesc << "  " + command + QObject::tr(" -o some.pdf *.%1").arg(spec.inputExt);
+    appDesc << "    " + QObject::tr("-- print all %1 files to 'some.pdf'.").arg(spec.inputExt.toUpper());
     parser.setApplicationDescription( appDesc.join( "\n"));
 
     parser.addHelpOption();
@@ -98,11 +118,11 @@ int console_dxf2pdf(int argc, char* argv[])
     parser.addOption(monoOpt);
 
     QCommandLineOption pageSizeOpt(QStringList() << "p" << "paper",
-        QObject::tr( "Paper size (Width x Height) in mm.", "WxH"));
+        QObject::tr( "Paper size (Width x Height) in mm."), "WxH");
     parser.addOption(pageSizeOpt);
 
     QCommandLineOption resOpt(QStringList() << "r" << "resolution",
-        QObject::tr( "Output resolution (DPI).", "integer"));
+        QObject::tr( "Output resolution (DPI)."), "integer");
     parser.addOption(resOpt);
 
     QCommandLineOption scaleOpt(QStringList() << "s" << "scale",
@@ -117,7 +137,7 @@ int console_dxf2pdf(int argc, char* argv[])
         QObject::tr( "Print on multiple pages (Horiz. x Vert.)."), "HxV");
     parser.addOption(pagesNumOpt);
 
-    QCommandLineOption outFileOpt(QStringList() << "o" << "outfile",
+    QCommandLineOption outFileOpt(QStringList() << "o" << "output" << "outfile",
         QObject::tr( "Output PDF file.", "file"), "outfile");
     parser.addOption(outFileOpt);
 
@@ -125,14 +145,16 @@ int console_dxf2pdf(int argc, char* argv[])
         QObject::tr( "Target output directory."), "path");
     parser.addOption(outDirOpt);
 
-    parser.addPositionalArgument(QObject::tr( "<dxf_files>"), QObject::tr( "Input DXF file(s)"));
+    parser.addPositionalArgument(QObject::tr("<%1_files>").arg(spec.inputExt),
+        QObject::tr("Input %1 file(s)").arg(spec.inputLabel));
 
     parser.process(app);
 
     const QStringList args = parser.positionalArguments();
 
-    if (args.isEmpty() || (args.size() == 1 && args[0] == "dxf2pdf"))
+    if (args.isEmpty() || (args.size() == 1 && args[0] == "dxf2pdf")) {
         parser.showHelp(EXIT_FAILURE);
+    }
 
     PdfPrintParams params;
 
@@ -140,119 +162,188 @@ int console_dxf2pdf(int argc, char* argv[])
     params.centerOnPage = parser.isSet(centerOpt);
     params.grayscale = parser.isSet(grayOpt);
     params.monochrome = parser.isSet(monoOpt);
-    params.pageSize = parsePageSizeArg(parser.value(pageSizeOpt));
 
-    bool resOk;
-    int res = parser.value(resOpt).toInt(&resOk);
-    if (resOk)
+    // An option value that cannot be read is refused rather than ignored: a
+    // silently dropped value prints the drawing at the wrong size or scale.
+    if (!parsePageSizeArg(parser.value(pageSizeOpt), params.pageSize)) {
+        qCritical("ERROR: invalid paper size '%s'; use WxH in mm, such as 210x297.",
+                  qPrintable(parser.value(pageSizeOpt)));
+        return EXIT_FAILURE;
+    }
+
+    if (parser.isSet(resOpt)) {
+        bool resOk = false;
+        const int res = parser.value(resOpt).toInt(&resOk);
+        if (!resOk || res <= 0) {
+            qCritical("ERROR: invalid resolution '%s'; use a positive number of DPI.",
+                      qPrintable(parser.value(resOpt)));
+            return EXIT_FAILURE;
+        }
         params.resolution = res;
+    }
 
-    bool scaleOk;
-    double scale = parser.value(scaleOpt).toDouble(&scaleOk);
-    if (scaleOk)
+    if (parser.isSet(scaleOpt)) {
+        bool scaleOk = false;
+        const double scale = parser.value(scaleOpt).toDouble(&scaleOk);
+        if (!scaleOk || scale <= 0.0) {
+            qCritical("ERROR: invalid scale '%s'; use a positive number, such as 0.01 for 1:100.",
+                      qPrintable(parser.value(scaleOpt)));
+            return EXIT_FAILURE;
+        }
         params.scale = scale;
+    }
 
-    parseMarginsArg(parser.value(marginsOpt), params);
-    parsePagesNumArg(parser.value(pagesNumOpt), params);
+    if (!parseMarginsArg(parser.value(marginsOpt), params)) {
+        qCritical("ERROR: invalid margins '%s'; use L,T,R,B in mm, such as 10,10,10,10.",
+                  qPrintable(parser.value(marginsOpt)));
+        return EXIT_FAILURE;
+    }
+
+    if (!parsePagesNumArg(parser.value(pagesNumOpt), params)) {
+        qCritical("ERROR: invalid number of pages '%s'; use HxV, such as 2x1.",
+                  qPrintable(parser.value(pagesNumOpt)));
+        return EXIT_FAILURE;
+    }
 
     params.outFile = parser.value(outFileOpt);
     params.outDir = parser.value(outDirOpt);
 
-    for (auto arg : args) {
-        QFileInfo dxfFileInfo(arg);
-        const QString sfx = dxfFileInfo.suffix().toLower();
-        if (sfx != "dxf" && sfx != "dwg")
-          continue; // Skip files without .dxf/.dwg extension
-        params.dxfFiles.append(arg);
+    QStringList skippedArgs;
+    params.inputFiles = LC_Console::collectInputFiles(args, spec.acceptedExts, &skippedArgs);
+
+    if (params.inputFiles.isEmpty()) {
+        qCritical("ERROR: no %s files found in arguments.",
+                  qPrintable(LC_Console::extensionDescription(spec.acceptedExts)));
+        return EXIT_FAILURE;
+    }
+    for (const QString& skipped : skippedArgs) {
+        qWarning("WARNING: '%s' is not a %s file and was skipped.", qPrintable(skipped),
+                 qPrintable(LC_Console::extensionDescription(spec.acceptedExts)));
     }
 
-    if (params.dxfFiles.isEmpty())
-        parser.showHelp(EXIT_FAILURE);
+    if (LC_Console::containsDwgInput(params.inputFiles) &&
+        !LC_Console::dwgSupportAvailable()) {
+        qCritical("ERROR: DWG input requires a build with DWGSUPPORT enabled.");
+        return EXIT_FAILURE;
+    }
 
-    if (!params.outDir.isEmpty()) {
-        // Create output directory
-        if (!QDir().mkpath(params.outDir)) {
-            qDebug() << "ERROR: Cannot create directory" << params.outDir;
-            return EXIT_FAILURE;
-        }
+    // -o names the single PDF every input is printed into, so it is allowed
+    // with several inputs, but not together with an output directory.
+    QString outputOptionsError;
+    if (!LC_Console::validateOutputOptions(params.inputFiles.size(), params.outFile,
+                                           params.outDir, true, false,
+                                           &outputOptionsError)) {
+        qCritical("ERROR: %s", qPrintable(outputOptionsError));
+        return EXIT_FAILURE;
+    }
+
+    QString dirError;
+    if (!LC_Console::ensureOutputDirectory(params.outDir, &dirError)) {
+        qCritical("ERROR: %s.", qPrintable(dirError));
+        return EXIT_FAILURE;
+    }
+
+    QStringList outputFiles;
+    if (params.outFile.isEmpty()) {
+        for (const QString& inputFile : params.inputFiles)
+            outputFiles.append(LC_Console::defaultOutputPath(inputFile, "pdf", params.outDir));
+    } else {
+        outputFiles.append(params.outFile);
+    }
+
+    QString outputTargetsError;
+    if (!LC_Console::validateOutputTargets(params.inputFiles, outputFiles, &outputTargetsError)) {
+        qCritical("ERROR: %s", qPrintable(outputTargetsError));
+        return EXIT_FAILURE;
     }
 
     RS_FONTLIST->init();
     RS_PATTERNLIST->init();
 
-    PdfPrintLoop *loop = new PdfPrintLoop(params, &app);
+    auto *loop = new PdfPrintLoop(params, &app);
 
-    QObject::connect(loop, SIGNAL(finished()), &app, SLOT(quit()));
+    QObject::connect(loop, &PdfPrintLoop::finished, &app,
+                     [&app](int exitCode) { app.exit(exitCode); });
 
     QTimer::singleShot(0, loop, SLOT(run()));
 
     return app.exec();
 }
 
+} // namespace
 
-static RS_Vector parsePageSizeArg(QString arg)
+int console_dxf2pdf(int argc, char* argv[])
 {
-    RS_Vector v(0.0, 0.0);
+    return runPdfCommand(argc, argv,
+                         {QStringLiteral("dxf2pdf"),
+                          QStringLiteral("dxf"),
+                          QStringLiteral("DXF"),
+                          LC_Console::acceptedExtensions(QStringLiteral("dxf"),
+                                                         {QStringLiteral("dwg")})});
+}
 
-    if (arg.isEmpty())
-        return v;
-
-    QRegularExpression re("^(?<width>\\d+)[x|X]{1}(?<height>\\d+)$");
-    QRegularExpressionMatch match = re.match(arg);
-
-    if (match.hasMatch()) {
-        QString width = match.captured("width");
-        QString height = match.captured("height");
-        v.x = width.toDouble();
-        v.y = height.toDouble();
-    } else {
-        qDebug() << "WARNING: Ignoring bad page size:" << arg;
-    }
-
-    return v;
+int console_dwg2pdf(int argc, char* argv[])
+{
+    return runPdfCommand(argc, argv,
+                         {QStringLiteral("dwg2pdf"),
+                          QStringLiteral("dwg"),
+                          QStringLiteral("DWG"),
+                          LC_Console::acceptedExtensions(QStringLiteral("dwg"))});
 }
 
 
-static void parsePagesNumArg(QString arg, PdfPrintParams& params)
-{
-    if (arg.isEmpty())
-        return;
+static bool parsePageSizeArg(const QString& arg, RS_Vector& pageSize){
+    pageSize = RS_Vector(0.0, 0.0);
 
-    QRegularExpression re("^(?<horiz>\\d+)[x|X](?<vert>\\d+)$");
-    QRegularExpressionMatch match = re.match(arg);
-
-    if (match.hasMatch()) {
-        QString h = match.captured("horiz");
-        QString v = match.captured("vert");
-        params.pagesH = h.toInt();
-        params.pagesV = v.toInt();
-    } else {
-        qDebug() << "WARNING: Ignoring bad number of pages:" << arg;
+    if (arg.isEmpty()) {
+        return true;
     }
+
+    const QRegularExpression re("^(?<width>\\d+)[xX](?<height>\\d+)$");
+    const QRegularExpressionMatch match = re.match(arg);
+    if (!match.hasMatch()) {
+        return false;
+    }
+
+    pageSize.x = match.captured("width").toDouble();
+    pageSize.y = match.captured("height").toDouble();
+    return pageSize.x > 0.0 && pageSize.y > 0.0;
 }
 
+static bool parsePagesNumArg(const QString& arg, PdfPrintParams& params){
+    if (arg.isEmpty()) {
+        return true;
+    }
 
-static void parseMarginsArg(QString arg, PdfPrintParams& params)
-{
-    if (arg.isEmpty())
-        return;
+    const QRegularExpression re("^(?<horiz>\\d+)[xX](?<vert>\\d+)$");
+    const QRegularExpressionMatch match = re.match(arg);
+    if (!match.hasMatch()) {
+        return false;
+    }
 
-    QRegularExpression re("^(?<left>\\d+(?:\\.\\d+)?),"
+    params.pagesH = match.captured("horiz").toInt();
+    params.pagesV = match.captured("vert").toInt();
+    return params.pagesH > 0 && params.pagesV > 0;
+}
+
+static bool parseMarginsArg(const QString& arg, PdfPrintParams& params){
+    if (arg.isEmpty()) {
+        return true;
+    }
+
+    const QRegularExpression re("^(?<left>\\d+(?:\\.\\d+)?),"
                           "(?<top>\\d+(?:\\.\\d+)?),"
                           "(?<right>\\d+(?:\\.\\d+)?),"
                           "(?<bottom>\\d+(?:\\.\\d+)?)$");
-    QRegularExpressionMatch match = re.match(arg);
+    const QRegularExpressionMatch match = re.match(arg);
 
-    if (match.hasMatch()) {
-        QString left = match.captured("left");
-        QString top = match.captured("top");
-        QString right = match.captured("right");
-        QString bottom = match.captured("bottom");
-        params.margins.left = left.toDouble();
-        params.margins.top = top.toDouble();
-        params.margins.right = right.toDouble();
-        params.margins.bottom = bottom.toDouble();
-    } else {
-        qDebug() << "WARNING: Ignoring bad paper margins:" << arg;
+    if (!match.hasMatch()) {
+        return false;
     }
+
+    params.margins.left = match.captured("left").toDouble();
+    params.margins.top = match.captured("top").toDouble();
+    params.margins.right = match.captured("right").toDouble();
+    params.margins.bottom = match.captured("bottom").toDouble();
+    return true;
 }

@@ -1,5 +1,3 @@
-// File: lc_hyperbola.h
-
 /*
  * ********************************************************************************
  * This file is part of the LibreCAD project, a 2D CAD program
@@ -32,9 +30,9 @@
 class LC_Quadratic;
 
 namespace lc {
-namespace geo {
-class Area;
-}
+    namespace geo {
+        class Area;
+    }
 }
 
 using LC_Rect = lc::geo::Area;
@@ -122,8 +120,16 @@ public:
   void setPointOnCurve(const RS_Vector &p);
   void setRatio(double r);
   void setMinorRadius(double b);
-  void setAngle1(double a1) { m_data.angle1 = a1; }
-  void setAngle2(double a2) { m_data.angle2 = a2; }
+  void setAngle1(double a1) {
+    m_data.angle1 = a1;
+    calculateBorders();
+    updateLength();
+  }
+  void setAngle2(double a2) {
+    m_data.angle2 = a2;
+    calculateBorders();
+    updateLength();
+  }
 
   RS_VectorSolutions getRefPoints() const override;
 
@@ -138,14 +144,6 @@ public:
     return true;
   }
 
-  RS_Vector getNearestCenter(const RS_Vector &coord,
-                             double *dist = nullptr) const override;
-
-  RS_Vector getNearestMiddle(const RS_Vector &coord, double *dist = nullptr,
-                             int middlePoints = 1) const override;
-
-  RS_Vector getNearestDist(double distance, const RS_Vector &coord,
-                           double *dist = nullptr) const override;
 
   double getDirection1() const override;
   double getDirection2() const override;
@@ -187,30 +185,27 @@ public:
                               bool onEntity = false) const override;
 
   bool isReversed() const { return m_data.reversed; }
-  void setReversed(bool r) { m_data.reversed = r; }
+  void setReversed(bool r) {
+    m_data.reversed = r;
+    calculateBorders();
+  }
 
   double getAngle() const { return m_data.majorP.angle(); }
 
   RS_Vector getCenter() const override { return m_data.center; }
-  void setCenter(const RS_Vector &c) { m_data.center = c; }
+  void setCenter(const RS_Vector &c) {
+    m_data.center = c;
+    calculateBorders();
+  }
 
   RS_Vector getMajorP() const { return m_data.majorP; }
-  void setMajorP(const RS_Vector &p) { m_data.majorP = p; }
+  void setMajorP(const RS_Vector &p) {
+    m_data.majorP = p;
+    calculateBorders();
+    updateLength();
+  }
 
   void calculateBorders() override;
-
-  RS_Vector getNearestEndpoint(const RS_Vector &coord,
-                               double *dist = nullptr) const override;
-  RS_Vector
-  getNearestPointOnEntity(const RS_Vector &coord, bool onEntity = true,
-                          double *dist = nullptr,
-                          RS_Entity **entity = nullptr) const override;
-  double getDistanceToPoint(const RS_Vector &coord,
-                            RS_Entity **entity = nullptr,
-                            RS2::ResolveLevel level = RS2::ResolveNone,
-                            double solidDist = RS_MAXDOUBLE) const override;
-  bool isPointOnEntity(const RS_Vector &coord,
-                       double tolerance = RS_TOLERANCE) const override;
 
   void moveRef(const RS_Vector &ref, const RS_Vector &offset) override;
   void move(const RS_Vector &offset) override;
@@ -342,6 +337,26 @@ private:
    */
   RS_Vector worldToLocal(const RS_Vector& world) const;
   RS_Vector localToWorld(const RS_Vector& local) const;
+
+protected:
+    RS_Vector doGetNearestCenter(const RS_Vector& coord, double* dist, RS_Entity** entity) const override;
+
+
+    RS_Vector doGetNearestMiddle(const RS_Vector &coord, double *dist,
+                             int middlePoints) const override;
+
+    RS_Vector doGetNearestDist(double distance, const RS_Vector &coord,
+                             double *dist) const override;
+    RS_Vector doGetNearestEndpoint(const RS_Vector &coord, double *dist, RS_Entity** entity) const override;
+    RS_Vector doGetNearestPointOnEntity(const RS_Vector &coord, bool onEntity,
+                            double *dist,
+                            RS_Entity **entity) const override;
+    double doGetDistanceToPoint(const RS_Vector &coord,
+                              RS_Entity **entity,
+                              RS2::ResolveLevel level,
+                              double solidDist) const override;
+    bool doIsPointOnEntity(const RS_Vector &coord, double tolerance) const override;
+
 
 private:
   bool isInClipRect(const RS_Vector &p, const LC_Rect& rect) const;

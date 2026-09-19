@@ -37,11 +37,16 @@
 #include <iostream>
 #include <map>
 
+#include <QApplication>
 #include <QCoreApplication>
+#include <QLayout>
+#include <QFont>
+#include <QLineEdit>
 
 #include "drw_entities.h"
 #include "lc_containertraverser.h"
 #include "lc_graphicviewport.h"
+#include "lc_hatchpropertieseditingwidget.h"
 #include "lc_looputils.h"
 #include "lc_secondmoment.h"
 #include "lc_splinepoints.h"
@@ -56,6 +61,7 @@
 #include "rs_hatch.h"
 #include "rs_line.h"
 #include "rs_painter.h"
+#include "rs_polyline.h"
 #include "rs_settings.h"
 #include "rs_vector.h"
 
@@ -380,7 +386,9 @@ struct TestPainter {
     bool filledAt(double wcsX, double wcsY) const {
         const int px = static_cast<int>(std::round(wcsX));
         const int py = static_cast<int>(std::round(H - wcsY));
-        if (px < 0 || px >= W || py < 0 || py >= H) return false;
+        if (px < 0 || px >= W || py < 0 || py >= H) {
+            return false;
+        }
         return image.pixel(px, py) != qRgb(255, 255, 255);
     }
 };
@@ -1266,6 +1274,61 @@ TEST_CASE("RS_FilterDXFRW: DXF round-trip preserves spline-bordered hatch",
   std::filesystem::remove(tmpPath);
 }
 
+// A hatch whose loop holds a polyline, as Draw Hatch copies a selected one, was
+// saved with no boundary edges and dropped when the file was opened again.
+TEST_CASE("RS_FilterDXFRW: DXF round-trip preserves polyline-bordered hatch",
+          "[rs_hatch][filter][polyline][roundtrip]") {
+  static int qargc = 1;
+  static char qarg0[] = "librecad_tests";
+  static char *qargv[] = {qarg0, nullptr};
+  static QCoreApplication *qapp = QCoreApplication::instance()
+                                      ? QCoreApplication::instance()
+                                      : new QCoreApplication(qargc, qargv);
+  static bool settingsReady = [] {
+    QCoreApplication::setOrganizationName("LibreCAD");
+    QCoreApplication::setApplicationName("LibreCAD-tests");
+    RS_Settings::init("LibreCAD", "LibreCAD-tests");
+    return true;
+  }();
+  (void)qapp;
+  (void)settingsReady;
+
+  // a 20 x 10 rectangle with a half circle for one side: line and arc edges
+  RS_Graphic g;
+  auto *hatch = new RS_Hatch(&g, RS_HatchData(true, 1.0, 0.0, "SOLID"));
+  auto *loop = new RS_EntityContainer(hatch);
+  hatch->addEntity(loop);
+  auto *polyline = new RS_Polyline(loop, RS_PolylineData(RS_Vector(0.0, 0.0), RS_Vector(0.0, 0.0), true));
+  polyline->addVertex(RS_Vector(0.0, 0.0));
+  polyline->addVertex(RS_Vector(20.0, 0.0), 1.0);
+  polyline->addVertex(RS_Vector(20.0, 10.0));
+  polyline->addVertex(RS_Vector(0.0, 10.0));
+  polyline->setClosed(true);
+  loop->addEntity(polyline);
+  g.addEntity(hatch);
+  hatch->update();
+  const double areaBefore = hatch->getTotalArea();
+  REQUIRE(std::abs(std::abs(areaBefore - 200.0) - 12.5 * M_PI) < 1e-6);
+
+  const auto tmpPath =
+      std::filesystem::temp_directory_path() / "rs_hatch_polyline_roundtrip.dxf";
+  REQUIRE(RS_FilterDXFRW{}.fileExport(g, QString::fromStdString(tmpPath.string()),
+                                      RS2::FormatDXFRW));
+  RS_Graphic g2;
+  REQUIRE(RS_FilterDXFRW{}.fileImport(g2, QString::fromStdString(tmpPath.string()),
+                                      RS2::FormatDXFRW));
+  std::filesystem::remove(tmpPath);
+
+  RS_Hatch *reloaded = nullptr;
+  for (RS_Entity *e : g2) {
+    if (e->rtti() == RS2::EntityHatch) {
+      reloaded = static_cast<RS_Hatch *>(e);
+    }
+  }
+  REQUIRE(reloaded != nullptr);
+  CHECK_THAT(reloaded->getTotalArea(), Catch::Matchers::WithinRel(areaBefore, 1e-9));
+}
+
 // snapSplineEdgeEndpoints: a tiny float drift (5e-9) at the seam between a
 // spline and a neighboring line must be snapped before LoopExtractor sees
 // it; otherwise the chain breaks at ENDPOINT_TOLERANCE = 1e-8. Plan §C.1.
@@ -1296,4 +1359,258 @@ TEST_CASE("snapSplineEdgeEndpoints - tiny gap closes",
 
   // After the snap, the seam is exactly zero.
   REQUIRE(spline->getEndpoint().distanceTo(line->getStartpoint()) == 0.0);
+}
+
+// ============================================================
+// SNAP RECURSION GUARD
+//
+// Issue #2670: Regression for a stack-overflow crash (SIGSEGV, ~65000 frames deep).
+// RS_Hatch has no getNearestPointOnEntity() of its own, so it inherits
+// RS_EntityContainer::getNearestPointOnEntity(), which finds the nearest child
+// via getNearestEntity() and then descends into it. But RS_Hatch overrides
+// getDistanceToPoint() to report the hatch *itself* as the nearest entity when
+// the cursor is inside the solid fill — so the container kept calling
+// getNearestPointOnEntity() on the same hatch forever. It was hit in the wild
+// by snap-on-entity while hovering inside a filled hatch.
+//
+// The "en != this" guard in getNearestPointOnEntity() breaks the self-
+// reference. These tests must simply RETURN — a regression makes them recurse
+// until the stack overflows.
+// ============================================================
+
+TEST_CASE("RS_Hatch snap - getNearestPointOnEntity inside solid fill terminates",
+          "[rs_hatch][snap]")
+{
+    // The hatch is a child of the container (parent set at construction, as for
+    // a loaded drawing), so the container recurses into it exactly as it did
+    // when the crash occurred. RS_Snapper::snapOnEntity() reaches the same guard
+    // from the hatch it finds nearest; lc_snappercatchtests.cpp covers that.
+    RS_EntityContainer document{nullptr, true};
+
+    auto* hatch = new RS_Hatch(&document, RS_HatchData(true, 1.0, 0.0, "SOLID"));
+    auto* loop = new RS_EntityContainer(hatch);
+    hatch->addEntity(loop);
+    loop->addEntity(new RS_Line(loop, RS_Vector(0.0,   0.0),   RS_Vector(100.0, 0.0)));
+    loop->addEntity(new RS_Line(loop, RS_Vector(100.0, 0.0),   RS_Vector(100.0, 100.0)));
+    loop->addEntity(new RS_Line(loop, RS_Vector(100.0, 100.0), RS_Vector(0.0,   100.0)));
+    loop->addEntity(new RS_Line(loop, RS_Vector(0.0,   100.0), RS_Vector(0.0,   0.0)));
+    hatch->update();
+    document.addEntity(hatch);   // document owns and will delete the hatch
+    REQUIRE(hatch->getUpdateError() == RS_Hatch::HATCH_OK);
+
+    // Dead centre of the solid fill: getDistanceToPoint() returns 0 and reports
+    // the whole hatch as nearest. Reaching the assertion at all proves the
+    // self-reference guard terminates the descent.
+    const RS_Vector insideFill(50.0, 50.0);
+    RS_Vector p = document.getNearestPointOnEntity(insideFill, true, nullptr, nullptr);
+
+    // A solid-fill hit has no snappable child point to descend to, so the
+    // result is an invalid vector (previously the call never returned).
+    CHECK_FALSE(p.valid);
+
+    // Calling directly on the hatch must likewise terminate.
+    RS_Vector pHatch = hatch->getNearestPointOnEntity(insideFill, true, nullptr, nullptr);
+    CHECK_FALSE(pHatch.valid);
+}
+
+namespace {
+
+/**
+ * Reuse the process-wide QApplication if some other test already built one,
+ * otherwise create it. Widgets need QApplication, not just QCoreApplication.
+ */
+QApplication& widgetApplication()
+{
+    static int argc = 1;
+    static char name[] = "librecad-tests";
+    static char* argv[] = {name, nullptr};
+    static QApplication* app = [] {
+        auto* existing = qobject_cast<QApplication*>(QCoreApplication::instance());
+        return existing ? existing : new QApplication(argc, argv);
+    }();
+    static bool settingsReady = [] {
+        QCoreApplication::setOrganizationName("LibreCAD");
+        QCoreApplication::setApplicationName("LibreCAD-tests");
+        RS_Settings::init("LibreCAD", "LibreCAD-tests");
+        return true;
+    }();
+    (void)settingsReady;
+    return *app;
+}
+
+//! Significant digits in a 'g'-formatted number, ignoring sign, point and exponent.
+int significantDigits(const QString& text)
+{
+    const QString mantissa = text.section('e', 0, 0);
+    int digits = 0;
+    bool seenNonZero = false;
+    for (const QChar c: mantissa) {
+        if (!c.isDigit())
+            continue;
+        if (c != QLatin1Char('0'))
+            seenNonZero = true;
+        if (seenNonZero)
+            ++digits;
+    }
+    return digits;
+}
+
+} // namespace
+
+TEST_CASE("LC_HatchPropertiesEditingWidget shows 8 significant digits, fully visible",
+          "[hatch][properties][widget]")
+{
+    widgetApplication();
+
+    // Deliberately awkward extents: the area and the moments then need far more
+    // than eight digits to write out in full, and the moments reach ~1e12.
+    std::unique_ptr<RS_Hatch> hatch{makeRectHatch(123.456789012, 234.567890123,
+                                                  2345.678901234, 3456.789012345)};
+    REQUIRE(hatch->getTotalArea() > 0.0);
+
+    LC_GraphicViewport viewport;
+    LC_HatchPropertiesEditingWidget widget;
+    widget.setGraphicViewport(&viewport);
+    widget.setEntity(hatch.get());
+
+    const QStringList valueFieldNames{
+        QStringLiteral("leScale"), QStringLiteral("leAngle"),
+        QStringLiteral("leArea"), QStringLiteral("leCentroidX"), QStringLiteral("leCentroidY"),
+        QStringLiteral("leIxx"), QStringLiteral("leIyy"), QStringLiteral("leIxy"),
+        QStringLiteral("leI1"), QStringLiteral("leI2"), QStringLiteral("lePrincipalAngle")};
+
+    // Squeeze the widget well below its preferred width. Only a minimum width
+    // that accounts for the text keeps the fields from being shrunk to nothing,
+    // which is exactly what left the moments clipped in the dialog.
+    widget.resize(200, widget.sizeHint().height());
+    widget.layout()->activate();
+
+    for (const QString& name: valueFieldNames) {
+        auto* ed = widget.findChild<QLineEdit*>(name);
+        INFO("field " << name.toStdString());
+        REQUIRE(ed != nullptr);
+
+        const QString text = ed->text();
+        REQUIRE_FALSE(text.isEmpty());
+
+        // 1. never more than eight significant digits
+        INFO("text " << text.toStdString());
+        CHECK(significantDigits(text) <= 8);
+
+        // 2. the whole value fits, even with the layout squeezed. The frame and
+        // the text margins are not usable width, so discount them: Qt's own
+        // sizeHint is 17 'x' advances of text plus exactly that overhead.
+        const QFontMetrics fm = ed->fontMetrics();
+        const int overhead = ed->sizeHint().width() - 17 * fm.horizontalAdvance(QLatin1Char('x'));
+        const int textWidth = fm.horizontalAdvance(text);
+        CHECK(ed->width() - overhead >= textWidth);
+        CHECK(ed->minimumWidth() - overhead >= textWidth);
+
+        // and it is scrolled to the front, so the leading digits are the visible ones
+        CHECK(ed->cursorPosition() == 0);
+    }
+
+    // The fields must also hold the widest string 8 'g' digits can produce, not
+    // merely the values this particular hatch happened to yield.
+    auto* widest = widget.findChild<QLineEdit*>(QStringLiteral("leIxx"));
+    REQUIRE(widest != nullptr);
+    widest->setText(QStringLiteral("-1.2345678e-308"));
+    widget.layout()->activate();
+    const QFontMetrics fm = widest->fontMetrics();
+    const int overhead = widest->sizeHint().width() - 17 * fm.horizontalAdvance(QLatin1Char('x'));
+    CHECK(widest->width() - overhead >= fm.horizontalAdvance(widest->text()));
+
+    // The widths are in font units, so they must follow the font. Nothing changes
+    // the font under the dialog today, but the widget should not quietly depend
+    // on that: it is built before it is ever shown.
+    QFont bigger = widget.font();
+    bigger.setPointSize(bigger.pointSize() * 2);
+    widget.setFont(bigger);
+    widget.layout()->activate();
+    const QFontMetrics bigFm = widest->fontMetrics();
+    const int bigOverhead = widest->sizeHint().width() - 17 * bigFm.horizontalAdvance(QLatin1Char('x'));
+    CHECK(widest->minimumWidth() - bigOverhead >= bigFm.horizontalAdvance(widest->text()));
+}
+
+// ============================================================
+// Pattern lines across updates: another update() replaces them, and an edit
+// of a clone, as the hatch dialog makes, reaches them.
+// ============================================================
+
+namespace {
+
+// Points the pattern search at the source tree's patterns while it lives.
+class SourcePatterns {
+public:
+    SourcePatterns() {
+        static int qargc = 1;
+        static char qarg0[] = "librecad_tests";
+        static char* qargv[] = {qarg0, nullptr};
+        static QCoreApplication* qapp = QCoreApplication::instance()
+                                            ? QCoreApplication::instance()
+                                            : new QCoreApplication(qargc, qargv);
+        static bool settingsReady = [] {
+            QCoreApplication::setOrganizationName("LibreCAD");
+            QCoreApplication::setApplicationName("LibreCAD-tests");
+            RS_Settings::init("LibreCAD", "LibreCAD-tests");
+            return true;
+        }();
+        (void)qapp;
+        (void)settingsReady;
+        LC_GROUP_GUARD("Paths");
+        m_previous = LC_GET_STR("Patterns", "");
+        LC_SET("Patterns", QStringLiteral(LIBRECAD_SOURCE_DIR "/librecad/support/patterns"));
+    }
+    ~SourcePatterns() {
+        LC_GROUP_GUARD("Paths");
+        LC_SET("Patterns", m_previous);
+    }
+private:
+    QString m_previous;
+};
+
+// Directions of the pattern lines, in whole degrees from 0 to 179, and how many there are.
+std::map<long, int> patternLineDirections(const RS_Hatch& hatch) {
+    std::map<long, int> directions;
+    for (const RS_Entity* en : hatch) {
+        if (en->getFlag(RS2::FlagHatchChild) && en->rtti() == RS2::EntityLine) {
+            const double degrees = static_cast<const RS_Line*>(en)->getAngle1() * 180.0 / M_PI;
+            ++directions[std::lround(std::fmod(degrees + 360.0, 180.0)) % 180];
+        }
+    }
+    return directions;
+}
+
+} // namespace
+
+TEST_CASE("RS_Hatch keeps one set of pattern lines across updates and edits", "[rs_hatch][pattern]") {
+    SourcePatterns patterns;
+    RS_Hatch hatch(nullptr, RS_HatchData(false, 1.0, 0.0, "ANSI31"));
+    auto* loop = new RS_EntityContainer(&hatch);
+    hatch.addEntity(loop);
+    loop->addEntity(new RS_Line(loop, RS_Vector(0, 0), RS_Vector(20, 0)));
+    loop->addEntity(new RS_Line(loop, RS_Vector(20, 0), RS_Vector(20, 10)));
+    loop->addEntity(new RS_Line(loop, RS_Vector(20, 10), RS_Vector(0, 10)));
+    loop->addEntity(new RS_Line(loop, RS_Vector(0, 10), RS_Vector(0, 0)));
+    hatch.update();
+    const auto directions = patternLineDirections(hatch);
+    REQUIRE(directions.size() == 1);
+    REQUIRE(directions.count(45) == 1);
+    const int lines = directions.at(45);
+
+    hatch.update();
+    CHECK(patternLineDirections(hatch).at(45) == lines);
+
+    // the hatch dialog edits a clone, which clone() has updated, and updates it again
+    const std::unique_ptr<RS_Entity> copy{hatch.clone()};
+    auto* edited = static_cast<RS_Hatch*>(copy.get());
+    edited->setAngle(M_PI / 2.0);
+    edited->update();
+    const auto turned = patternLineDirections(*edited);
+    CHECK(turned.size() == 1);
+    CHECK(turned.count(135) == 1);
+
+    edited->setSolid(true);
+    edited->update();
+    CHECK(patternLineDirections(*edited).empty());
 }
