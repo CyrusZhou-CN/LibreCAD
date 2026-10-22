@@ -33,6 +33,7 @@
 
 #include "lc_actioncontext.h"
 #include "lc_containertraverser.h"
+#include "lc_copyutils.h"
 #include "lc_documentsstorage.h"
 #include "lc_splinepoints.h"
 #include "lc_undosection.h"
@@ -839,7 +840,6 @@ Doc_plugin_interface::Doc_plugin_interface(LC_ActionContext* actionContext, QWid
 }
 
 bool Doc_plugin_interface::addToUndo(RS_Entity* current, RS_Entity* modified, const DPI::Disposition how) const {
-    m_document->addEntity(modified);
     const LC_UndoSection undo(m_document, m_viewport);
     current->clearSelectionFlag();
     if (how == DPI::DELETE_ORIGINAL) {
@@ -1015,22 +1015,22 @@ QString Doc_plugin_interface::addBlockfromFromdisk(const QString fullName) {
             delete b;
             return nullptr;
         }
-        const RS_LayerList* ll = g.getLayerList();
-        for (unsigned int i = 0; i < ll->count(); i++) {
-            RS_Layer* nl = ll->at(i)->clone();
-            m_docGr->addLayer(nl);
-        }
+        // Everything read is new to this drawing, and goes on its layers of the same names.
+        constexpr unsigned provenance = RS_Entity::Identity | RS_Entity::TableRefs;
         RS_BlockList* bl = g.getBlockList();
         for (int i = 0; i < bl->count(); i++) {
-            auto* nb = static_cast<RS_Block*>(bl->at(i)->clone());
-            m_docGr->addBlock(nb);
+            LC_CopyUtils::doCopyBlock(bl->at(i), m_docGr, provenance);
         }
         for (unsigned int i = 0; i < g.count(); i++) {
             RS_Entity* e = g.entityAt(i)->clone();
             e->reparent(b);
+            e->clearDwgProvenance(provenance);
+            LC_CopyUtils::doCopyEntityLayer(e, m_docGr, &g);
             b->addEntity(e);
         }
         m_docGr->addBlock(b);
+        // as in LC_CopyUtils::doCopyBlock(): the expansions of its inserts are those of g, which is about to go
+        b->updateInserts();
         return name;
     }
     return nullptr;
