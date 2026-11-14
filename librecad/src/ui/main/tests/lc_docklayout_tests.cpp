@@ -13,8 +13,10 @@
 #include "lc_actiontestsupport.h"
 #include "lc_testsettingsisolation.h"
 #include "lc_workspacesmanager.h"
+#include "lc_menufactory.h"
 #include "qc_applicationwindow.h"
 #include "qc_mdiwindow.h"
+#include "qg_activelayername.h"
 #include "qg_graphicview.h"
 #include "qg_layerwidget.h"
 #include "rs_debug.h"
@@ -23,11 +25,17 @@
 #include "qg_blockwidget.h"
 #include "rs_block.h"
 #include "rs_line.h"
+#include "rs_dimaligned.h"
 
 struct LC_DockLayoutTestAccess {
     using Workspace = LC_WorkspacesManager::LC_Workspace;
     static QC_ApplicationWindow* createWindow() { return new QC_ApplicationWindow; }
+    static QMenu* dimensionPopup(QC_ApplicationWindow& window, QG_GraphicView* view, RS_Entity* entity) {
+        QStringList actions;
+        return window.m_menuFactory->createGraphicViewPopupMenu(view, entity, RS_Vector(0, 0), actions, true);
+    }
     static void fit(QC_ApplicationWindow& window) { window.fitDocksToWindow(); }
+    static void activate(QC_ApplicationWindow& window, QMdiSubWindow* mdi) { window.doWindowActivated(mdi, true); }
     static void isolate(QC_ApplicationWindow& window) {
         window.m_autoCollapsedGroups.clear();
         window.m_collapsedGroupMembers.clear();
@@ -49,6 +57,7 @@ struct LC_DockLayoutTestAccess {
     static void collapse(QC_ApplicationWindow& window, QDockWidget* dock) {
         window.collapseDockGroup({dock}, window.dockGroupKey(dock), dock, Qt::Vertical);
     }
+    static QStringList collapsedGroups(QC_ApplicationWindow& window) { return window.m_autoCollapsedGroups; }
     static int surfaceBlocks(QC_ApplicationWindow& window, RS_Graphic& graphic) {
         lc::test::TestGraphicView view;
         view.setDocument(&graphic);
@@ -163,6 +172,54 @@ struct DockFixture {
     }
 };
 
+// A window as main() builds it on the first start, shown at a realistic size. The offscreen
+// platform has an 800x600 screen unless given a larger one: run these tests with
+// QT_QPA_PLATFORM=offscreen:configfile=librecad/src/ui/main/tests/lc_docklayout_screen.json
+struct FirstStart {
+    QC_ApplicationWindow& window {testWindow()};
+    ~FirstStart() { window.hide(); }
+    void show(QSize size, bool maximized = false) {
+        window.prepareWindowForShow();
+        window.resize(size);
+        if (maximized) window.showMaximized();
+        else window.show();
+        settle();
+    }
+    QDockWidget* dock(const char* name) {
+        auto* dock = window.findChild<QDockWidget*>(name);
+        REQUIRE(dock != nullptr);
+        return dock;
+    }
+    bool shown(QDockWidget* dock) const {
+        return !dock->isHidden() && window.rect().intersects(dock->geometry());
+    }
+    int rightStrip() const { return window.width() - window.centralWidget()->geometry().right() - 1; }
+};
+
+void requireScreen(QSize size) {
+    REQUIRE(lc::test::application() != nullptr);
+    const QScreen* screen = QGuiApplication::primaryScreen();
+    REQUIRE(screen != nullptr);
+    const QSize available = screen->availableGeometry().size();
+    if (available.width() < size.width() + 8 || available.height() < size.height() + 8)
+        SKIP("needs a screen larger than " << size.width() << 'x' << size.height()
+             << ", see lc_docklayout_screen.json");
+}
+
+void checkDefaultRightDocks(FirstStart& start) {
+    auto& window = start.window;
+    INFO("window=" << window.width() << 'x' << window.height()
+         << " canvas=" << window.getMdiArea()->width() << 'x' << window.getMdiArea()->height()
+         << " strip=" << start.rightStrip()
+         << " collapsed=" << LC_DockLayoutTestAccess::collapsedGroups(window).join(',').toStdString());
+    CHECK(start.shown(start.dock("layer_dockwidget")));
+    CHECK(start.shown(start.dock("command_dockwidget")));
+    CHECK(LC_DockLayoutTestAccess::collapsedGroups(window).isEmpty());
+    CHECK(start.rightStrip() * 4 <= window.width());
+    CHECK(window.getMdiArea()->width() >= 480);
+    CHECK(window.getMdiArea()->height() >= 320);
+}
+
 QStringList tabOrder(QC_ApplicationWindow& window, const QString& first, const QString& second) {
     for (auto* bar : window.findChildren<QTabBar*>()) {
         QStringList names;
@@ -272,6 +329,28 @@ TEST_CASE("Chinese UI translations preserve default keyboard shortcuts", "[gui][
     }
 }
 
+// QObject::receivers() is protected; a member pointer formed through a subclass reaches it.
+struct SignalReceivers : QObject {
+    template <typename Signal>
+    static int count(const QObject* sender, Signal signal) {
+        const QByteArray signature = QByteArray::number(QSIGNAL_CODE) + QMetaMethod::fromSignal(signal).methodSignature();
+        return (sender->*&SignalReceivers::receivers)(signature.constData());
+    }
+};
+
+TEST_CASE("A replaced main window leaves no listeners on the settings", "[gui][settings-listeners]") {
+    testWindow();
+    const int options = SignalReceivers::count(RS_SETTINGS, &RS_Settings::optionsChanged);
+    const int option = SignalReceivers::count(RS_SETTINGS, &RS_Settings::optionChanged);
+
+    // destroys the window above and builds another
+    testWindow();
+    REQUIRE(SignalReceivers::count(RS_SETTINGS, &RS_Settings::optionsChanged) == options);
+    REQUIRE(SignalReceivers::count(RS_SETTINGS, &RS_Settings::optionChanged) == option);
+    // a listener left by the destroyed window crashed here
+    RS_SETTINGS->emitOptionsChanged();
+}
+
 TEST_CASE("Opening a drawing keeps its saved current layer", "[.gui][dock-window][saved-current-layer]") {
     DockFixture fixture;
     auto& window = fixture.window;
@@ -299,19 +378,26 @@ TEST_CASE("Opening a drawing keeps its saved current layer", "[.gui][dock-window
         REQUIRE(mdi != nullptr);
         auto* graphic = mdi->getGraphic();
         REQUIRE(graphic != nullptr);
-        const QString expectedName = (flags & 1) ? "0" : "Saved";
-        auto* expected = graphic->findLayer(expectedName);
-        REQUIRE(expected != nullptr);
+        // a hidden saved current layer stays current (#3229); a locked one cannot be current, so the
+        // first layer that is shown and not locked is
         auto* saved = graphic->findLayer("Saved");
         REQUIRE(saved != nullptr);
-        CHECK(graphic->getActiveLayer() == expected);
         CHECK(saved->isLocked() == bool(flags & 4));
         CHECK(saved->isFrozen() == bool(flags & 1));
-        CHECK_FALSE(graphic->getActiveLayer()->isFrozen());
+        const bool locked = flags & 4;
+        auto* expected = locked ? graphic->findLayer("0") : saved;
+        REQUIRE(expected != nullptr);
+        CHECK(graphic->getActiveLayer() == expected);
 
+        // the status bar names the current layer and shows an icon for each state it is in
         auto* label = window.findChild<QLabel*>("lActiveLayerName");
         REQUIRE(label != nullptr);
-        CHECK(label->text() == expectedName);
+        CHECK(label->text().toStdString() == expected->getName().toStdString());
+        auto* name = window.findChild<QG_ActiveLayerName*>();
+        REQUIRE(name != nullptr);
+        CHECK(name->hiddenIcon()->isVisibleTo(name) == (!locked && bool(flags & 1)));
+        CHECK_FALSE(name->lockedIcon()->isVisibleTo(name));
+
         auto* widget = window.findChild<QG_LayerWidget*>();
         REQUIRE(widget != nullptr);
         auto* table = widget->findChild<QTableView*>();
@@ -322,6 +408,41 @@ TEST_CASE("Opening a drawing keeps its saved current layer", "[.gui][dock-window
         CHECK(table->currentIndex().row() == model->getIndex(expected).row());
         CHECK_FALSE(graphic->isModified());
     }
+}
+
+TEST_CASE("Lock all layers and Toggle layer lock are disabled when the lock would be refused",
+          "[.gui][dock-window][layers][3229]") {
+    DockFixture fixture;
+    auto& window = fixture.window;
+    window.slotFileNewFromDefaultTemplate();
+    settle(0);
+    auto* mdi = window.getCurrentMDIWindow();
+    REQUIRE(mdi != nullptr);
+    auto* graphic = mdi->getGraphic();
+    REQUIRE(graphic != nullptr);
+    QAction* lockAll = window.getAction("LayersLockAll");
+    QAction* toggleLock = window.getAction("LayersToggleLock");
+    REQUIRE(lockAll != nullptr);
+    REQUIRE(toggleLock != nullptr);
+
+    // a new drawing has layer "0" alone, and it is current: locking it would be refused. Activating
+    // a drawing window enables the layer actions with the print preview ones, which must not
+    // override that.
+    REQUIRE(graphic->countLayers() == 1);
+    CHECK_FALSE(lockAll->isEnabled());
+    CHECK_FALSE(toggleLock->isEnabled());
+
+    // another layer that is not locked takes the current layer's place when it is locked
+    graphic->addLayer(new RS_Layer(QStringLiteral("Walls")));
+    settle(0);
+    CHECK(lockAll->isEnabled());
+    CHECK(toggleLock->isEnabled());
+
+    // and a window activated again keeps them as the layers say
+    graphic->findLayer(QStringLiteral("Walls"))->lock(true);
+    LC_DockLayoutTestAccess::activate(window, mdi);
+    CHECK(lockAll->isEnabled() == graphic->getLayerList()->canLockAll());
+    CHECK(toggleLock->isEnabled() == graphic->getLayerList()->canToggleLockOfSelection());
 }
 
 TEST_CASE("Legacy UTF-8 recovery has a separate File menu action", "[.gui][legacy-utf8-ui]") {
@@ -685,4 +806,227 @@ TEST_CASE("Named and global workspaces round-trip requested dock preferences", "
         auto paths = RS_SETTINGS->beginGroupGuard("Paths");
         RS_SETTINGS->writeEntry("OtherSettingsDir", lc::test::SettingsIsolation::directory());
     }
+}
+
+TEST_CASE("A first start shows the Layer List and the Command Line beside the drawing",
+          "[.gui][dock-window][first-start]") {
+    for (const QSize size : {QSize(1280, 720), QSize(1366, 768), QSize(1920, 1080)}) {
+        CAPTURE(size.width(), size.height());
+        requireScreen(size);
+        FirstStart start;
+        start.show(size);
+        checkDefaultRightDocks(start);
+    }
+    requireScreen({1280, 720});
+    FirstStart start;
+    start.show({1280, 720}, true);
+    CHECK(start.window.isMaximized());
+    checkDefaultRightDocks(start);
+}
+
+TEST_CASE("A saved window geometry does not skip the first-start dock widths", "[.gui][dock-window][first-start]") {
+    for (const QSize size : {QSize(1366, 768), QSize(1920, 1080)}) {
+        CAPTURE(size.width(), size.height());
+        requireScreen(size);
+        // As in a profile copied from 2.2.x: the geometry is there, the dock layout is not restored.
+        LC_SET_ONE("Geometry", "WindowGeometry", QString("AA=="));
+        FirstStart start;
+        {
+            const auto geometry = RS_SETTINGS->beginGroupGuard("Geometry");
+            RS_SETTINGS->remove("WindowGeometry");
+        }
+        for (QDockWidget* dock : start.window.findChildren<QDockWidget*>()) {
+            if (start.window.dockWidgetArea(dock) == Qt::RightDockWidgetArea) {
+                CAPTURE(dock->objectName().toStdString());
+                CHECK(dock->width() <= 390);
+            }
+        }
+        start.show(size);
+        checkDefaultRightDocks(start);
+    }
+}
+
+TEST_CASE("First-start dock widths follow the window until the user sizes the docks",
+          "[.gui][dock-window][first-start]") {
+    requireScreen({1920, 1080});
+    FirstStart start;
+    auto& window = start.window;
+    start.show({1280, 720});
+    const int small = start.rightStrip();
+    window.resize(1920, 1080);
+    settle();
+    INFO("strips " << small << " then " << start.rightStrip());
+    CHECK(start.rightStrip() > small);
+    checkDefaultRightDocks(start);
+
+    window.resizeDocks({start.dock("layer_dockwidget")}, {500}, Qt::Horizontal);
+    settle();
+    const int chosen = start.rightStrip();
+    CHECK(chosen > 480);
+    window.resize(1600, 900);
+    settle();
+    CHECK(start.rightStrip() == chosen);
+}
+
+TEST_CASE("Narrowing the window shrinks the right docks by the tab on screen", "[.gui][dock-window][first-start]") {
+    requireScreen({1920, 1080});
+    FirstStart start;
+    auto& window = start.window;
+    start.show({1920, 1080});
+    start.dock("command_dockwidget")->close();
+    // The Pens Palette is the first of its group and keeps the width it had when it was last on screen.
+    auto* palette = start.dock("pen_palette_dockwidget");
+    auto* layers = start.dock("layer_dockwidget");
+    palette->raise();
+    settle();
+    window.resizeDocks({palette}, {1100}, Qt::Horizontal);
+    settle();
+    layers->raise();
+    settle();
+    window.resizeDocks({layers}, {360}, Qt::Horizontal);
+    settle();
+    INFO("palette=" << palette->width() << " layers=" << layers->width());
+    REQUIRE_FALSE(start.shown(palette));
+    REQUIRE(palette->width() > 900);
+    REQUIRE(layers->width() - layers->minimumSizeHint().width() > 20);
+    // 10 pixels too narrow for the drawing area beside the docks as they are
+    window.resize(window.width() - window.getMdiArea()->width() + 480 - 10, window.height());
+    settle();
+    INFO("canvas=" << window.getMdiArea()->width() << " strip=" << start.rightStrip()
+         << " collapsed=" << LC_DockLayoutTestAccess::collapsedGroups(window).join(',').toStdString());
+    CHECK(start.shown(layers));
+    CHECK(LC_DockLayoutTestAccess::collapsedGroups(window).isEmpty());
+    CHECK(window.getMdiArea()->width() >= 480);
+}
+
+TEST_CASE("A short window gives up the Command Line before the Layer List", "[.gui][dock-window][first-start]") {
+    requireScreen({1366, 768});
+    FirstStart start;
+    start.show({1366, 460});
+    INFO("collapsed=" << LC_DockLayoutTestAccess::collapsedGroups(start.window).join(',').toStdString());
+    CHECK(start.shown(start.dock("layer_dockwidget")));
+    CHECK_FALSE(start.shown(start.dock("command_dockwidget")));
+    CHECK(start.window.layout()->minimumSize().height() <= start.window.height());
+}
+
+TEST_CASE("Docks hidden by a narrow first start come back at the first-start width",
+          "[.gui][dock-window][first-start]") {
+    requireScreen({1920, 1080});
+    int expected = 0;
+    {
+        FirstStart start;
+        start.show({1920, 1080});
+        expected = start.rightStrip();
+    }
+    FirstStart start;
+    start.show({700, 700});
+    CHECK_FALSE(start.shown(start.dock("layer_dockwidget")));
+    start.window.resize(1920, 1080);
+    settle();
+    checkDefaultRightDocks(start);
+    CHECK(start.rightStrip() == expected);
+}
+
+TEST_CASE("A restored layout gets the first-start width only if its right docks are over-wide",
+          "[.gui][dock-window][first-start]") {
+    requireScreen({1920, 1080});
+    const QHash<int, bool> areas{{Qt::RightDockWidgetArea, true}};
+    for (const int saved : {1100, 560}) {
+        CAPTURE(saved);
+        QByteArray state;
+        int savedStrip = 0;
+        {
+            FirstStart start;
+            start.show({1920, 1080});
+            start.window.resizeDocks({start.dock("layer_dockwidget")}, {saved}, Qt::Horizontal);
+            settle();
+            savedStrip = start.rightStrip();
+            state = start.window.saveState();
+        }
+        FirstStart start;
+        start.window.restoreDockLayout({}, false, areas, state);
+        start.show({1920, 1080});
+        INFO("saved strip=" << savedStrip << " restored strip=" << start.rightStrip());
+        CHECK(start.shown(start.dock("layer_dockwidget")));
+        if (5 * savedStrip > 2 * start.window.width()) CHECK(start.rightStrip() * 4 <= start.window.width());
+        else CHECK(start.rightStrip() == savedStrip);
+    }
+}
+
+TEST_CASE("Dimension popup restores temporary highlighting", "[gui][clipboard][popup]") {
+    QC_ApplicationWindow& window = testWindow();
+    QClipboard* clipboard = QApplication::clipboard();
+    auto savedClipboard = std::make_unique<QMimeData>();
+    if (const auto* current = clipboard->mimeData()) {
+        for (const QString& format : current->formats()) savedClipboard->setData(format, current->data(format));
+    }
+    struct RestoreClipboard {
+        QClipboard* clipboard;
+        std::unique_ptr<QMimeData> saved;
+        ~RestoreClipboard() { clipboard->setMimeData(saved.release()); }
+    } restore{clipboard, std::move(savedClipboard)};
+    struct TestGraphic : RS_Graphic { using RS_Undo::countUndoCycles; } graphic;
+    graphic.initForNewDocument();
+    LC_ActionContext context;
+    QG_GraphicView view(nullptr, &graphic, &context);
+    view.initView();
+    RS_DimensionData data;
+    data.definitionPoint = RS_Vector(0, 3);
+    data.middleOfText = RS_Vector(5, 3);
+    data.style = "Standard";
+    data.text = "fixed label";
+    auto* dimension = new RS_DimAligned(&graphic, data, {RS_Vector(0, 0), RS_Vector(10, 0)});
+    auto* selected = new RS_Line(&graphic, RS_Vector(0, 0), RS_Vector(1, 0));
+    graphic.addEntity(dimension);
+    graphic.addEntity(selected);
+    dimension->update();
+    graphic.select(QList<RS_Entity*>{selected}, true);
+    graphic.setModified(false);
+    const auto entities = graphic.getEntityList();
+    const auto children = dimension->getEntityList();
+    const auto measurement = dimension->getMeasurement();
+    const auto undoCount = graphic.countUndoCycles();
+    const QString previousClipboard = clipboard->text();
+
+    std::unique_ptr<QMenu> menu(LC_DockLayoutTestAccess::dimensionPopup(window, &view, dimension));
+    REQUIRE(menu != nullptr);
+    CHECK(clipboard->text() == previousClipboard);
+    CHECK(selected->isSelected());
+    CHECK(dimension->isSelected());
+    int copyActions = 0;
+    QAction* copyValue = nullptr;
+    for (auto* action : menu->actions()) {
+        if (action->text() == "Copy value" || action->text() == "Copy formatted") ++copyActions;
+        if (action->text() == "Copy value") copyValue = action;
+    }
+    CHECK(copyActions == 2);
+    REQUIRE(copyValue != nullptr);
+    menu->popup(QPoint(20, 20));
+    QCoreApplication::processEvents();
+    menu->setActiveAction(copyValue);
+    QKeyEvent enter(QEvent::KeyPress, Qt::Key_Return, Qt::NoModifier);
+    QCoreApplication::sendEvent(menu.get(), &enter);
+    QCoreApplication::processEvents();
+    CHECK_FALSE(menu->isVisible());
+    CHECK(clipboard->text() == "10");
+    CHECK(selected->isSelected());
+    CHECK_FALSE(dimension->isSelected());
+    CHECK_FALSE(graphic.isModified());
+    CHECK(graphic.countUndoCycles() == undoCount);
+    CHECK(graphic.getEntityList() == entities);
+    CHECK(dimension->getEntityList() == children);
+    CHECK(dimension->getMeasurement() == measurement);
+
+    graphic.select(QList<RS_Entity*>{dimension}, true);
+    menu.reset(LC_DockLayoutTestAccess::dimensionPopup(window, &view, dimension));
+    REQUIRE(menu != nullptr);
+    menu->popup(QPoint(20, 20));
+    QCoreApplication::processEvents();
+    menu->hide();
+    QCoreApplication::processEvents();
+    CHECK(dimension->isSelected());
+    CHECK(selected->isSelected());
+    dimension->setExtensionPoint2(RS_Vector(11, 0));
+    dimension->update();
+    CHECK(dimension->getMeasuredValueText() == "11");
 }

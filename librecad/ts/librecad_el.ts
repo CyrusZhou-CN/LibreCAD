@@ -39,86 +39,6 @@
     </message>
 </context>
 <context>
-    <name>CustomToolbarCreator</name>
-    <message>
-        <source>Frame</source>
-        <translation type="obsolete">Πλαίσιο</translation>
-    </message>
-    <message>
-        <source>&gt;</source>
-        <translation type="obsolete">&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;</source>
-        <translation type="obsolete">&lt;</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Αποθήκευση</translation>
-    </message>
-</context>
-<context>
-    <name>CustomWidgetCreator</name>
-    <message>
-        <source>Frame</source>
-        <translation type="obsolete">Πλαίσιο</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Αποθήκευση</translation>
-    </message>
-</context>
-<context>
-    <name>DlgParabola</name>
-    <message>
-        <source>Parabola</source>
-        <translation type="obsolete">Παραβολή</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Points on Spline</source>
-        <translation type="obsolete">Σημεία στο Spline</translation>
-    </message>
-    <message>
-        <source>Control Points</source>
-        <translation type="obsolete">Σημεία ελέγχου</translation>
-    </message>
-</context>
-<context>
-    <name>DlgSplinePoints</name>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation type="obsolete">Κλειστό</translation>
-    </message>
-    <message>
-        <source>If selected, spline points are used</source>
-        <translation type="obsolete">Αν επιλεγεί, χρησιμοποιούνται σημεία spline</translation>
-    </message>
-    <message>
-        <source>Spline Points</source>
-        <translation type="obsolete">Σημεία spline</translation>
-    </message>
-    <message>
-        <source>If selected, control points are used</source>
-        <translation type="obsolete">Εάν επιλεγεί, χρησιμοποιούνται σημεία ελέγχου</translation>
-    </message>
-    <message>
-        <source>Control Points</source>
-        <translation type="obsolete">Σημεία ελέγχου</translation>
-    </message>
-    <message>
-        <source>Points on Spline</source>
-        <translation type="obsolete">Σημεία στο Spline</translation>
-    </message>
-</context>
-<context>
     <name>LC_AbstractActionDrawLine</name>
     <message>
         <location filename="../src/actions/drawing/draw/line/lc_abstractactiondrawline.cpp" line="64"/>
@@ -127,78 +47,16 @@
     </message>
 </context>
 <context>
-    <name>LC_AbstractActionDrawRectangle</name>
-    <message>
-        <source>To be created:</source>
-        <translation type="vanished">Για δημιουργία:</translation>
-    </message>
-    <message>
-        <source>Rectangle</source>
-        <translation type="vanished">Ορθογώνιο</translation>
-    </message>
-    <message>
-        <source>Width:</source>
-        <translation type="vanished">Πλάτος:</translation>
-    </message>
-    <message>
-        <source>Height:</source>
-        <translation type="vanished">Ύψος:</translation>
-    </message>
-    <message>
-        <source>Center:</source>
-        <translation type="vanished">Κέντρο:</translation>
-    </message>
-    <message>
-        <source>Invalid Angle</source>
-        <translation type="vanished">Μη έγκυρη γωνία</translation>
-    </message>
-    <message>
-        <source>Invalid radius</source>
-        <translation type="vanished">Μη έγκυρη ακτίνα</translation>
-    </message>
-    <message>
-        <source>Invalid value</source>
-        <translation type="vanished">Μη έγκυρη τιμή</translation>
-    </message>
-    <message>
-        <source>Specify insertion point</source>
-        <translation type="vanished">Ορισμός σημείου εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Specify angle</source>
-        <translation type="vanished">Ορισμός γωνίας</translation>
-    </message>
-    <message>
-        <source>Specify size (width, height)</source>
-        <translation type="vanished">Προσδιορίστε το μέγεθος (πλάτος, ύψος)</translation>
-    </message>
-    <message>
-        <source>Specify corners type
-[str|round|bevels]</source>
-        <translation type="vanished">Καθορισμός τύπου γωνιών
-[str</translation>
-    </message>
-    <message>
-        <source>Specify corner bevel length (x,y)</source>
-        <translation type="vanished">Προσδιορίστε το μήκος της γωνίας (x,y)</translation>
-    </message>
-    <message>
-        <source>Specify corner radius</source>
-        <translation type="vanished">Καθορίστε ακτίνα γωνίας</translation>
-    </message>
-    <message>
-        <source>Specify edges mode
-[both|hor|vert]</source>
-        <translation type="vanished">Καθορίστε τη λειτουργία ακμών
-[και οι δύο hor</translation>
-    </message>
-</context>
-<context>
     <name>LC_AbstractActionWithPreview</name>
     <message>
         <location filename="../src/actions/drawing/lc_abstractactionwithpreview.cpp" line="644"/>
         <source> is not divided as it is locked.</source>
         <translation>δεν είναι διαιρεμένο καθώς είναι κλειδωμένο.</translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/lc_abstractactionwithpreview.cpp" line="652"/>
+        <source> is not divided as it is part of another entity.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/lc_abstractactionwithpreview.cpp" line="652"/>
@@ -437,73 +295,6 @@ This block cannot be inserted.</source>
     </message>
 </context>
 <context>
-    <name>LC_ActionDrawArc2POptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Height of the arc (the distanсe between chord and top arc point)</source>
-        <translation type="vanished">Ύψος του τόξου (το distanсe μεταξύ συγχορδίας και top arc σημείο)</translation>
-    </message>
-    <message>
-        <source>Height:</source>
-        <translation type="vanished">Ύψος:</translation>
-    </message>
-    <message>
-        <source>Counterclockwise</source>
-        <translation type="vanished">Αριστερόστροφα</translation>
-    </message>
-    <message>
-        <source>Pick angle from the drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Radius of arc</source>
-        <translation type="vanished">Ακτίνα τόξου</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Clockwise</source>
-        <translation type="vanished">Δεξιόστροφα</translation>
-    </message>
-    <message>
-        <source>Central angle of the arc</source>
-        <translation type="vanished">Κεντρική γωνία του τόξου</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Length of the arc</source>
-        <translation type="vanished">Μήκος του τόξου</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Pick radius from drawing</source>
-        <translation type="vanished">Επιλέξτε ακτίνα από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick height from drawing</source>
-        <translation type="vanished">Διαλέξτε το ύψος από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick length from drawing</source>
-        <translation type="vanished">Διαλέξτε το μήκος από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-</context>
-<context>
     <name>LC_ActionDrawArc2PointsAngle</name>
     <message>
         <location filename="../src/actions/drawing/draw/arc/lc_action_draw_arc_2points_angle.cpp" line="58"/>
@@ -715,10 +506,6 @@ This block cannot be inserted.</source>
 <context>
     <name>LC_ActionDrawBoundingBox</name>
     <message>
-        <source>Select entities for bounding box (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε οντότητες για το όριο (Enter to complete)</translation>
-    </message>
-    <message>
         <location filename="../src/actions/drawing/draw/line/misc/lc_action_draw_bounding_box.cpp" line="162"/>
         <source>Select entities for bounding box</source>
         <translation type="unfinished"></translation>
@@ -773,31 +560,6 @@ This block cannot be inserted.</source>
         <location filename="../src/actions/drawing/draw/line/misc/lc_action_draw_center_mark.cpp" line="397"/>
         <source>Select circle, arc or ellipse</source>
         <translation type="unfinished">Επιλέξτε κύκλο, τόξο ή έλλειψη</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ActionDrawCircle2PR</name>
-    <message>
-        <source>radius=%1 is too small for points selected
-distance between points=%2 is larger than diameter=%3</source>
-        <translation type="vanished">η ακτίνα=%1 είναι πολύ μικρή για τα σημεία που επιλέχτηκαν
-η απόσταση μεταξύ των σημείων=%2 είναι μεγαλύτερη από τη διάμετρο=%3</translation>
-    </message>
-    <message>
-        <source>Select from two possible circle centers</source>
-        <translation type="vanished">Επιλέξτε μεταξύ των δυο πιθανών κέντρων του κύκλου</translation>
-    </message>
-    <message>
-        <source>Specify first point</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify second point</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο</translation>
-    </message>
-    <message>
-        <source>Select circle center</source>
-        <translation type="vanished">Καθορίστε το κέντρο του κύκλου</translation>
     </message>
 </context>
 <context>
@@ -1046,13 +808,6 @@ distance between points=%2 is larger than diameter=%3</source>
     </message>
 </context>
 <context>
-    <name>LC_ActionDrawCross</name>
-    <message>
-        <source>Select circle, arc or ellipse</source>
-        <translation type="vanished">Επιλέξτε κύκλο, τόξο ή έλλειψη</translation>
-    </message>
-</context>
-<context>
     <name>LC_ActionDrawDimBaseline</name>
     <message>
         <location filename="../src/actions/drawing/draw/dimensions/lc_actiondrawdimbaseline.cpp" line="416"/>
@@ -1096,10 +851,6 @@ distance between points=%2 is larger than diameter=%3</source>
         <location filename="../src/actions/drawing/draw/curve/lc_actiondrawdual.cpp" line="63"/>
         <source>Select Center</source>
         <translation>Επιλογή κέντρου</translation>
-    </message>
-    <message>
-        <source>No center specified.</source>
-        <translation type="vanished">Δεν καθορίστηκε κέντρο.</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/curve/lc_actiondrawdual.cpp" line="68"/>
@@ -1411,6 +1162,78 @@ distance between points=%2 is larger than diameter=%3</source>
     </message>
 </context>
 <context>
+    <name>LC_ActionDrawLineDirect</name>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="350"/>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="510"/>
+        <source>Cannot open: draw at least one wall segment first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="371"/>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="551"/>
+        <source>Cannot place window: draw at least one wall segment first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="390"/>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="716"/>
+        <source>Cannot place door: draw at least one wall segment first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="412"/>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="422"/>
+        <source>Cannot undo: Begin of history reached</source>
+        <translation type="unfinished">Αδύνατη η αναίρεση: Η αρχή της ιστορίας έφτασε</translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="782"/>
+        <source>Specify first point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="789"/>
+        <source>Specify next point or type distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="797"/>
+        <source>Type opening width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="800"/>
+        <source>Click to choose marker side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="803"/>
+        <source>Type window width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="806"/>
+        <source>Click to choose window direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="809"/>
+        <source>Type door width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="812"/>
+        <source>Move to the swing side and desired hinge, then click</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/line/lc_actiondrawlinedirect.cpp" line="815"/>
+        <source>Click near hinge end</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LC_ActionDrawLineFreehand</name>
     <message>
         <location filename="../src/actions/drawing/draw/curve/lc_action_draw_line_freehand.cpp" line="121"/>
@@ -1491,154 +1314,6 @@ distance between points=%2 is larger than diameter=%3</source>
         <location filename="../src/actions/drawing/draw/line/lc_action_draw_line_parallel_through.cpp" line="234"/>
         <source>Not a valid expression</source>
         <translation type="unfinished">Μη έγκυρη έκφραση</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ActionDrawLinePoints</name>
-    <message>
-        <source>Specify First Point</source>
-        <translation type="vanished">Ορισμός πρώτου σημείου</translation>
-    </message>
-    <message>
-        <source>Specify Second Point
-or [number|x|y|angle|p|edges|distance]</source>
-        <translation type="vanished">Ορισμός δεύτερου σημείου
-ή [αριθμόxx</translation>
-    </message>
-    <message>
-        <source>Specify Second Point
-or [number]</source>
-        <translation type="vanished">Ορισμός δεύτερου σημείου
-ή [αριθμό</translation>
-    </message>
-    <message>
-        <source>Specify line direction
-[x|y|angle|p|distance]</source>
-        <translation type="vanished">Καθορίστε κατεύθυνση γραμμής
-[x</translation>
-    </message>
-    <message>
-        <source>Specify line direction angle
-or [x|y|p|number|edges|distance]</source>
-        <translation type="vanished">Καθορίστε γωνία κατεύθυνσης γραμμής
-ή [x</translation>
-    </message>
-    <message>
-        <source>Specify edge points mode
-[none|start|end|both|distance]</source>
-        <translation type="vanished">Καθορίστε τη λειτουργία σημείων άκρων
-[None</translation>
-    </message>
-    <message>
-        <source>Specify fixed distance between points
-or[x|y|p|number|edges]</source>
-        <translation type="vanished">Καθορίστε σταθερή απόσταση μεταξύ των σημείων
-ή [x</translation>
-    </message>
-    <message>
-        <source>X</source>
-        <translation type="vanished">Χ</translation>
-    </message>
-    <message>
-        <source>Specify distance (%1)
-or [%2]</source>
-        <translation type="vanished">Καθορίστε απόσταση (%1)
-ή [%2]</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation type="vanished">Πίσω</translation>
-    </message>
-    <message>
-        <source>Y</source>
-        <translation type="vanished">Υ</translation>
-    </message>
-    <message>
-        <source>Specify  distance (angle %1 deg)
-or [%2]</source>
-        <translation type="vanished">Καθορίστε απόσταση (angle%1 deg)
-ή [%2]</translation>
-    </message>
-    <message>
-        <source>Specify points count</source>
-        <translation type="vanished">Ορισμός αριθμού σημείων</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ActionDrawLinePolygon4</name>
-    <message>
-        <source>Specify second corner</source>
-        <translation type="vanished">Ορισμός της δεύτερης γωνίας</translation>
-    </message>
-    <message>
-        <source>Specify second tangent</source>
-        <translation type="vanished">Προσδιορίστε τη δεύτερη εφαπτομένη</translation>
-    </message>
-    <message>
-        <source>Specify first corner</source>
-        <translation type="vanished">Καθορίστε την πρώτη γωνία</translation>
-    </message>
-    <message>
-        <source>Specify first tangent</source>
-        <translation type="vanished">Καθορίστε την πρώτη εφαπτομένη</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ActionDrawLinePolygonBase</name>
-    <message>
-        <source>Not a valid number. Try 1..9999</source>
-        <translation type="vanished">Δεν είναι έγκυρος αριθμός. Δοκίμασε 1.9999</translation>
-    </message>
-    <message>
-        <source>Invalid value of rounding radius</source>
-        <translation type="vanished">Μη έγκυρη τιμή ακτίνας στρογγυλοποίησης</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Enter number:</source>
-        <translation type="vanished">Εισάγετε αριθμό:</translation>
-    </message>
-    <message>
-        <source>Enter rounding radius:</source>
-        <translation type="vanished">Εισάγετε ακτίνα στρογγυλοποίησης:</translation>
-    </message>
-    <message>
-        <source>Specify center</source>
-        <translation type="vanished">Ορισμός κέντρου</translation>
-    </message>
-    <message>
-        <source>To be created:</source>
-        <translation type="vanished">Για δημιουργία:</translation>
-    </message>
-    <message>
-        <source>Center:</source>
-        <translation type="vanished">Κέντρο:</translation>
-    </message>
-    <message>
-        <source>Start angle:</source>
-        <translation type="vanished">Γωνία εκκίνησης:</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Radius Inner:</source>
-        <translation type="vanished">Εσωτερική ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Polygon</source>
-        <translation type="vanished">Πολύγωνο</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ActionDrawLinePolygonCenTan</name>
-    <message>
-        <source>Specify a tangent</source>
-        <translation type="vanished">Προσδιορίστε μια εφαπτομένη</translation>
     </message>
 </context>
 <context>
@@ -1885,29 +1560,6 @@ or [%2]</source>
     </message>
 </context>
 <context>
-    <name>LC_ActionDrawMidLine</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Select first entity</source>
-        <translation type="vanished">Επιλογή πρώτης οντότητας</translation>
-    </message>
-    <message>
-        <source>Select second entity</source>
-        <translation type="vanished">Επιλογή δεύτερης οντότητας</translation>
-    </message>
-    <message>
-        <source>Alternate endpoints</source>
-        <translation type="vanished">Εναλλακτικά τελικά σημεία</translation>
-    </message>
-    <message>
-        <source>Enter offset value</source>
-        <translation type="vanished">Εισάγετε τιμή όφσετ</translation>
-    </message>
-</context>
-<context>
     <name>LC_ActionDrawParabola4Points</name>
     <message>
         <location filename="../src/actions/drawing/draw/curve/lc_actiondrawparabola4points.cpp" line="190"/>
@@ -2062,9 +1714,8 @@ or [x|y|p|number|edges|distance]</source>
     <message>
         <location filename="../src/actions/drawing/draw/point/lc_action_draw_points_line.cpp" line="599"/>
         <source>Specify fixed distance between points
-or[x|y|p|number|edges]</source>
-        <translation type="unfinished">Καθορίστε σταθερή απόσταση μεταξύ των σημείων
-ή [x</translation>
+or [x|y|p|number|edges]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/point/lc_action_draw_points_line.cpp" line="610"/>
@@ -2093,10 +1744,9 @@ or [%2]</source>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/point/lc_action_draw_points_line.cpp" line="620"/>
-        <source>Specify  distance (angle %1 deg)
+        <source>Specify distance (angle %1 deg)
 or [%2]</source>
-        <translation type="unfinished">Καθορίστε απόσταση (angle%1 deg)
-ή [%2]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/point/lc_action_draw_points_line.cpp" line="625"/>
@@ -2256,8 +1906,8 @@ or [%2]</source>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/rect/lc_action_draw_rectangle_1point.cpp" line="396"/>
-        <source>Specify size (width, height))</source>
-        <translation>Καθορισμός μεγέθους (πλάτος, ύψος)</translation>
+        <source>Specify size (width, height)</source>
+        <translation type="unfinished">Προσδιορίστε το μέγεθος (πλάτος, ύψος)</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/rect/lc_action_draw_rectangle_1point.cpp" line="399"/>
@@ -2328,8 +1978,8 @@ or [%2]</source>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/rect/lc_action_draw_rectangle_3points.cpp" line="622"/>
-        <source>Specify start point)</source>
-        <translation>Προσδιορίστε το σημείο εκκίνησης)</translation>
+        <source>Specify start point</source>
+        <translation type="unfinished">Ορισμός σημείου εκκίνησης</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/rect/lc_action_draw_rectangle_3points.cpp" line="625"/>
@@ -2465,6 +2115,11 @@ or [%2]</source>
 <context>
     <name>LC_ActionDrawSpline</name>
     <message>
+        <location filename="../src/actions/drawing/draw/spline/lc_action_draw_spline.cpp" line="150"/>
+        <source>Cannot finalize spline: at least %1 control points required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/actions/drawing/draw/spline/lc_action_draw_spline.cpp" line="240"/>
         <source>Specify first control point</source>
         <translation type="unfinished"></translation>
@@ -2478,6 +2133,11 @@ or [%2]</source>
         <location filename="../src/actions/drawing/draw/spline/lc_action_draw_spline.cpp" line="255"/>
         <source>Specify next control point</source>
         <translation type="unfinished">Καθορίστε το επόμενο σημείο ελέγχου</translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/draw/spline/lc_action_draw_spline.cpp" line="273"/>
+        <source>Cannot close spline: at least %1 control points required.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/draw/spline/lc_action_draw_spline.cpp" line="309"/>
@@ -3118,6 +2778,11 @@ or [%2]</source>
     </message>
     <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="222"/>
+        <source>Draw Fast</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="222"/>
         <source>Angle From Line</source>
         <translation>Γωνία από τη γραμμή</translation>
     </message>
@@ -3513,6 +3178,11 @@ or [%2]</source>
         <translation>Ορισμός UCS Με Ορθολογική Διάσταση</translation>
     </message>
     <message>
+        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="568"/>
+        <source>Polar Snap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="572"/>
         <source>Move to Bottom</source>
         <translation>Μετακίνηση στο κάτω μέρος</translation>
@@ -3540,6 +3210,11 @@ or [%2]</source>
     <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="600"/>
         <source>&amp;Main Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="683"/>
+        <source>Open Legacy LibreCAD DXF (UTF-8)...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4004,10 +3679,6 @@ or [%2]</source>
         <translation>Προτροπή</translation>
     </message>
     <message>
-        <source>Snap on grid</source>
-        <translation type="vanished">Προσαρμογή στον κάνναβο</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="449"/>
         <source>Snap Middle Manual</source>
         <translation>Μετακίνηση μέσου εγχειριδίου</translation>
@@ -4268,11 +3939,6 @@ or [%2]</source>
         <translation>Αποεπι&amp;λογή όλων</translation>
     </message>
     <message>
-        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="910"/>
-        <source>Ctrl+K</source>
-        <translation>Ctrl+K</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="745"/>
         <source>Invert Selection</source>
         <translation>Αντιστροφή επιλογής</translation>
@@ -4378,12 +4044,6 @@ or [%2]</source>
         <translation>&amp; Γρι</translation>
     </message>
     <message>
-        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="927"/>
-        <source>Ctrl+G</source>
-        <comment>Toggle Grid</comment>
-        <translation>Ctrl+G</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="603"/>
         <source>&amp;Draft</source>
         <translation>Π&amp;ροσχέδιο</translation>
@@ -4394,12 +4054,6 @@ or [%2]</source>
         <translation>&amp;Γραμμή κατάστασης</translation>
     </message>
     <message>
-        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="930"/>
-        <source>Ctrl+I</source>
-        <comment>Hide Statusbar</comment>
-        <translation>Ctrl+I</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="715"/>
         <source>Focus on &amp;Command Line</source>
         <translation>Ε&amp;στίαση στη γραμμή εντολών</translation>
@@ -4408,26 +4062,6 @@ or [%2]</source>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="655"/>
         <source>Widget Options</source>
         <translation>Επιλογές συστατικού</translation>
-    </message>
-    <message>
-        <source>Left</source>
-        <translation type="vanished">Αριστερά</translation>
-    </message>
-    <message>
-        <source>Right</source>
-        <translation type="vanished">Δεξιά</translation>
-    </message>
-    <message>
-        <source>Top</source>
-        <translation type="vanished">Κορυφή</translation>
-    </message>
-    <message>
-        <source>Bottom</source>
-        <translation type="vanished">Πυθμένας</translation>
-    </message>
-    <message>
-        <source>Floating</source>
-        <translation type="vanished">Επιπλέον</translation>
     </message>
     <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="658"/>
@@ -4503,12 +4137,6 @@ or [%2]</source>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="754"/>
         <source>&amp;Selection Pointer</source>
         <translation>&amp; Επιλογή δείκτη</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="929"/>
-        <source>Ctrl+D</source>
-        <comment>Toggle Draft Mode</comment>
-        <translation>Ctrl+D</translation>
     </message>
     <message>
         <location filename="../src/ui/main/init/lc_actionfactory.cpp" line="194"/>
@@ -4593,6 +4221,13 @@ or [%2]</source>
         <source>Export as</source>
         <translation>Εξαγωγή ως</translation>
     </message>
+    <message>
+        <location filename="../src/actions/file/lc_actionfileexportmakercam.cpp" line="112"/>
+        <source>Cannot write the file
+%1
+Please check the filename and permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LC_ActionInfo3PointsAngle</name>
@@ -4639,14 +4274,15 @@ or [%2]</source>
         <source>Angle: %1
 Complementary: %2
 Supplementary: %3
-Alternative: %4
+Explementary angle: %4
 Start Edge Point: (%5 , %6)
 Intersection Point :(%7, %8)
 End Edge Point: (%9 , %10)</source>
+        <extracomment>%2 completes a right angle with %1; %3 a straight angle; %4 a full turn. Preserve the numbered placeholders.</extracomment>
         <translation>Γωνία:%1
-Συμπληρωματικό:%2
-Συμπληρωματικό: %3
-Εναλλακτική λύση:%4
+Συμπληρωματική γωνία: %2
+Παραπληρωματική γωνία: %3
+Πλήρης στροφή − γωνία: %4
 Σημείο ακρίδας εκκίνησης: (%5 ,%6)
 Σημείο διατομής:(%7,%8)
 Σημείο άκρου τέλους: (%9 ,%10)</translation>
@@ -4665,17 +4301,20 @@ End Edge Point: (%9 , %10)</source>
     <message>
         <location filename="../src/actions/drawing/info/lc_actioninfo3pointsangle.cpp" line="209"/>
         <source>Complementary:</source>
-        <translation>Συμπληρωματικό:</translation>
+        <extracomment>Complementary angle: right angle minus the measured angle (pi/2 - angle).</extracomment>
+        <translation>Συμπληρωματική γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/lc_actioninfo3pointsangle.cpp" line="210"/>
         <source>Supplementary:</source>
-        <translation>Συμπληρωματικό:</translation>
+        <extracomment>Supplementary angle: straight angle minus the measured angle (pi - angle).</extracomment>
+        <translation>Παραπληρωματική γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/lc_actioninfo3pointsangle.cpp" line="211"/>
-        <source>Alternative: </source>
-        <translation>Εναλλακτική:</translation>
+        <source>Explementary angle: </source>
+        <extracomment>Completes one full turn with the measured angle (2*pi - angle).</extracomment>
+        <translation>Πλήρης στροφή − γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/lc_actioninfo3pointsangle.cpp" line="213"/>
@@ -4872,19 +4511,22 @@ Point: (%8 , %9)</source>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="161"/>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="319"/>
         <source>Complementary:</source>
-        <translation>Συμπληρωματικό:</translation>
+        <extracomment>Complementary angle: right angle minus the measured angle (pi/2 - angle).</extracomment>
+        <translation>Συμπληρωματική γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="162"/>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="320"/>
         <source>Supplementary:</source>
-        <translation>Συμπληρωματικό:</translation>
+        <extracomment>Supplementary angle: straight angle minus the measured angle (pi - angle).</extracomment>
+        <translation>Παραπληρωματική γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="163"/>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="321"/>
-        <source>Alternative: </source>
-        <translation>Εναλλακτική:</translation>
+        <source>Explementary angle: </source>
+        <extracomment>Completes one full turn with the measured angle (2*pi - angle).</extracomment>
+        <translation>Πλήρης στροφή − γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/pick/lc_actioninteractivepickangle.cpp" line="164"/>
@@ -5215,10 +4857,6 @@ Point: (%8 , %9)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select entities to align (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε οντότητες που θα ευθυγραμμιστούν (Enter to complete)</translation>
-    </message>
-    <message>
         <location filename="../src/actions/drawing/modify/lc_action_modify_align.cpp" line="277"/>
         <source>Select and align</source>
         <translation>Επιλογή και ευθυγράμμιση</translation>
@@ -5250,10 +4888,6 @@ Point: (%8 , %9)</source>
         <location filename="../src/actions/drawing/modify/lc_action_modify_align_ref.cpp" line="120"/>
         <source>Scale:</source>
         <translation>Κλίμακα:</translation>
-    </message>
-    <message>
-        <source>Select to align (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για ευθυγράμμιση (Εισαγωγή για ολοκλήρωση)</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/modify/lc_action_modify_align_ref.cpp" line="244"/>
@@ -5454,6 +5088,11 @@ Point: (%8 , %9)</source>
 </context>
 <context>
     <name>LC_ActionModifyBreakDivide</name>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_break_divide.cpp" line="181"/>
+        <source>The selected segment is the whole entity - with &quot;Remove selected&quot; off there is nothing to remove.</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../src/actions/drawing/modify/lc_action_modify_break_divide.cpp" line="151"/>
         <source>Invalid entity selected - no segments between intersections to break/divide.</source>
@@ -5841,6 +5480,11 @@ Point: (%8 , %9)</source>
         <translation type="unfinished">Δημιουργία αντιγράφου</translation>
     </message>
     <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_move.cpp" line="218"/>
+        <source>Finish</source>
+        <translation type="unfinished">Τέλος</translation>
+    </message>
+    <message>
         <location filename="../src/actions/drawing/modify/lc_action_modify_move.cpp" line="216"/>
         <source>Select to move</source>
         <translation type="unfinished"></translation>
@@ -5926,6 +5570,135 @@ Point: (%8 , %9)</source>
 <context>
     <name>LC_ActionModifyOffset</name>
     <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="109"/>
+        <source>hidden or locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="111"/>
+        <source>the current layer is missing, frozen or locked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="113"/>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="128"/>
+        <source>nothing is left at this distance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="115"/>
+        <source>too complex to preview; a click offsets it in full</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="115"/>
+        <source>the offset is too complex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="117"/>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="152"/>
+        <source>it cannot be offset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="136"/>
+        <source>it has no length</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="138"/>
+        <source>it is unbounded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="140"/>
+        <source>it has elliptic segments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="142"/>
+        <source>its offset would cross itself, which polylines do not support yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="144"/>
+        <source>it runs over itself</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="146"/>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="171"/>
+        <source>the distance is not valid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="148"/>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="157"/>
+        <source>the point does not show which side to offset to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="154"/>
+        <source>it does not lie in the drawing plane</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="159"/>
+        <source>the curve does not move, or has a point where its direction cannot be found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="161"/>
+        <source>the curve has a gap or a corner the offset cannot join</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="164"/>
+        <source>the distance meets the curve&apos;s radius of curvature where that cannot be resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="166"/>
+        <source>the offset touches itself where it cannot be trimmed reliably</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="169"/>
+        <source>the offset cannot be fitted within the tolerance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="174"/>
+        <source>the offset could not be made</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="258"/>
+        <source>%1 of %2 selected entities could not be offset: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="264"/>
+        <source>Only %1 of %2 copies fit, since nothing is left at a larger distance; the original was kept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="269"/>
+        <source>%1 selected entities got fewer than %2 copies, since nothing is left at a larger distance; their originals were kept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="275"/>
+        <source>Only %1 of %2 copies were made: %3; the original was kept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="281"/>
+        <source>%1 selected entities got fewer than %2 copies: %3; their originals were kept</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="144"/>
         <source>Offset</source>
         <translation type="unfinished">Μετατόπιση</translation>
@@ -5936,19 +5709,24 @@ Point: (%8 , %9)</source>
         <translation type="unfinished">Απόσταση:</translation>
     </message>
     <message>
-        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="237"/>
-        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="244"/>
-        <source>Specify direction of offset</source>
-        <translation type="unfinished">Καθορίστε την κατεύθυνση της αναπαραγωγής</translation>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="436"/>
+        <source>Not a valid expression</source>
+        <translation type="unfinished">Μη έγκυρη έκφραση</translation>
     </message>
     <message>
-        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="240"/>
-        <source>Specify reference point for direction of offset</source>
-        <translation type="unfinished">Προσδιορίστε το σημείο αναφοράς για την κατεύθυνση όφσετ</translation>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="523"/>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="531"/>
+        <source>Specify direction of offset, or enter distance &lt;%1&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="253"/>
-        <source>Select line, polyline, ellipse, circle or arc to create offset</source>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="527"/>
+        <source>Specify reference point for direction of offset, or enter distance &lt;%1&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/actions/drawing/modify/lc_action_modify_offset.cpp" line="540"/>
+        <source>Select entities to offset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6244,13 +6022,6 @@ Point: (%8 , %9)</source>
         <location filename="../src/actions/drawing/modify/lc_action_modify_scale.cpp" line="430"/>
         <source>Scale immediately after selection</source>
         <translation type="unfinished">Κλιμάκωση αμέσως μετά την επιλογή</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ActionModifySelectionBase</name>
-    <message>
-        <source>No entity selected!</source>
-        <translation type="vanished">Δεν επιλέχθηκε οντότητα!</translation>
     </message>
 </context>
 <context>
@@ -7227,18 +6998,6 @@ Point: (%8 , %9)</source>
         <translation>Δεν μπορεί να διαβάσει παρέχεται αρχείο - παρακαλώ ελέγξτε ότι υπάρχει και επιτρέπεται να διαβάσει από αυτό.</translation>
     </message>
     <message>
-        <source>Shortcuts mappings were not imported.
- Provided file does exists, however it does not contain LibreCAD shortcuts mapping.</source>
-        <translation type="vanished">Δεν εισήχθησαν χαρτογραφήσεις συντομεύσεων.
-Παρέχεται αρχείο υπάρχει, ωστόσο δεν περιέχει συντομεύσεις LibreCAD χαρτογράφηση.</translation>
-    </message>
-    <message>
-        <source>Shortcuts mappings were not imported. 
-XML parsing error occurred during file processing.</source>
-        <translation type="vanished">Δεν εισήχθησαν χαρτογραφήσεις συντομεύσεων.
-Σφάλμα ανάλυσης XML εμφανίστηκε κατά την επεξεργασία αρχείων.</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/settings/shortcuts/lc_actionsshortcutsdialog.cpp" line="206"/>
         <source>Shortcuts mappings were saved successfully.</source>
         <translation>Οι χαρτογραφήσεις συντομεύσεων σώθηκαν με επιτυχία.</translation>
@@ -7247,12 +7006,6 @@ XML parsing error occurred during file processing.</source>
         <location filename="../src/ui/dialogs/settings/shortcuts/lc_actionsshortcutsdialog.cpp" line="210"/>
         <source>Can&apos;t write to provided file - please check that it is allowed to write to it.</source>
         <translation>Δεν μπορεί να γράψει σε παρεχόμενο αρχείο - παρακαλώ ελέγξτε ότι επιτρέπεται να γράψετε σε αυτό.</translation>
-    </message>
-    <message>
-        <source>Shortcuts mappings were not imported. 
-Some error occurred during XML generation.</source>
-        <translation type="vanished">Δεν εισήχθησαν χαρτογραφήσεις συντομεύσεων.
-Συνέβη κάποιο σφάλμα κατά τη διάρκεια της γενιάς XML.</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/settings/shortcuts/lc_actionsshortcutsdialog.cpp" line="189"/>
@@ -8647,74 +8400,6 @@ Are you sure you are going to discard changes?</source>
     </message>
 </context>
 <context>
-    <name>LC_CircleByArcOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, original arc will be removed</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το αρχικό τόξο θα αφαιρεθεί</translation>
-    </message>
-    <message>
-        <source>Replace arc</source>
-        <translation type="vanished">Αντικατάσταση τόξου</translation>
-    </message>
-    <message>
-        <source>Layer to which created circle should be placed</source>
-        <translation type="vanished">Στρώμα στον οποίο πρέπει να τοποθετηθεί ο δημιουργημένος κύκλος</translation>
-    </message>
-    <message>
-        <source>Active</source>
-        <comment>layer</comment>
-        <translation type="vanished">Ενεργό</translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <comment>layer</comment>
-        <translation type="vanished">Αρχικό</translation>
-    </message>
-    <message>
-        <source>Active</source>
-        <comment>pen</comment>
-        <translation type="vanished">Ενεργό</translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <comment>pen</comment>
-        <translation type="vanished">Αρχικό</translation>
-    </message>
-    <message>
-        <source>Original Resolved</source>
-        <comment>pen</comment>
-        <translation type="vanished">Αρχική Επίλυση</translation>
-    </message>
-    <message>
-        <source>Pick offset value from drawing</source>
-        <translation type="vanished">Επιλογή τιμής όφσετ από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pen:</source>
-        <translation type="vanished">Πένα:</translation>
-    </message>
-    <message>
-        <source>Pen to apply to created circle</source>
-        <translation type="vanished">Πένα για εφαρμογή σε δημιουργημένο κύκλο</translation>
-    </message>
-    <message>
-        <source>Layer:</source>
-        <translation type="vanished">Στρώμα:</translation>
-    </message>
-    <message>
-        <source>Delta of circle&apos;s radius to arc&apos;s radius</source>
-        <translation type="vanished">Δέλτα της ακτίνας του κύκλου στην ακτίνα του τόξου</translation>
-    </message>
-    <message>
-        <source>Radius Shift:</source>
-        <translation type="vanished">Ακτίνα Shift:</translation>
-    </message>
-</context>
-<context>
     <name>LC_CircleByArcOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/circle/lc_circle_by_arc_options_filler.cpp" line="32"/>
@@ -9009,69 +8694,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/components/creators/lc_creatorinvoker.cpp" line="144"/>
         <source>Toolbar: %1 (Custom)</source>
         <translation>Γραμμή εργαλείων:%1 (Προσαρμοσμένο)</translation>
-    </message>
-</context>
-<context>
-    <name>LC_CrossOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>X:</source>
-        <translation type="vanished">X:</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="vanished">Τύπος</translation>
-    </message>
-    <message>
-        <source>Horizontal dimension of cross</source>
-        <translation type="vanished">Οριζόντια διάσταση του σταυρού</translation>
-    </message>
-    <message>
-        <source>Pick X value from drawing</source>
-        <translation type="vanished">Επιλογή τιμής X από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Defines how to apply dimensions of cross</source>
-        <translation type="vanished">Καθορίζει τον τρόπο εφαρμογής των διαστάσεων του σταυρού</translation>
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="vanished">Επέκταση</translation>
-    </message>
-    <message>
-        <source>Total Length</source>
-        <translation type="vanished">Συνολικό μήκος</translation>
-    </message>
-    <message>
-        <source>Percent</source>
-        <translation type="vanished">Ποσοστό</translation>
-    </message>
-    <message>
-        <source>Pick Y value from drawing</source>
-        <translation type="vanished">Επιλογή τιμής Y από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Vertical dimension of the cross</source>
-        <translation type="vanished">Κατακόρυφη διάσταση του σταυρού</translation>
-    </message>
-    <message>
-        <source>Rotation angle for cross around center</source>
-        <translation type="vanished">Γωνία περιστροφής για το κέντρο διασταύρωσης</translation>
-    </message>
-    <message>
-        <source>Y:</source>
-        <translation type="vanished">Υ:</translation>
     </message>
 </context>
 <context>
@@ -9435,29 +9057,6 @@ Are you sure you are going to discard changes?</source>
     </message>
 </context>
 <context>
-    <name>LC_DlgDimOrdinate</name>
-    <message>
-        <source>Ordinate Dimension</source>
-        <translation type="obsolete">Οριστικό Διάσταση</translation>
-    </message>
-    <message>
-        <source>Layer of dimension</source>
-        <translation type="obsolete">Στρώμα διάστασης</translation>
-    </message>
-    <message>
-        <source>Pen attributes</source>
-        <translation type="obsolete">Χαρακτηριστικά πένας</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Ordinate</source>
-        <translation type="obsolete">Ορτανικό</translation>
-    </message>
-</context>
-<context>
     <name>LC_DlgDimStyleManager</name>
     <message>
         <location filename="../src/ui/dialogs/settings/dimstyles/dimstyle_manager/lc_dlgdimstylemanager.ui" line="14"/>
@@ -9519,11 +9118,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dialogs/settings/dimstyles/dimstyle_manager/lc_dlgdimstylemanager.ui" line="162"/>
         <source>Baseline spacing:</source>
         <translation>Διάστημα βάσης:</translation>
-    </message>
-    <message>
-        <source>Sets the spacing between the dimension lines of a baseline dimension. Enter a distance. For information about baseline dimensions, see DIMBASELINE. (DIMDLI system variable)
-</source>
-        <translation type="vanished">Ορίζει το διάστημα μεταξύ των γραμμών διαστάσεων μιας βασικής διάστασης. Περάστε μια απόσταση. Για πληροφορίες σχετικά με τις αρχικές διαστάσεις, βλέπε DIMBASELINE. (μεταβλητή συστήματος DIMDLI)</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/settings/dimstyles/dimstyle_manager/lc_dlgdimstylemanager.ui" line="191"/>
@@ -10772,6 +10366,21 @@ Are you sure you are going to discard changes?</source>
         <translation>Διάσταση</translation>
     </message>
     <message>
+        <location filename="../src/ui/dialogs/entity/lc_dlg_dimension.ui" line="175"/>
+        <source>Measured value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/entity/lc_dlg_dimension.ui" line="182"/>
+        <source>Unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/entity/lc_dlg_dimension.ui" line="183"/>
+        <source>Geometric measurement in drawing units, or decimal degrees for angles; excludes dimension scale factor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dialogs/entity/lc_dlg_dimension.ui" line="209"/>
         <source>Layer</source>
         <translation>Στρώση</translation>
@@ -11169,10 +10778,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dialogs/entity/lc_dlg_entityproperties.cpp" line="259"/>
         <source>Hatch Properties</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Properties?</source>
-        <translation type="vanished">Ιδιότητες?</translation>
     </message>
 </context>
 <context>
@@ -11622,9 +11227,9 @@ Are you sure you are going to discard changes?</source>
         <translation>ΣΗΜΕΙΩΣΗ: Η ανάθεση μενού θα αγνοηθεί. Είναι αποκλειστικά για το \&quot;Pan\&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/ui/dialogs/creators/lc_dlg_menu_assigner.cpp" line="240"/>
-        <source>NNOTE: Menu assignment will be ignored. It is reserved for &apos;Select Contour&apos;.</source>
-        <translation>Η ανάθεση μενού θα αγνοηθεί. Είναι αποκλειστικά για το \&quot;Select Contour\&quot;.</translation>
+        <location filename="../src/ui/dialogs/creators/lc_dlg_menu_assigner.cpp" line="242"/>
+        <source>NOTE: Menu assignment will be ignored. It is reserved for &apos;Select Contour&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/creators/lc_dlg_menu_assigner.cpp" line="243"/>
@@ -11632,9 +11237,9 @@ Are you sure you are going to discard changes?</source>
         <translation>ΣΗΜΕΙΩΣΗ: Αυτός ο συνδυασμός προορίζεται για προεπιλεγμένο μενού πλαίσιο και μπορεί να αποτρέψει την επίκληση του!</translation>
     </message>
     <message>
-        <location filename="../src/ui/dialogs/creators/lc_dlg_menu_assigner.cpp" line="246"/>
-        <source>NOTE: This combination is reserved for Pan! Menu assignment will be ignored</source>
-        <translation>ΣΗΜΕΙΩΣΗ: Αυτός ο συνδυασμός προορίζεται για Pan! Η ανάθεση μενού θα αγνοηθεί</translation>
+        <location filename="../src/ui/dialogs/creators/lc_dlg_menu_assigner.cpp" line="248"/>
+        <source>NOTE: This combination is reserved for Pan! Menu assignment will be ignored.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/creators/lc_dlg_menu_assigner.cpp" line="251"/>
@@ -11695,10 +11300,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Στήλη λεπτομερειών UCS</translation>
     </message>
     <message>
-        <source>If checked, type of grid for saved view will be shown</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα εμφανιστεί ο τύπος καννάβου για την αποθηκευμένη προβολή</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="88"/>
         <source>Grid Type icon column</source>
         <translation>Στήλη εικονιδίου τύπου καννάβου</translation>
@@ -11707,18 +11308,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="58"/>
         <source>Type icon column</source>
         <translation>Στήλη εικονιδίου τύπου</translation>
-    </message>
-    <message>
-        <source>If checked, the column with details of view&apos;s coordinate system will be show</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η στήλη με τις λεπτομέρειες του συστήματος συντεταγμένων προβολής θα εμφανίζεται</translation>
-    </message>
-    <message>
-        <source>Tooltip with view details for table items</source>
-        <translation type="vanished">Επεξήγηση με λεπτομέρειες προβολής για τα στοιχεία του πίνακα</translation>
-    </message>
-    <message>
-        <source>If checked, the column with details of view&apos;s coordinate system will be show.</source>
-        <translation type="vanished">Εάν είναι επιλεγμένο, θα εμφανίζεται η στήλη με τις λεπτομέρειες του συστήματος συντεταγμένων της προβολής.</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="75"/>
@@ -11761,10 +11350,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Αν ενεργοποιηθεί, η στήλη με τις λεπτομέρειες προβολής θα εμφανίζεται στον πίνακα.</translation>
     </message>
     <message>
-        <source>VIew Details column</source>
-        <translation type="vanished">Στήλη λεπτομερειών VIew</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="141"/>
         <source>Operations</source>
         <translation>Πράξεις</translation>
@@ -11780,17 +11365,9 @@ Are you sure you are going to discard changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>On double-click on table item</source>
-        <translation type="vanished">Με διπλό κλικ στο αντικείμενο πίνακα</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="154"/>
         <source>Defines which action should be performed on double click on view item of the table.</source>
         <translation>Καθορίζει ποια ενέργεια θα εκτελείται κατά διπλό κλικ στο στοιχείο προβολής του πίνακα.</translation>
-    </message>
-    <message>
-        <source>Defines which action should be performed on double click on view item of the table. </source>
-        <translation type="vanished">Καθορίζει ποια ενέργεια πρέπει να εκτελείται με διπλό κλικ στο αντικείμενο προβολής του πίνακα.</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="158"/>
@@ -11818,10 +11395,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Αν ενεργοποιηθεί, κάντε κλικ στο αντικείμενο του πίνακα προβολής θα αποκαταστήσει την προβολή. Διαφορετικά, η άποψη θα πρέπει να αποκατασταθεί ρητά.</translation>
     </message>
     <message>
-        <source>Restore view on single click by table item</source>
-        <translation type="vanished">Επαναφορά προβολής σε ένα κλικ από το αντικείμενο πίνακα</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="95"/>
         <source>If show, tooltip with additional information about view will be shown for table item.</source>
         <translation>Αν εμφανιστεί, θα εμφανιστεί η εργαλειοθήκη με πρόσθετες πληροφορίες σχετικά με την προβολή για το αντικείμενο του πίνακα.</translation>
@@ -11830,10 +11403,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="36"/>
         <source>If checked and during creation the view with entered name already exists, it will be updated by new position. Otherwise, unique name of new view will be required.</source>
         <translation>Αν ενεργοποιηθεί και κατά τη δημιουργία η προβολή με καταχωρημένο όνομα υπάρχει ήδη, θα ενημερωθεί από νέα θέση. Διαφορετικά, θα απαιτηθεί το μοναδικό όνομα νέας προβολής.</translation>
-    </message>
-    <message>
-        <source>If selected, confirmation dialog will be shown on removal of the view. Otherwise, view will be removed silently. </source>
-        <translation type="vanished">Αν επιλεγεί, ο διάλογος επιβεβαίωσης θα εμφανιστεί κατά την αφαίρεση της προβολής. Διαφορετικά, η θέα θα αφαιρεθεί σιωπηλά.</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_dlgnamedviewslistoptions.ui" line="29"/>
@@ -12129,13 +11698,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dialogs/creators/lc_dlg_new_widget.cpp" line="70"/>
         <source>Name is not unique. Please enter unique name.</source>
         <translation>Το όνομα δεν είναι μοναδικό. Παρακαλώ εισάγετε το μοναδικό όνομα.</translation>
-    </message>
-</context>
-<context>
-    <name>LC_DlgParabola</name>
-    <message>
-        <source>Parabola control points cannot be collinear</source>
-        <translation type="obsolete">Τα σημεία ελέγχου Parabola δεν μπορούν να είναι κολλιναρισμένα</translation>
     </message>
 </context>
 <context>
@@ -12632,17 +12194,9 @@ Are you sure you are going to discard changes?</source>
         <translation>Αν сhecked, η εργαλειοθήκη με πρόσθετες πληροφορίες για UCS θα εμφανιστεί για το αντικείμενο πίνακα.</translation>
     </message>
     <message>
-        <source>Toolip with UCS details for table items</source>
-        <translation type="vanished">Εργαλειοθήκη με λεπτομέρειες UCS για αντικείμενα πίνακα</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="39"/>
         <source>Type icon column</source>
         <translation>Στήλη εικονιδίου τύπου</translation>
-    </message>
-    <message>
-        <source>If checked, column with details of UCS origin and angle will be shown in the table</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η στήλη με λεπτομέρειες για την προέλευση και τη γωνία UCS θα εμφανίζεται στον πίνακα</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="49"/>
@@ -12658,10 +12212,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="89"/>
         <source>Editing</source>
         <translation>Επεξεργασία</translation>
-    </message>
-    <message>
-        <source>If selected, confirmation dialog will be shown on removal of the view. Otherwise, view will be removed silently. </source>
-        <translation type="vanished">Αν επιλεγεί, ο διάλογος επιβεβαίωσης θα εμφανιστεί κατά την αφαίρεση της προβολής. Διαφορετικά, η θέα θα αφαιρεθεί σιωπηλά.</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="29"/>
@@ -12682,10 +12232,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="56"/>
         <source>If checked, the column with type of grid for UCS will be shown.</source>
         <translation>Εάν είναι επιλεγμένο, η στήλη με τον τύπο του πλέγματος για το UCS θα εμφανίζεται.</translation>
-    </message>
-    <message>
-        <source>If selected, confirmation dialog will be shown on removal of the view. Otherwise, view will be removed silently.</source>
-        <translation type="vanished">Εάν είναι επιλεγμένο, θα εμφανίζεται ένα παράθυρο επιβεβαίωσης κατά την αφαίρεση της προβολής. Διαφορετικά, η προβολή θα αφαιρείται αθόρυβα.</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="98"/>
@@ -12753,26 +12299,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Καθορίζει τον αριθμό των αναβοσβημάτων του δείκτη UCS για την επισήμανση του UCS.</translation>
     </message>
     <message>
-        <source>Defines which action should be performed on double click on the item of the table. </source>
-        <translation type="vanished">Καθορίζει ποια ενέργεια πρέπει να εκτελείται με διπλό κλικ στο αντικείμενο του πίνακα.</translation>
-    </message>
-    <message>
-        <source>Restore UCS on single click by table item</source>
-        <translation type="vanished">Επαναφορά UCS σε ένα κλικ από το αντικείμενο πίνακα</translation>
-    </message>
-    <message>
-        <source>If checked, the column with icon for type of UCS will be shown in the table. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η στήλη με το εικονίδιο για τον τύπο UCS θα εμφανίζεται στον πίνακα.</translation>
-    </message>
-    <message>
-        <source>If checked, the column with type of grid for UCS will be shown</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα εμφανίζεται η στήλη με τον τύπο καννάβου για UCS</translation>
-    </message>
-    <message>
-        <source>Defines how drawing&apos;s view window should be adjusted after UCS is applied</source>
-        <translation type="vanished">Καθορίζει πώς θα πρέπει να ρυθμιστεί το παράθυρο προβολής του σχεδίου μετά την εφαρμογή του UCS</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="197"/>
         <source>On double-click on table item</source>
         <translation>Με διπλό κλικ στο αντικείμενο πίνακα</translation>
@@ -12828,10 +12354,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Τονισμός UCS</translation>
     </message>
     <message>
-        <source>Defines delay between UCS marker blinks</source>
-        <translation type="vanished">Καθορίζει την καθυστέρηση μεταξύ των ανοιγοκλείσεων του δείκτη UCS</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="216"/>
         <source> ms</source>
         <translation>ms</translation>
@@ -12845,10 +12367,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="242"/>
         <source>Blink Delay:</source>
         <translation>Καθυστέρηση ανόδου:</translation>
-    </message>
-    <message>
-        <source>Defines amount of blinks of UCS marker for UCS highlighting</source>
-        <translation type="vanished">Καθορίζει την ποσότητα των ανοιγοκλείσεων του δείκτη UCS για την επισήμανση UCS</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_dlgucslistoptions.ui" line="252"/>
@@ -13239,48 +12757,30 @@ Are you sure you are going to discard changes?</source>
 <context>
     <name>LC_DocumentsStorage</name>
     <message>
+        <location filename="../src/ui/main/persistence/lc_documentsstorage.cpp" line="113"/>
+        <source>The original legacy DXF is protected. Choose a different name for the recovered drawing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/persistence/lc_documentsstorage.cpp" line="121"/>
+        <source>LibreCAD cannot save &quot;%1&quot; in its own format. Choose a name to save the drawing as.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/main/persistence/lc_documentsstorage.cpp" line="148"/>
         <source>Unnamed</source>
         <translation>Χωρίς όνομα</translation>
     </message>
-</context>
-<context>
-    <name>LC_DrawBoundingBoxOptions</name>
     <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
+        <location filename="../src/ui/main/persistence/lc_documentsstorage.cpp" line="281"/>
+        <location filename="../src/ui/main/persistence/lc_documentsstorage.cpp" line="380"/>
+        <source>The original legacy DXF is protected. Save the recovered drawing to a different file.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>If checked, bounding box for the entire selection will be created. Otherwise, it will be created for individual entities. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθεί πλαίσιο δέσμευσης για ολόκληρη την επιλογή. Διαφορετικά, θα δημιουργηθεί για μεμονωμένες οντότητες.</translation>
-    </message>
-    <message>
-        <source>Selection As Group</source>
-        <translation type="vanished">Επιλογή ως ομάδα</translation>
-    </message>
-    <message>
-        <source>Pick offset from drawing</source>
-        <translation type="vanished">Επιλογή όφσετ από σχέδιο</translation>
-    </message>
-    <message>
-        <source>If selected, only corner points will be drawn for bounding box. Otherwise, edge lines will be drawn.</source>
-        <translation type="vanished">Εάν επιλεχθεί, θα σχεδιάζονται μόνο σημεία γωνίας για το πλαίσιο. Αλλιώς, θα τραβήξουν οι άκρες.</translation>
-    </message>
-    <message>
-        <source>Corner points only</source>
-        <translation type="vanished">Μόνο γωνιακά σημεία</translation>
-    </message>
-    <message>
-        <source>If selected, bounding box is drawn as polyline</source>
-        <translation type="vanished">Αν επιλεγεί, το πλαίσιο σύνδεσης σχεδιάζεται ως πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
+        <location filename="../src/ui/main/persistence/lc_documentsstorage.cpp" line="446"/>
+        <source>Skipped a backup that would replace the protected original legacy DXF.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -13377,86 +12877,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/action_options/misc/lc_draw_bounding_box_options_widget.ui" line="93"/>
         <source>Pick offset from drawing</source>
         <translation type="unfinished">Επιλογή όφσετ από σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>LC_DuplicateOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Vertical offset of duplicate from original entity</source>
-        <translation type="vanished">Κάθετη αντιστάθμιση αντιγράφου από την αρχική οντότητα</translation>
-    </message>
-    <message>
-        <source>Horizontal offset of duplicate from original entity</source>
-        <translation type="vanished">Οριζόντια αντιστάθμιση αντιγράφου από την αρχική οντότητα</translation>
-    </message>
-    <message>
-        <source>Pick offset by X from drawing</source>
-        <translation type="vanished">Διαλέξτε το X από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pen:</source>
-        <translation type="vanished">Πένα:</translation>
-    </message>
-    <message>
-        <source>If checked, duplicate will be positioned in original&apos;s coordinates</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το αντίγραφο θα τοποθετηθεί στις αρχικές συντεταγμένες</translation>
-    </message>
-    <message>
-        <source>In Place</source>
-        <translation type="vanished">Σε θέση</translation>
-    </message>
-    <message>
-        <source>Pick offset by Y from drawing</source>
-        <translation type="vanished">Διαλέξτε αντισταθμισμένο από το Y από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Layer:</source>
-        <translation type="vanished">Στρώμα:</translation>
-    </message>
-    <message>
-        <source>Pen to apply to created duplicate</source>
-        <translation type="vanished">Στυλό για εφαρμογή σε δημιουργημένο αντίγραφο</translation>
-    </message>
-    <message>
-        <source>Active</source>
-        <comment>pen</comment>
-        <translation type="vanished">Ενεργό</translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <comment>pen</comment>
-        <translation type="vanished">Αρχικό</translation>
-    </message>
-    <message>
-        <source>Original Resolved</source>
-        <comment>pen</comment>
-        <translation type="vanished">Αρχική Επίλυση</translation>
-    </message>
-    <message>
-        <source>Layer to which duplicate should be placed</source>
-        <translation type="vanished">Στρώμα στο οποίο πρέπει να τοποθετηθεί αντίγραφο</translation>
-    </message>
-    <message>
-        <source>Active</source>
-        <comment>layer</comment>
-        <translation type="vanished">Ενεργό</translation>
-    </message>
-    <message>
-        <source>Original</source>
-        <comment>layer</comment>
-        <translation type="vanished">Αρχικό</translation>
-    </message>
-    <message>
-        <source>Offset Y:</source>
-        <translation type="vanished">Μετατόπιση Y:</translation>
-    </message>
-    <message>
-        <source>Offset X:</source>
-        <translation type="vanished">Μετατόπιση X:</translation>
     </message>
 </context>
 <context>
@@ -13638,69 +13058,6 @@ Are you sure you are going to discard changes?</source>
     </message>
 </context>
 <context>
-    <name>LC_Ellipse1PointOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Minor Radius:</source>
-        <translation type="vanished">Μικρή ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Value of angle for major radius</source>
-        <translation type="vanished">Τιμή γωνίας για μεγάλη ακτίνα</translation>
-    </message>
-    <message>
-        <source>If checked, angle for major radius may be specified</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, μπορεί να καθοριστεί γωνία για μείζονα ακτίνα</translation>
-    </message>
-    <message>
-        <source>Base Angle:</source>
-        <translation type="vanished">Γωνία βάσης:</translation>
-    </message>
-    <message>
-        <source>Counterclockwise</source>
-        <translation type="vanished">Αριστερόστροφα</translation>
-    </message>
-    <message>
-        <source>Pick major actions from drawing</source>
-        <translation type="vanished">Επιλογή μεγάλων ενεργειών από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, major radius angle is specified by mouse</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η γωνία μείζονος ακτίνας καθορίζεται από το ποντίκι</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Length of major radius of ellipse</source>
-        <translation type="vanished">Μήκος μείζονος ακτίνας έλλειψης</translation>
-    </message>
-    <message>
-        <source>Pick minor radius from drawing</source>
-        <translation type="vanished">Επιλογή μικρής ακτίνας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Major Radius:</source>
-        <translation type="vanished">Μείζονος ακτίνας:</translation>
-    </message>
-    <message>
-        <source>Length of minor radius of ellipse</source>
-        <translation type="vanished">Μήκος μικρής ακτίνας έλλειψης</translation>
-    </message>
-    <message>
-        <source>Clockwise</source>
-        <translation type="vanished">Δεξιόστροφα</translation>
-    </message>
-</context>
-<context>
     <name>LC_Ellipse1PointOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/ellipse/lc_ellipse_1_point_options_filler.cpp" line="31"/>
@@ -13839,21 +13196,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/action_options/ellipse/lc_ellipse_1point_options_widget.ui" line="199"/>
         <source>Pick angle from drawing</source>
         <translation type="unfinished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>LC_EllipseArcOptions</name>
-    <message>
-        <source>Arc Options</source>
-        <translation type="vanished">Επιλογές τόξου</translation>
-    </message>
-    <message>
-        <source>Clockwise</source>
-        <translation type="vanished">Δεξιόστροφα</translation>
-    </message>
-    <message>
-        <source>Counterclockwise</source>
-        <translation type="vanished">Αριστερόστροφα</translation>
     </message>
 </context>
 <context>
@@ -14274,7 +13616,7 @@ Are you sure you are going to discard changes?</source>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/lc_entity_type_propertiesprovider.cpp" line="100"/>
-        <source>Strech selection</source>
+        <source>Stretch selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -14398,6 +13740,11 @@ Are you sure you are going to discard changes?</source>
         <source>Width of entity pen line</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/lc_entity_type_propertiesprovider.h" line="330"/>
+        <source>Unavailable</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LC_ExportLayersService</name>
@@ -14416,11 +13763,6 @@ Are you sure you are going to discard changes?</source>
 <context>
     <name>LC_ExportToImageService</name>
     <message>
-        <location filename="../src/ui/dialogs/file/export/image/lc_exporttoimageservice.cpp" line="52"/>
-        <source>Exporting drawing...</source>
-        <translation>Εξαγωγή σχεδίου...</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/file/export/image/lc_exporttoimageservice.cpp" line="59"/>
         <source>Exported: %1</source>
         <translation>Εξαγωγή:%1</translation>
@@ -14429,6 +13771,25 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dialogs/file/export/image/lc_exporttoimageservice.cpp" line="62"/>
         <source>Export failed!</source>
         <translation>Η εξαγωγή απέτυχε!</translation>
+    </message>
+</context>
+<context>
+    <name>LC_HatchDensity</name>
+    <message numerus="yes">
+        <location filename="../src/lib/gui/lc_hatchdensitytext.cpp" line="87"/>
+        <source>%n hatch(es) exceed the hatch pattern limit and are shown as fills.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/lib/gui/lc_hatchdensitytext.cpp" line="95"/>
+        <source>R12 export: %n hatch(es) are too dense; their pattern is not written and they will look empty in the file.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -14744,30 +14105,6 @@ Are you sure you are going to discard changes?</source>
         <source>Eccentricity:</source>
         <translation>Εκκεντρικότητα:</translation>
     </message>
-    <message>
-        <source>Invalid hyperbola definition</source>
-        <translation type="vanished">Μη έγκυρος ορισμός υπερβολής</translation>
-    </message>
-    <message>
-        <source>Foci must be distinct</source>
-        <translation type="vanished">Ο Φόσι πρέπει να είναι ξεχωριστός</translation>
-    </message>
-    <message>
-        <source>Invalid center coordinates</source>
-        <translation type="vanished">Μη έγκυρες συντεταγμένες κέντρου</translation>
-    </message>
-    <message>
-        <source>Major radius must be positive</source>
-        <translation type="vanished">Μεγάλη ακτίνα πρέπει να είναι θετική</translation>
-    </message>
-    <message>
-        <source>Invalid rotation angle</source>
-        <translation type="vanished">Μη έγκυρη γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Ratio or minor radius must be positive</source>
-        <translation type="vanished">Ο λόγος ή η ήσσονος σημασίας ακτίνα πρέπει να είναι θετική</translation>
-    </message>
 </context>
 <context>
     <name>LC_ImageOptionsFiller</name>
@@ -14939,10 +14276,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Πλάτος:</translation>
     </message>
     <message>
-        <source>Width of image</source>
-        <translation type="vanished">Πλάτος της εικόνας</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_image.ui" line="138"/>
         <source>Pick width value from drawing</source>
         <translation>Επιλέξτε την τιμή πλάτους από το σχέδιο</translation>
@@ -14953,21 +14286,9 @@ Are you sure you are going to discard changes?</source>
         <translation>Ύψος:</translation>
     </message>
     <message>
-        <source>Height of image</source>
-        <translation type="vanished">Ύψος της εικόνας</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_image.ui" line="219"/>
         <source>Pick height value from the drawing</source>
         <translation>Επιλέξτε την τιμή ύψους από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Scale:</source>
-        <translation type="vanished">Κλίμακα:</translation>
-    </message>
-    <message>
-        <source>Scaling factor</source>
-        <translation type="vanished">Συντελεστής κλιμάκωσης</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_image.ui" line="77"/>
@@ -14979,10 +14300,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_image.ui" line="152"/>
         <source>Angle:</source>
         <translation>Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_image.ui" line="198"/>
@@ -15014,22 +14331,6 @@ Are you sure you are going to discard changes?</source>
         <source>Select an image file</source>
         <translation>Επιλέξτε ένα αρχείο εικόνας</translation>
     </message>
-    <message>
-        <source>Size (px):</source>
-        <translation type="vanished">Μέγεθος (px):</translation>
-    </message>
-    <message>
-        <source>Size of image in pixels</source>
-        <translation type="vanished">Μέγεθος της εικόνας σε εικονοστοιχεία</translation>
-    </message>
-    <message>
-        <source>DPI</source>
-        <translation type="vanished">DPI</translation>
-    </message>
-    <message>
-        <source>Resolution (dots per inch)</source>
-        <translation type="vanished">Ανάλυση (βούλες ανά ίντσα)</translation>
-    </message>
 </context>
 <context>
     <name>LC_IndexedPropertiesProviderBase</name>
@@ -15042,21 +14343,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_indexed_propertiesprovider_base.h" line="132"/>
         <source>Y</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LC_InfoDist2Options</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, the point will be always inside selected entity</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το σημείο θα είναι πάντα μέσα στην επιλεγμένη οντότητα</translation>
-    </message>
-    <message>
-        <source>Snap On Entity</source>
-        <translation type="vanished">Snap On Οντότητα</translation>
     </message>
 </context>
 <context>
@@ -15434,14 +14720,6 @@ Are you sure you are going to discard changes?</source>
         <translation>Διαχωριστής που χρησιμοποιείται για τον διαχωρισμό του εσωτερικού ονόματος της στρώσης σε ιεραρχικά ονόματα</translation>
     </message>
     <message>
-        <source>Layer Level Name Separator</source>
-        <translation type="vanished">Διαχωριστής ονόματος επιπέδου στρώματος</translation>
-    </message>
-    <message>
-        <source>Secondary Layer Suffixes</source>
-        <translation type="vanished">Δευτερεύοντα επίπεδα στρώματος</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="188"/>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="799"/>
         <source>Dimensional</source>
@@ -15472,10 +14750,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="247"/>
         <source>Suffix of layer&apos;s name that defines that layer is for alternative position.</source>
         <translation>Επίθημα του ονόματος της στρώσης που ορίζει ότι η στρώση είναι για εναλλακτική θέση.</translation>
-    </message>
-    <message>
-        <source>Duplicating Name</source>
-        <translation type="vanished">Αντιγραφή ονόματος</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="61"/>
@@ -15618,17 +14892,9 @@ Are you sure you are going to discard changes?</source>
         <translation>Ρυθμίσεις διαφόρων χρωμάτων</translation>
     </message>
     <message>
-        <source>Colors</source>
-        <translation type="vanished">Χρώματα</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="470"/>
         <source>Background color for selected items in layers tree.</source>
         <translation>Χρώμα φόντου για επιλεγμένα αντικείμενα στο δέντρο στρώσεων.</translation>
-    </message>
-    <message>
-        <source>Color for separator lines in layers tree view</source>
-        <translation type="vanished">Χρώμα για διαχωριστικές γραμμές σε στρώματα προβολή δέντρου</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="420"/>
@@ -15667,10 +14933,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="581"/>
         <source>Virtual layer background color</source>
         <translation>Χρώμα φόντου εικονικής στρώσης</translation>
-    </message>
-    <message>
-        <source>Threeview items separator grid</source>
-        <translation type="vanished">Δίκτυο διαχωριστών αντικειμένων τριών προβολών</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.ui" line="503"/>
@@ -15726,10 +14988,6 @@ Are you sure you are going to discard changes?</source>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.cpp" line="71"/>
         <source>Alternative Position Layer</source>
         <translation>Στρώση εναλλακτικής θέσης</translation>
-    </message>
-    <message>
-        <source>grid</source>
-        <translation type="vanished">πλέγμα</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreeoptionsdialog.cpp" line="103"/>
@@ -15950,6 +15208,11 @@ Please specify a different value.</source>
         <translation>Επ&amp;ιλογή οντοτήτων στρώσης</translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="774"/>
+        <source>Restore Model/Paper Space Entity Visibility...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="726"/>
         <source>&amp;Create Layer Copy</source>
         <translation>Δη&amp;μιουργία αντιγράφου στρώσης</translation>
@@ -16028,6 +15291,18 @@ Please specify a different value.</source>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="760"/>
         <source>&amp;Find And Remove Empty Layers</source>
         <translation>Εύ&amp;ρεση και αφαίρεση κενών στρώσεων</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="1802"/>
+        <source>Make %1 individually invisible model/paper-space entities on layer &quot;%2&quot; visible?
+
+This can recover drawings saved by LibreCAD 2.2.1, but it will also reveal entities that were intentionally hidden.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="1807"/>
+        <source>Restore Entity Visibility</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -16216,118 +15491,6 @@ Please specify a different value.</source>
         <location filename="../src/ui/action_options/line/lc_line_angle_options_widget.cpp" line="70"/>
         <source>Free</source>
         <translation type="unfinished">Δωρεάν</translation>
-    </message>
-</context>
-<context>
-    <name>LC_LineAngleRelOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, the length of line is defined by mouse position instead of setting</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, το μήκος της γραμμής ορίζεται από τη θέση του ποντικιού αντί να ρυθμιστεί</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Pick snap distance from drawing</source>
-        <translation type="vanished">Επιλογή απόστασης από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Offset of tick snap point from intersection point</source>
-        <translation type="vanished">Μετατόπιση του σημείου snap από το σημείο τομής</translation>
-    </message>
-    <message>
-        <source>Pick length from drawing</source>
-        <translation type="vanished">Διαλέξτε το μήκος από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick offset from drawing</source>
-        <translation type="vanished">Επιλογή όφσετ από σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, original entity will be divided by intersection point.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η αρχική οντότητα θα διαιρεθεί με σημείο τομής.</translation>
-    </message>
-    <message>
-        <source>Divide</source>
-        <translation type="vanished">Διαίρεση</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Distance of intersection point from specified line snap point</source>
-        <translation type="vanished">Απόσταση του σημείου τομής από καθορισμένο σημείο θραύσης γραμμής</translation>
-    </message>
-    <message>
-        <source>Defines which part of created line will be snapped to intersection point</source>
-        <translation type="vanished">Καθορίζει ποιο τμήμα της δημιουργημένης γραμμής θα σπάσει στο σημείο τομής</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>Tick Snap:</source>
-        <translation type="vanished">Επιλογή snap:</translation>
-    </message>
-    <message>
-        <source>Line Snap:</source>
-        <translation type="vanished">Snap γραμμής:</translation>
-    </message>
-    <message>
-        <source>Length of line</source>
-        <translation type="vanished">Μήκος γραμμής</translation>
-    </message>
-    <message>
-        <source>If checked, angle is relative to angle of selected entity</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η γωνία είναι σχετική με τη γωνία της επιλεγμένης οντότητας</translation>
-    </message>
-    <message>
-        <source>Rel</source>
-        <translation type="vanished">Ρελ</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Snap point for position of intersection point between created line and source entity (within original line)</source>
-        <translation type="vanished">Σημείο αιχμής για τη θέση του σημείου τομής μεταξύ της δημιουργημένης γραμμής και της οντότητας πηγής (εντός της αρχικής γραμμής)</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <comment>linesnap</comment>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Snap Distance:</source>
-        <translation type="vanished">Απόσταση snap:</translation>
-    </message>
-    <message>
-        <source>Angle of line</source>
-        <translation type="vanished">Γωνία γραμμής</translation>
     </message>
 </context>
 <context>
@@ -16637,93 +15800,6 @@ Please specify a different value.</source>
         <location filename="../src/ui/action_options/line/lc_line_bisector_options_widget.ui" line="103"/>
         <source>Number of bisectors to create</source>
         <translation type="unfinished">Αριθμός διχοτομικών τομέων για τη δημιουργία</translation>
-    </message>
-</context>
-<context>
-    <name>LC_LineFromPointToLineOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="vanished">Μέγεθος:</translation>
-    </message>
-    <message>
-        <source>End offset:</source>
-        <translation type="vanished">Μετατόπιση τέλους:</translation>
-    </message>
-    <message>
-        <source>Offset for created line from intersection point</source>
-        <translation type="vanished">Μετατόπιση για δημιουργημένη γραμμή από σημείο τομής</translation>
-    </message>
-    <message>
-        <source>Snap point for created line</source>
-        <translation type="vanished">Σημείο snap για τη δημιουργημένη γραμμή</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Fixed length of created line</source>
-        <translation type="vanished">Σταθερό μήκος της γραμμής που δημιουργήθηκε</translation>
-    </message>
-    <message>
-        <source>Snap:</source>
-        <translation type="vanished">Στιγμιότυπο:</translation>
-    </message>
-    <message>
-        <source>Pick length from drawing</source>
-        <translation type="vanished">Διαλέξτε το μήκος από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick offset from drawing</source>
-        <translation type="vanished">Επιλογή όφσετ από σχέδιο</translation>
-    </message>
-    <message>
-        <source>Defines whether created line should be created to intersection point or should have fixed length</source>
-        <translation type="vanished">Καθορίζει αν θα πρέπει να δημιουργηθεί γραμμή στο σημείο τομής ή θα πρέπει να έχει σταθερό μήκος</translation>
-    </message>
-    <message>
-        <source>To Intersection</source>
-        <translation type="vanished">Στην ανατομή</translation>
-    </message>
-    <message>
-        <source>Fixed Length</source>
-        <translation type="vanished">Σταθερό μήκος</translation>
-    </message>
-    <message>
-        <source>If checked, created line will be orthogonal to selected line</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η δημιουργημένη γραμμή θα είναι ορθογώνια στην επιλεγμένη γραμμή</translation>
-    </message>
-    <message>
-        <source>Orthogonal</source>
-        <translation type="vanished">Ορθογώνια</translation>
-    </message>
-    <message>
-        <source>Angle between original line and created one</source>
-        <translation type="vanished">Γωνία μεταξύ αρχικής γραμμής και δημιουργημένη μία</translation>
     </message>
 </context>
 <context>
@@ -17109,81 +16185,6 @@ Please specify a different value.</source>
     </message>
 </context>
 <context>
-    <name>LC_LineJoinOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, polyline will be created instead of individual lines</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθεί πολυγραμμή αντί για μεμονωμένες γραμμές</translation>
-    </message>
-    <message>
-        <source>Create Polyline</source>
-        <translation type="vanished">Δημιουργία πολυγραμμής</translation>
-    </message>
-    <message>
-        <source>Policy for the line was selected second</source>
-        <translation type="vanished">Η πολιτική για τη γραμμή επιλέχθηκε δεύτερη</translation>
-    </message>
-    <message>
-        <source>Extend/Trim</source>
-        <translation type="vanished">Επέκταση/Τρίμηνο</translation>
-    </message>
-    <message>
-        <source>Add segment</source>
-        <translation type="vanished">Προσθήκη τμήματος</translation>
-    </message>
-    <message>
-        <source>No change</source>
-        <translation type="vanished">Καμία αλλαγή</translation>
-    </message>
-    <message>
-        <source>Line 1:</source>
-        <translation type="vanished">Γραμμή 1:</translation>
-    </message>
-    <message>
-        <source>Line 2:</source>
-        <translation type="vanished">Γραμμή 2:</translation>
-    </message>
-    <message>
-        <source>Policy for joining line that was selected first</source>
-        <translation type="vanished">Πολιτική για την ένταξη στη γραμμή που επιλέχθηκε πρώτη</translation>
-    </message>
-    <message>
-        <source>Defines how pen should be applied to created entities</source>
-        <translation type="vanished">Καθορίζει πώς πρέπει να εφαρμόζεται η συσκευή τύπου πένας σε δημιουργημένες οντότητες</translation>
-    </message>
-    <message>
-        <source>Active Pen</source>
-        <translation type="vanished">Ενεργή πένα</translation>
-    </message>
-    <message>
-        <source>Line 1</source>
-        <translation type="vanished">Γραμμή 1</translation>
-    </message>
-    <message>
-        <source>Line 2</source>
-        <translation type="vanished">Γραμμή 2</translation>
-    </message>
-    <message>
-        <source>Both lines</source>
-        <translation type="vanished">Και οι δύο γραμμές</translation>
-    </message>
-    <message>
-        <source>Attributes:</source>
-        <translation type="vanished">Χαρακτηριστικά:</translation>
-    </message>
-    <message>
-        <source>If checked, original lines will be removed</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα αφαιρεθούν οι αρχικές γραμμές</translation>
-    </message>
-    <message>
-        <source>Remove originals</source>
-        <translation type="vanished">Αφαίρεση πρωτοτύπων</translation>
-    </message>
-</context>
-<context>
     <name>LC_LineJoinOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/modify/lc_line_join_options_filler.cpp" line="35"/>
@@ -17565,85 +16566,6 @@ Please specify a different value.</source>
         <location filename="../src/ui/action_options/line/lc_line_parallel_through_options_widget.ui" line="121"/>
         <source>Within</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LC_LinePointsOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Controls how points on the edges (start/end points) should be created.</source>
-        <translation type="vanished">Ελέγχει πώς θα πρέπει να δημιουργούνται τα σημεία στις άκρες (αρχές/τέλη).</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation type="vanished">Καμία</translation>
-    </message>
-    <message>
-        <source>Both</source>
-        <translation type="vanished">Και τα δύο</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>Pick distance from drawing</source>
-        <translation type="vanished">Επιλογή απόστασης από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Number of points to create</source>
-        <translation type="vanished">Αριθμός σημείων για δημιουργία</translation>
-    </message>
-    <message>
-        <source>Edge Points:</source>
-        <translation type="vanished">Σημεία άκρων:</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Specifies whether all points should fit between start/end points of line or whether the length of line is calculated based on number of points and distance between points.</source>
-        <translation type="vanished">Προσδιορίζει αν όλα τα σημεία πρέπει να χωράνε μεταξύ των σημείων εκκίνησης/τέλους γραμμής ή αν το μήκος γραμμής υπολογίζεται με βάση τον αριθμό των σημείων και την απόσταση μεταξύ των σημείων.</translation>
-    </message>
-    <message>
-        <source>Fit Line</source>
-        <translation type="vanished">Γραμμή προσαρμογής</translation>
-    </message>
-    <message>
-        <source>Distance between points.</source>
-        <translation type="vanished">Απόσταση μεταξύ σημείων.</translation>
-    </message>
-    <message>
-        <source>If checked, line of points will be drawn with specified angle</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η γραμμή των σημείων θα σχεδιαστεί με καθορισμένη γωνία</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Number of points:</source>
-        <translation type="vanished">Αριθμός σημείων:</translation>
-    </message>
-    <message>
-        <source>If checked, fixed specified distance between points will be used. Otherwise, distance will be calculated.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα χρησιμοποιηθεί σταθερή καθορισμένη απόσταση μεταξύ των σημείων. Διαφορετικά, η απόσταση θα υπολογιστεί.</translation>
-    </message>
-    <message>
-        <source>Fixed Distance</source>
-        <translation type="vanished">Σταθερή απόσταση</translation>
-    </message>
-    <message>
-        <source>Angle of line</source>
-        <translation type="vanished">Γωνία γραμμής</translation>
     </message>
 </context>
 <context>
@@ -18936,11 +17858,6 @@ Please specify a different value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="210"/>
-        <source>Specified type of center mark on dimension (DIMCEN variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="211"/>
         <source>Mark</source>
         <translation type="unfinished">Σημείωση</translation>
@@ -19171,11 +18088,6 @@ Please specify a different value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="332"/>
-        <source>Specifies the color of the dimension of the text (DIMCLRT variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="336"/>
         <source>Text height</source>
         <translation type="unfinished"></translation>
@@ -19211,11 +18123,6 @@ Please specify a different value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="353"/>
-        <source>Specified horizontal dimension text position (DIMJUST variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="354"/>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="365"/>
         <source>Centered</source>
@@ -19244,11 +18151,6 @@ Please specify a different value.</source>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="364"/>
         <source>Text pos vert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="364"/>
-        <source>Specified vertical dimension text position (DIMTAD variable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -19317,16 +18219,6 @@ Please specify a different value.</source>
         <translation type="unfinished">Σύμβολο μήκους τόξου</translation>
     </message>
     <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="397"/>
-        <source>Specifies placement of the arch length dimension symbol (DIMARCSYM variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="398"/>
-        <source>Preceeding dimension text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="399"/>
         <source>Above dimension text</source>
         <translation type="unfinished">Πάνω από το κείμενο διάστασης</translation>
@@ -19370,11 +18262,6 @@ Please specify a different value.</source>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="433"/>
         <source>Text override</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="433"/>
-        <source>Specified the text string of dimension (overrides Measurement string)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -19453,8 +18340,43 @@ Please specify a different value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="210"/>
+        <source>Specifies type of center mark on dimension (DIMCEN variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="332"/>
+        <source>Specifies the color of the dimension text (DIMCLRT variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="353"/>
+        <source>Specifies horizontal dimension text position (DIMJUST variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="364"/>
+        <source>Specifies vertical dimension text position (DIMTAD variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="397"/>
+        <source>Specifies placement of the arc length dimension symbol (DIMARCSYM variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="398"/>
+        <source>Preceding dimension text</source>
+        <translation type="unfinished">Προκαθορισμένο κείμενο διάστασης</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="433"/>
+        <source>Specifies the text string of dimension (overrides Measurement string)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="507"/>
-        <source>Place bettween if has room</source>
+        <source>Place between if has room</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -20096,7 +19018,7 @@ Please specify a different value.</source>
     </message>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimbase.h" line="966"/>
-        <source>Sets suppression of zero inches for alterate units tolerance values in dimension (DIMALTTZ variable)</source>
+        <source>Sets suppression of zero inches for alternate units tolerance values in dimension (DIMALTTZ variable)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -20227,12 +19149,12 @@ Please specify a different value.</source>
     </message>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimlinear.cpp" line="72"/>
-        <source>Obligue</source>
-        <translation type="unfinished"></translation>
+        <source>Oblique</source>
+        <translation type="unfinished">Ομπλίκ</translation>
     </message>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimlinear.cpp" line="72"/>
-        <source>Dimension obligue angle</source>
+        <source>Dimension oblique angle</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -20350,7 +19272,7 @@ Please specify a different value.</source>
     </message>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_dimordinate.cpp" line="71"/>
-        <source>Andle of horizontal direction for this dimension</source>
+        <source>Angle of horizontal direction for this dimension</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -20646,6 +19568,11 @@ Please specify a different value.</source>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_hyperbola.cpp" line="47"/>
         <source>Focus 2 X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_hyperbola.cpp" line="43"/>
+        <source>Y coordinate for first focus point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -21193,7 +20120,7 @@ Please specify a different value.</source>
     </message>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_mtext.cpp" line="47"/>
-        <source>Name of the text style)</source>
+        <source>Name of the text style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -21789,7 +20716,7 @@ Please specify a different value.</source>
     </message>
     <message>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_text.cpp" line="62"/>
-        <source>Name of the text style)</source>
+        <source>Name of the text style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -21890,433 +20817,6 @@ Please specify a different value.</source>
         <location filename="../src/lib/selection/metaentity/entities/lc_matchdescriptor_tolerance.cpp" line="29"/>
         <source>Tolerance Frame</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LC_MenuFactory</name>
-    <message>
-        <source>&amp;Help</source>
-        <translation type="vanished">&amp; Βοήθεια</translation>
-    </message>
-    <message>
-        <source>On&amp;line Docs</source>
-        <translation type="vanished">Δρομολόγια on&amp;line</translation>
-    </message>
-    <message>
-        <source>&amp;Wiki</source>
-        <translation type="vanished">&amp;Wiki</translation>
-    </message>
-    <message>
-        <source>User&apos;s &amp;Manual</source>
-        <translation type="vanished">&amp; Χειρωνακτικό χρήστη</translation>
-    </message>
-    <message>
-        <source>&amp;Commands</source>
-        <translation type="vanished">&amp; commands</translation>
-    </message>
-    <message>
-        <source>&amp;Style Sheets</source>
-        <translation type="vanished">Φύλλα &amp; στυλ</translation>
-    </message>
-    <message>
-        <source>Wid&amp;gets</source>
-        <translation type="vanished">Γραφικά συστατικά</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="vanished">Σχετικά</translation>
-    </message>
-    <message>
-        <source>&amp;Forum</source>
-        <translation type="vanished">&amp; Φόρουμ</translation>
-    </message>
-    <message>
-        <source>Zulip &amp;Chat</source>
-        <translation type="vanished">Ζουλίπ &amp; συνομιλία</translation>
-    </message>
-    <message>
-        <source>&amp;Submit Error</source>
-        <translation type="vanished">&amp;Υποβολή σφάλματος</translation>
-    </message>
-    <message>
-        <source>&amp;Request Feature</source>
-        <translation type="vanished">&amp; Απαίτηση λειτουργίας</translation>
-    </message>
-    <message>
-        <source>&amp;Releases Page</source>
-        <translation type="vanished">&amp; Αποδέσμευση σελίδας</translation>
-    </message>
-    <message>
-        <source>&amp;Donate</source>
-        <translation type="vanished">&amp; Δωρεά</translation>
-    </message>
-    <message>
-        <source>&amp;Line</source>
-        <translation type="vanished">&amp; Γραμμή</translation>
-    </message>
-    <message>
-        <source>Poin&amp;t</source>
-        <translation type="vanished">Πόιν &amp; τ</translation>
-    </message>
-    <message>
-        <source>&amp;Circle</source>
-        <translation type="vanished">&amp; Κύκλος</translation>
-    </message>
-    <message>
-        <source>&amp;Arc</source>
-        <translation type="vanished">&amp; &amp; Τόξο</translation>
-    </message>
-    <message>
-        <source>Poly&amp;gon</source>
-        <translation type="vanished">Πολυ&amp;γωνικό</translation>
-    </message>
-    <message>
-        <source>Splin&amp;e</source>
-        <translation type="vanished">Σπλιν &amp; ε</translation>
-    </message>
-    <message>
-        <source>Ellip&amp;se</source>
-        <translation type="vanished">Έλλειψη&amp;σε</translation>
-    </message>
-    <message>
-        <source>&amp;Polyline</source>
-        <translation type="vanished">&amp;Πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>&amp;Other</source>
-        <translation type="vanished">Άλλα</translation>
-    </message>
-    <message>
-        <source>&amp;Draw</source>
-        <translation type="vanished">&amp; Πρίζα</translation>
-    </message>
-    <message>
-        <source>&amp;Ellipse</source>
-        <translation type="vanished">&amp; Έλλειψη</translation>
-    </message>
-    <message>
-        <source>Ot&amp;her</source>
-        <translation type="vanished">Ε &amp; Α</translation>
-    </message>
-    <message>
-        <source>&amp;Modify</source>
-        <translation type="vanished">&amp; Τροποποίηση</translation>
-    </message>
-    <message>
-        <source>&amp;Order</source>
-        <translation type="vanished">&amp; Παραγγελία</translation>
-    </message>
-    <message>
-        <source>&amp;Dimensions</source>
-        <translation type="vanished">&amp; Διαστάσεις</translation>
-    </message>
-    <message>
-        <source>&amp;Info</source>
-        <translation type="vanished">&amp; Πληροφορίες</translation>
-    </message>
-    <message>
-        <source>&amp;Tools</source>
-        <translation type="vanished">Εργαλεία</translation>
-    </message>
-    <message>
-        <source>&amp;Select</source>
-        <translation type="vanished">&amp; Επιλογή</translation>
-    </message>
-    <message>
-        <source>Dime&amp;nsion</source>
-        <translation type="vanished">Δήμη&amp;nsion</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation type="vanished">&amp; Αρχείο</translation>
-    </message>
-    <message>
-        <source>Recent Files</source>
-        <translation type="vanished">Πρόσφατα αρχεία</translation>
-    </message>
-    <message>
-        <source>Import</source>
-        <translation type="vanished">Εισαγωγή</translation>
-    </message>
-    <message>
-        <source>Export</source>
-        <translation type="vanished">Εξαγωγή</translation>
-    </message>
-    <message>
-        <source>&amp;Options</source>
-        <translation type="vanished">Επιλογές</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="vanished">&amp; Επεξεργασία</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="vanished">Προβολή</translation>
-    </message>
-    <message>
-        <source>&amp;Views Restore</source>
-        <translation type="vanished">Επαναφορά &amp; προβολών</translation>
-    </message>
-    <message>
-        <source>Pl&amp;ugins</source>
-        <translation type="vanished">Πλ &amp; ουγίνες</translation>
-    </message>
-    <message>
-        <source>&amp;Workspace</source>
-        <translation type="vanished">&amp; Χώρος εργασίας</translation>
-    </message>
-    <message>
-        <source>Dock Areas</source>
-        <translation type="vanished">Περιοχές προσάρτησης</translation>
-    </message>
-    <message>
-        <source>CAD Wid&amp;gets</source>
-        <translation type="vanished">Εργαλεία CAD</translation>
-    </message>
-    <message>
-        <source>&amp;Drawings</source>
-        <translation type="vanished">&amp; Προωθήσεις</translation>
-    </message>
-    <message>
-        <source>Context</source>
-        <translation type="vanished">Πλαίσιο</translation>
-    </message>
-    <message>
-        <source>Toolbars</source>
-        <translation type="vanished">Γραμμές εργαλείων</translation>
-    </message>
-    <message>
-        <source>Widgets</source>
-        <translation type="vanished">Γραφικά συστατικά</translation>
-    </message>
-    <message>
-        <source>CAD Widgets</source>
-        <translation type="vanished">Γραφικά συστατικά CAD</translation>
-    </message>
-    <message>
-        <source>CAD Toolbars</source>
-        <translation type="vanished">Γραμμές εργαλείων CAD</translation>
-    </message>
-    <message>
-        <source>Select</source>
-        <translation type="vanished">Επιλογή</translation>
-    </message>
-    <message>
-        <source>Recent</source>
-        <translation type="vanished">Πρόσφατο</translation>
-    </message>
-    <message>
-        <source>Modify</source>
-        <translation type="vanished">Τροποποίηση</translation>
-    </message>
-    <message>
-        <source>Modify More</source>
-        <translation type="vanished">Τροποποίηση περισσότερων</translation>
-    </message>
-    <message>
-        <source>Draw</source>
-        <translation type="vanished">Σχεδίαση</translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="vanished">Γραμμή</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Point</source>
-        <translation type="vanished">Σημείο</translation>
-    </message>
-    <message>
-        <source>Circle</source>
-        <translation type="vanished">Κύκλος</translation>
-    </message>
-    <message>
-        <source>Arc</source>
-        <translation type="vanished">Τόξο</translation>
-    </message>
-    <message>
-        <source>Polygon</source>
-        <translation type="vanished">Πολύγωνο</translation>
-    </message>
-    <message>
-        <source>Polyline/Spline</source>
-        <translation type="vanished">Πολυγραμμή/Spline</translation>
-    </message>
-    <message>
-        <source>Ellipse</source>
-        <translation type="vanished">Έλλειψη</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <translation type="vanished">Άλλα</translation>
-    </message>
-    <message>
-        <source>Add Dimensions</source>
-        <translation type="vanished">Προσθήκη διαστάσεων</translation>
-    </message>
-    <message>
-        <source>Align</source>
-        <translation type="vanished">Στοίχιση</translation>
-    </message>
-    <message>
-        <source>Draw Order</source>
-        <translation type="vanished">Σχεδίαση εντολής</translation>
-    </message>
-    <message>
-        <source>Layers</source>
-        <translation type="vanished">Στρώματα</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Πληροφορίες</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="vanished">Επεξεργασία</translation>
-    </message>
-    <message>
-        <source>Options</source>
-        <translation type="vanished">Επιλογές</translation>
-    </message>
-    <message>
-        <source>&amp;Named Views</source>
-        <translation type="vanished">Προβολές με όνομα</translation>
-    </message>
-    <message>
-        <source>Edit Properties</source>
-        <translation type="vanished">Επεξεργασία ιδιοτήτων</translation>
-    </message>
-    <message>
-        <source>Modify Generic</source>
-        <translation type="vanished">Τροποποίηση γενικού</translation>
-    </message>
-    <message>
-        <source>Modify Line</source>
-        <translation type="vanished">Τροποποίηση γραμμής</translation>
-    </message>
-    <message>
-        <source>Draw Line</source>
-        <translation type="vanished">Σχεδίαση γραμμής</translation>
-    </message>
-    <message>
-        <source>Draw Circle</source>
-        <translation type="vanished">Σχεδίαση κύκλου</translation>
-    </message>
-    <message>
-        <source>Draw Other</source>
-        <translation type="vanished">Σχεδίαση άλλου</translation>
-    </message>
-    <message>
-        <source>Modify Circle</source>
-        <translation type="vanished">Τροποποίηση κύκλου</translation>
-    </message>
-    <message>
-        <source>Modify Arc</source>
-        <translation type="vanished">Τροποποίηση τόξου</translation>
-    </message>
-    <message>
-        <source>Modify Polyline</source>
-        <translation type="vanished">Τροποποίηση πολυγραμμής</translation>
-    </message>
-    <message>
-        <source>Modify Spline</source>
-        <translation type="vanished">Τροποποίηση Spline</translation>
-    </message>
-    <message>
-        <source>Modify Spline Points</source>
-        <translation type="vanished">Τροποποίηση σημείων spline</translation>
-    </message>
-    <message>
-        <source>Modify Text</source>
-        <translation type="vanished">Τροποποίηση κειμένου</translation>
-    </message>
-    <message>
-        <source>Modify MText</source>
-        <translation type="vanished">Τροποποίηση κειμένου</translation>
-    </message>
-    <message>
-        <source>Edit Block</source>
-        <translation type="vanished">Επεξεργασία τμήματος</translation>
-    </message>
-    <message>
-        <source>Order</source>
-        <translation type="vanished">Διάταξη</translation>
-    </message>
-    <message>
-        <source>&amp;Toolbars</source>
-        <translation type="vanished">&amp; Γραμμές εργαλείων</translation>
-    </message>
-    <message>
-        <source>&amp;CAD Toolbars</source>
-        <translation type="vanished">Γραμμές εργαλείων &amp; CAD</translation>
-    </message>
-    <message>
-        <source>&amp;Workspaces</source>
-        <translation type="vanished">Χώροι εργασίας</translation>
-    </message>
-    <message>
-        <source>Ta&amp;b mode</source>
-        <translation type="vanished">Λειτουργία Ta&amp;b</translation>
-    </message>
-    <message>
-        <source>&amp;Window mode</source>
-        <translation type="vanished">Λειτουργία &amp; παραθύρου</translation>
-    </message>
-    <message>
-        <source>&amp;Layout</source>
-        <translation type="vanished">&amp;Layout</translation>
-    </message>
-    <message>
-        <source>Rounded</source>
-        <translation type="vanished">Στρογγυλοποιημένη</translation>
-    </message>
-    <message>
-        <source>Triangular</source>
-        <translation type="vanished">Τριγωνικό</translation>
-    </message>
-    <message>
-        <source>North</source>
-        <translation type="vanished">Βόρεια</translation>
-    </message>
-    <message>
-        <source>South</source>
-        <translation type="vanished">Νότια</translation>
-    </message>
-    <message>
-        <source>East</source>
-        <translation type="vanished">Ανατολικά</translation>
-    </message>
-    <message>
-        <source>West</source>
-        <translation type="vanished">Δυτικά</translation>
-    </message>
-    <message>
-        <source>&amp;Arrange</source>
-        <translation type="vanished">&amp;Ar</translation>
-    </message>
-    <message>
-        <source>&amp;Maximized</source>
-        <translation type="vanished">&amp; Μεγιστοποιημένο</translation>
-    </message>
-    <message>
-        <source>&amp;Cascade</source>
-        <translation type="vanished">&amp; Καταρράκτες</translation>
-    </message>
-    <message>
-        <source>&amp;Tile</source>
-        <translation type="vanished">&amp;Τίτλος</translation>
-    </message>
-    <message>
-        <source>Tile &amp;Vertically</source>
-        <translation type="vanished">Πλακάκια &amp;Βertically</translation>
-    </message>
-    <message>
-        <source>Tile &amp;Horizontally</source>
-        <translation type="vanished">&amp; Οριζόντια παράθεση</translation>
     </message>
 </context>
 <context>
@@ -22481,6 +20981,16 @@ Please specify a different value.</source>
         <location filename="../src/ui/main/init/lc_menufactory_graphicview.cpp" line="543"/>
         <source>Modify Generic</source>
         <translation type="unfinished">Τροποποίηση γενικού</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/init/lc_menufactory_graphicview.cpp" line="573"/>
+        <source>Copy value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/init/lc_menufactory_graphicview.cpp" line="578"/>
+        <source>Copy formatted</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/main/init/lc_menufactory_graphicview.cpp" line="583"/>
@@ -22935,21 +21445,6 @@ Please specify a different value.</source>
     </message>
 </context>
 <context>
-    <name>LC_MidLineOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Pick offset from drawing</source>
-        <translation type="vanished">Επιλογή όφσετ από σχέδιο</translation>
-    </message>
-</context>
-<context>
     <name>LC_MirrorOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/modify/lc_mirror_options_filler.cpp" line="31"/>
@@ -23086,197 +21581,6 @@ Please specify a different value.</source>
     </message>
 </context>
 <context>
-    <name>LC_ModifyAlignRefOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be used for mirrored entities, otherwise - original ones. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα χρησιμοποιηθούν για κατοπτρικές οντότητες, διαφορετικά - πρωτότυπες.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If unchecked, original entities will be removed, otherwise they will survive.</source>
-        <translation type="vanished">Αν δεν ελεγχθεί, οι αρχικές οντότητες θα αφαιρεθούν, αλλιώς θα επιβιώσουν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>If checked, mirrored entities will be placed on current layer, otherwise they will be placed into original layers.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι κατοπτρισμένες οντότητες θα τοποθετηθούν σε τρέχον στρώμα, διαφορετικά θα τοποθετηθούν σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>User Current Layer</source>
-        <translation type="vanished">Τρέχον στρώμα χρήστη</translation>
-    </message>
-    <message>
-        <source>If checked, entities will be scaled if necessary. Otherwise, they will be just positioned and rotated.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι οντότητες θα κλιμακωθούν εάν χρειαστεί. Διαφορετικά, θα τοποθετηθούν και θα περιστραφούν.</translation>
-    </message>
-    <message>
-        <source>Scale</source>
-        <translation type="vanished">Κλίμακα</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ModifyBreakDivideOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, segements between intersection points will be removed. If unchecked - the entitiy will be divided in intersection points. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα αφαιρεθούν οι σχισμές μεταξύ των σημείων τομής. Αν δεν ελεγχθεί - η εντέλεια θα χωριστεί σε σημεία τομής.</translation>
-    </message>
-    <message>
-        <source>Remove Segments</source>
-        <translation type="vanished">Αφαίρεση τμημάτων</translation>
-    </message>
-    <message>
-        <source>If checked, selected segment will be removed. Otherwise, selected segment will survive and remaining segments will be removed. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα αφαιρεθεί το επιλεγμένο τμήμα. Διαφορετικά, το επιλεγμένο τμήμα θα επιβιώσει και τα υπόλοιπα τμήματα θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Remove Selected</source>
-        <translation type="vanished">Αφαίρεση επιλεγμένων</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ModifyGapOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Snap Distance:</source>
-        <translation type="vanished">Απόσταση snap:</translation>
-    </message>
-    <message>
-        <source>Snap point of gap to line snap point</source>
-        <translation type="vanished">Σημείο αιχμής στη γραμμή</translation>
-    </message>
-    <message>
-        <source>Line Snap:</source>
-        <translation type="vanished">Snap γραμμής:</translation>
-    </message>
-    <message>
-        <source>Gap Size:</source>
-        <translation type="vanished">Μέγεθος Gap:</translation>
-    </message>
-    <message>
-        <source>Snap point for gap on the line</source>
-        <translation type="vanished">Σημείο αιχμής για κενό στη γραμμή</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Gap Snap:</source>
-        <translation type="vanished">Snap Gap:</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <comment>gap</comment>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <comment>gap</comment>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>gap</comment>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <comment>snap</comment>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <comment>snap</comment>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <comment>snap</comment>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <comment>snap</comment>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>PIck gap size from drawing</source>
-        <translation type="vanished">Μέγεθος κενού PICK από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Distance from snap point</source>
-        <translation type="vanished">Απόσταση από το σημείο θραύσης</translation>
-    </message>
-    <message>
-        <source>Pick snap distance from drawing</source>
-        <translation type="vanished">Επιλογή απόστασης από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Size of the gap, if not free</source>
-        <translation type="vanished">Μέγεθος του χάσματος, αν όχι ελεύθερο</translation>
-    </message>
-    <message>
-        <source>If cheched, the size of the gap is determined by mouse</source>
-        <translation type="vanished">Εάν είναι ched, το μέγεθος του χάσματος καθορίζεται από το ποντίκι</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ModifyMirrorOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, mirror will be performed by selected line entity.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, ο καθρέφτης θα εκτελεστεί από επιλεγμένη οντότητα γραμμής.</translation>
-    </message>
-    <message>
-        <source>Mirror to selected line</source>
-        <translation type="vanished">Καθρέπτης στην επιλεγμένη γραμμή</translation>
-    </message>
-    <message>
-        <source>If unchecked, original entities will be removed, otherwise they will survive.</source>
-        <translation type="vanished">Αν δεν ελεγχθεί, οι αρχικές οντότητες θα αφαιρεθούν, αλλιώς θα επιβιώσουν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be used for mirrored entities, otherwise - original ones. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα χρησιμοποιηθούν για κατοπτρικές οντότητες, διαφορετικά - πρωτότυπες.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If checked, mirrored entities will be placed on current layer, otherwise they will be placed into original layers.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι κατοπτρισμένες οντότητες θα τοποθετηθούν σε τρέχον στρώμα, διαφορετικά θα τοποθετηθούν σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>User Current Layer</source>
-        <translation type="vanished">Τρέχον στρώμα χρήστη</translation>
-    </message>
-</context>
-<context>
     <name>LC_ModifyMirrorOptionsWidget</name>
     <message>
         <location filename="../src/ui/action_options/modify/lc_mirror_options_widget.ui" line="14"/>
@@ -23322,234 +21626,6 @@ Please specify a different value.</source>
         <location filename="../src/ui/action_options/modify/lc_mirror_options_widget.ui" line="85"/>
         <source>User Current Layer</source>
         <translation type="unfinished">Χρήση τρέχουσας στρώσης</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ModifyRotateOptions</name>
-    <message>
-        <source>Move Rotate Options</source>
-        <translation type="vanished">Μετακίνηση επιλογών περιστροφής</translation>
-    </message>
-    <message>
-        <source>Free selection of factor should be performed by mouse if checked.</source>
-        <translation type="vanished">Η ελεύθερη επιλογή του παράγοντα θα πρέπει να γίνεται από το ποντίκι εάν ελεγχθεί.</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>If checked, new enties will be placed on current layer, otherwise they will be in original layers.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα τοποθετηθούν νέα ερινύες στο τρέχον στρώμα, διαφορετικά θα είναι σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>If absolute, reference point will be rotated but entity will be rotated by second angle only, otherwise angles will summ up</source>
-        <translation type="vanished">Εάν το απόλυτο σημείο αναφοράς περιστρέφεται αλλά η οντότητα περιστρέφεται μόνο με τη δεύτερη γωνία, διαφορετικά οι γωνίες θα συνοψιστούν</translation>
-    </message>
-    <message>
-        <source>Absolute</source>
-        <translation type="vanished">Απόλυτο</translation>
-    </message>
-    <message>
-        <source>Angle to rotate entity around rotation center point</source>
-        <translation type="vanished">Γωνία περιστροφής της οντότητας γύρω από το κέντρο περιστροφής</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be applied to created entities, othewise original ones will be used. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα εφαρμόζονται σε δημιουργημένες οντότητες, θα χρησιμοποιούνται κατά λάθος τα πρωτότυπα.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If checked, second rotation is around reference point</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η δεύτερη περιστροφή είναι γύρω από το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Rotate twice</source>
-        <translation type="vanished">Περιστροφή δύο φορές</translation>
-    </message>
-    <message>
-        <source>Angle for additional rotation around refrence point</source>
-        <translation type="vanished">Γωνία για πρόσθετη περιστροφή γύρω από το σημείο ανάφλεξης</translation>
-    </message>
-    <message>
-        <source>Pick rotation angle from drawing</source>
-        <translation type="vanished">Επιλέξτε γωνία περιστροφής από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will be survive, otherwise they will be removed.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>Multiple copies will be created if checked.</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα θα δημιουργηθούν αν ενεργοποιηθούν.</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Rotation Angle:</source>
-        <translation type="vanished">Γωνία περιστροφής:</translation>
-    </message>
-    <message>
-        <source>Specifies whether angle is defined by entered value or by mouse position</source>
-        <translation type="vanished">Προσδιορίζει αν η γωνία ορίζεται από την εισερχόμενη τιμή ή από τη θέση του ποντικιού</translation>
-    </message>
-    <message>
-        <source>Pick second rotation angle from drawing</source>
-        <translation type="vanished">Επιλέξτε τη δεύτερη γωνία περιστροφής από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ModifyScaleOptions</name>
-    <message>
-        <source>Move Rotate Options</source>
-        <translation type="vanished">Μετακίνηση επιλογών περιστροφής</translation>
-    </message>
-    <message>
-        <source>Y:</source>
-        <translation type="vanished">Υ:</translation>
-    </message>
-    <message>
-        <source>If checked, multiple copies will be created.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθούν πολλαπλά αντίγραφα.</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>X:</source>
-        <translation type="vanished">X:</translation>
-    </message>
-    <message>
-        <source>If checked, the same scaling factor for X and Y axis will be applied.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, θα εφαρμοστεί ο ίδιος συντελεστής κλιμάκωσης για τον άξονα X και Y.</translation>
-    </message>
-    <message>
-        <source>Isotropic</source>
-        <translation type="vanished">Ισοτροπικό</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will survive, otherwise they will be removed.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be applied to created entities, otherwise original ones will be used. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα εφαρμοστούν σε δημιουργημένες οντότητες, διαφορετικά θα χρησιμοποιηθούν τα πρωτότυπα.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Scale factor for Y axis</source>
-        <translation type="vanished">Συντελεστής κλίμακας για τον άξονα Υ</translation>
-    </message>
-    <message>
-        <source>Scale Factor:</source>
-        <translation type="vanished">Συντελεστής κλίμακας:</translation>
-    </message>
-    <message>
-        <source>If checked, created entities will be placed to current layer. Otherwise, they will be placed to original layers. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, οι δημιουργημένες οντότητες θα τοποθετηθούν στο τρέχον επίπεδο. Διαφορετικά, θα τοποθετηθούν σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>If checked, factor will be freely selected by mouse. Otherwise, specified values of factors will be used.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, ο παράγοντας θα επιλεγεί ελεύθερα από το ποντίκι. Διαφορετικά, θα χρησιμοποιηθούν καθορισμένες τιμές παραγόντων.</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Scale factor for X axis</source>
-        <translation type="vanished">Συντελεστής κλίμακας για τον άξονα Χ</translation>
-    </message>
-</context>
-<context>
-    <name>LC_ModifyStretchOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will survive, otherwise they will be removed.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep originals</source>
-        <translation type="vanished">Διατήρηση πρωτοτύπων</translation>
-    </message>
-</context>
-<context>
-    <name>LC_MoveOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, created entities will be placed to current layer. Otherwise, they will be placed into original layers. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, οι δημιουργημένες οντότητες θα τοποθετηθούν στο τρέχον επίπεδο. Διαφορετικά, θα τοποθετηθούν σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be applied to created entities, owtherwise original ones will be used. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα εφαρμοστούν σε δημιουργημένες οντότητες, θα χρησιμοποιηθούν κατά το δυνατόν τα πρωτότυπα.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will survive, otherwise they will be removed.</source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>If checked, multiple copies will be created. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθούν πολλαπλά αντίγραφα.</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
     </message>
 </context>
 <context>
@@ -23865,14 +21941,6 @@ Please specify a different value.</source>
         <location filename="../src/ui/dock_widgets/views_list/lc_namedviewslistwidget.ui" line="81"/>
         <source>...</source>
         <translation>...</translation>
-    </message>
-    <message>
-        <source>Filtering views by name</source>
-        <translation type="vanished">Φιλτράρισμα προβολών με όνομα</translation>
-    </message>
-    <message>
-        <source>Filter...</source>
-        <translation type="vanished">Φίλτρο...</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/views_list/lc_namedviewslistwidget.ui" line="55"/>
@@ -24308,45 +22376,6 @@ Warning: this action can NOT be undone!</source>
         <source>Control Points</source>
         <translation>Σημεία ελέγχου</translation>
     </message>
-    <message>
-        <source>Parabola control points cannot be collinear</source>
-        <translation type="vanished">Τα σημεία ελέγχου Parabola δεν μπορούν να είναι κολλιναρισμένα</translation>
-    </message>
-</context>
-<context>
-    <name>LC_PasteToPointsOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If selected, the point entity used as insertion point will be deleted after paste operation. Otherwise, it will survive.</source>
-        <translation type="vanished">Εάν επιλεγεί, η οντότητα σημείου που χρησιμοποιείται ως σημείο εισαγωγής θα διαγραφεί μετά την επικόλληση. Αλλιώς, θα επιβιώσει.</translation>
-    </message>
-    <message>
-        <source>Remove point</source>
-        <translation type="vanished">Αφαίρεση σημείου</translation>
-    </message>
-    <message>
-        <source>Scale Factor</source>
-        <translation type="vanished">Συντελεστής κλίμακας</translation>
-    </message>
-    <message>
-        <source>Scale factor for pasted entities</source>
-        <translation type="vanished">Συντελεστής κλίμακας για επικόλληση οντοτήτων</translation>
-    </message>
-    <message>
-        <source>Rotation angle for pasted entities</source>
-        <translation type="vanished">Γωνία περιστροφής για επικολλημένες οντότητες</translation>
-    </message>
 </context>
 <context>
     <name>LC_PasteToPointsOptionsFiller</name>
@@ -24422,89 +22451,6 @@ Warning: this action can NOT be undone!</source>
         <location filename="../src/ui/action_options/edit/lc_paste_to_points_options_widget.ui" line="143"/>
         <source>Pick angle from drawing</source>
         <translation type="unfinished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>LC_PasteTransformOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Rotation angle for pasted entities</source>
-        <translation type="vanished">Γωνία περιστροφής για επικολλημένες οντότητες</translation>
-    </message>
-    <message>
-        <source>Spacing between entities insertion points in rows. </source>
-        <translation type="vanished">Απόσταση μεταξύ των σημείων εισαγωγής των οντοτήτων σε σειρές.</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Pick array spacing by X from drawing</source>
-        <translation type="vanished">Επιλογή διαπόστασης συστοιχίας από το X από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Scale Factor</source>
-        <translation type="vanished">Συντελεστής κλίμακας</translation>
-    </message>
-    <message>
-        <source>Pick array angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας συστοιχίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Rotation angle for array.</source>
-        <translation type="vanished">Γωνία περιστροφής για συστοιχία.</translation>
-    </message>
-    <message>
-        <source>Array rows number.</source>
-        <translation type="vanished">Αύξων αριθμός γραμμών.</translation>
-    </message>
-    <message>
-        <source>Pick array spacing by Y from drawing</source>
-        <translation type="vanished">Επιλέξτε απόσταση συστοιχίας από το Y από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, the same rotation angle is used for each individual paste and whole array. Otherwise, different angles are used. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, χρησιμοποιείται η ίδια γωνία περιστροφής για κάθε επιμέρους πάστα και ολόκληρη συστοιχία. Διαφορετικά, χρησιμοποιούνται διαφορετικές γωνίες.</translation>
-    </message>
-    <message>
-        <source>Same Angles</source>
-        <translation type="vanished">Ίδιες γωνίες</translation>
-    </message>
-    <message>
-        <source>Spacing:</source>
-        <translation type="vanished">Απόσταση:</translation>
-    </message>
-    <message>
-        <source>Array columns number.</source>
-        <translation type="vanished">Αριθμός στηλών.</translation>
-    </message>
-    <message>
-        <source>If checked, arrays of copies will be created on paste.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθούν σειρές αντιγράφων στην επικόλληση.</translation>
-    </message>
-    <message>
-        <source>Array</source>
-        <translation type="vanished">Διάταξη</translation>
-    </message>
-    <message>
-        <source>Array Angle:</source>
-        <translation type="vanished">Γωνία ρύθμισης:</translation>
-    </message>
-    <message>
-        <source>Scale factor for pasted entities</source>
-        <translation type="vanished">Συντελεστής κλίμακας για επικόλληση οντοτήτων</translation>
-    </message>
-    <message>
-        <source>Spacing between insertion points of entities in columns.</source>
-        <translation type="vanished">Απόσταση μεταξύ των σημείων εισαγωγής των οντοτήτων στις στήλες.</translation>
     </message>
 </context>
 <context>
@@ -24900,6 +22846,26 @@ Warning: this action can NOT be undone!</source>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="310"/>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="311"/>
+        <source>Hidden (tiny)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="312"/>
+        <source>Hidden (small)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="313"/>
+        <source>Hidden (large)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="310"/>
         <source>Dash Dot</source>
         <translation>Ντας τελεία</translation>
     </message>
@@ -24957,6 +22923,26 @@ Warning: this action can NOT be undone!</source>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="321"/>
         <source>Center (large)</source>
         <translation>Κέντρο (μεγάλο)</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="326"/>
+        <source>Phantom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="327"/>
+        <source>Phantom (tiny)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="328"/>
+        <source>Phantom (small)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="329"/>
+        <source>Phantom (large)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_peninforegistry.cpp" line="322"/>
@@ -25126,17 +23112,9 @@ Warning: this action can NOT be undone!</source>
         <translation>Όνομα Πλάτος γραμμής</translation>
     </message>
     <message>
-        <source>Colors</source>
-        <translation type="vanished">Χρώματα</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_penpaletteoptionsdialog.ui" line="66"/>
         <source>Background color for pen element currently edited in pen&apos;s table</source>
         <translation>Χρώμα φόντου για το στοιχείο στυλό που έχει επεξεργαστεί στο τραπέζι του στυλό</translation>
-    </message>
-    <message>
-        <source>Color of grid for pens list</source>
-        <translation type="vanished">Χρώμα του καννάβου για τη λίστα στυλό</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_penpaletteoptionsdialog.ui" line="32"/>
@@ -25158,10 +23136,6 @@ Warning: this action can NOT be undone!</source>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_penpaletteoptionsdialog.ui" line="79"/>
         <source>Entire table row is bold for active pen</source>
         <translation>Ολόκληρη η γραμμή του πίνακα είναι τολμηρή για ενεργή πένα</translation>
-    </message>
-    <message>
-        <source>Grid Color:</source>
-        <translation type="vanished">Χρώμα καννάβου:</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_penpaletteoptionsdialog.ui" line="96"/>
@@ -25254,17 +23228,9 @@ Warning: this action can NOT be undone!</source>
         <translation>Φυσική ονομασία όπου είναι δυνατόν</translation>
     </message>
     <message>
-        <source>If selected, additional messages will be show as part of pen related operations</source>
-        <translation type="vanished">Εάν επιλεγεί, θα εμφανίζονται πρόσθετα μηνύματα ως μέρος των εργασιών που σχετίζονται με στυλό</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_penpaletteoptionsdialog.ui" line="280"/>
         <source>Show info message if no entities may be selected by pen</source>
         <translation>Εμφάνιση μηνύματος πληροφοριών αν δεν είναι δυνατή η επιλογή οντοτήτων με πένα</translation>
-    </message>
-    <message>
-        <source>On double click on table item</source>
-        <translation type="vanished">Διπλό κλικ στο αντικείμενο πίνακα</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/pen_palette/lc_penpaletteoptionsdialog.ui" line="162"/>
@@ -25487,11 +23453,13 @@ Warning: this action can NOT be undone!</source>
 Please note that if you&apos;ll save pen via editor without restart, current pens from palette will be saved in the new file and therefore existing content of it will be overridden.</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>LC_PluginInvoker</name>
     <message>
-        <source>Location of pens file is changed, please restart the application so new pens file will be used.
-Please note that if you&apos;ll save pen via editor without restart, current pens from palette will be saved in the new file and therefore existing content of it will be overridden.</source>
-        <translation type="vanished">Η θέση του αρχείου των πενών έχει αλλάξει, παρακαλούμε επανεκκινήστε την εφαρμογή, ώστε να χρησιμοποιηθεί το νέο αρχείο πενών.
-Σημειώστε ότι εάν αποθηκεύσετε μια πέννα μέσω του επεξεργαστή χωρίς επανεκκίνηση, οι τρέχουσες πέννες από την παλέτα θα αποθηκευτούν στο νέο αρχείο και, ως εκ τούτου, το υπάρχον περιεχόμενό του θα αντικατασταθεί.</translation>
+        <location filename="../src/plugins/lc_plugininvoker.cpp" line="113"/>
+        <source>Could not load plugin %1: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -25538,37 +23506,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_point.ui" line="103"/>
         <source>Pick position from the drawing</source>
         <translation>Επιλέξτε θέση από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>LC_PointsLatticeOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Number of points by lattice Y direction (count of lattice rows)</source>
-        <translation type="vanished">Αριθμός σημείων κατά κατεύθυνση lattice Y (αριθμός γραμμών lattice)</translation>
-    </message>
-    <message>
-        <source>Rows Count:</source>
-        <translation type="vanished">Αριθμός γραμμών:</translation>
-    </message>
-    <message>
-        <source>Columns Count:</source>
-        <translation type="vanished">Αριθμός στηλών:</translation>
-    </message>
-    <message>
-        <source>Number of points by X lattice direction (count of lattice columns)</source>
-        <translation type="vanished">Αριθμός σημείων κατά κατεύθυνση του πλέγματος X (αριθμός στηλών του πλέγματος)</translation>
-    </message>
-    <message>
-        <source>If selected, last point of lattice will be adjusted accoriding to position of first point, so lattice will be rect or quadrangle</source>
-        <translation type="vanished">Αν επιλεχθεί, το τελευταίο σημείο του πλέγματος θα ρυθμιστεί κατά τη θέση του πρώτου σημείου, έτσι ώστε το πλέγμα να είναι ορθό ή τετράγωνο</translation>
-    </message>
-    <message>
-        <source>Adjust last point to first</source>
-        <translation type="vanished">Προσαρμογή του τελευταίου σημείου στην πρώτη</translation>
     </message>
 </context>
 <context>
@@ -26679,6 +24616,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="85"/>
+        <source>Angle Length</source>
+        <translation type="unfinished">Μήκος γωνίας</translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="81"/>
         <source>Arc Length</source>
         <translation type="unfinished">Μήκος τόξου</translation>
@@ -26687,12 +24629,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="81"/>
         <source>Total angle of arc</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="87"/>
-        <source>Circumference</source>
-        <comment>arc</comment>
-        <translation type="unfinished">Περίμετρος</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="87"/>
@@ -26825,8 +24761,48 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="149"/>
-        <source>Create tangental circle by 2 entitites and 1 point</source>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="153"/>
+        <source>Create tangental circle by 2 entities and 1 point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="158"/>
+        <source>Create tangental circle by 2 entities and radius</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="178"/>
+        <source>Break or divide the arc by intersection points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="182"/>
+        <source>Create ellipse inscribed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="187"/>
+        <source>Create diametric dimension for arc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="188"/>
+        <source>Create radial dimension for arc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="191"/>
+        <source>Creation of dimension, ordinate or arc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="192"/>
+        <source>Create ordinate dimension for arc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="193"/>
+        <source>Create arc dimension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -26847,11 +24823,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="154"/>
         <source>Tangent Circle (2 E, R)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="154"/>
-        <source>Create tangental circle by 2 points and radius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -26882,6 +24853,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="166"/>
+        <source>Creation of orthogonal lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="163"/>
         <source>Orthogonal</source>
         <translation type="unfinished">Ορθογώνια</translation>
@@ -26899,6 +24875,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="164"/>
         <source>Create arc tangental line orthogonal to line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="171"/>
+        <source>Creation of line with relative angle or fillet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -26942,11 +24923,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished">Διάλειμμα/διοξείδιο</translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="174"/>
-        <source>Break or divide the arc by intesection points</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="177"/>
         <source>Creation of ellipse or bounding box</source>
         <translation type="unfinished"></translation>
@@ -26954,11 +24930,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="178"/>
         <source>Ellipse inscribed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="178"/>
-        <source>Create elipse inscribed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -26982,23 +24953,8 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="183"/>
-        <source>Create of diametric dimension for arc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="184"/>
         <source>Dim Radial</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="184"/>
-        <source>Create of radial dimension for arc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="187"/>
-        <source>Creation of dimension, angular or ordinate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27007,18 +24963,8 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="188"/>
-        <source>Create of ordinate dimension for arc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="189"/>
         <source>Dim Arc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_arc.cpp" line="189"/>
-        <source>Create of arc dimension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27210,17 +25156,42 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="83"/>
-        <source>Create tangental circle 2 points</source>
+        <source>Create tangental circle by 2 points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="84"/>
+        <source>Create tangental circle by 2 entities and 1 point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="89"/>
+        <source>Create tangental circle by 2 entities and radius</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="104"/>
+        <source>Break or divide the circle by intersection points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="107"/>
+        <source>Creation of line with relative angle or fillet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="113"/>
+        <source>Create ellipse inscribed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="122"/>
+        <source>Creation of ordinate dimension or leader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="84"/>
         <source>Tangent Circle (2 E, 1 P)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="84"/>
-        <source>Create tangental circle by 2 entitites and 1 point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27241,11 +25212,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="89"/>
         <source>Tangent Circle (2 E, R)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="89"/>
-        <source>Create tangental circle by 2 points and radius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27273,6 +25239,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="94"/>
         <source>Create line tangental to two circles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="97"/>
+        <source>Creation of orthogonal lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27316,11 +25287,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished">Διάλειμμα/διοξείδιο</translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="104"/>
-        <source>Break or divide the circle by intesection points</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="108"/>
         <source>Relative</source>
         <translation type="unfinished">Σχετικό</translation>
@@ -27348,11 +25314,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="113"/>
         <source>Ellipse inscribed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="113"/>
-        <source>Create elipse inscribed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27388,11 +25349,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="119"/>
         <source>Create radial dimension for circle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_circle.cpp" line="122"/>
-        <source>Creation of dimension, angular or ordinate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27633,11 +25589,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="127"/>
-        <source>Manage styles..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="128"/>
         <source>Invokes dimension styles management UI</source>
         <translation type="unfinished"></translation>
@@ -27675,11 +25626,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="235"/>
         <source>Lines and Arrows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="236"/>
-        <source>Dimensions lines and arrows setup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27732,11 +25678,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="334"/>
         <source>Center mark</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="334"/>
-        <source>Specified type of center mark on dimension (DIMCEN variable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -27966,11 +25907,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="586"/>
-        <source>Specifies the color of the dimension of the text (DIMCLRT variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="601"/>
         <source>Text height</source>
         <translation type="unfinished"></translation>
@@ -28032,11 +25968,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="641"/>
-        <source>Specified horizontal dimension text position (DIMJUST variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="652"/>
         <source>Above</source>
         <translation type="unfinished">Πάνω</translation>
@@ -28059,11 +25990,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="659"/>
         <source>Text pos vert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="659"/>
-        <source>Specified vertical dimension text position (DIMTAD variable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -28097,11 +26023,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="699"/>
-        <source>Preceeding dimension text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="700"/>
         <source>Above dimension text</source>
         <translation type="unfinished">Πάνω από το κείμενο διάστασης</translation>
@@ -28110,11 +26031,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="707"/>
         <source>Arc length symbol</source>
         <translation type="unfinished">Σύμβολο μήκους τόξου</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="708"/>
-        <source>Specifies placement of the arch length dimension symbol (DIMARCSYM variable)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="719"/>
@@ -28147,23 +26063,8 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="739"/>
-        <source>Text measurement</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="739"/>
-        <source>Specified dimension measurement value</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="754"/>
         <source>Text override</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="755"/>
-        <source>Specified the text string of dimension (overrides Measurement string)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -28233,8 +26134,63 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="881"/>
-        <source>Place bettween if has room</source>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="127"/>
+        <source>Manage styles...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="236"/>
+        <source>Dimension lines and arrows setup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="334"/>
+        <source>Specifies type of center mark on dimension (DIMCEN variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="586"/>
+        <source>Specifies the color of the dimension text (DIMCLRT variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="641"/>
+        <source>Specifies horizontal dimension text position (DIMJUST variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="659"/>
+        <source>Specifies vertical dimension text position (DIMTAD variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="699"/>
+        <source>Preceding dimension text</source>
+        <translation type="unfinished">Προκαθορισμένο κείμενο διάστασης</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="708"/>
+        <source>Specifies placement of the arc length dimension symbol (DIMARCSYM variable)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="739"/>
+        <source>Measured value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="740"/>
+        <source>Geometric measurement in drawing units, or decimal degrees for angles; excludes dimension scale factor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="746"/>
+        <source>Specifies the text string of dimension (overrides Measurement string)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="872"/>
+        <source>Place between if has room</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -28770,8 +26726,8 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="1620"/>
-        <source>Sets suppression of zero inches for alterate units tolerance values in dimension (DIMALTTZ variable)</source>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_dim_base.cpp" line="1593"/>
+        <source>Sets suppression of zero inches for alternate units tolerance values in dimension (DIMALTTZ variable)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -29247,8 +27203,23 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="120"/>
+        <source>Creation of orthogonal lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="120"/>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="125"/>
         <source>Creation of line tangental to ellipse</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="127"/>
+        <source>Create line tangental for two entities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="130"/>
+        <source>Creation of line with relative angle or fillet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -29285,16 +27256,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="127"/>
         <source>Tangent (C,C)</source>
         <translation type="unfinished">Εφαπτομένη (Κ,Κ)</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="127"/>
-        <source>Create line tangental for two entitiers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="130"/>
-        <source>Creation of line with relative angle</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_ellipse.cpp" line="131"/>
@@ -29406,7 +27367,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_grid.cpp" line="112"/>
-        <source>Defines which time of grid should be drawn</source>
+        <source>Defines which type of grid should be drawn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -29858,7 +27819,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_ucs.cpp" line="176"/>
-        <source>Set ucs that corresponds to selected ordinate dimension</source>
+        <source>Set UCS that corresponds to selected ordinate dimension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -29946,7 +27907,17 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_units.cpp" line="115"/>
-        <source>Precision of linear units units used in drawing</source>
+        <source>Precision of linear units used in drawing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_units.cpp" line="137"/>
+        <source>Angles clockwise</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_units.cpp" line="138"/>
+        <source>Direction of angles. If counterclockwise, 90 degrees is north, for clockwise - 90 degrees is south</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -29957,16 +27928,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_units.cpp" line="130"/>
         <source>Primary linear units used by drawing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_units.cpp" line="137"/>
-        <source>Angles clockwize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_units.cpp" line="138"/>
-        <source>Direction of angles. If counterclockwize, 90 degrees is north, for clockwise - 90 degrees is south</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -30103,6 +28064,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished">Πλαίσιο κατάστασης</translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_workspace.cpp" line="108"/>
+        <source>Defines whether status bar is shown or not</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/document/lc_propertiesprovider_graphic_workspace.cpp" line="118"/>
         <source>Save workspace...</source>
         <translation type="unfinished"></translation>
@@ -30168,6 +28134,16 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_hatch.cpp" line="67"/>
         <source>Area of hatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_hatch.cpp" line="78"/>
+        <source>Pattern lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_hatch.cpp" line="79"/>
+        <source>Whether the pattern lines were generated</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -30280,7 +28256,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_hyperbola.cpp" line="104"/>
-        <source>Ecentricity of hyperbola</source>
+        <source>Eccentricity of hyperbola</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -30632,7 +28608,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_leader.cpp" line="64"/>
-        <source>Vertext of leader with given index</source>
+        <source>Vertex of leader with given index</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -30728,6 +28704,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="100"/>
         <source>Line Join</source>
         <translation type="unfinished">Συμμετοχή γραμμής</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="99"/>
+        <source>Lengthen or shorten the line by a given distance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="100"/>
@@ -30841,22 +28822,47 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="145"/>
-        <source>Create line orhtogonal to this line</source>
+        <source>Create line orthogonal to this line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="146"/>
+        <source>Create line with relative angle to this line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="149"/>
+        <source>Creation of line from point or tangental orthogonal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="155"/>
+        <source>Create circle tangental by 2 points</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="156"/>
+        <source>Create circle tangental by 2 entities and 1 point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="165"/>
+        <source>Create ellipse inscribed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="166"/>
+        <source>Create bounding box for line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="176"/>
+        <source>Break or divide the line by intersection points</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="146"/>
         <source>Relative Angle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="146"/>
-        <source>Create line with related angle to this line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="149"/>
-        <source>Creation line from point or tangental orthogonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -30891,18 +28897,8 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="155"/>
-        <source>Create circle tangental 2 points</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="156"/>
         <source>Tangential Circle (2 E, 1 P)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="156"/>
-        <source>Create circle tangental by 2 entitites and 1 point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -30917,12 +28913,12 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="161"/>
-        <source>Tangential Cicle (2 E, R)</source>
+        <source>Create circle tangental by 2 entities and radius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="161"/>
-        <source>Create circle tangental by 2 entities and radius</source>
+        <source>Tangential Circle (2 E, R)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -30936,18 +28932,8 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="165"/>
-        <source>Create elipse inscribed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="166"/>
         <source>Bounding box</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="166"/>
-        <source>Create of bounding box for line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -30994,11 +28980,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="176"/>
         <source>Break/Divide</source>
         <translation type="unfinished">Διάλειμμα/διοξείδιο</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="176"/>
-        <source>Break or divide the line by intesection points</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_line.cpp" line="178"/>
@@ -31489,6 +29470,11 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation type="unfinished">Βέρτεξ</translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_polyline.cpp" line="60"/>
+        <source>Vertex of polyline with given index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_polyline.cpp" line="71"/>
         <source>Length</source>
         <translation type="unfinished">Μήκος</translation>
@@ -31646,17 +29632,17 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_polyline.cpp" line="120"/>
-        <source>Creates equidistnat polyline</source>
+        <source>Creates equidistant polyline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_polyline.cpp" line="121"/>
+        <source>Revert direction of polyline, swapping start and end points</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_polyline.cpp" line="121"/>
         <source>Revert direction</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_polyline.cpp" line="121"/>
-        <source>Reverst direction of polyline, swapping start and end points</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -31872,7 +29858,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_spline.cpp" line="145"/>
-        <source>Exploding spline and creating rounding box</source>
+        <source>Exploding spline and creating bounding box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -31887,12 +29873,12 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_spline.cpp" line="147"/>
-        <source>Rounding box</source>
+        <source>Create bounding box around spline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_spline.cpp" line="147"/>
-        <source>Create bounding box around spline</source>
+        <source>Bounding box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -32065,7 +30051,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_splinepoints.cpp" line="114"/>
-        <source>Tangent and rounding box</source>
+        <source>Tangent and bounding box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -32080,12 +30066,12 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_splinepoints.cpp" line="116"/>
-        <source>Rounding box</source>
+        <source>Create bounding box around spline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_splinepoints.cpp" line="116"/>
-        <source>Create bounding box around spline</source>
+        <source>Bounding box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -32204,7 +30190,7 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/property_sheet/metaentity/entities/lc_propertiesprovider_text.cpp" line="83"/>
-        <source>Content text of MText</source>
+        <source>Content of the text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -32835,10 +30821,6 @@ Please note that if you&apos;ll save pen via editor without restart, current pen
         <translation>Διάμετρος</translation>
     </message>
     <message>
-        <source>Circumference</source>
-        <translation type="vanished">Περίμετρος</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfoentitydata.cpp" line="615"/>
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfoentitydata.cpp" line="633"/>
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfoentitydata.cpp" line="740"/>
@@ -33368,6 +31350,11 @@ Layer: </source>
         <translation>Χρήση σημείων ελέγχου</translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfoentitydata.cpp" line="1396"/>
+        <source>Pattern lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfoentitydata.cpp" line="1505"/>
         <source>[Override]</source>
         <translation>[Override] [Παράκαμψη]</translation>
@@ -33784,6 +31771,11 @@ p, li { white- space: pre- wrap;}
         <translation>&amp;Συλλογές Συντεταγμένες</translation>
     </message>
     <message>
+        <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfowidget.cpp" line="701"/>
+        <source>Layer &quot;%1&quot; is locked: unlock it to edit its entities.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfowidget.cpp" line="786"/>
         <source>No data - select entity of coordinates first...</source>
         <translation>Χωρίς δεδομένα - επιλέξτε την οντότητα των συντεταγμένων πρώτα...</translation>
@@ -33825,10 +31817,6 @@ p, li { white- space: pre- wrap;}
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfowidgetoptionsdialog.ui" line="75"/>
         <source>Entity Info</source>
         <translation>Πληροφορίες Οντοτήτων</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If selected, more detailed information about lines and arcs that are part of polyline will be show in Entity Info widget.&lt;br/&gt;Otherwise, only information about vertexes/bulges will be displayed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">Απόδοση Διαλόγων/Συγχρονισμός: Αν επιλεγεί, πιο λεπτομερείς πληροφορίες σχετικά με τις γραμμές και τα τόξα που είναι μέρος της πολυγραμμής θα εμφανίζονται στο γραφικό συστατικό Πληροφορίες Οντότητα. Σε αντίθετη περίπτωση, θα εμφανίζονται μόνο πληροφορίες σχετικά με τις κορυφές/διαστολές. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfowidgetoptionsdialog.ui" line="81"/>
@@ -33879,205 +31867,6 @@ p, li { white- space: pre- wrap;}
         <location filename="../src/ui/dock_widgets/entity_info/lc_quickinfowidgetoptionsdialog.cpp" line="44"/>
         <source>Points highlight pen</source>
         <translation>Στυλό επισήμανσης σημείων</translation>
-    </message>
-</context>
-<context>
-    <name>LC_Rectangle1PointOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Edges:</source>
-        <translation type="vanished">Ακρές:</translation>
-    </message>
-    <message>
-        <source>If checked, specifies that snap point should be shifted by radius of corners.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, ορίζεται ότι το σημείο θραύσης πρέπει να μετατοπίζεται με ακτίνα στροφών.</translation>
-    </message>
-    <message>
-        <source>Snap shift</source>
-        <translation type="vanished">Μετατόπιση snap</translation>
-    </message>
-    <message>
-        <source>Length of bevel corner for Y direction. </source>
-        <translation type="vanished">Μήκος της γωνίας Bevel για την κατεύθυνση Y.</translation>
-    </message>
-    <message>
-        <source>Defines which edges of rectangle should be drawn (so it is possible to create just two parallel lines instead of rectangle)</source>
-        <translation type="vanished">Καθορίζει ποιες άκρες του ορθογωνίου πρέπει να σχεδιαστούν (έτσι είναι δυνατόν να δημιουργηθούν μόνο δύο παράλληλες γραμμές αντί του ορθογωνίου)</translation>
-    </message>
-    <message>
-        <source>Both</source>
-        <translation type="vanished">Και τα δύο</translation>
-    </message>
-    <message>
-        <source>Vertical</source>
-        <translation type="vanished">Κατακόρυφα</translation>
-    </message>
-    <message>
-        <source>Horizontal</source>
-        <translation type="vanished">Οριζόντια</translation>
-    </message>
-    <message>
-        <source>Width of rectangle</source>
-        <translation type="vanished">Πλάτος ορθογωνίου</translation>
-    </message>
-    <message>
-        <source>Controls how corners of rectangle should be drawn.</source>
-        <translation type="vanished">Ελέγχει πώς πρέπει να σχεδιαστούν οι γωνίες του ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>Straight</source>
-        <translation type="vanished">Ευθεία</translation>
-    </message>
-    <message>
-        <source>Round</source>
-        <translation type="vanished">Στρόγγυλο</translation>
-    </message>
-    <message>
-        <source>Bevel</source>
-        <translation type="vanished">Μπέβελ</translation>
-    </message>
-    <message>
-        <source>If checked, rectangle will be rotated on specified angle.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το ορθογώνιο θα περιστραφεί σε καθορισμένη γωνία.</translation>
-    </message>
-    <message>
-        <source>Base Angle:</source>
-        <translation type="vanished">Γωνία βάσης:</translation>
-    </message>
-    <message>
-        <source>If checked, specified height and width of rectangle defines distance between centers of arcs for rounding corners. Otherwise, these values defines outer size of the rectangle.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, το καθορισμένο ύψος και το πλάτος του ορθογωνίου καθορίζουν την απόσταση μεταξύ των κέντρων των τόξων για γωνίες στρογγυλοποίησης. Διαφορετικά, οι τιμές αυτές καθορίζουν το εξωτερικό μέγεθος του ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>Size inner</source>
-        <translation type="vanished">Εσωτερικό μέγεθος</translation>
-    </message>
-    <message>
-        <source>Length Y:</source>
-        <translation type="vanished">Μήκος Y:</translation>
-    </message>
-    <message>
-        <source>If checked, rectangle will be created as polyline instead of individual segments.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το ορθογώνιο θα δημιουργηθεί ως πολυγραμμή αντί για μεμονωμένα τμήματα.</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Snap:</source>
-        <translation type="vanished">Στιγμιότυπο:</translation>
-    </message>
-    <message>
-        <source>Height:</source>
-        <translation type="vanished">Ύψος:</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Length of bevel corner for X direction. </source>
-        <translation type="vanished">Μήκος της γωνίας Bevel για την κατεύθυνση X.</translation>
-    </message>
-    <message>
-        <source>Length X:</source>
-        <translation type="vanished">Μήκος X:</translation>
-    </message>
-    <message>
-        <source>Height of rectangle</source>
-        <translation type="vanished">Ύψος ορθογωνίου</translation>
-    </message>
-    <message>
-        <source>Radius of rounded corners.</source>
-        <translation type="vanished">Ακτίνα στρογγυλευμένων γωνιών.</translation>
-    </message>
-    <message>
-        <source>Point of rectangle wich will be placed to insertion point.</source>
-        <translation type="vanished">Σημείο ορθογωνίου που θα τοποθετηθεί στο σημείο εισαγωγής.</translation>
-    </message>
-    <message>
-        <source>Top-left</source>
-        <translation type="vanished">Πάνω αριστερά</translation>
-    </message>
-    <message>
-        <source>Top</source>
-        <translation type="vanished">Πάνω</translation>
-    </message>
-    <message>
-        <source>Top-right</source>
-        <translation type="vanished">Πάνω δεξιά</translation>
-    </message>
-    <message>
-        <source>Left</source>
-        <translation type="vanished">Αριστερά</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>Right</source>
-        <translation type="vanished">Σωστά</translation>
-    </message>
-    <message>
-        <source>Bottom-left</source>
-        <translation type="vanished">Κάτω αριστερά</translation>
-    </message>
-    <message>
-        <source>Bottom</source>
-        <translation type="vanished">Κάτω</translation>
-    </message>
-    <message>
-        <source>Bottom-right</source>
-        <translation type="vanished">Κάτω δεξιά</translation>
-    </message>
-    <message>
-        <source>Pick rotation angle from drawing</source>
-        <translation type="vanished">Επιλέξτε γωνία περιστροφής από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick radius of rounded corners from drawing.</source>
-        <translation type="vanished">Διαλέξτε την ακτίνα των στρογγυλεμένων γωνιών από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Rotation angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Pick height of rectangle from drawing</source>
-        <translation type="vanished">Διαλέξτε το ύψος του ορθογωνίου από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick width of rectangle from drawing</source>
-        <translation type="vanished">Διάλεξε το πλάτος του ορθογωνίου από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Width:</source>
-        <translation type="vanished">Πλάτος:</translation>
-    </message>
-    <message>
-        <source>Corners:</source>
-        <translation type="vanished">Γωνίες:</translation>
-    </message>
-    <message>
-        <source>Pick length of bevel corner for X direction from drawing.</source>
-        <translation type="vanished">Διαλέξτε το μήκος της Bevel γωνίας για X κατεύθυνση από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Pick length of bevel corner for Y direction from drawing.</source>
-        <translation type="vanished">Διαλέξτε το μήκος της Bevel γωνίας για Y κατεύθυνση από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>If checked, angle will be specified by mouse position. Otherwise, specified value will be used.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η γωνία θα καθοριστεί από τη θέση του ποντικιού. Διαφορετικά, θα χρησιμοποιηθεί καθορισμένη τιμή.</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
     </message>
 </context>
 <context>
@@ -34447,153 +32236,6 @@ p, li { white- space: pre- wrap;}
     </message>
 </context>
 <context>
-    <name>LC_Rectangle2PointsOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Defines which edges of rectangle should be drawn (so it is possible to create just two parallel lines instead of rectangle)</source>
-        <translation type="vanished">Καθορίζει ποιες άκρες του ορθογωνίου πρέπει να σχεδιαστούν (έτσι είναι δυνατόν να δημιουργηθούν μόνο δύο παράλληλες γραμμές αντί του ορθογωνίου)</translation>
-    </message>
-    <message>
-        <source>Both</source>
-        <translation type="vanished">Και τα δύο</translation>
-    </message>
-    <message>
-        <source>Vertical</source>
-        <translation type="vanished">Κατακόρυφα</translation>
-    </message>
-    <message>
-        <source>Horizontal</source>
-        <translation type="vanished">Οριζόντια</translation>
-    </message>
-    <message>
-        <source>Defines which point of rectangle should be placed into start point position.</source>
-        <translation type="vanished">Καθορίζει ποιο σημείο του ορθογωνίου πρέπει να τοποθετηθεί στη θέση του σημείου εκκίνησης.</translation>
-    </message>
-    <message>
-        <source>Corner</source>
-        <translation type="vanished">Γωνία</translation>
-    </message>
-    <message>
-        <source>Mid-Vertical</source>
-        <translation type="vanished">Μεσαία</translation>
-    </message>
-    <message>
-        <source>Mid-Horizontal</source>
-        <translation type="vanished">Μεσοοριζόντια</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>Pick rectangle rotation angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας περιστροφής ορθογωνίου από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick radius of rounded corners from drawing. </source>
-        <translation type="vanished">Διαλέξτε την ακτίνα των στρογγυλεμένων γωνιών από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Corners:</source>
-        <translation type="vanished">Γωνίες:</translation>
-    </message>
-    <message>
-        <source>Defines which point of rectangle should be placed into end point position. </source>
-        <translation type="vanished">Καθορίζει ποιο σημείο του ορθογωνίου πρέπει να τοποθετηθεί στη θέση του τελικού σημείου.</translation>
-    </message>
-    <message>
-        <source>Pick length of bevel in X direction from drawing.</source>
-        <translation type="vanished">Διαλέξτε το μήκος του bevel σε κατεύθυνση X από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Edges:</source>
-        <translation type="vanished">Ακρές:</translation>
-    </message>
-    <message>
-        <source>Pick length of bevel in Y direction from drawing. </source>
-        <translation type="vanished">Διαλέξτε το μήκος του bevel σε Y κατεύθυνση από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Start Snap:</source>
-        <translation type="vanished">Έναρξη snap:</translation>
-    </message>
-    <message>
-        <source>Length of bevel in Y direction. </source>
-        <translation type="vanished">Μήκος μπεζ προς την κατεύθυνση Υ.</translation>
-    </message>
-    <message>
-        <source>If checked, specifies that snap points should be shifted by radius of corners.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, ορίζεται ότι τα σημεία snap πρέπει να μετατοπίζονται με ακτίνα των γωνιών.</translation>
-    </message>
-    <message>
-        <source>Snap shift</source>
-        <translation type="vanished">Μετατόπιση snap</translation>
-    </message>
-    <message>
-        <source>Length X:</source>
-        <translation type="vanished">Μήκος X:</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>If checked, allows to specify rotation angle for rectangle.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, επιτρέπει τον καθορισμό γωνίας περιστροφής για το ορθογώνιο.</translation>
-    </message>
-    <message>
-        <source>Base Angle:</source>
-        <translation type="vanished">Γωνία βάσης:</translation>
-    </message>
-    <message>
-        <source>Rectangle rotation angle.</source>
-        <translation type="vanished">Γωνία περιστροφής ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>End Snap:</source>
-        <translation type="vanished">Τέλος snap:</translation>
-    </message>
-    <message>
-        <source>Defines how corners of rectangle should be drawn. </source>
-        <translation type="vanished">Καθορίζει τις γωνίες του ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>Straight</source>
-        <translation type="vanished">Ευθεία</translation>
-    </message>
-    <message>
-        <source>Round</source>
-        <translation type="vanished">Στρόγγυλο</translation>
-    </message>
-    <message>
-        <source>Bevel</source>
-        <translation type="vanished">Μπέβελ</translation>
-    </message>
-    <message>
-        <source>Radius of rounded corners. </source>
-        <translation type="vanished">Ακτίνα στρογγυλευμένων γωνιών.</translation>
-    </message>
-    <message>
-        <source>Length Y:</source>
-        <translation type="vanished">Μήκος Y:</translation>
-    </message>
-    <message>
-        <source>If checked, the entire rectangle will be drawn as polyline.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, ολόκληρο το ορθογώνιο θα σχεδιαστεί ως πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Length of bevel in X direction.</source>
-        <translation type="vanished">Μήκος του bevel προς την κατεύθυνση X.</translation>
-    </message>
-</context>
-<context>
     <name>LC_Rectangle2PointsOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/rect/lc_rectangle_2points_options_filler.cpp" line="36"/>
@@ -34851,145 +32493,6 @@ p, li { white- space: pre- wrap;}
         <location filename="../src/ui/action_options/rect/lc_rectangle_2points_options_widget.ui" line="361"/>
         <source>Pick length of bevel in Y direction from drawing. </source>
         <translation type="unfinished">Διαλέξτε το μήκος του bevel σε Y κατεύθυνση από το σχέδιο.</translation>
-    </message>
-</context>
-<context>
-    <name>LC_Rectangle3PointsOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Inner angle of quadrangle.</source>
-        <translation type="vanished">Εσωτερική γωνία τετραγώνου.</translation>
-    </message>
-    <message>
-        <source>If checked, inner angle of quadrangle will be fixed to specified value.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η εσωτερική γωνία του τετραγώνου θα καθοριστεί στην καθορισμένη τιμή.</translation>
-    </message>
-    <message>
-        <source>Fixed Inner Angle:</source>
-        <translation type="vanished">Σταθερή εσωτερική γωνία:</translation>
-    </message>
-    <message>
-        <source>Base angle of rectangle. </source>
-        <translation type="vanished">Γωνία βάσης ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>Length X:</source>
-        <translation type="vanished">Μήκος X:</translation>
-    </message>
-    <message>
-        <source>Length of bevel in X direction.</source>
-        <translation type="vanished">Μήκος του bevel προς την κατεύθυνση X.</translation>
-    </message>
-    <message>
-        <source>Defines how corners should be drawn for rectangle. </source>
-        <translation type="vanished">Καθορίζει πώς πρέπει να σχεδιαστούν οι γωνίες για το ορθογώνιο.</translation>
-    </message>
-    <message>
-        <source>Straight</source>
-        <translation type="vanished">Ευθεία</translation>
-    </message>
-    <message>
-        <source>Round</source>
-        <translation type="vanished">Στρόγγυλο</translation>
-    </message>
-    <message>
-        <source>Bevel</source>
-        <translation type="vanished">Μπέβελ</translation>
-    </message>
-    <message>
-        <source>Corners:</source>
-        <translation type="vanished">Γωνίες:</translation>
-    </message>
-    <message>
-        <source>If checked, specifies that snap points should be shifted by radius of corners.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, ορίζεται ότι τα σημεία snap πρέπει να μετατοπίζονται με ακτίνα των γωνιών.</translation>
-    </message>
-    <message>
-        <source>Snap shift</source>
-        <translation type="vanished">Μετατόπιση snap</translation>
-    </message>
-    <message>
-        <source>Length Y:</source>
-        <translation type="vanished">Μήκος Y:</translation>
-    </message>
-    <message>
-        <source>Length of bevel in Y direction. </source>
-        <translation type="vanished">Μήκος μπεζ προς την κατεύθυνση Υ.</translation>
-    </message>
-    <message>
-        <source>Radius of rounded corners.</source>
-        <translation type="vanished">Ακτίνα στρογγυλευμένων γωνιών.</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>If checked, the shape will be created as polyline. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το σχήμα θα δημιουργηθεί ως πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Pick inner angle of quadrangle from drawing.</source>
-        <translation type="vanished">Επιλέξτε την εσωτερική γωνία του τετραγώνου από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Edges:</source>
-        <translation type="vanished">Ακρές:</translation>
-    </message>
-    <message>
-        <source>Pick radius of rounded corners from drawing.</source>
-        <translation type="vanished">Διαλέξτε την ακτίνα των στρογγυλεμένων γωνιών από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Pick length of bevel in X direction from drawing.</source>
-        <translation type="vanished">Διαλέξτε το μήκος του bevel σε κατεύθυνση X από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Pick length of bevel in Y direction from drawing.</source>
-        <translation type="vanished">Διαλέξτε το μήκος του bevel σε Y κατεύθυνση από το σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Defines which edges of rectangle should be drawn (so it is possible to create just two parallel lines instead of rectangle)</source>
-        <translation type="vanished">Καθορίζει ποιες άκρες του ορθογωνίου πρέπει να σχεδιαστούν (έτσι είναι δυνατόν να δημιουργηθούν μόνο δύο παράλληλες γραμμές αντί του ορθογωνίου)</translation>
-    </message>
-    <message>
-        <source>Both</source>
-        <translation type="vanished">Και τα δύο</translation>
-    </message>
-    <message>
-        <source>Vertical</source>
-        <translation type="vanished">Κατακόρυφα</translation>
-    </message>
-    <message>
-        <source>Horizontal</source>
-        <translation type="vanished">Οριζόντια</translation>
-    </message>
-    <message>
-        <source>Pick base angle of rectangle from drawing</source>
-        <translation type="vanished">Επιλέξτε γωνία βάσης του ορθογωνίου από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, rectangle will be rotated to specified base angle.  Otherwise, base angle will be defined by angle between first and second points of rectangle.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το ορθογώνιο θα περιστραφεί σε καθορισμένη γωνία βάσης. Διαφορετικά, η γωνία βάσης θα ορίζεται με γωνία μεταξύ του πρώτου και του δεύτερου σημείου του ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>Fixed Base Angle:</source>
-        <translation type="vanished">Σταθερή γωνία βάσης:</translation>
-    </message>
-    <message>
-        <source>If checked, quadrangle will be created instead of rectangle.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το τετράγωνο θα δημιουργηθεί αντί του ορθογωνίου.</translation>
-    </message>
-    <message>
-        <source>Quadrangle</source>
-        <translation type="vanished">Τετράγωνο</translation>
     </message>
 </context>
 <context>
@@ -35638,100 +33141,6 @@ p, li { white- space: pre- wrap;}
         <location filename="../src/ui/components/relative_position_assistant/lc_relative_position_editing_widget.cpp" line="328"/>
         <source>Relative zero:</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LC_ReleaseChecker</name>
-    <message>
-        <source>Sorry, some network error occurred during checking for new version.</source>
-        <translation type="vanished">Συγνώμη, κάποιο σφάλμα δικτύου συνέβη κατά τον έλεγχο για νέα έκδοση.</translation>
-    </message>
-    <message>
-        <source>Unable to parse response from the server</source>
-        <translation type="vanished">Αδυναμία ανάλυσης απόκρισης από τον εξυπηρετητή</translation>
-    </message>
-</context>
-<context>
-    <name>LC_Rotate2Options</name>
-    <message>
-        <source>Move Rotate Options</source>
-        <translation type="vanished">Μετακίνηση επιλογών περιστροφής</translation>
-    </message>
-    <message>
-        <source>Specifies whetether copies will be inserted to current or original layer</source>
-        <translation type="vanished">Καθορίζει τα αντίγραφα whatetather θα εισαχθεί στο τρέχον ή αρχικό στρώμα</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>Adjust secondary angle so the sum of angles (relative rotation angle) is 0. With such setting entity will be moved but not rotated.</source>
-        <translation type="vanished">Ρυθμίστε τη δευτερεύουσα γωνία έτσι το άθροισμα των γωνιών (σχετική γωνία περιστροφής) είναι 0. Με την εν λόγω οντότητα ρύθμισης θα μετακινηθεί αλλά δεν περιστρέφεται.</translation>
-    </message>
-    <message>
-        <source>Angles mirrored</source>
-        <translation type="vanished">Γωνίες καθρεπτισμένες</translation>
-    </message>
-    <message>
-        <source>Pick primary angle from drawing</source>
-        <translation type="vanished">Επιλογή κύριας γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Defines whether current or original drawing attributes will be applied</source>
-        <translation type="vanished">Καθορίζει αν θα εφαρμοστούν τα τρέχοντα ή τα πρωτότυπα χαρακτηριστικά σχεδίασης</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Pick secondary angle from drawing</source>
-        <translation type="vanished">Επιλογή δευτερεύουσας γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Angle for rotation over absolute reference point</source>
-        <translation type="vanished">Γωνία περιστροφής σε απόλυτο σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>If checked, multiple copies will be created. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθούν πολλαπλά αντίγραφα.</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Number of copies to create</source>
-        <translation type="vanished">Αριθμός αντιγράφων για δημιουργία</translation>
-    </message>
-    <message>
-        <source>Secondary Angle:</source>
-        <translation type="vanished">Δευτερεύουσα γωνία:</translation>
-    </message>
-    <message>
-        <source>If checked, the same angle will be used for all copies. Otherwise, it will be increased proportionally to copy number. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η ίδια γωνία θα χρησιμοποιηθεί για όλα τα αντίγραφα. Διαφορετικά, θα αυξηθεί αναλογικά στον αριθμό αντιγράφων.</translation>
-    </message>
-    <message>
-        <source>Same secondary angle for copies</source>
-        <translation type="vanished">Ίδια δευτερεύουσα γωνία για αντίγραφα</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will survive, otherwise they will be removed. </source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>Primary Angle:</source>
-        <translation type="vanished">Κύρια γωνία:</translation>
-    </message>
-    <message>
-        <source>Angle to rotate over secondary reference point</source>
-        <translation type="vanished">Γωνία περιστροφής του δευτερεύοντος σημείου αναφοράς</translation>
     </message>
 </context>
 <context>
@@ -36726,141 +34135,6 @@ p, li { white- space: pre- wrap;}
     </message>
 </context>
 <context>
-    <name>LC_SliceDivideOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Start Circle Angle:</source>
-        <translation type="vanished">Έναρξη γωνίας κύκλου:</translation>
-    </message>
-    <message>
-        <source>Start angle for circle from which ticks will start. </source>
-        <translation type="vanished">Γωνία εκκίνησης για τον κύκλο από τον οποίο θα ξεκινήσουν τα πλήκτρα.</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Offset of tick snap point to intersection point. </source>
-        <translation type="vanished">Μετατόπιση του σημείου snap point στο σημείο τομής.</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Pick distance from drawing</source>
-        <translation type="vanished">Επιλογή απόστασης από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation type="vanished">Απόσταση:</translation>
-    </message>
-    <message>
-        <source>Distance between ticks.</source>
-        <translation type="vanished">Απόσταση ανάμεσα στα τσιμπούρια.</translation>
-    </message>
-    <message>
-        <source>If checked, selected entity will be divided by tick intersection points. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η επιλεγμένη οντότητα θα διαιρεθεί με τα σημεία τομής.</translation>
-    </message>
-    <message>
-        <source>Divide</source>
-        <translation type="vanished">Διαίρεση</translation>
-    </message>
-    <message>
-        <source>Pick tick offset from drawing</source>
-        <translation type="vanished">Διαλέξτε το κουμπί όφσετ από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Length of tick.</source>
-        <translation type="vanished">Μήκος του τικ.</translation>
-    </message>
-    <message>
-        <source>Pick tick angle from drawing</source>
-        <translation type="vanished">Επιλέξτε γωνία από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Tick snap:</source>
-        <translation type="vanished">Τικ snap:</translation>
-    </message>
-    <message>
-        <source>Pick tick length from drawing</source>
-        <translation type="vanished">Επιλέξτε το μήκος του τσιμπήματος από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>PIck start circle angle from drawing</source>
-        <translation type="vanished">Γωνία κύκλου εκκίνησης Pick από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Angle between tick and selected entity.</source>
-        <translation type="vanished">Γωνία μεταξύ της συνάρτησης και της επιλεγμένης οντότητας.</translation>
-    </message>
-    <message>
-        <source>If checked, tick angle is related to selected entity, otherwise it is absolute angle.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, η γωνία επιλογής σχετίζεται με την επιλεγμένη οντότητα, διαφορετικά είναι απόλυτη γωνία.</translation>
-    </message>
-    <message>
-        <source>Rel</source>
-        <translation type="vanished">Ρελ</translation>
-    </message>
-    <message>
-        <source>Tick Length:</source>
-        <translation type="vanished">Μήκος επιλογής:</translation>
-    </message>
-    <message>
-        <source>Defines which point of tick should be placed to intersection point with selected entity.</source>
-        <translation type="vanished">Καθορίζει ποιο σημείο του τσιμπήματος πρέπει να τοποθετηθεί στο σημείο τομής με την επιλεγμένη οντότητα.</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>If checked, specified fixed distance between ticks will be used. Otherwise, distance will be calculated based on entity length and ticks count. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα χρησιμοποιηθεί καθορισμένη σταθερή απόσταση μεταξύ των τικ. Σε αντίθετη περίπτωση, η απόσταση θα υπολογίζεται με βάση το μήκος της οντότητας και τους δείκτες μέτρησης.</translation>
-    </message>
-    <message>
-        <source>Fixed </source>
-        <translation type="vanished">Σταθερό</translation>
-    </message>
-    <message>
-        <source>Count of ticks between edges of selected entity.</source>
-        <translation type="vanished">Αριθμός ετικετών μεταξύ των ακμών της επιλεγμένης οντότητας.</translation>
-    </message>
-    <message>
-        <source>Count:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Devines how ticks on entity edges should be placed. </source>
-        <translation type="vanished">Προσδιορίζει πώς πρέπει να τοποθετούνται τα τσιμπούρια στις άκρες της οντότητας.</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation type="vanished">Καμία</translation>
-    </message>
-    <message>
-        <source>Both</source>
-        <translation type="vanished">Και τα δύο</translation>
-    </message>
-    <message>
-        <source>Edge Tick:</source>
-        <translation type="vanished">Τικ άκρης:</translation>
-    </message>
-</context>
-<context>
     <name>LC_SliceDivideOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/line/lc_slice_divide_options_filler.cpp" line="34"/>
@@ -37180,57 +34454,6 @@ p, li { white- space: pre- wrap;}
     </message>
 </context>
 <context>
-    <name>LC_SplineExplodeOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Defines the number of line segments to be generated for each spline-fit spline-fit polyline</source>
-        <translation type="vanished">Καθορίζει τον αριθμό των τμημάτων γραμμής που πρέπει να δημιουργούνται για κάθε πολυγραμμή spline-fit</translation>
-    </message>
-    <message>
-        <source>If unchecked, original spline will be removed, otherwise it will survive.</source>
-        <translation type="vanished">Αν δεν ελεγχθεί, το αρχικό spline θα αφαιρεθεί, αλλιώς θα επιβιώσει.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be used for created entities, otherwise - original ones. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα χρησιμοποιηθούν για δημιουργημένες οντότητες, διαφορετικά - πρωτότυπες.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If checked, created entities will be placed on current layer, otherwise they will be placed into original layers.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, οι δημιουργημένες οντότητες θα τοποθετηθούν σε τρέχον στρώμα, διαφορετικά θα τοποθετηθούν σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>If checked, it is possible to specify custom amount of line segments. Otherwise, the value from settings for current drawing will be used.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, είναι δυνατόν να καθοριστεί προσαρμοσμένο ποσό των τμημάτων γραμμής. Διαφορετικά, θα χρησιμοποιηθεί η τιμή από τις ρυθμίσεις για το τρέχον σχέδιο.</translation>
-    </message>
-    <message>
-        <source>Custom Segments Count</source>
-        <translation type="vanished">Αριθμός προσαρμοσμένων τμημάτων</translation>
-    </message>
-    <message>
-        <source>If checked, line segments will be part of polyline. Otherwise, they will be individual lines</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, τα τμήματα γραμμής θα είναι μέρος της πολυγραμμής. Διαφορετικά, θα είναι μεμονωμένες γραμμές</translation>
-    </message>
-    <message>
-        <source>To Polyline</source>
-        <translation type="vanished">Στην Πολυγραμμή</translation>
-    </message>
-</context>
-<context>
     <name>LC_SplineExplodeOptionsFiller</name>
     <message>
         <location filename="../src/ui/action_options/spline/lc_spline_explode_options_filler.cpp" line="33"/>
@@ -37354,61 +34577,6 @@ p, li { white- space: pre- wrap;}
         <location filename="../src/ui/action_options/spline/lc_spline_explode_options_widget.ui" line="96"/>
         <source>To Polyline</source>
         <translation type="unfinished">Στην Πολυγραμμή</translation>
-    </message>
-</context>
-<context>
-    <name>LC_SplineFromPolylineOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, created entities will be placed on current layer, otherwise they will be placed into original layers.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, οι δημιουργημένες οντότητες θα τοποθετηθούν σε τρέχον στρώμα, διαφορετικά θα τοποθετηθούν σε πρωτότυπα στρώματα.</translation>
-    </message>
-    <message>
-        <source>User Current Layer</source>
-        <translation type="vanished">Τρέχον στρώμα χρήστη</translation>
-    </message>
-    <message>
-        <source>Amount of middle points of polyline segment that will be added to spline. </source>
-        <translation type="vanished">Ποσότητα των μέσων σημείων του τμήματος πολυγραμμών που θα προστεθούν στο spline.</translation>
-    </message>
-    <message>
-        <source>Defines degree of the spline</source>
-        <translation type="vanished">Καθορίζει το βαθμό του spline</translation>
-    </message>
-    <message>
-        <source>If unchecked, original polyline will be removed, otherwise it will survive.</source>
-        <translation type="vanished">Αν δεν ελεγχθεί, η αρχική πολυγραμμή θα αφαιρεθεί, αλλιώς θα επιβιώσει.</translation>
-    </message>
-    <message>
-        <source>Degree:</source>
-        <translation type="vanished">Βαθμός:</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>Mid points:</source>
-        <translation type="vanished">Ενδιάμεσα σημεία:</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be used for created entities, otherwise - original ones. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα χρησιμοποιηθούν για δημιουργημένες οντότητες, διαφορετικά - πρωτότυπες.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If checked, polyline vertexes are considered as spline points and spline by points will be created. Otherwise, they are considered as control points and orinary spline will be created.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, οι πολυγραμμικές κορυφές θεωρούνται ως σημεία spline και θα δημιουργηθούν spline ανά σημεία. Διαφορετικά, θεωρούνται ως σημεία ελέγχου και θα δημιουργηθεί orinary spline.</translation>
-    </message>
-    <message>
-        <source>Vertexes are spline points</source>
-        <translation type="vanished">Οι πλεξούδες είναι spline σημεία</translation>
     </message>
 </context>
 <context>
@@ -37812,69 +34980,6 @@ p, li { white- space: pre- wrap;}
         <location filename="../src/ui/dialogs/entity/lc_propertieseditingwidget_spline.ui" line="83"/>
         <source>Degree used to approximate spline</source>
         <translation>Βαθμός που χρησιμοποιείται για την προσέγγιση spline</translation>
-    </message>
-</context>
-<context>
-    <name>LC_StarOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>If checked, symmetric star will be created.</source>
-        <translation type="vanished">Αν ελεγχθεί, θα δημιουργηθεί συμμετρικό άστρο.</translation>
-    </message>
-    <message>
-        <source>Symmetric</source>
-        <translation type="vanished">Συμμετρικό</translation>
-    </message>
-    <message>
-        <source>Radius for inner edges.</source>
-        <translation type="vanished">Ακτίνα για εσωτερικές άκρες.</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Pick outer radius from drawing</source>
-        <translation type="vanished">Επιλέξτε εξωτερική ακτίνα από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick inner radius from drawing</source>
-        <translation type="vanished">Επιλέξτε την εσωτερική ακτίνα από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Number of rays.</source>
-        <translation type="vanished">Αριθμός ακτίνων.</translation>
-    </message>
-    <message>
-        <source>If checked, outer edges will be rounded. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, οι εξωτερικές άκρες θα στρογγυλευθούν.</translation>
-    </message>
-    <message>
-        <source>Radius Outer</source>
-        <translation type="vanished">Εξωτερική ακτίνα</translation>
-    </message>
-    <message>
-        <source>If checked, inner edges will be rounded. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, οι εσωτερικές άκρες θα στρογγυλευτούν.</translation>
-    </message>
-    <message>
-        <source>Radius Inner</source>
-        <translation type="vanished">Εσωτερική ακτίνα</translation>
-    </message>
-    <message>
-        <source>If checked, the star will be drawn as polyline. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το αστέρι θα σχεδιαστεί ως πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Radius for outer rays (edges).</source>
-        <translation type="vanished">Ακτίνα για εξωτερικές ακτίνες (ακτίνες).</translation>
     </message>
 </context>
 <context>
@@ -38765,14 +35870,6 @@ p, li { white- space: pre- wrap;}
         <translation>Settings</translation>
     </message>
     <message>
-        <source>Filtering user coordinates by name</source>
-        <translation type="vanished">Φιλτράρισμα συντεταγμένων χρήστη με όνομα</translation>
-    </message>
-    <message>
-        <source>Filter...</source>
-        <translation type="vanished">Φίλτρο...</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_ucslistwidget.cpp" line="230"/>
         <source>&lt;No name&gt;</source>
         <translation>&lt; Χωρίς όνομα&gt;</translation>
@@ -38873,33 +35970,6 @@ Warning: this action can NOT be undone!</source>
         <location filename="../src/ui/dock_widgets/ucs_list/lc_ucslistwidget.cpp" line="581"/>
         <source>Remove A&amp;ll UCSs</source>
         <translation>Αφαίρεση UCSs A&amp;ll</translation>
-    </message>
-</context>
-<context>
-    <name>LC_UCSSetOptions</name>
-    <message>
-        <source>Form</source>
-        <translation type="vanished">Μορφή</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Angle X-axis of new coordinate system</source>
-        <translation type="vanished">Γωνία άξονα X του νέου συστήματος συντεταγμένων</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Specifies whether X-Axis angle is defined by entered value or by mouse position</source>
-        <translation type="vanished">Καθορίζει αν η γωνία X-Axis ορίζεται από την καταχωρισμένη τιμή ή από τη θέση του ποντικιού</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
     </message>
 </context>
 <context>
@@ -39515,33 +36585,6 @@ Warning: this action can NOT be undone!</source>
     </message>
 </context>
 <context>
-    <name>PolylineEquidistantOptions</name>
-    <message>
-        <source>Line Relative Angle Options</source>
-        <translation type="vanished">Επιλογές γραμμής με σχετική γωνία</translation>
-    </message>
-    <message>
-        <source>Spacing:</source>
-        <translation type="vanished">Διάκενο:</translation>
-    </message>
-    <message>
-        <source>Distance from original polyline</source>
-        <translation type="vanished">Απόσταση από την αρχική πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Copies:</source>
-        <translation type="vanished">Αντίγραφα:</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>Pick spacing from drawing</source>
-        <translation type="vanished">Επιλέξτε απόσταση από το σχέδιο</translation>
-    </message>
-</context>
-<context>
     <name>QC_ActionGetEnt</name>
     <message>
         <location filename="../src/plugins/intern/qc_actiongetent.cpp" line="38"/>
@@ -39579,39 +36622,14 @@ Warning: this action can NOT be undone!</source>
 <context>
     <name>QC_ApplicationWindow</name>
     <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="839"/>
-        <source>Creating new file...</source>
-        <translation>Δημιουργία νέου αρχείου...</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="775"/>
         <source>unnamed document %1</source>
         <translation>ανώνυμο έγγραφο %1</translation>
     </message>
     <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1867"/>
-        <source>Opening recent file...</source>
-        <translation>Άνοιγμα πρόσφατου αρχείου...</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1140"/>
         <source>Loaded document: </source>
         <translation>Το έγγραφο φορτώθηκε: </translation>
-    </message>
-    <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1068"/>
-        <source>Opening aborted</source>
-        <translation>Το άνοιγμα ματαιώθηκε</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1398"/>
-        <source>Printing...</source>
-        <translation>Εκτύπωση...</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1501"/>
-        <source>Exiting application...</source>
-        <translation>Έξοδος από την εφαρμογή...</translation>
     </message>
     <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="232"/>
@@ -39624,19 +36642,9 @@ Warning: this action can NOT be undone!</source>
         <translation>Το νέο σχέδιο δημιουργήθηκε.</translation>
     </message>
     <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="265"/>
-        <source>Saving drawing...</source>
-        <translation>Αποθήκευση σχεδίου...</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="276"/>
         <source>Saved drawing: %1</source>
         <translation>Το σχέδιο αποθηκεύτηκε: %1</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1402"/>
-        <source>Printing complete</source>
-        <translation>Η εκτύπωση ολοκληρώθηκε</translation>
     </message>
     <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="771"/>
@@ -39651,11 +36659,6 @@ Please check the permissions.</source>
         <translation>Δεν είναι δυνατό το άνοιγμα του αρχείου
 %1
 Παρακαλούμε να ελέγξετε τα δικαιώματα.</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1230"/>
-        <source>Auto-saving drawing...</source>
-        <translation>Αυτόματη αποθήκευση σχεδίου...</translation>
     </message>
     <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1240"/>
@@ -39723,14 +36726,14 @@ Please check its existence and permissions.</source>
         <translation>Το αρχείο &apos;%1&apos; δεν υπάρχει. Το άνοιγμα ματαιώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="265"/>
-        <source>Saving drawing: %1</source>
-        <translation>Αποθήκευση σχεδίου:%1</translation>
-    </message>
-    <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="271"/>
         <source>Save cancelled</source>
         <translation>Η αποθήκευση ακυρώθηκε</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="952"/>
+        <source>Saved drawing: %1. Left out: %2</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="406"/>
@@ -39751,6 +36754,47 @@ Please check its existence and permissions.</source>
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="412"/>
         <source>Save %1 &amp;as...</source>
         <translation>Αποθήκευση%1 &amp; ως...</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1633"/>
+        <source>Use this only for known old LibreCAD R12–R2004 DXF files that contain UTF-8 text but declare the ANSI_1252 code page. This is not automatic encoding detection.
+
+The original opens in a separate document. Mixed encodings and raw metadata are not guaranteed to recover correctly. Review the result, then use Save As to save a corrected copy instead of replacing the original.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1640"/>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1777"/>
+        <source>Legacy LibreCAD DXF recovery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1648"/>
+        <source>Open Legacy LibreCAD DXF (UTF-8)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1649"/>
+        <source>DXF drawings (*.dxf *.DXF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1774"/>
+        <source>Legacy LibreCAD UTF-8 recovery opens DXF files only. Use ordinary Open for DWG and other formats.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1847"/>
+        <source>Loaded with legacy LibreCAD UTF-8 recovery: %1. Use Save As to save a corrected copy. Mixed encodings and raw metadata are not guaranteed to recover correctly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1851"/>
+        <source> Modelspace is empty; %n block(s) in the Blocks dock contain geometry.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/ui/main/qc_applicationwindow.cpp" line="1134"/>
@@ -39793,12 +36837,6 @@ Please check its existence and permissions.</source>
         <source>Spacebar: temporarily set snapping mode to free snapping</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../src/ui/qg_actionhandler.cpp" line="196"/>
-        <source>escape</source>
-        <comment>escape, go back from action steps</comment>
-        <translation>διαφυγή</translation>
-    </message>
 </context>
 <context>
     <name>QG_ActiveLayerName</name>
@@ -39816,6 +36854,16 @@ Please check its existence and permissions.</source>
         <location filename="../src/ui/components/status_bar/qg_activelayername.ui" line="80"/>
         <source>Current Layer</source>
         <translation>Τρέχουσα στρώση</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/status_bar/qg_activelayername.cpp" line="90"/>
+        <source>The current layer is hidden: what is drawn on it is not shown until the layer is shown.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/status_bar/qg_activelayername.cpp" line="93"/>
+        <source>The current layer is locked, as no other layer is unlocked: it cannot be selected or modified.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -39836,14 +36884,19 @@ Please check its existence and permissions.</source>
         <translation>Όνομα του τμήματος</translation>
     </message>
     <message>
-        <location filename="../src/ui/dialogs/entity/qg_blockdialog.cpp" line="77"/>
-        <source>Renaming Block</source>
-        <translation>Μετονομασία μπλοκ</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/entity/qg_blockdialog.cpp" line="78"/>
         <source>Could not name block. A block named &quot;%1&quot; already exists.</source>
         <translation>Δεν είναι δυνατή η ονομασία του μπλοκ. Ένα μπλοκ με όνομα &quot;%1&quot; υπάρχει ήδη.</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/qg_dialogfactory.cpp" line="354"/>
+        <source>Add Block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/qg_dialogfactory.cpp" line="390"/>
+        <source>Rename Block</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -39901,6 +36954,11 @@ Please check its existence and permissions.</source>
         <location filename="../src/ui/components/comboboxes/qg_colorbox.cpp" line="123"/>
         <source>Magenta</source>
         <translation>Ματζέντα</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_colorbox.cpp" line="316"/>
+        <source>Select Color</source>
+        <translation type="unfinished">Επιλογή χρώματος</translation>
     </message>
     <message>
         <location filename="../src/ui/components/comboboxes/qg_colorbox.cpp" line="112"/>
@@ -40038,12 +37096,6 @@ Please check its existence and permissions.</source>
         <source>Command history and output</source>
         <translatorcomment>&quot;δεδομένα εξόδου&quot; ή &quot;έξοδος&quot;; &quot;έξοδος&quot; μπορεί να είναι μετάφραση και του &quot;exit&quot; και του &quot;output&quot;.</translatorcomment>
         <translation>Ιστορικό εντολών και δεδομένα εξόδου</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/command_line/qg_commandwidget.cpp" line="260"/>
-        <source>escape</source>
-        <comment>escape, go back from action steps</comment>
-        <translation>διαφυγή</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/command_line/qg_commandwidget.ui" line="54"/>
@@ -40220,69 +37272,6 @@ Please check its existence and permissions.</source>
     </message>
 </context>
 <context>
-    <name>QG_DlgArc</name>
-    <message>
-        <source>Arc</source>
-        <translation type="obsolete">Τόξο</translation>
-    </message>
-    <message>
-        <source>Pen attributes</source>
-        <translation type="obsolete">Χαρακτηριστικά πένας</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>X Coordinate of arc&apos;s center</source>
-        <translation type="obsolete">X Συντεταγμένη του κέντρου του τόξου</translation>
-    </message>
-    <message>
-        <source>Y Coordinate of arc&apos;s center</source>
-        <translation type="obsolete">Y Συντεταγμένη του κέντρου του τόξου</translation>
-    </message>
-    <message>
-        <source>Defines whether arc is reversed (clockwise)</source>
-        <translation type="obsolete">Καθορίζει αν το τόξο αντιστρέφεται (δεξιά)</translation>
-    </message>
-    <message>
-        <source>Reversed</source>
-        <translation type="obsolete">Αντιστροφή</translation>
-    </message>
-    <message>
-        <source>Center (y):</source>
-        <translation type="obsolete">Κέντρο (y):</translation>
-    </message>
-    <message>
-        <source>Radius of arc</source>
-        <translation type="obsolete">Ακτίνα τόξου</translation>
-    </message>
-    <message>
-        <source>Start Angle:</source>
-        <translation type="obsolete">Γωνία εκκίνησης:</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="obsolete">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Starting angle of arc</source>
-        <translation type="obsolete">Γωνία εκκίνησης του τόξου</translation>
-    </message>
-    <message>
-        <source>End angle of arc</source>
-        <translation type="obsolete">Γωνία άκρου του τόξου</translation>
-    </message>
-    <message>
-        <source>End Angle:</source>
-        <translation type="obsolete">Γωνία τέλους:</translation>
-    </message>
-    <message>
-        <source>Center (x):</source>
-        <translation type="obsolete">Κέντρο (x):</translation>
-    </message>
-</context>
-<context>
     <name>QG_DlgAttributes</name>
     <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_attributes.ui" line="26"/>
@@ -40320,162 +37309,6 @@ This recursively modifies all entities of the Block itself.</source>
         <location filename="../src/ui/dialogs/entity/qg_dlg_attributes.cpp" line="61"/>
         <source>Pen</source>
         <translation>Στυλό</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgCircle</name>
-    <message>
-        <source>Circle</source>
-        <translation type="obsolete">Κύκλος</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="obsolete">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Radius of circle</source>
-        <translation type="obsolete">Ακτίνα του κύκλου</translation>
-    </message>
-    <message>
-        <source>Center (y):</source>
-        <translation type="obsolete">Κέντρο (y):</translation>
-    </message>
-    <message>
-        <source>Y Coordinate of circle&apos;s center</source>
-        <translation type="obsolete">Συντεταγμένη του κέντρου του κύκλου</translation>
-    </message>
-    <message>
-        <source>Center (x):</source>
-        <translation type="obsolete">Κέντρο (x):</translation>
-    </message>
-    <message>
-        <source>X Coordinate of circle&apos;s center</source>
-        <translation type="obsolete">X Συντεταγμένη του κέντρου του κύκλου</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgDimLinear</name>
-    <message>
-        <source>Linear Dimension</source>
-        <translation type="obsolete">Γραμμική διάσταση</translation>
-    </message>
-    <message>
-        <source>Layer of dimension</source>
-        <translation type="obsolete">Στρώμα διάστασης</translation>
-    </message>
-    <message>
-        <source>Pen attributes</source>
-        <translation type="obsolete">Χαρακτηριστικά πένας</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="obsolete">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation angle of dimension</source>
-        <translation type="obsolete">Γωνία περιστροφής της διάστασης</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgDimension</name>
-    <message>
-        <source>Dimension</source>
-        <translation type="obsolete">Διάσταση</translation>
-    </message>
-    <message>
-        <source>Layer of dimension</source>
-        <translation type="obsolete">Στρώμα διάστασης</translation>
-    </message>
-    <message>
-        <source>Pen attributes</source>
-        <translation type="obsolete">Χαρακτηριστικά πένας</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgEllipse</name>
-    <message>
-        <source>Ellipse</source>
-        <translation type="obsolete">Έλλειψη</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Rotation angle for the major axis of ellipse, degrees</source>
-        <translation type="obsolete">Γωνία περιστροφής για τον κύριο άξονα έλλειψης, μοίρες</translation>
-    </message>
-    <message>
-        <source>Defines whether arc is reversed</source>
-        <translation type="obsolete">Καθορίζει αν το τόξο αντιστρέφεται</translation>
-    </message>
-    <message>
-        <source>Reversed</source>
-        <translation type="obsolete">Αντιστροφή</translation>
-    </message>
-    <message>
-        <source>Center (y):</source>
-        <translation type="obsolete">Κέντρο (y):</translation>
-    </message>
-    <message>
-        <source>End angle of elliptic arc, degrees</source>
-        <translation type="obsolete">Γωνία τέλους ελλειπτικού τόξου, μοίρες</translation>
-    </message>
-    <message>
-        <source>Y Coordinate of arc&apos;s center</source>
-        <translation type="obsolete">Y Συντεταγμένη του κέντρου του τόξου</translation>
-    </message>
-    <message>
-        <source>Radius of major axis of ellipse</source>
-        <translation type="obsolete">Ακτίνα μείζονος άξονα της έλλειψης</translation>
-    </message>
-    <message>
-        <source>in degrees</source>
-        <translation type="obsolete">σε μοίρες</translation>
-    </message>
-    <message>
-        <source>Start Angle(°):</source>
-        <translation type="obsolete">Γωνία εκκίνησης (°):</translation>
-    </message>
-    <message>
-        <source>Rotation(°):</source>
-        <translation type="obsolete">Περιστροφή(°):</translation>
-    </message>
-    <message>
-        <source>Radius of minor axis of the ellipse</source>
-        <translation type="obsolete">Ακτίνα ελάσσονος άξονα της έλλειψης</translation>
-    </message>
-    <message>
-        <source>End Angle(°):</source>
-        <translation type="obsolete">Γωνία άκρου (°):</translation>
-    </message>
-    <message>
-        <source>Start angle of elliptic arc, degrees</source>
-        <translation type="obsolete">Γωνία εκκίνησης ελλειπτικού τόξου, μοίρες</translation>
-    </message>
-    <message>
-        <source>Major:</source>
-        <translation type="obsolete">Μείζονα:</translation>
-    </message>
-    <message>
-        <source>Minor:</source>
-        <translation type="obsolete">Μικρό:</translation>
-    </message>
-    <message>
-        <source>X Coordinate of ellipse&apos;s center</source>
-        <translation type="obsolete">X Συντεταγμένη του κέντρου της έλλειψης</translation>
-    </message>
-    <message>
-        <source>Center (x):</source>
-        <translation type="obsolete">Κέντρο (x):</translation>
     </message>
 </context>
 <context>
@@ -40550,80 +37383,10 @@ This recursively modifies all entities of the Block itself.</source>
         <source>Hatched area</source>
         <translation>Εκτρεφόμενη περιοχή</translation>
     </message>
-</context>
-<context>
-    <name>QG_DlgImage</name>
     <message>
-        <source>Image</source>
-        <translation type="obsolete">Εικόνα</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="obsolete">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Height:</source>
-        <translation type="obsolete">Ύψος:</translation>
-    </message>
-    <message>
-        <source>Width of image</source>
-        <translation type="obsolete">Πλάτος της εικόνας</translation>
-    </message>
-    <message>
-        <source>X coordinate of insertion point</source>
-        <translation type="obsolete">Συντεταγμένη Χ του σημείου εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Resolution (dots per inch)</source>
-        <translation type="obsolete">Ανάλυση (βούλες ανά ίντσα)</translation>
-    </message>
-    <message>
-        <source>Path to image file</source>
-        <translation type="obsolete">Διαδρομή στο αρχείο εικόνας</translation>
-    </message>
-    <message>
-        <source>Scaling factor</source>
-        <translation type="obsolete">Συντελεστής κλιμάκωσης</translation>
-    </message>
-    <message>
-        <source>Size (px):</source>
-        <translation type="obsolete">Μέγεθος (px):</translation>
-    </message>
-    <message>
-        <source>Rotation angle</source>
-        <translation type="obsolete">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Y coordinate of insertion point</source>
-        <translation type="obsolete">Y συντεταγμένη του σημείου εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Scale:</source>
-        <translation type="obsolete">Κλίμακα:</translation>
-    </message>
-    <message>
-        <source>Size of image in pixels</source>
-        <translation type="obsolete">Μέγεθος της εικόνας σε εικονοστοιχεία</translation>
-    </message>
-    <message>
-        <source>DPI</source>
-        <translation type="obsolete">DPI</translation>
-    </message>
-    <message>
-        <source>Width:</source>
-        <translation type="obsolete">Πλάτος:</translation>
-    </message>
-    <message>
-        <source>Height of image</source>
-        <translation type="obsolete">Ύψος της εικόνας</translation>
-    </message>
-    <message>
-        <source>Select an image file</source>
-        <translation type="obsolete">Επιλέξτε ένα αρχείο εικόνας</translation>
+        <location filename="../src/ui/dialogs/entity/qg_dlg_hatch.cpp" line="213"/>
+        <source>Preview: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -40649,139 +37412,9 @@ This recursively modifies all entities of the Block itself.</source>
         <translation>Γλώσσα διεπαφής:</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:700;&quot;&gt;Welcome to LibreCAD&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Please choose the unit you want to use for new drawings and your preferred language for Ui and Command.&lt;br/&gt;&lt;/p&gt;&lt;p&gt;You can changes these settings later.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">#Μεγάλο βάρος γραμματοσειράς: 700 #Καλώς ήρθατε στο LibreCAD Μπορείτε να αλλάξετε αυτές τις ρυθμίσεις αργότερα</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/main/qg_dlginitial.ui" line="187"/>
         <source>Command Language:</source>
         <translation>Γλώσσα εντολών:</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgInsert</name>
-    <message>
-        <source>Insert</source>
-        <translation type="obsolete">Εισαγωγή</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Insertion point (y):</source>
-        <translation type="obsolete">Σημείο εισαγωγής (y):</translation>
-    </message>
-    <message>
-        <source>Insertion point (x):</source>
-        <translation type="obsolete">Σημείο εισαγωγής (x):</translation>
-    </message>
-    <message>
-        <source>Amount of rows for copies</source>
-        <translation type="obsolete">Ποσό σειρών για αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Rotation angle</source>
-        <translation type="obsolete">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Spacing between columns</source>
-        <translation type="obsolete">Απόσταση μεταξύ των στηλών</translation>
-    </message>
-    <message>
-        <source>Scaling factor by X axis</source>
-        <translation type="obsolete">Συντελεστής κλιμάκωσης κατά άξονα Χ</translation>
-    </message>
-    <message>
-        <source>X coordinate of insertion point</source>
-        <translation type="obsolete">Συντεταγμένη Χ του σημείου εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Spacing between rows</source>
-        <translation type="obsolete">Απόσταση μεταξύ των γραμμών</translation>
-    </message>
-    <message>
-        <source>Amount of columns for copies</source>
-        <translation type="obsolete">Ποσό στηλών για αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Scaling factor by Y axis</source>
-        <translation type="obsolete">Συντελεστής κλιμάκωσης κατά άξονα Y</translation>
-    </message>
-    <message>
-        <source>Scale Y:</source>
-        <translation type="obsolete">Κλίμακα Y:</translation>
-    </message>
-    <message>
-        <source>Rows:</source>
-        <translation type="obsolete">Γραμμές:</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="obsolete">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Y coordinate of insertion point</source>
-        <translation type="obsolete">Y συντεταγμένη του σημείου εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Row Spacing:</source>
-        <translation type="obsolete">Απόσταση γραμμής:</translation>
-    </message>
-    <message>
-        <source>Columns:</source>
-        <translation type="obsolete">Στήλες:</translation>
-    </message>
-    <message>
-        <source>Scale X:</source>
-        <translation type="obsolete">Κλίμακα X:</translation>
-    </message>
-    <message>
-        <source>Column Spacing:</source>
-        <translation type="obsolete">Απόσταση στήλης:</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgLine</name>
-    <message>
-        <source>Line</source>
-        <translation type="obsolete">Γραμμή</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>End point (x):</source>
-        <translation type="obsolete">Τελικό σημείο (x):</translation>
-    </message>
-    <message>
-        <source>Ending point X coordinate</source>
-        <translation type="obsolete">Συντονισμός σημείου τέλους X</translation>
-    </message>
-    <message>
-        <source>Ending point Y coordinate</source>
-        <translation type="obsolete">Συντονισμός σημείου τέλους Υ</translation>
-    </message>
-    <message>
-        <source>End point (y):</source>
-        <translation type="obsolete">Τελικό σημείο (y):</translation>
-    </message>
-    <message>
-        <source>Start point (y):</source>
-        <translation type="obsolete">Σημείο εκκίνησης (y):</translation>
-    </message>
-    <message>
-        <source>Starting point Y coordinate</source>
-        <translation type="obsolete">Συντεταγμένη αφετηρίας Y</translation>
-    </message>
-    <message>
-        <source>Start point (x):</source>
-        <translation type="obsolete">Σημείο εκκίνησης (x):</translation>
-    </message>
-    <message>
-        <source>Starting point X coordinate</source>
-        <translation type="obsolete">Συντεταγμένη αφετηρίας X</translation>
     </message>
 </context>
 <context>
@@ -40953,10 +37586,6 @@ This recursively modifies all entities of the Block itself.</source>
         <translation>Εισαγωγή συμβόλου</translation>
     </message>
     <message>
-        <source>Symbol insertion</source>
-        <translation type="vanished">Εισαγωγή συμβόλου</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_mtext.ui" line="881"/>
         <source>Degree (°)</source>
         <translation>Μοίρα (°)</translation>
@@ -41005,10 +37634,6 @@ This recursively modifies all entities of the Block itself.</source>
         <location filename="../src/ui/dialogs/entity/qg_dlg_mtext.ui" line="929"/>
         <source>Pound (£)</source>
         <translation>Λίρα (£)</translation>
-    </message>
-    <message>
-        <source>Yen (¥)</source>
-        <translation type="vanished">Γιεν (¥)</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_mtext.ui" line="872"/>
@@ -41644,115 +38269,6 @@ This recursively modifies all entities of the Block itself.</source>
         <location filename="../src/ui/dialogs/entity/qg_dlg_mtext.cpp" line="250"/>
         <source>Pen</source>
         <translation>Στυλό</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgMirror</name>
-    <message>
-        <source>Mirroring Options</source>
-        <translation type="vanished">Επιλογές συμμετρίας</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>&amp;Delete Original</source>
-        <translation type="vanished">&amp;Διαγραφή αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Keep Original</source>
-        <translation type="vanished">Δια&amp;τήρηση Αρχικού</translation>
-    </message>
-    <message>
-        <source>Use current &amp;attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων &amp;χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Use current &amp;layer</source>
-        <translation type="vanished">Χρήση τρέχουσας &amp;στρώσης</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgMove</name>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>&amp;Delete Original</source>
-        <translation type="vanished">&amp;Διαγραφή αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Keep Original</source>
-        <translation type="vanished">Δια&amp;τήρηση Αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Multiple Copies</source>
-        <translation type="vanished">&amp;Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Use current &amp;attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων &amp;χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Use current &amp;layer</source>
-        <translation type="vanished">Χρήση τρέχουσας &amp;στρώσης</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-    <message>
-        <source>Move/Copy Options</source>
-        <translation type="vanished">Επιλογές μετακίνησης/αντιγραφής</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgMoveRotate</name>
-    <message>
-        <source>Move/Rotate Options</source>
-        <translation type="vanished">Επιλογές μετακίνησης/περιστροφής</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>&amp;Angle (a):</source>
-        <translation type="vanished">&amp;Γωνία (a):</translation>
-    </message>
-    <message>
-        <source>Use current &amp;attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων &amp;χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Use current &amp;layer</source>
-        <translation type="vanished">Χρήση τρέχουσας &amp;στρώσης</translation>
-    </message>
-    <message>
-        <source>&amp;Delete Original</source>
-        <translation type="vanished">&amp;Διαγραφή αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Keep Original</source>
-        <translation type="vanished">Δια&amp;τήρηση Αρχικού</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation type="vanished">Ctrl+S</translation>
     </message>
 </context>
 <context>
@@ -44772,10 +41288,6 @@ This recursively modifies all entities of the Block itself.</source>
         <translation>Σχετικός μηδενικός δείκτης</translation>
     </message>
     <message>
-        <source>Behavior</source>
-        <translation type="vanished">Συμπεριφορά</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="1021"/>
         <source>Type of grid to be drawn</source>
         <translation>Τύπος καννάβου προς ανάσυρση</translation>
@@ -44917,6 +41429,16 @@ This recursively modifies all entities of the Block itself.</source>
         <translation>Χωριστό μενού ανά οντότητα</translation>
     </message>
     <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="102"/>
+        <source>Marks the drawing&apos;s range along each scrollbar where it lies outside the view, and gives the ranges and the drawing&apos;s distance in the scrollbar&apos;s tooltip, so the drawing can be found again when panned far away</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="105"/>
+        <source>Show drawing extents on scrollbars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="376"/>
         <source>Overlay selection box boundary line type (normal mode)</source>
         <translation type="unfinished"></translation>
@@ -44949,6 +41471,26 @@ This recursively modifies all entities of the Block itself.</source>
     <message>
         <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="2034"/>
         <source> Snap to grid lines if &quot;Snap to Grid&quot; is active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="2057"/>
+        <source>If selected, toolbar angle snap only snaps when the cursor is near the configured angle step.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="2060"/>
+        <source>Soft Angle Snap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="2067"/>
+        <source>Soft Snap sensitivity:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="2074"/>
+        <source>Maximum angular distance from the angle step before toolbar angle snap is applied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -45264,38 +41806,6 @@ This recursively modifies all entities of the Block itself.</source>
         <translation>Αυτόματη αποθήκευση σχεδίων</translation>
     </message>
     <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4935"/>
-        <source>#</source>
-        <translation>#</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4940"/>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5009"/>
-        <source>~</source>
-        <translation>~</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4945"/>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5019"/>
-        <source>_</source>
-        <translation>_</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4950"/>
-        <source>__</source>
-        <translation>__</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4955"/>
-        <source>lcauto_</source>
-        <translation>ικαούτο</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4960"/>
-        <source>autosaved_</source>
-        <translation>αυτόματη αποθήκευση</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="4984"/>
         <source>Auto-save file name prefix:</source>
         <translation>Πρόθεμα ονόματος αρχείου αυτόματης αποθήκευσης:</translation>
@@ -45306,34 +41816,9 @@ This recursively modifies all entities of the Block itself.</source>
         <translation>Επίθεμα ονόματος αρχείου αντιγράφων ασφαλείας:</translation>
     </message>
     <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5014"/>
-        <source>$$</source>
-        <translation>$$</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5024"/>
-        <source>_backup</source>
-        <translation>ενισχύσεις</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5029"/>
-        <source>_bak</source>
-        <translation>μπακ</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5034"/>
-        <source>.bak</source>
-        <translation>.bak</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5039"/>
-        <source>.backup</source>
-        <translation>. backup</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5044"/>
-        <source>.lcb</source>
-        <translation>.lcb</translation>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5114"/>
+        <source>Hide backup and autosave files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5111"/>
@@ -45378,6 +41863,71 @@ This recursively modifies all entities of the Block itself.</source>
     <message>
         <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5556"/>
         <source>Promote command in Cmd widget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5635"/>
+        <source>Draw Fast Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5641"/>
+        <source>Opening marker depth:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5648"/>
+        <source>Length of the perpendicular tick marks drawn on each side of a wall opening (Draw Fast &apos;o&apos; / &apos;opening&apos; command).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5670"/>
+        <source>Window offset width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5677"/>
+        <source>Distance between the wall line and the inner window line in Draw Fast window mode (&apos;w&apos; / &apos;window&apos; command).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5699"/>
+        <source>Door thickness:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5706"/>
+        <source>Thickness of the door slab in Draw Fast door mode. Set to 0 for a single-line door leaf.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5728"/>
+        <source>Door swing angle:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5735"/>
+        <source>Arc sweep angle for the door swing in Draw Fast door mode. 90 degrees draws a quarter-circle; 45 degrees draws a shallower arc.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5752"/>
+        <source>Door design:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5759"/>
+        <source>Door symbol style. &apos;Swing only&apos; draws the leaf and arc. &apos;Swing with opening line&apos; also draws a straight line across the full door opening.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5763"/>
+        <source>Swing only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/settings/options_general/qg_dlgoptionsgeneral.ui" line="5768"/>
+        <source>Swing with opening line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -45831,233 +42381,6 @@ so default step value required for baking</source>
     </message>
 </context>
 <context>
-    <name>QG_DlgOptionsVariables</name>
-    <message>
-        <source>Code</source>
-        <translation type="obsolete">Κωδικός</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Τιμή</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Ακύρωση</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgPoint</name>
-    <message>
-        <source>Point</source>
-        <translation type="obsolete">Σημείο</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Position (y):</source>
-        <translation type="obsolete">Θέση (y):</translation>
-    </message>
-    <message>
-        <source>Position of point by Y coordinate</source>
-        <translation type="obsolete">Θέση του σημείου κατά συντεταγμένη Y</translation>
-    </message>
-    <message>
-        <source>Position (x):</source>
-        <translation type="obsolete">Θέση (x):</translation>
-    </message>
-    <message>
-        <source>Position of point by X coordinate</source>
-        <translation type="obsolete">Θέση του σημείου κατά συντεταγμένη X</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgPolyline</name>
-    <message>
-        <source>Polyline</source>
-        <translation type="obsolete">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Defines whether polyline is closed contour</source>
-        <translation type="obsolete">Καθορίζει αν η πολυγραμμή είναι κλειστό περίγραμμα</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation type="obsolete">Κλειστό</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgRotate</name>
-    <message>
-        <source>Rotation Options</source>
-        <translation type="vanished">Επιλογές περιστροφής</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>&amp;Delete Original</source>
-        <translation type="vanished">&amp;Διαγραφή αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Keep Original</source>
-        <translation type="vanished">Δια&amp;τήρηση αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Multiple Copies:</source>
-        <translation type="vanished">&amp;Πολλαπλά αντίγραφα:</translation>
-    </message>
-    <message>
-        <source>&amp;Angle (a):</source>
-        <translation type="vanished">&amp;Γωνία (a):</translation>
-    </message>
-    <message>
-        <source>Use current &amp;attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων &amp;χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Use current &amp;layer</source>
-        <translation type="vanished">Χρήση τρέχουσας &amp;στρώσης</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgRotate2</name>
-    <message>
-        <source>Rotate Two Options</source>
-        <translation type="vanished">Επιλογές περιστροφής δύο</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>&amp;Delete Original</source>
-        <translation type="vanished">&amp;Διαγραφή αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Keep Original</source>
-        <translation type="vanished">Δια&amp;τήρηση αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Multiple Copies</source>
-        <translation type="vanished">&amp;Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Angle (&amp;a):</source>
-        <translation type="vanished">Γωνία (&amp;α):</translation>
-    </message>
-    <message>
-        <source>Angle (&amp;b):</source>
-        <translation type="vanished">Γωνία (&amp;β):</translation>
-    </message>
-    <message>
-        <source>Use current &amp;attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων &amp;χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Use current &amp;layer</source>
-        <translation type="vanished">Χρήση τρέχουσας &amp;στρώσης</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgScale</name>
-    <message>
-        <source>Scaling Options</source>
-        <translation type="vanished">Επιλογές προσαρμογής κλίμακας</translation>
-    </message>
-    <message>
-        <source>Number of copies</source>
-        <translation type="vanished">Αριθμός αντιγράφων</translation>
-    </message>
-    <message>
-        <source>Use current &amp;attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων &amp;χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Use current &amp;layer</source>
-        <translation type="vanished">Χρήση τρέχουσας &amp;στρώσης</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Find the scaling ratios around the center by a reference point and a target point.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">Απόδοση Διαλόγων/Συγχρονισμός: Βρείτε τις αναλογίες κλιμάκωσης γύρω από το κέντρο από ένα σημείο αναφοράς και ένα σημείο-στόχο. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&amp;Delete Original</source>
-        <translation type="vanished">&amp;Διαγραφή αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Keep Original</source>
-        <translation type="vanished">Δια&amp;τήρηση αρχικού</translation>
-    </message>
-    <message>
-        <source>&amp;Multiple Copies</source>
-        <translation type="vanished">&amp;Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="vanished">...</translation>
-    </message>
-    <message>
-        <source>Scale by the same factor at both x- and y- directions</source>
-        <translatorcomment>scale (v.) -&gt; εφαρμογή κλίμακας;</translatorcomment>
-        <translation type="vanished">Εφαρμογή κλίμακας κατά τον ίδιο παράγοντα στις x- και y- διευθύνσεις</translation>
-    </message>
-    <message>
-        <source>Isotropic Scaling</source>
-        <translatorcomment>scale (v.) -&gt; εφαρμογή κλίμακας;</translatorcomment>
-        <translation type="vanished">Ισοτροπική εφαρμογή κλίμακας</translation>
-    </message>
-    <message>
-        <source>X</source>
-        <translation type="vanished">X</translation>
-    </message>
-    <message>
-        <source>Y</source>
-        <translation type="vanished">Y</translation>
-    </message>
-</context>
-<context>
-    <name>QG_DlgSpline</name>
-    <message>
-        <source>Spline</source>
-        <translation type="obsolete">Σπλάιν</translation>
-    </message>
-    <message>
-        <source>Geometry</source>
-        <translation type="obsolete">Γεωμετρία</translation>
-    </message>
-    <message>
-        <source>Degree:</source>
-        <translation type="obsolete">Βαθμός:</translation>
-    </message>
-    <message>
-        <source>Defines whether spline defines closed contour</source>
-        <translation type="obsolete">Καθορίζει αν το spline ορίζει κλειστό περίγραμμα</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation type="obsolete">Κλειστό</translation>
-    </message>
-    <message>
-        <source>Degree used to approximate spline</source>
-        <translation type="obsolete">Βαθμός που χρησιμοποιείται για την προσέγγιση spline</translation>
-    </message>
-</context>
-<context>
     <name>QG_DlgText</name>
     <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="20"/>
@@ -46240,13 +42563,29 @@ so default step value required for baking</source>
         <translation>Κείμενο για εισαγωγή</translation>
     </message>
     <message>
+        <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="151"/>
+        <source>Text Direction</source>
+        <translation type="unfinished">Κατεύθυνση κειμένου</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="155"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="161"/>
+        <source>Left to Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="166"/>
+        <source>Right to Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="197"/>
         <source>Layer of text</source>
         <translation>Στρώση του κειμένου</translation>
-    </message>
-    <message>
-        <source>Obligue of text</source>
-        <translation type="vanished">Λήξη κειμένου</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="261"/>
@@ -46844,10 +43183,6 @@ so default step value required for baking</source>
         <translation>Καταχωρημένο (®)</translation>
     </message>
     <message>
-        <source>Yen (¥)</source>
-        <translation type="vanished">Γιεν (¥)</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="178"/>
         <source>Layer:</source>
         <translation>Στρώση:</translation>
@@ -46861,10 +43196,6 @@ so default step value required for baking</source>
         <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="268"/>
         <source>Angle:</source>
         <translation>Γωνία:</translation>
-    </message>
-    <message>
-        <source>Oblique:</source>
-        <translation type="vanished">Λοξή γραφή:</translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/entity/qg_dlg_text.ui" line="317"/>
@@ -46981,6 +43312,21 @@ so default step value required for baking</source>
         <translation>Ανταλλαγή Σχεδίων DXF 2007 %1</translation>
     </message>
     <message>
+        <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="148"/>
+        <source>Drawing Exchange DXF 2018 %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="149"/>
+        <source>Drawing Exchange DXF 2013 %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="150"/>
+        <source>Drawing Exchange DXF 2010 %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="134"/>
         <source>Drawing Exchange DXF 2004 %1</source>
         <translation>Ανταλλαγή Σχεδίων DXF 2004 %1</translation>
@@ -46989,6 +43335,11 @@ so default step value required for baking</source>
         <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="136"/>
         <source>Drawing Exchange DXF R14 %1</source>
         <translation>Ανταλλαγή σχεδίων DXF R14 %1</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="164"/>
+        <source>ESRI Shapefile %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="149"/>
@@ -47021,6 +43372,101 @@ so default step value required for baking</source>
         <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="248"/>
         <source>Untitled</source>
         <translation>Χωρίς τίτλο</translation>
+    </message>
+</context>
+<context>
+    <name>QG_GraphicView</name>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1352"/>
+        <source>View X %1..%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1353"/>
+        <source>View Y %1..%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1358"/>
+        <source>The drawing is empty · %1</source>
+        <comment>scrollbar tooltip: %1 is the view&apos;s range</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1365"/>
+        <source>Drawing X %1..%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1366"/>
+        <source>Drawing Y %1..%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1372"/>
+        <source>less than 0.1 view widths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1372"/>
+        <source>less than 0.1 view heights</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1376"/>
+        <source>≈%1 view widths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1376"/>
+        <source>≈%1 view heights</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1381"/>
+        <source>view spans the drawing&apos;s X range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1381"/>
+        <source>view spans the drawing&apos;s Y range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1384"/>
+        <source>drawing&apos;s X range is in view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1384"/>
+        <source>drawing&apos;s Y range is in view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1388"/>
+        <source>drawing&apos;s X range is %1 to the left (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1389"/>
+        <source>drawing&apos;s Y range is %1 down (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1394"/>
+        <source>drawing&apos;s X range is %1 to the right (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1395"/>
+        <source>drawing&apos;s Y range is %1 up (%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/view/qg_graphicview.cpp" line="1399"/>
+        <source>%1 · %2 · %3</source>
+        <comment>scrollbar tooltip: the drawing&apos;s range, the view&apos;s range, where the drawing is</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -47235,6 +43681,26 @@ The contents of a Construction Layer should not appear in printout.</source>
     </message>
     <message>
         <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="98"/>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="99"/>
+        <source>Hidden (tiny)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="100"/>
+        <source>Hidden (small)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="101"/>
+        <source>Hidden (large)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="98"/>
         <source>Dash Dot</source>
         <translation>Παύλα Τελεία</translation>
     </message>
@@ -47277,6 +43743,26 @@ The contents of a Construction Layer should not appear in printout.</source>
         <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="109"/>
         <source>Center (large)</source>
         <translation>Αξονική (μεγάλη)</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="114"/>
+        <source>Phantom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="115"/>
+        <source>Phantom (tiny)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="116"/>
+        <source>Phantom (small)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="117"/>
+        <source>Phantom (large)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/components/comboboxes/qg_linetypebox.cpp" line="110"/>
@@ -47384,21 +43870,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>QG_PrintPreviewOptions</name>
-    <message>
-        <source>Invalid scale provided</source>
-        <translation type="vanished">Μη έγκυρη κλίμακα παρεχόμενη</translation>
-    </message>
-    <message>
-        <source>Paper scale factor larger than max print ratio</source>
-        <translation type="vanished">Συντελεστής κλίμακας χαρτιού μεγαλύτερος από τον μέγιστο λόγο εκτύπωσης</translation>
-    </message>
-    <message>
-        <source>Paper scale factor smaller than min print ratio</source>
-        <translation type="vanished">Συντελεστής κλίμακας χαρτιού μικρότερος από τον ελάχιστο λόγο εκτύπωσης</translation>
-    </message>
-</context>
-<context>
     <name>QG_RecentFiles</name>
     <message>
         <location filename="../src/ui/main/support/qg_recentfiles.cpp" line="183"/>
@@ -47465,10 +43936,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../src/ui/components/toolbars/qg_snaptoolbar.cpp" line="227"/>
         <source>World</source>
         <translation>Κόσμος</translation>
-    </message>
-    <message>
-        <source>Snap</source>
-        <translation type="obsolete">Προσαρμογή</translation>
     </message>
 </context>
 <context>
@@ -47671,12 +44138,6 @@ Please specify a different value.</source>
         <translation>Αφαίρεση κενών στρώσεων</translation>
     </message>
     <message>
-        <source>Layer(s) without entities found, yet they are filtered and not visible.
-Clear filtering mask and repeat.</source>
-        <translation type="vanished">Στρώμα(-α) χωρίς οντότητες που βρέθηκαν, αλλά φιλτράρονται και δεν είναι ορατά.
-Καθαρίστε τη μάσκα φιλτραρίσματος και επαναλάβετε.</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="963"/>
         <source>Layer(s) without entities found, yet they are filtered and not visible.
 
@@ -47738,14 +44199,6 @@ If Yes - entities with &quot;By Layer&quot; pens will look on new layer exactly 
 
 If No - &quot;By Layer&quot; values remains and so pen of target layer will define pen for such entities.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Replace &quot;By Layer&quot; value to source layers values?
-If Yes - entities with &quot;By Layer&quot; pens will look on new layer exactly as on previous layers and &quot;By Layer&quot; value will be replaced by resolved pens.
-If No - &quot;By Layer&quot; values remains and so pen of target layer will define pen for such entities.</source>
-        <translation type="vanished">Αντικατάσταση της τιμής &quot;Ανά Στρώμα&quot; με τις τιμές των αρχικών στρωμάτων;
-Εάν επιλέξετε Ναι, οι οντότητες με γραμμές &quot;Ανά Στρώμα&quot; θα εμφανίζονται στο νέο στρώμα ακριβώς όπως στα προηγούμενα στρώματα και η τιμή &quot;Ανά Στρώμα&quot; θα αντικατασταθεί με τις αντίστοιχες γραμμές.
-Εάν επιλέξετε Όχι, οι τιμές &quot;Ανά Στρώμα&quot; θα παραμείνουν και, επομένως, η γραμμή του στοχευμένου στρώματος θα καθορίζει τη γραμμή για αυτές τις οντότητες.</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/layers_tree/lc_layertreewidget.cpp" line="1805"/>
@@ -47860,6 +44313,11 @@ Please specify a different value.</source>
 Do you want to replace it?</source>
         <translation>Το %1 υπάρχει ήδη.
 Θέλετε να το αντικαταστήσετε;</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="496"/>
+        <source>ESRI Shapefile %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/dialogs/file/qg_filedialog.cpp" line="500"/>
@@ -48190,10 +44648,6 @@ Do you want to replace it?</source>
         <translation>Μορφή αρχείου εικόνας με ετικέτες</translation>
     </message>
     <message>
-        <source>Old Drawing Exchange %1</source>
-        <translation type="vanished">Παλιά μορφή ανταλλαγής σχεδίων %1</translation>
-    </message>
-    <message>
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="1003"/>
         <source>no DXF/DWG error</source>
         <comment>RS_FilterDXFRW</comment>
@@ -48228,11 +44682,6 @@ Do you want to replace it?</source>
         <source>error reading DXF/DWG file header</source>
         <comment>RS_FilterDXFRW</comment>
         <translation>σφάλμα ανάγνωσης κεφαλίδας αρχείων DXF/DWG</translation>
-    </message>
-    <message>
-        <source>error reading DXF/DWG header dara</source>
-        <comment>RS_FilterDXFRW</comment>
-        <translation type="vanished">σφάλμα ανάγνωσης DXF/DWG header dara</translation>
     </message>
     <message>
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="1024"/>
@@ -48283,10 +44732,6 @@ Do you want to replace it?</source>
         <translation>ανάγνωση σφάλματος κώδικα DXF/DWG</translation>
     </message>
     <message>
-        <source>Opened dwg file version %1.</source>
-        <translation type="vanished">Έκδοση του ανοιγμένου αρχείου dwg %1.</translation>
-    </message>
-    <message>
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="1022"/>
         <source>error reading DXF/DWG header data</source>
         <comment>RS_FilterDXFRW</comment>
@@ -48311,6 +44756,22 @@ Do you want to replace it?</source>
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="1127"/>
         <source>entities</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="4365"/>
+        <source>DWG load: the block table lists %n block record(s) that the file does not contain (erased). They were skipped.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="4373"/>
+        <source>DWG load: %n entity(ies) belonged to block records that no longer exist (erased) and were skipped.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="1151"/>
@@ -48351,6 +44812,24 @@ Do you want to replace it?</source>
     <message>
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="1654"/>
         <source>XREF load failed for block &quot;%1&quot;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="17114"/>
+        <source>%1 object(s) read from another DXF version, which this version cannot hold</source>
+        <comment>RS_FilterDXFRW</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="17123"/>
+        <source>annotation scale or column data of %1 multi-line attribute(s)</source>
+        <comment>RS_FilterDXFRW</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="17130"/>
+        <source>%1 object(s) DWG cannot hold</source>
+        <comment>RS_FilterDXFRW</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -48424,26 +44903,6 @@ Do you want to replace it?</source>
         <translation>Η διαγράμμιση απέτυχε εξαιτίας ενός διακένου=%1 μεταξύ (%2, %3) και (%4, %5)</translation>
     </message>
     <message>
-        <location filename="../src/lib/fileio/rs_fileio.cpp" line="85"/>
-        <source>DWG support is not complete!</source>
-        <translation>Η υποστήριξη DWG δεν έχει ολοκληρωθεί!</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/fileio/rs_fileio.cpp" line="87"/>
-        <source>If this file fails to open try an older DWG format</source>
-        <translation>Αν αυτό το αρχείο αποτύχει να ανοίξει δοκιμάστε μια παλαιότερη μορφή DWG</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/fileio/rs_fileio.cpp" line="88"/>
-        <source>or try to find a converter to make it a DXF file.</source>
-        <translation>ή προσπαθήστε να βρείτε ένα μετατροπέα για να το κάνει ένα αρχείο DXF.</translation>
-    </message>
-    <message>
-        <location filename="../src/lib/fileio/rs_fileio.cpp" line="91"/>
-        <source>Information</source>
-        <translation>Πληροφορίες</translation>
-    </message>
-    <message>
         <location filename="../src/lib/fileio/rs_fileio.cpp" line="104"/>
         <source>Error</source>
         <comment>fileImport</comment>
@@ -48477,6 +44936,12 @@ Do you want to replace it?</source>
         <location filename="../src/lib/fileio/rs_fileio.cpp" line="125"/>
         <source>Warning</source>
         <translation>Προειδοποίηση</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/fileio/rs_fileio.cpp" line="218"/>
+        <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="11655"/>
+        <source>The original legacy DXF is protected. Save the recovered drawing to a different file.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lib/filters/rs_filterdxfrw.cpp" line="12453"/>
@@ -49713,23 +46178,6 @@ Do you want to replace it?</source>
         <translation>Θα πρέπει να εισαγάγετε μια απόσταση πρώτα.</translation>
     </message>
     <message>
-        <location filename="../src/ui/dock_widgets/command_line/qg_commandedit.cpp" line="275"/>
-        <source>cal </source>
-        <comment>command to trigger cli calculator</comment>
-        <translation>λέ</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/command_line/qg_commandedit.cpp" line="276"/>
-        <source>calculate </source>
-        <comment>command to trigger cli calculator</comment>
-        <translation>υπολογισμός</translation>
-    </message>
-    <message>
-        <location filename="../src/ui/dock_widgets/command_line/qg_commandedit.cpp" line="311"/>
-        <source>cal</source>
-        <translation>λέ</translation>
-    </message>
-    <message>
         <location filename="../src/ui/dock_widgets/command_line/qg_commandedit.cpp" line="317"/>
         <source>Calculator mode: On</source>
         <translation>Λειτουργία υπολογισμού: σε λειτουργία</translation>
@@ -49990,11 +46438,6 @@ Do you want to replace it?</source>
         <translation>mpoint</translation>
     </message>
     <message>
-        <source>criclebyarc</source>
-        <comment>draw circle by arc</comment>
-        <translation type="vanished">κρικλεμπυρκ</translation>
-    </message>
-    <message>
         <location filename="../src/cmd/lc_commandItems.h" line="218"/>
         <source>cba</source>
         <comment>draw circle by arc</comment>
@@ -50095,6 +46538,18 @@ Do you want to replace it?</source>
         <source>parallel</source>
         <comment>create parallel</comment>
         <translation>παράλληλη</translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="145"/>
+        <source>dfast</source>
+        <comment>draw fast</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="146"/>
+        <source>df</source>
+        <comment>draw fast</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cmd/lc_commandItems.h" line="266"/>
@@ -50811,16 +47266,34 @@ Do you want to replace it?</source>
         <translation>μοδμόβη</translation>
     </message>
     <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="751"/>
+        <source>rotate</source>
+        <comment>modify - rotate</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/cmd/lc_commandItems.h" line="724"/>
         <source>modrotate</source>
         <comment>modify - rotate</comment>
         <translation>μοτροτάτη</translation>
     </message>
     <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="758"/>
+        <source>scale</source>
+        <comment>modify - scale</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/cmd/lc_commandItems.h" line="730"/>
         <source>modscale</source>
         <comment>modify - scale</comment>
         <translation>κλίμακα modscale</translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="765"/>
+        <source>mirror</source>
+        <comment>modify -  mirror</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cmd/lc_commandItems.h" line="736"/>
@@ -50863,6 +47336,12 @@ Do you want to replace it?</source>
         <source>md</source>
         <comment>modify -  revert direction</comment>
         <translation>md</translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="791"/>
+        <source>trim</source>
+        <comment>modify - trim (extend)</comment>
+        <translation type="unfinished">κόψιμο</translation>
     </message>
     <message>
         <location filename="../src/cmd/lc_commandItems.h" line="761"/>
@@ -50925,10 +47404,22 @@ Do you want to replace it?</source>
         <translation>φιλέτο</translation>
     </message>
     <message>
-        <location filename="../src/cmd/lc_commandItems.h" line="799"/>
+        <location filename="../src/cmd/lc_commandItems.h" line="813"/>
+        <source>o</source>
+        <comment>modify - offset</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="820"/>
         <source>bevel</source>
-        <comment>modify - fillet</comment>
-        <translation>βεβέλ</translation>
+        <comment>modify - bevel</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="821"/>
+        <source>chamfer</source>
+        <comment>modify - bevel</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cmd/lc_commandItems.h" line="804"/>
@@ -50965,6 +47456,12 @@ Do you want to replace it?</source>
         <source>xt</source>
         <comment>explode text strings</comment>
         <translation>xt</translation>
+    </message>
+    <message>
+        <location filename="../src/cmd/lc_commandItems.h" line="870"/>
+        <source>explode</source>
+        <comment>explode block/polyline into entities</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/cmd/lc_commandItems.h" line="838"/>
@@ -51722,26 +48219,6 @@ Do you want to replace it?</source>
         <translation>χρήση:</translation>
     </message>
     <message>
-        <source> [options] &lt;dxf_files&gt;</source>
-        <translation type="vanished">[options] [επιλογές] &lt;dxf files&gt;</translation>
-    </message>
-    <message>
-        <source> *.dxf</source>
-        <translation type="vanished">*.dxf</translation>
-    </message>
-    <message>
-        <source>-- print all dxf files to pdf files with the same names.</source>
-        <translation type="vanished">-- εκτύπωση όλων των αρχείων dxf σε αρχεία pdf με τα ίδια ονόματα.</translation>
-    </message>
-    <message>
-        <source> -o some.pdf *.dxf</source>
-        <translation type="vanished">-o κάποια.pdf *.dxf</translation>
-    </message>
-    <message>
-        <source>-- print all dxf files to &apos;some.pdf&apos; file.</source>
-        <translation type="vanished">-- εκτύπωση όλων των αρχείων dxf σε &apos;ορισμένα.pdf&apos; αρχείο.</translation>
-    </message>
-    <message>
         <location filename="../src/main/console_dxf2pdf/console_dxf2pdf.cpp" line="86"/>
         <source> [options] &lt;%1_files&gt;</source>
         <translation type="unfinished"></translation>
@@ -51817,16 +48294,6 @@ Do you want to replace it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Paper size (Width x Height) in mm.</source>
-        <comment>WxH</comment>
-        <translation type="vanished">Μέγεθος χαρτιού (Πλάτος x Ύψος) σε mm.</translation>
-    </message>
-    <message>
-        <source>Output resolution (DPI).</source>
-        <comment>integer</comment>
-        <translation type="vanished">Ανάλυση εξόδου (DPI).</translation>
-    </message>
-    <message>
         <location filename="../src/main/console_dxf2pdf/console_dxf2pdf.cpp" line="129"/>
         <source>Output scale. E.g.: 0.01 (for 1:100 scale).</source>
         <translation>Κλίμακα εξόδου. Π.χ.: 0.01 (για κλίμακα 1:100).</translation>
@@ -51859,27 +48326,19 @@ Do you want to replace it?</source>
         <translation>Κατάλογος εξόδου στόχου.</translation>
     </message>
     <message>
-        <location filename="../src/main/console_dxf2dwg.cpp" line="177"/>
-        <source>DXF output version: r12, r14, r2000, r2004, r2007 (default), r2018.</source>
+        <location filename="../src/main/console_dxf2dwg.cpp" line="230"/>
+        <source>DXF output version: r12, r14, r2000, r2004, r2007 (default), r2010, r2013, r2018.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main/console_dxf2dwg.cpp" line="183"/>
-        <source>DWG output version: r2000 (default), r2004, r2010, r2013, r2018.</source>
+        <location filename="../src/main/console_dxf2dwg.cpp" line="236"/>
+        <source>DWG output version: r2000 (default), r2004, r2007, r2010, r2013, r2018.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/main/console_dxf2dwg.cpp" line="189"/>
         <source>Input %1 file(s).</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;dxf_files&gt;</source>
-        <translation type="vanished">&lt;dxf files&gt;</translation>
-    </message>
-    <message>
-        <source>Input DXF file(s)</source>
-        <translation type="vanished">Αρχείο( α) εισόδου DXF</translation>
     </message>
     <message>
         <location filename="../src/ui/dock_widgets/command_line/qg_commandwidget.cpp" line="56"/>
@@ -52117,6 +48576,36 @@ Do you want to replace it?</source>
         <translation>WCS</translation>
     </message>
     <message>
+        <location filename="../src/lib/engine/document/rs_graphic.cpp" line="130"/>
+        <source>There is no layer &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/rs_graphic.cpp" line="146"/>
+        <source>Layer &quot;%1&quot; is locked: unlock it to make it the current layer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/rs_graphic.cpp" line="163"/>
+        <source>Layer &quot;%1&quot; is locked, so it cannot stay the current layer: &quot;%2&quot; is the current layer now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/rs_graphic.cpp" line="168"/>
+        <source>Layer &quot;%1&quot; was not locked: it is the current layer, and no other layer is unlocked to take its place.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/rs_graphic.cpp" line="357"/>
+        <source>Layer &quot;%1&quot; is being removed, so &quot;%2&quot; is the current layer now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/rs_graphic.cpp" line="418"/>
+        <source>Layer &quot;0&quot; can never be removed.</source>
+        <translation type="unfinished">Η στρώση &quot;0&quot; δεν είναι δυνατό να αφαιρεθεί ποτέ.</translation>
+    </message>
+    <message>
         <location filename="../src/lib/engine/document/rs_graphic.cpp" line="668"/>
         <source>Invalid printing scale %1. Cannot fit print preview to page</source>
         <translation>Μη έγκυρη κλίμακα εκτύπωσης%1. Αδυναμία προσαρμογής προεπισκόπησης εκτύπωσης στη σελίδα</translation>
@@ -52130,6 +48619,23 @@ Do you want to replace it?</source>
         <location filename="../src/lib/printing/lc_printing.cpp" line="165"/>
         <source>PDF files (*.pdf);;All files (*.*)</source>
         <translation>Αρχεία PDF (*.pdf;;; Όλα τα αρχεία (*.*)</translation>
+    </message>
+    <message>
+        <location filename="../src/lib/printing/lc_printing.cpp" line="375"/>
+        <source>Cannot start printing on %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/printing/lc_printing.cpp" line="376"/>
+        <source>Cannot write the file
+%1
+Please check the filename and permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/printing/lc_printing.cpp" line="379"/>
+        <source>Print</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/components/creators/lc_menuactivator.cpp" line="432"/>
@@ -52292,12 +48798,43 @@ Do you want to replace it?</source>
         <source>%2 - command for &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/lib/engine/document/layers/rs_layerlist.cpp" line="346"/>
+        <source>Layer &quot;%1&quot; was not removed: it is the current layer. Make another layer current to remove it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/layers/rs_layerlist.cpp" line="354"/>
+        <source>Layer &quot;%1&quot; was not removed: it is the current layer, and no other layer is unlocked to take its place.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/document/layers/rs_layerlist.cpp" line="517"/>
+        <source>The current layer cannot be locked: no other layer is unlocked to take its place.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/engine/undo/lc_undosection.cpp" line="130"/>
+        <source>Layer &quot;%1&quot; is the current layer and it is locked: unlock it, or add a layer that is not locked, to draw.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/filters/rs_filtershp.cpp" line="493"/>
+        <source>Cannot open shapefile %1 (missing or corrupt .shx?)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/filters/rs_filtershp.cpp" line="623"/>
+        <source>Shapefile %1 contained %2 records but none were readable</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RS_ActionBlocksCreate</name>
     <message>
-        <source>Select to create block (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για να δημιουργήσετε μπλοκ (Εισαγωγή για ολοκλήρωση)</translation>
+        <location filename="../src/actions/dock_widgets/block/rs_actionblockscreate.cpp" line="61"/>
+        <source>Create Block</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/actions/dock_widgets/block/rs_actionblockscreate.cpp" line="105"/>
@@ -52313,66 +48850,6 @@ Do you want to replace it?</source>
         <location filename="../src/actions/dock_widgets/block/rs_actionblockscreate.cpp" line="111"/>
         <source>Specify reference point</source>
         <translation>Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionBlocksExplode</name>
-    <message>
-        <source>Select to explode container (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για να εκραγούν εμπορευματοκιβώτιο (Enter to complete)</translation>
-    </message>
-    <message>
-        <source>Select and explode</source>
-        <translation type="vanished">Επιλογή και έκρηξη</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionBlocksInsert</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Enter angle:</source>
-        <translation type="vanished">Εισάγετε γωνία:</translation>
-    </message>
-    <message>
-        <source>Enter factor:</source>
-        <translation type="vanished">Εισάγετε συντελεστή:</translation>
-    </message>
-    <message>
-        <source>Enter columns:</source>
-        <translation type="vanished">Εισάγετε στήλες:</translation>
-    </message>
-    <message>
-        <source>Enter rows:</source>
-        <translation type="vanished">Εισάγετε σειρές:</translation>
-    </message>
-    <message>
-        <source>Enter column spacing:</source>
-        <translation type="vanished">Εισάγετε διάκενο στηλών:</translation>
-    </message>
-    <message>
-        <source>Enter row spacing:</source>
-        <translation type="vanished">Εισάγετε διάκενο σειρών:</translation>
-    </message>
-    <message>
-        <source>Block cannot contain an insert of itself.</source>
-        <translation type="vanished">Το μπλοκ δεν μπορεί να περιέχει ένα ένθετο του εαυτού του.</translation>
-    </message>
-    <message>
-        <source> has nested insert of current block in:
-</source>
-        <translation type="vanished">έχει ενσωματωμένο ένθετο του τρέχοντος μπλοκ σε:</translation>
-    </message>
-    <message>
-        <source>
-This block cannot be inserted.</source>
-        <translation type="vanished">Αυτό το τετράγωνο δεν μπορεί να εισαχθεί.</translation>
     </message>
 </context>
 <context>
@@ -52624,270 +49101,6 @@ This block cannot be inserted.</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionDrawArc</name>
-    <message>
-        <source>Length of chord should be non-zero</source>
-        <translation type="vanished">Το μήκος της συγχορδίας πρέπει να είναι μη μηδενικό</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Not a valid chord length</source>
-        <translation type="vanished">Μη έγκυρο μήκος χορδής</translation>
-    </message>
-    <message>
-        <source>Specify center</source>
-        <translation type="vanished">Καθορίστε το κέντρο</translation>
-    </message>
-    <message>
-        <source>Specify start point</source>
-        <translation type="vanished">Ορισμός σημείου εκκίνησης</translation>
-    </message>
-    <message>
-        <source>Alternative Arc</source>
-        <translation type="vanished">Εναλλακτικό τόξο</translation>
-    </message>
-    <message>
-        <source>Specify chord length (negative for alt point):</source>
-        <translation type="vanished">Προσδιορίστε το μήκος της συγχορδίας (αρνητικό για το σημείο alt):</translation>
-    </message>
-    <message>
-        <source>Use alternative arc point</source>
-        <translation type="vanished">Χρήση εναλλακτικού σημείου τόξου</translation>
-    </message>
-    <message>
-        <source>Specify radius</source>
-        <translation type="vanished">Καθορίστε την ακτίνα</translation>
-    </message>
-    <message>
-        <source>Specify start angle:</source>
-        <translation type="vanished">Καθορίστε την αρχική γωνία:</translation>
-    </message>
-    <message>
-        <source>Specify end angle or [angle/chordlen]</source>
-        <translation type="vanished">Προσδιορίστε τη γωνία άκρου ή [γωνία/χορδή]</translation>
-    </message>
-    <message>
-        <source>Specify included angle:</source>
-        <translation type="vanished">Καθορίστε την περιεχόμενη γωνία:</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawArc3P</name>
-    <message>
-        <source>Invalid arc data.</source>
-        <translation type="vanished">Μη έγκυρα δεδομένα τόξου.</translation>
-    </message>
-    <message>
-        <source>Specify third point</source>
-        <translation type="vanished">Καθορισμός τρίτου σημείου</translation>
-    </message>
-    <message>
-        <source>Specify second point</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify startpoint or [center]</source>
-        <translation type="vanished">Καθορίστε το αρχικό σημείο ή [κέντρο]</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawArcTangential</name>
-    <message>
-        <source>Specify base entity</source>
-        <translation type="vanished">Καθορίστε τη βασική οντότητα</translation>
-    </message>
-    <message>
-        <source>Alternate arc</source>
-        <translation type="vanished">Εναλλασσόμενο τόξο</translation>
-    </message>
-    <message>
-        <source>Alternate Arc</source>
-        <translation type="vanished">Εναλλακτικό τόξο</translation>
-    </message>
-    <message>
-        <source>Specify end angle</source>
-        <translation type="vanished">Καθορίστε την τελική γωνία</translation>
-    </message>
-    <message>
-        <source>Specify end point</source>
-        <translation type="vanished">Καθορίστε το τελικό σημείο</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircle</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify center</source>
-        <translation type="vanished">Καθορίστε το κέντρο</translation>
-    </message>
-    <message>
-        <source>Specify point on circle</source>
-        <translation type="vanished">Ορισμός σημείου στον κύκλο</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircle2P</name>
-    <message>
-        <source>Invalid Circle data.</source>
-        <translation type="vanished">Μη έγκυρα δεδομένα κύκλου.</translation>
-    </message>
-    <message>
-        <source>Specify first point</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify second point</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircle3P</name>
-    <message>
-        <source>Invalid circle data.</source>
-        <translation type="vanished">Μη έγκυρα δεδομένα κύκλου.</translation>
-    </message>
-    <message>
-        <source>Specify first point</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify second point</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify third point</source>
-        <translation type="vanished">Καθορίστε το τρίτο σημείο</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircleCR</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify circle center</source>
-        <translation type="vanished">Καθορίστε το κέντρο του κύκλου</translation>
-    </message>
-    <message>
-        <source>Specify circle radius</source>
-        <translation type="vanished">Καθορίστε την ακτίνα του κύκλου</translation>
-    </message>
-    <message>
-        <source>radius=%1 is invalid (expression)</source>
-        <translation type="vanished">ακτίνα=%1 δεν είναι έγκυρη (έκφραση)</translation>
-    </message>
-    <message>
-        <source>radius=%1 is invalid (negative)</source>
-        <translation type="vanished">ακτίνα=%1 είναι άκυρη (αρνητική)</translation>
-    </message>
-    <message>
-        <source>radius=%1 is invalid (zero)</source>
-        <translation type="vanished">ακτίνα=%1 είναι άκυρη (μηδέν)</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircleInscribe</name>
-    <message>
-        <source>Specify the first line</source>
-        <translation type="vanished">Καθορίστε την πρώτη γραμμή</translation>
-    </message>
-    <message>
-        <source>Specify the second line</source>
-        <translation type="vanished">Καθορίστε τη δεύτερη γραμμή</translation>
-    </message>
-    <message>
-        <source>Specify the third line</source>
-        <translation type="vanished">Καθορίστε την τρίτη γραμμή</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircleTan1_2P</name>
-    <message>
-        <source>Specify the first point on the tangent circle</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο πάνω στον εφαπτόμενο κύκλο</translation>
-    </message>
-    <message>
-        <source>Specify the second point on the tangent circle</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο πάνω στον εφαπτόμενο κύκλο</translation>
-    </message>
-    <message>
-        <source>Select the center of the tangent circle</source>
-        <translation type="vanished">Επιλέξτε το κέντρο του εφαπτόμενου κύκλου</translation>
-    </message>
-    <message>
-        <source>Specify a line/arc/circle</source>
-        <translation type="vanished">Καθορίστε μία γραμμή/τόξο/κύκλο</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircleTan2</name>
-    <message>
-        <source>Specify the first line/arc/circle</source>
-        <translation type="vanished">Καθορίστε την πρώτη γραμμή/τόξο/κύκλο</translation>
-    </message>
-    <message>
-        <source>Specify the second line/arc/circle</source>
-        <translation type="vanished">Καθορίστε τη δεύτερη γραμμή/τόξο/κύκλο</translation>
-    </message>
-    <message>
-        <source>Select the center of the tangent circle</source>
-        <translation type="vanished">Επιλέξτε το κέντρο του εφαπτόμενου κύκλου</translation>
-    </message>
-    <message>
-        <source>No common tangential circle for radius &apos;%1&apos;</source>
-        <translation type="vanished">Δεν υπάρχει κοινός εφαπτόμενος κύκλος για ακτίνα &apos;%1&apos;</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircleTan2_1P</name>
-    <message>
-        <source>Specify a line/arc/circle</source>
-        <translation type="vanished">Καθορίστε μία γραμμή/τόξο/κύκλο</translation>
-    </message>
-    <message>
-        <source>Specify the another line/arc/circle</source>
-        <translation type="vanished">Προσδιορίστε την άλλη γραμμή/arc/circle</translation>
-    </message>
-    <message>
-        <source>Specify a point on the tangent circle</source>
-        <translation type="vanished">Καθορίστε ένα σημείο πάνω στον εφαπτόμενο κύκλο</translation>
-    </message>
-    <message>
-        <source>Select the center of the tangent circle</source>
-        <translation type="vanished">Επιλέξτε το κέντρο του εφαπτόμενου κύκλου</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawCircleTan3</name>
-    <message>
-        <source>Select the center of the tangent circle</source>
-        <translation type="vanished">Επιλέξτε το κέντρο του εφαπτόμενου κύκλου</translation>
-    </message>
-    <message>
-        <source>Specify the first line/arc/circle</source>
-        <translation type="vanished">Καθορίστε την πρώτη γραμμή/τόξο/κύκλο</translation>
-    </message>
-    <message>
-        <source>No common tangential circle for selected entities</source>
-        <translation type="vanished">Δεν υπάρχει κοινός εφαπτόμενος κύκλος για επιλεγμένες οντότητες</translation>
-    </message>
-    <message>
-        <source>Specify the second line/arc/circle</source>
-        <translation type="vanished">Καθορίστε τη δεύτερη γραμμή/τόξο/κύκλο</translation>
-    </message>
-    <message>
-        <source>Specify the third line/arc/circle</source>
-        <translation type="vanished">Καθορίστε την τρίτη γραμμή/τόξο/κύκλο</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionDrawEllipse4Points</name>
     <message>
         <location filename="../src/actions/drawing/draw/ellipse/rs_actiondrawellipse4points.cpp" line="282"/>
@@ -53046,6 +49259,14 @@ This block cannot be inserted.</source>
         <source>Hatch created successfully.</source>
         <translation>Η διαγράμμιση δημιουργήθηκε με επιτυχία.</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../src/actions/drawing/draw/hatch/rs_actiondrawhatch.cpp" line="134"/>
+        <source>Hatch has %n duplicate boundary loop(s); duplicates cancel each other and leave that area empty.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../src/actions/drawing/draw/hatch/rs_actiondrawhatch.cpp" line="134"/>
         <source>Hatch Error: Invalid contour found!</source>
@@ -53082,125 +49303,9 @@ This block cannot be inserted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select to hatch (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για κατακράτηση (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
         <location filename="../src/actions/drawing/draw/hatch/rs_actiondrawhatch.cpp" line="185"/>
         <source>Hatch immediately after selection</source>
         <translation>Hatch αμέσως μετά την επιλογή</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawImage</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Enter angle:</source>
-        <translation type="vanished">Εισάγετε γωνία:</translation>
-    </message>
-    <message>
-        <source>Enter factor:</source>
-        <translation type="vanished">Εισάγετε συντελεστή:</translation>
-    </message>
-    <message>
-        <source>Enter dpi:</source>
-        <translation type="vanished">Εισάγετε dpi:</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLine</name>
-    <message>
-        <source>Specify first point</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify next point or [%1]</source>
-        <translation type="vanished">Καθορίστε το επόμενο σημείο ή [%1]</translation>
-    </message>
-    <message>
-        <source>Specify next point</source>
-        <translation type="vanished">Καθορίστε το επόμενο σημείο</translation>
-    </message>
-    <message>
-        <source>Cannot close sequence of lines: Not enough entities defined yet, or already closed.</source>
-        <translation type="vanished">Δεν είναι δυνατό το κλείσιμο της ακολουθίας των γραμμών: Δεν έχουν οριστεί αρκετές οντότητες ακόμα, ή είναι ήδη κλειστή.</translation>
-    </message>
-    <message>
-        <source>Cannot undo: Begin of history reached</source>
-        <translation type="vanished">Αδύνατη η αναίρεση: Η αρχή της ιστορίας έφτασε</translation>
-    </message>
-    <message>
-        <source>Cannot redo: End of history reached</source>
-        <translation type="vanished">Αδυναμία επαναφοράς: Έφτασε το τέλος της ιστορίας</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLineAngle</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify position</source>
-        <translation type="vanished">Καθορίστε τη θέση</translation>
-    </message>
-    <message>
-        <source>Alternate Direction</source>
-        <translation type="vanished">Εναλλακτική κατεύθυνση</translation>
-    </message>
-    <message>
-        <source>Enter angle:</source>
-        <translation type="vanished">Εισάγετε γωνία:</translation>
-    </message>
-    <message>
-        <source>Enter length:</source>
-        <translation type="vanished">Εισάγετε μήκος:</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLineBisector</name>
-    <message>
-        <source> entities will be created</source>
-        <translation type="vanished">θα δημιουργηθούν οντότητες</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Select first line</source>
-        <translation type="vanished">Επιλέξτε την πρώτη γραμμή</translation>
-    </message>
-    <message>
-        <source>Select second line</source>
-        <translation type="vanished">Επιλέξτε τη δεύτερη γραμμή</translation>
-    </message>
-    <message>
-        <source>Enter bisector length:</source>
-        <translation type="vanished">Εισάγετε το μήκος της διχοτόμου:</translation>
-    </message>
-    <message>
-        <source>Enter number of bisectors:</source>
-        <translation type="vanished">Εισάγετε τον αριθμό των διχοτόμων:</translation>
-    </message>
-    <message>
-        <source>Number sector lines not in range: </source>
-        <comment>number of bisector to create must be in [1, 200]</comment>
-        <translation type="vanished">Αριθμός διχοτόμων εκτός εύρους: </translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLineFree</name>
-    <message>
-        <source>Click and drag to draw a line</source>
-        <translation type="vanished">Κάντε κλικ και σύρετε για σχεδίαση γραμμής</translation>
     </message>
 </context>
 <context>
@@ -53233,74 +49338,6 @@ This block cannot be inserted.</source>
         <location filename="../src/actions/drawing/draw/line/rs_actiondrawlineorthtan.cpp" line="260"/>
         <source>Select circle, arc or ellipse</source>
         <translation>Επιλέξτε κύκλο, τόξο ή έλλειψη</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLineParallel</name>
-    <message>
-        <source>Enter number:</source>
-        <translation type="vanished">Εισάγετε αριθμό:</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify Distance &lt;%1&gt; or select entity or [%2]</source>
-        <translation type="vanished">Καθορίστε απόσταση &lt;%1&gt; ή επιλέξτε οντότητα ή [%2]</translation>
-    </message>
-    <message>
-        <source> entities will be created</source>
-        <translation type="vanished">θα δημιουργηθούν οντότητες</translation>
-    </message>
-    <message>
-        <source>Not a valid number. Try 1..99</source>
-        <translation type="vanished">Μη έγκυρος αριθμός. Δοκιμάστε 1..99</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLineParallelThrough</name>
-    <message>
-        <source>Select entity</source>
-        <translation type="vanished">Επιλέξτε οντότητα</translation>
-    </message>
-    <message>
-        <source>Specify through point</source>
-        <translation type="vanished">Καθορίστε το σημείο διέλευσης</translation>
-    </message>
-    <message>
-        <source> entities will be created</source>
-        <translation type="vanished">θα δημιουργηθούν οντότητες</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Not a valid number. Try 1..99</source>
-        <translation type="vanished">Μη έγκυρος αριθμός. Δοκιμάστε 1..99</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLinePolygonCenCor</name>
-    <message>
-        <source>Specify a corner</source>
-        <translation type="vanished">Καθορίστε μία γωνία</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawLinePolygonCorCor</name>
-    <message>
-        <source>Specify first corner</source>
-        <translation type="vanished">Καθορίστε την πρώτη γωνία</translation>
-    </message>
-    <message>
-        <source>Specify second corner</source>
-        <translation type="vanished">Καθορίστε τη δεύτερη γωνία</translation>
     </message>
 </context>
 <context>
@@ -53342,29 +49379,6 @@ This block cannot be inserted.</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionDrawLineRelAngle</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Select base entity</source>
-        <translation type="vanished">Επιλέξτε τη βασική οντότητα</translation>
-    </message>
-    <message>
-        <source>Specify angle</source>
-        <translation type="vanished">Ορισμός γωνίας</translation>
-    </message>
-    <message>
-        <source>Specify length</source>
-        <translation type="vanished">Ορισμός μήκους</translation>
-    </message>
-    <message>
-        <source>Specify position</source>
-        <translation type="vanished">Καθορίστε τη θέση</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionDrawLineTangent1</name>
     <message>
         <location filename="../src/actions/drawing/draw/line/rs_actiondrawlinetangent1.cpp" line="199"/>
@@ -53402,17 +49416,6 @@ This block cannot be inserted.</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionDrawMText</name>
-    <message>
-        <source>Specify insertion point</source>
-        <translation type="vanished">Καθορίστε το σημείο εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Enter text:</source>
-        <translation type="vanished">Εισάγετε κείμενο:</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionDrawPoint</name>
     <message>
         <location filename="../src/actions/drawing/draw/point/lc_action_draw_point.cpp" line="88"/>
@@ -53421,108 +49424,7 @@ This block cannot be inserted.</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionDrawPolyline</name>
-    <message>
-        <source>Specify first point</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο</translation>
-    </message>
-    <message>
-        <source>Specify next point or [%1]</source>
-        <translation type="vanished">Καθορίστε το επόμενο σημείο ή [%1]</translation>
-    </message>
-    <message>
-        <source>Specify next point</source>
-        <translation type="vanished">Καθορίστε το επόμενο σημείο</translation>
-    </message>
-    <message>
-        <source>Cannot close sequence of lines: Not enough entities defined yet.</source>
-        <translation type="vanished">Δεν είναι δυνατό το κλείσιμο της ακολουθίας γραμμών: Δεν έχουν οριστεί αρκετές οντότητες ακόμα.</translation>
-    </message>
-    <message>
-        <source>Cannot undo: Not enough entities defined yet.</source>
-        <translation type="vanished">Δεν είναι δυνατή η αναίρεση: Δεν έχουν οριστεί αρκετές οντότητες ακόμα.</translation>
-    </message>
-    <message>
-        <source>Enter the end point x</source>
-        <translation type="vanished">Εισάγετε το τελικό σημείο x</translation>
-    </message>
-    <message>
-        <source>Enter number of polylines</source>
-        <translation type="vanished">Εισάγετε αριθμό πολυγραμμών</translation>
-    </message>
-    <message>
-        <source>Enter an equation, f(x)</source>
-        <translation type="vanished">Εισάγετε μια εξίσωση, f(x)</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="vanished">x</translation>
-    </message>
-    <message>
-        <source>Enter the start point x</source>
-        <translation type="vanished">Εισάγετε το σημείο εκκίνησης x</translation>
-    </message>
-    <message>
-        <source>The entered x is invalid.</source>
-        <translation type="vanished">Το εγγεγραμμένο x δεν είναι έγκυρο.</translation>
-    </message>
-    <message>
-        <source>The step size entered is invalid.</source>
-        <translation type="vanished">Το μέγεθος βήματος που εισάγεται δεν είναι έγκυρο.</translation>
-    </message>
-    <message>
-        <source>The value x entered is invalid.</source>
-        <translation type="vanished">Η τιμή x που εισάγεται δεν είναι έγκυρη.</translation>
-    </message>
-    <message>
-        <source>Alternative Arc</source>
-        <translation type="vanished">Εναλλακτικό τόξο</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawSpline</name>
-    <message>
-        <source>Specify first control point</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο ελέγχου</translation>
-    </message>
-    <message>
-        <source>Specify next control point or [%1]</source>
-        <translation type="vanished">Καθορίστε το επόμενο σημείο ελέγχου ή [%1]</translation>
-    </message>
-    <message>
-        <source>Specify next control point</source>
-        <translation type="vanished">Καθορίστε το επόμενο σημείο ελέγχου</translation>
-    </message>
-    <message>
-        <source>Cannot undo: Not enough entities defined yet.</source>
-        <translation type="vanished">Δεν είναι δυνατή η αναίρεση: Δεν έχουν οριστεί αρκετές οντότητες ακόμα.</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionDrawText</name>
-    <message>
-        <source>Text: </source>
-        <translation type="vanished">Κείμενο:</translation>
-    </message>
-    <message>
-        <source>Specify insertion point</source>
-        <translation type="vanished">Καθορίστε το σημείο εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Enter text:</source>
-        <translation type="vanished">Εισάγετε κείμενο:</translation>
-    </message>
-    <message>
-        <source>Specify second point</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionEditCopyPaste</name>
-    <message>
-        <source>Select to cut (Enter to complete)</source>
-        <translation type="vanished">Επιλογή για κοπή (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
     <message>
         <location filename="../src/actions/drawing/edit/lc_action_edit_copy_cut.cpp" line="175"/>
         <location filename="../src/actions/drawing/edit/lc_action_edit_copy_cut.cpp" line="180"/>
@@ -53541,10 +49443,6 @@ This block cannot be inserted.</source>
         <location filename="../src/actions/drawing/edit/lc_action_edit_copy_cut.cpp" line="180"/>
         <source>Cut right after selection</source>
         <translation>Αποκοπή δεξιά μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select to copy (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για αντιγραφή (Εισαγωγή για ολοκλήρωση)</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/edit/lc_action_edit_copy_cut.cpp" line="174"/>
@@ -53585,24 +49483,6 @@ This block cannot be inserted.</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionEditPaste</name>
-    <message>
-        <source>Set paste reference point</source>
-        <translation type="obsolete">Ορισμός σημείου αναφοράς της πάστας</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionEditUndo</name>
-    <message>
-        <source>Nothing to undo!</source>
-        <translation type="vanished">Τίποτα προς αναίρεση!</translation>
-    </message>
-    <message>
-        <source>Nothing to redo!</source>
-        <translation type="vanished">Τίποτα προς επαναφορά!</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionInfoAngle</name>
     <message>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="148"/>
@@ -53625,25 +49505,27 @@ This block cannot be inserted.</source>
         <source>Angle: %1
 Complementary: %2
 Supplementary: %3
-Alternative: %4
+Explementary angle: %4
 </source>
+        <extracomment>%2 completes a right angle with %1; %3 a straight angle; %4 a full turn. Preserve the numbered placeholders.</extracomment>
         <translation>Γωνία:%1
-Συμπληρωματικό:%2
-Συμπληρωματικό: %3
-Εναλλακτική λύση:%4</translation>
+Συμπληρωματική γωνία: %2
+Παραπληρωματική γωνία: %3
+Πλήρης στροφή − γωνία: %4</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="139"/>
         <source>Angle: %1
 Complementary: %2
 Supplementary: %3
-Alternative: %4
+Explementary angle: %4
 Intersection: (%5 , %6)
 Intersection :@(%7, %8)</source>
+        <extracomment>%2 completes a right angle with %1; %3 a straight angle; %4 a full turn. Preserve the numbered placeholders.</extracomment>
         <translation>Γωνία:%1
-Συμπληρωματικό:%2
-Συμπληρωματικό: %3
-Εναλλακτική λύση:%4
+Συμπληρωματική γωνία: %2
+Παραπληρωματική γωνία: %3
+Πλήρης στροφή − γωνία: %4
 Διατομή: (%5 ,%6)
 Διατομή:@(%7,%8)</translation>
     </message>
@@ -53668,19 +49550,22 @@ Intersection :@(%7, %8)</source>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="273"/>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="290"/>
         <source>Complementary:</source>
-        <translation>Συμπληρωματικό:</translation>
+        <extracomment>Complementary angle: right angle minus the measured angle (pi/2 - angle).</extracomment>
+        <translation>Συμπληρωματική γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="274"/>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="291"/>
         <source>Supplementary:</source>
-        <translation>Συμπληρωματικό:</translation>
+        <extracomment>Supplementary angle: straight angle minus the measured angle (pi - angle).</extracomment>
+        <translation>Παραπληρωματική γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="274"/>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="291"/>
-        <source>Alternative: </source>
-        <translation>Εναλλακτική:</translation>
+        <source>Explementary angle: </source>
+        <extracomment>Completes one full turn with the measured angle (2*pi - angle).</extracomment>
+        <translation>Πλήρης στροφή − γωνία:</translation>
     </message>
     <message>
         <location filename="../src/actions/drawing/info/rs_actioninfoangle.cpp" line="275"/>
@@ -53820,57 +49705,6 @@ End: (%8 , %9)</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionInfoDist2</name>
-    <message>
-        <source>Distance: %1
-Cartesian: (%2 , %3)
-Polar: (%4 &lt; %5)
-Point On Entity: (%6 , %7)
-Point: (%8 , %9)</source>
-        <translation type="vanished">Απόσταση:%1
-Καρτέσια: (%2, %3)
-Πολική: (%4 &lt; %5)
-(%6 ,%7)
-Σημείο: (%8 ,%9)</translation>
-    </message>
-    <message>
-        <source>Specify entity</source>
-        <translation type="vanished">Καθορίστε την οντότητα</translation>
-    </message>
-    <message>
-        <source>Do not snap to child entities in container</source>
-        <translation type="vanished">Μη σπάστε σε παιδικές οντότητες σε δοχείο</translation>
-    </message>
-    <message>
-        <source>Relative point is on entity</source>
-        <translation type="vanished">Σχετικό σημείο αφορά την οντότητα</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Πληροφορίες</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation type="vanished">Απόσταση:</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>From:</source>
-        <translation type="vanished">Από:</translation>
-    </message>
-    <message>
-        <source>To:</source>
-        <translation type="vanished">Στο:</translation>
-    </message>
-    <message>
-        <source>Specify point</source>
-        <translation type="vanished">Καθορίστε το σημείο</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionInfoInside</name>
     <message>
         <location filename="../src/actions/drawing/info/rs_actioninfoinside.cpp" line="57"/>
@@ -53916,10 +49750,6 @@ Point: (%8 , %9)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select to measure total length (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για να μετρήσετε το συνολικό μήκος (Enter to complete)</translation>
-    </message>
-    <message>
         <location filename="../src/actions/drawing/info/rs_actioninfototallength.cpp" line="74"/>
         <source>Select contour</source>
         <translation>Επιλογή περιγράμματος</translation>
@@ -53951,906 +49781,6 @@ Point: (%8 , %9)</source>
         <location filename="../src/lib/actions/rs_actioninterface.cpp" line="640"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionLibraryInsert</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Enter angle:</source>
-        <translation type="vanished">Εισάγετε γωνία:</translation>
-    </message>
-    <message>
-        <source>Enter factor:</source>
-        <translation type="vanished">Εισάγετε συντελεστή:</translation>
-    </message>
-    <message>
-        <source>Cannot open file &apos;%1&apos;</source>
-        <translation type="vanished">Δεν είναι δυνατό το άνοιγμα του αρχείου &apos;%1&apos;</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyAttributes</name>
-    <message>
-        <source>Select to modify attributes (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για τροποποίηση των ιδιοτήτων (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Modify attributes immediately after selecting</source>
-        <translation type="vanished">Τροποποίηση ιδιοτήτων αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyBevel</name>
-    <message>
-        <source>Selected lines are parallel</source>
-        <translation type="vanished">Οι επιλεγμένες γραμμές είναι παράλληλες</translation>
-    </message>
-    <message>
-        <source>Selected lines are not children of the same polyline</source>
-        <translation type="vanished">Επιλεγμένες γραμμές δεν είναι παιδιά της ίδιας πολυγραμμής</translation>
-    </message>
-    <message>
-        <source>Trim</source>
-        <translation type="vanished">Κόψιμο</translation>
-    </message>
-    <message>
-        <source>Intersection:</source>
-        <translation type="vanished">Διατομή:</translation>
-    </message>
-    <message>
-        <source>Point 1:</source>
-        <translation type="vanished">Σημείο 1:</translation>
-    </message>
-    <message>
-        <source>Point 2:</source>
-        <translation type="vanished">Σημείο 2:</translation>
-    </message>
-    <message>
-        <source>Invalid entity selected (non-trimmable).</source>
-        <translation type="vanished">Επιλέγεται μη έγκυρη οντότητα (μη αναστρέψιμη).</translation>
-    </message>
-    <message>
-        <source>Invalid entity selected (non-atomic).</source>
-        <translation type="vanished">Επιλέγεται μη έγκυρη οντότητα (μη ατομική).</translation>
-    </message>
-    <message>
-        <source>Invalid entity selected (non-trimmable with first entity).</source>
-        <translation type="vanished">Επιλέγεται μη έγκυρη οντότητα (μη αναστρέψιμη με την πρώτη οντότητα).</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Select first entity</source>
-        <translation type="vanished">Επιλέξτε την πρώτη οντότητα</translation>
-    </message>
-    <message>
-        <source>Select second entity</source>
-        <translation type="vanished">Επιλέξτε τη δεύτερη οντότητα</translation>
-    </message>
-    <message>
-        <source>Enter length 1:</source>
-        <translation type="vanished">Εισάγετε το μήκος 1:</translation>
-    </message>
-    <message>
-        <source>Enter length 2:</source>
-        <translation type="vanished">Εισάγετε το μήκος 2:</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyCut</name>
-    <message>
-        <source>Divide</source>
-        <translation type="vanished">Διαίρεση</translation>
-    </message>
-    <message>
-        <source>At:</source>
-        <translation type="vanished">Στο:</translation>
-    </message>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Cutting point may not be entity&apos;s endpoint.</source>
-        <translation type="vanished">Το σημείο κοπής μπορεί να μην είναι το τελικό σημείο της οντότητας.</translation>
-    </message>
-    <message>
-        <source>Specify entity to cut</source>
-        <translation type="vanished">Καθορίστε την οντότητα προς κοπή</translation>
-    </message>
-    <message>
-        <source>Specify cutting point</source>
-        <translation type="vanished">Καθορίστε το σημείο κοπής</translation>
-    </message>
-    <message>
-        <source>Entity must be a line, arc, circle, ellipse or interpolation spline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι γραμμή, τόξο, κύκλος, έλλειψη ή καμπύλη spline παρεμβολής.</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyDelete</name>
-    <message>
-        <source>Select to delete (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για διαγραφή (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Delete immediately after selection</source>
-        <translation type="vanished">Διαγραφή αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyDeleteFree</name>
-    <message>
-        <source>Specify first break point on a polyline</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο σπασίματος πάνω σε μία πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Specify second break point on the same polyline</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο σπασίματος πάνω στην ίδια πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Entities not in the same polyline.</source>
-        <translation type="vanished">Οι οντότητες δεν βρίσκονται στην ίδια πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Parent of second entity is not a polyline</source>
-        <translation type="vanished">Ο γονέας της δεύτερης οντότητας δεν είναι πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Parent of first entity is not a polyline</source>
-        <translation type="vanished">Ο γονέας της πρώτης οντότητας δεν είναι πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Parent of second entity is nullptr</source>
-        <translation type="vanished">Ο γονέας της δεύτερης οντότητας είναι nullptr</translation>
-    </message>
-    <message>
-        <source>One of the chosen entities is nullptr</source>
-        <translation type="vanished">Μία από τις επιλεγμένες οντότητες είναι η nullptr</translation>
-    </message>
-    <message>
-        <source>Parent of first entity is nullptr</source>
-        <translation type="vanished">Ο γονέας της πρώτης οντότητας είναι nullptr</translation>
-    </message>
-    <message>
-        <source>First entity is nullptr</source>
-        <translation type="vanished">Η πρώτη οντότητα είναι nullptr</translation>
-    </message>
-    <message>
-        <source>Second entity is nullptr</source>
-        <translation type="vanished">Η δεύτερη οντότητα είναι nullptr</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyEntity</name>
-    <message>
-        <source>Click on entity to modify</source>
-        <translation type="vanished">Κάντε κλικ στην οντότητα για τροποποίηση</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyExplodeText</name>
-    <message>
-        <source>Select to explode text (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για να εκραγεί το κείμενο (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Explode immediately after selection</source>
-        <translation type="vanished">Εκρήγνυται αμέσως μετά την επιλογή</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyMirror</name>
-    <message>
-        <source>Mirror</source>
-        <translation type="vanished">Καθρέπτης</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Angle (alt):</source>
-        <translation type="vanished">Γωνία (αλτ):</translation>
-    </message>
-    <message>
-        <source>Line From:</source>
-        <translation type="vanished">Γραμμή από:</translation>
-    </message>
-    <message>
-        <source>Line To:</source>
-        <translation type="vanished">Γραμμή προς:</translation>
-    </message>
-    <message>
-        <source>Select to mirror (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε στον καθρέφτη (Enter to complete)</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-    <message>
-        <source>Specify mirror line</source>
-        <translation type="vanished">Καθορίστε γραμμή καθρέπτη</translation>
-    </message>
-    <message>
-        <source>Flip Vertically</source>
-        <translation type="vanished">Αναστροφή κατακόρυφα</translation>
-    </message>
-    <message>
-        <source>Flip Horizontally</source>
-        <translation type="vanished">Αναστροφή οριζόντια</translation>
-    </message>
-    <message>
-        <source>Specify first point of mirror line</source>
-        <translation type="vanished">Καθορίστε το πρώτο σημείο του άξονα συμμετρίας</translation>
-    </message>
-    <message>
-        <source>Specify second point of mirror line</source>
-        <translation type="vanished">Καθορίστε το δεύτερο σημείο του άξονα συμμετρίας</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyMove</name>
-    <message>
-        <source>Moving Offset</source>
-        <translation type="vanished">Μετακίνηση οφσετ</translation>
-    </message>
-    <message>
-        <source>Copy Offset</source>
-        <translation type="vanished">Αντιγραφή Μετατόπισης</translation>
-    </message>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Create a Copy</source>
-        <translation type="vanished">Δημιουργία αντιγράφου</translation>
-    </message>
-    <message>
-        <source>Select to move (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για μετακίνηση (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Move immediately after selection</source>
-        <translation type="vanished">Μετακίνηση αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-    <message>
-        <source>Specify target point</source>
-        <translation type="vanished">Καθορίστε το σημείο προορισμού</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyMoveRotate</name>
-    <message>
-        <source>Moving with rotation</source>
-        <translation type="vanished">Κινείται με περιστροφή</translation>
-    </message>
-    <message>
-        <source>Source:</source>
-        <translation type="vanished">Πηγή:</translation>
-    </message>
-    <message>
-        <source>Target:</source>
-        <translation type="vanished">Στόχος:</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Select to move and rotate  (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για μετακίνηση και περιστροφή (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Move and rotate immediately after selection</source>
-        <translation type="vanished">Μετακίνηση και περιστροφή αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-    <message>
-        <source>Specify target point</source>
-        <translation type="vanished">Καθορίστε το σημείο προορισμού</translation>
-    </message>
-    <message>
-        <source>Enter rotation angle:</source>
-        <translation type="vanished">Εισάγετε τη γωνία περιστροφής:</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyOffset</name>
-    <message>
-        <source>Offset</source>
-        <translation type="vanished">Μετατόπιση</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation type="vanished">Απόσταση:</translation>
-    </message>
-    <message>
-        <source>Specify direction of offset</source>
-        <translation type="vanished">Καθορίστε την κατεύθυνση της αναπαραγωγής</translation>
-    </message>
-    <message>
-        <source>Specify reference point for direction of offset</source>
-        <translation type="vanished">Προσδιορίστε το σημείο αναφοράς για την κατεύθυνση όφσετ</translation>
-    </message>
-    <message>
-        <source>Select line, polyline, circle or arc to create offset (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε γραμμή, πολυγραμμή, κύκλο ή τόξο για να δημιουργήσετε offset (Enter to complete)</translation>
-    </message>
-    <message>
-        <source>Offset immediately after selection</source>
-        <translation type="vanished">Μετατόπιση αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyRevertDirection</name>
-    <message>
-        <source>Select to revert direction (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για επαναφορά κατεύθυνσης (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Revert immediately after selection</source>
-        <translation type="vanished">Επαναφορά αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyRotate</name>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Rotation</source>
-        <translation type="vanished">Περιστροφή</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Source Point:</source>
-        <translation type="vanished">Σημείο πηγής:</translation>
-    </message>
-    <message>
-        <source>Target Point:</source>
-        <translation type="vanished">Σημείο στόχου:</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Reference Point:</source>
-        <translation type="vanished">Σημείο αναφοράς:</translation>
-    </message>
-    <message>
-        <source>Center Point:</source>
-        <translation type="vanished">Σημείο κέντρου:</translation>
-    </message>
-    <message>
-        <source>Second Angle:</source>
-        <translation type="vanished">Δεύτερη γωνία:</translation>
-    </message>
-    <message>
-        <source>Select to rotate (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για περιστροφή (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Rotate immediately after selection</source>
-        <translation type="vanished">Περιστροφή αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-    <message>
-        <source>Snap to center of selection</source>
-        <translation type="vanished">Προσαρμογή στο κέντρο επιλογής</translation>
-    </message>
-    <message>
-        <source>Specify rotation center</source>
-        <translation type="vanished">Καθορίστε το κέντρο περιστροφής</translation>
-    </message>
-    <message>
-        <source>Specify target point to rotate to</source>
-        <translation type="vanished">Καθορίστε το σημείο προορισμού της περιστροφής</translation>
-    </message>
-    <message>
-        <source>Specify target point for rotation around reference point</source>
-        <translation type="vanished">Προσδιορίστε το σημείο-στόχο για περιστροφή γύρω από το σημείο αναφοράς</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyRotate2</name>
-    <message>
-        <source>Rotating Twice</source>
-        <translation type="vanished">Περιστροφή Δύο φορές</translation>
-    </message>
-    <message>
-        <source>Center 1:</source>
-        <translation type="vanished">Κέντρο 1:</translation>
-    </message>
-    <message>
-        <source>Angle 1:</source>
-        <translation type="vanished">Γωνία 1:</translation>
-    </message>
-    <message>
-        <source>Center 2:</source>
-        <translation type="vanished">Κέντρο 2:</translation>
-    </message>
-    <message>
-        <source>Angle 2:</source>
-        <translation type="vanished">Γωνία 2:</translation>
-    </message>
-    <message>
-        <source>Select for two axis rotation  (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για περιστροφή δύο αξόνων (Enter to complete)</translation>
-    </message>
-    <message>
-        <source>Rotate 2 Axis immediately after selection</source>
-        <translation type="vanished">Περιστροφή 2 άξονα αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-    <message>
-        <source>Specify absolute reference point</source>
-        <translation type="vanished">Καθορίστε το απόλυτο σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Specify relative reference point</source>
-        <translation type="vanished">Καθορίστε το σχετικό σημείο αναφοράς</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyRound</name>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Round</source>
-        <translation type="vanished">Στρόγγυλο</translation>
-    </message>
-    <message>
-        <source>Point 1:</source>
-        <translation type="vanished">Σημείο 1:</translation>
-    </message>
-    <message>
-        <source>Point 2:</source>
-        <translation type="vanished">Σημείο 2:</translation>
-    </message>
-    <message>
-        <source>Specify second entity</source>
-        <translation type="vanished">Καθορίστε τη δεύτερη οντότητα</translation>
-    </message>
-    <message>
-        <source>Enter radius:</source>
-        <translation type="vanished">Εισάγετε ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Specify first entity or enter radius &lt;%1&gt;</source>
-        <translation type="vanished">Προσδιορίστε την πρώτη οντότητα ή εισάγετε ακτίνα &lt;%1&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyScale</name>
-    <message>
-        <source>Scale</source>
-        <translation type="vanished">Κλίμακα</translation>
-    </message>
-    <message>
-        <source>Center:</source>
-        <translation type="vanished">Κέντρο:</translation>
-    </message>
-    <message>
-        <source>Source Point:</source>
-        <translation type="vanished">Σημείο πηγής:</translation>
-    </message>
-    <message>
-        <source>Target Point:</source>
-        <translation type="vanished">Σημείο στόχου:</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Scale by X:</source>
-        <translation type="vanished">Κλίμακα κατά X:</translation>
-    </message>
-    <message>
-        <source>Scale by Y:</source>
-        <translation type="vanished">Κλίμακα κατά Y:</translation>
-    </message>
-    <message>
-        <source>Specify scale center</source>
-        <translation type="vanished">Καθορισμός κέντρου κλίμακας</translation>
-    </message>
-    <message>
-        <source>Snap to center of selection</source>
-        <translation type="vanished">Προσαρμογή στο κέντρο επιλογής</translation>
-    </message>
-    <message>
-        <source>Specify source point</source>
-        <translation type="vanished">Προσδιορίστε το σημείο πηγής</translation>
-    </message>
-    <message>
-        <source>Specify target point</source>
-        <translation type="vanished">Προσδιορίστε το σημείο-στόχος</translation>
-    </message>
-    <message>
-        <source>Free snap</source>
-        <translation type="vanished">Ελεύθερο χτύπημα</translation>
-    </message>
-    <message>
-        <source>Select to scale  (Enter to complete)</source>
-        <translation type="vanished">Επιλέξτε για κλίμακα (Εισαγωγή για ολοκλήρωση)</translation>
-    </message>
-    <message>
-        <source>Scale immediately after selection</source>
-        <translation type="vanished">Κλιμάκωση αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyStretch</name>
-    <message>
-        <source>Specify first corner</source>
-        <translation type="vanished">Καθορίστε την πρώτη γωνία</translation>
-    </message>
-    <message>
-        <source>Specify second corner</source>
-        <translation type="vanished">Καθορίστε τη δεύτερη γωνία</translation>
-    </message>
-    <message>
-        <source>Stretch</source>
-        <translation type="vanished">Τέντωμα</translation>
-    </message>
-    <message>
-        <source>Start Corner:</source>
-        <translation type="vanished">Γωνία εκκίνησης:</translation>
-    </message>
-    <message>
-        <source>End Corner:</source>
-        <translation type="vanished">Γωνία τέλους:</translation>
-    </message>
-    <message>
-        <source>Reference Point:</source>
-        <translation type="vanished">Σημείο αναφοράς:</translation>
-    </message>
-    <message>
-        <source>Target Point:</source>
-        <translation type="vanished">Σημείο στόχου:</translation>
-    </message>
-    <message>
-        <source>Offset:</source>
-        <translation type="vanished">Μετατόπιση:</translation>
-    </message>
-    <message>
-        <source>Specify reference point</source>
-        <translation type="vanished">Καθορίστε το σημείο αναφοράς</translation>
-    </message>
-    <message>
-        <source>Specify target point</source>
-        <translation type="vanished">Καθορίστε το σημείο προορισμού</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyTrim</name>
-    <message>
-        <source>Select first trim entity</source>
-        <translation type="vanished">Επιλέξτε την πρώτη οντότητα προς διευθέτηση</translation>
-    </message>
-    <message>
-        <source>Select limiting entity</source>
-        <translation type="vanished">Επιλέξτε την οντότητα που θα αποτελέσει το όριο διευθέτησης</translation>
-    </message>
-    <message>
-        <source>Trim</source>
-        <translation type="vanished">Κόψιμο</translation>
-    </message>
-    <message>
-        <source>Trim Two</source>
-        <translation type="vanished">Κόψιμο Δύο</translation>
-    </message>
-    <message>
-        <source>Intersection:</source>
-        <translation type="vanished">Διατομή:</translation>
-    </message>
-    <message>
-        <source>Intersection 2:</source>
-        <translation type="vanished">Διατομή 2:</translation>
-    </message>
-    <message>
-        <source>Select second trim entity</source>
-        <translation type="vanished">Επιλέξτε τη δεύτερη οντότητα προς διευθέτηση</translation>
-    </message>
-    <message>
-        <source>Select entity to trim</source>
-        <translation type="vanished">Επιλέξτε την οντότητα προς διευθέτηση</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionModifyTrimAmount</name>
-    <message>
-        <source>No entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>The chosen Entity is not an atomic entity or cannot be trimmed.</source>
-        <translation type="vanished">Η επιλεγμένη οντότητα δεν είναι ατομική οντότητα ή δεν είναι δυνατό να διευθετηθεί.</translation>
-    </message>
-    <message>
-        <source>Not a valid expression</source>
-        <translation type="vanished">Μη έγκυρη έκφραση</translation>
-    </message>
-    <message>
-        <source>Select line/arc to trim OR enter length value:</source>
-        <translation type="vanished">Επιλέξτε γραμμή/arc για την περικοπή Ή εισάγετε την τιμή μήκους:</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionOrder</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Choose entities (Enter to Complete)</source>
-        <translation type="vanished">Επιλέξτε οντότητες (Enter to Complete)</translation>
-    </message>
-    <message>
-        <source>Order immediately after selection</source>
-        <translation type="vanished">Παραγγελία αμέσως μετά την επιλογή</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-    <message>
-        <source>Choose entity for order</source>
-        <translation type="vanished">Επιλέξτε οντότητα προς διάταξη</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineAdd</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Entity must be a polyline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Adding point is invalid.</source>
-        <translation type="vanished">Το σημείο προς προσθήκη δεν είναι έγκυρο.</translation>
-    </message>
-    <message>
-        <source>Adding point is not on entity.</source>
-        <translation type="vanished">Το σημείο προς προσθήκη δεν βρίσκεται πάνω στην οντότητα.</translation>
-    </message>
-    <message>
-        <source>Specify polyline to add nodes</source>
-        <translation type="vanished">Καθορίστε την πολυγραμμή για προσθήκη κόμβων</translation>
-    </message>
-    <message>
-        <source>Specify adding node&apos;s point</source>
-        <translation type="vanished">Καθορίστε το σημείο του κόμβου προς προσθήκη</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineAppend</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Entity must be a polyline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Click somewhere near the beginning or end of existing polyline.</source>
-        <translation type="vanished">Κάντε κλικ κάπου κοντά στην αρχή ή το τέλος υπάρχουσας πολυγραμμής.</translation>
-    </message>
-    <message>
-        <source>Enter number of polylines</source>
-        <translation type="vanished">Εισάγετε αριθμό πολυγραμμών</translation>
-    </message>
-    <message>
-        <source>Specify the polyline somewhere near the beginning or end point</source>
-        <translation type="vanished">Καθορίστε την πολυγραμμή κάπου κοντά στο αρχικό ή το τελικό σημείο</translation>
-    </message>
-    <message>
-        <source>Can not append nodes in a closed polyline.</source>
-        <translation type="vanished">Δεν είναι δυνατή η προσάρτηση κόμβων σε κλειστή πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Cannot undo: Not enough entities defined yet.</source>
-        <translation type="vanished">Δεν είναι δυνατή η αναίρεση: Δεν έχουν οριστεί αρκετές οντότητες ακόμα.</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineDel</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Entity must be a polyline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Specify polyline to delete node</source>
-        <translation type="vanished">Καθορίστε την πολυγραμμή για διαγραφή κόμβου</translation>
-    </message>
-    <message>
-        <source>Specify deleting node&apos;s point</source>
-        <translation type="vanished">Καθορίστε το σημείο του κόμβου προς διαγραφή</translation>
-    </message>
-    <message>
-        <source>Deleting point is invalid.</source>
-        <translation type="vanished">Το σημείο προς διαγραφή δεν είναι έγκυρο.</translation>
-    </message>
-    <message>
-        <source>Deleting point is not on entity.</source>
-        <translation type="vanished">Το σημείο προς διαγραφή δεν βρίσκεται πάνω στην οντότητα.</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineDelBetween</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Entity must be a polyline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Deleting point is not on entity.</source>
-        <translation type="vanished">Το σημείο προς διαγραφή δεν βρίσκεται πάνω στην οντότητα.</translation>
-    </message>
-    <message>
-        <source>No polyline found.</source>
-        <translation type="vanished">Δε βρέθηκε πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>At least two segments of polyline should be between selected points.</source>
-        <translation type="vanished">Τουλάχιστον δύο τμήματα πολυγραμμής πρέπει να βρίσκονται μεταξύ επιλεγμένων σημείων.</translation>
-    </message>
-    <message>
-        <source>Specify polyline to delete between two nodes</source>
-        <translation type="vanished">Καθορίστε την πολυγραμμή για διαγραφή μεταξύ δύο κόμβων</translation>
-    </message>
-    <message>
-        <source>Specify first node</source>
-        <translation type="vanished">Καθορίστε τον πρώτο κόμβο</translation>
-    </message>
-    <message>
-        <source>Specify second node</source>
-        <translation type="vanished">Καθορίστε το δεύτερο κόμβο</translation>
-    </message>
-    <message>
-        <source>Deleting point is invalid.</source>
-        <translation type="vanished">Το σημείο προς διαγραφή δεν είναι έγκυρο.</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineEquidistant</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Entity must be a polyline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Choose the original polyline</source>
-        <translation type="vanished">Επιλέξτε την αρχική πολυγραμμή</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineSegment</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Choose one of the segments on the original polyline</source>
-        <translation type="vanished">Επιλέξτε ένα από τα τμήματα πάνω στην αρχική πολυγραμμή</translation>
-    </message>
-    <message>
-        <source>Entity can not be a closed polyline.</source>
-        <translation type="vanished">Η οντότητα δεν μπορεί να είναι κλειστή πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Polyline created</source>
-        <translation type="vanished">Δημιουργήθηκε πολυγραμμή</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionPolylineTrim</name>
-    <message>
-        <source>No Entity found.</source>
-        <translation type="vanished">Δεν βρέθηκε οντότητα.</translation>
-    </message>
-    <message>
-        <source>Entity must be a polyline.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>First segment should be on selected polyline.</source>
-        <translation type="vanished">Το πρώτο τμήμα θα πρέπει να είναι σε επιλεγμένη πολυγραμμή.</translation>
-    </message>
-    <message>
-        <source>Second segment should be on selected polyline and not equal to first one.</source>
-        <translation type="vanished">Το δεύτερο τμήμα πρέπει να είναι σε επιλεγμένη πολυγραμμή και να μην ισούται με το πρώτο.</translation>
-    </message>
-    <message>
-        <source>Specify polyline to trim</source>
-        <translation type="vanished">Καθορίστε πολυγραμμή για διευθέτηση</translation>
-    </message>
-    <message>
-        <source>Specify first segment</source>
-        <translation type="vanished">Καθορίστε το πρώτο τμήμα</translation>
-    </message>
-    <message>
-        <source>Specify second segment</source>
-        <translation type="vanished">Καθορίστε το δεύτερο τμήμα</translation>
     </message>
 </context>
 <context>
@@ -54927,113 +49857,11 @@ Point: (%8 , %9)</source>
     </message>
 </context>
 <context>
-    <name>RS_ActionSelect</name>
-    <message>
-        <source>No entity selected!</source>
-        <translation type="obsolete">Δεν επιλέχθηκε οντότητα!</translation>
-    </message>
-</context>
-<context>
     <name>RS_ActionSelectBase</name>
     <message>
         <location filename="../src/lib/actions/rs_actionselectbase.h" line="51"/>
         <source> (Enter or CTRL+LMB click to complete)</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionSelectContour</name>
-    <message>
-        <source>Entity must be an Atomic Entity.</source>
-        <translation type="vanished">Η οντότητα πρέπει να είναι ατομική οντότητα.</translation>
-    </message>
-    <message>
-        <source>Specify entity to select</source>
-        <translation type="vanished">Προσδιορίστε την οντότητα που θα επιλέξει</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionSelectIntersected</name>
-    <message>
-        <source>Choose first point of intersection line</source>
-        <translation type="vanished">Επιλέξτε το πρώτο σημείο της γραμμής τομής</translation>
-    </message>
-    <message>
-        <source>Select intersecting entity</source>
-        <translation type="vanished">Επιλογή τέμνουσας οντότητας</translation>
-    </message>
-    <message>
-        <source>Select child entities</source>
-        <translation type="vanished">Επιλογή οντοτήτων για παιδιά</translation>
-    </message>
-    <message>
-        <source>Choose second point of intersection line</source>
-        <translation type="vanished">Επιλέξτε το δεύτερο σημείο της γραμμής τομής</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionSelectLayer</name>
-    <message>
-        <source>Specify entity with desired layer</source>
-        <translation type="vanished">Προσδιορίστε την οντότητα με το επιθυμητό στρώμα</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionSelectSingle</name>
-    <message>
-        <source>Specify entity to select</source>
-        <translation type="vanished">Προσδιορίστε την οντότητα που θα επιλέξει</translation>
-    </message>
-    <message>
-        <source>Select contour</source>
-        <translation type="vanished">Επιλογή περιγράμματος</translation>
-    </message>
-</context>
-<context>
-    <name>RS_ActionSelectWindow</name>
-    <message>
-        <source>De-Selecting</source>
-        <translation type="vanished">Αποεπιλογή</translation>
-    </message>
-    <message>
-        <source>Selecting</source>
-        <translation type="vanished">Επιλογή</translation>
-    </message>
-    <message>
-        <source> entities </source>
-        <translation type="vanished">οντότητες</translation>
-    </message>
-    <message>
-        <source>that intersect with box</source>
-        <translation type="vanished">που διασταυρώνονται με το κουτί</translation>
-    </message>
-    <message>
-        <source>that are within box</source>
-        <translation type="vanished">που βρίσκονται μέσα στο κουτί</translation>
-    </message>
-    <message>
-        <source>Choose second edge</source>
-        <translation type="vanished">Επιλέξτε το δεύτερο άκρο</translation>
-    </message>
-    <message>
-        <source>Select Intersecting</source>
-        <translation type="vanished">Επιλογή διαχωρισμού</translation>
-    </message>
-    <message>
-        <source>De-select entities</source>
-        <translation type="vanished">Αποεπιλογή οντοτήτων</translation>
-    </message>
-    <message>
-        <source>Select entities</source>
-        <translation type="vanished">Επιλογή οντοτήτων</translation>
-    </message>
-    <message>
-        <source>De-select intersecting</source>
-        <translation type="vanished">Αποεπιλογή διασταυρώσεων</translation>
-    </message>
-    <message>
-        <source>Click and drag for the selection window</source>
-        <translation type="vanished">Κάντε κλικ και σύρετε για το παράθυρο επιλογής</translation>
     </message>
 </context>
 <context>
@@ -55341,150 +50169,6 @@ Point: (%8 , %9)</source>
     </message>
 </context>
 <context>
-    <name>Ui_ArcOptions</name>
-    <message>
-        <source>Arc Options</source>
-        <translation type="vanished">Επιλογές τόξου</translation>
-    </message>
-    <message>
-        <source>Counterclockwise</source>
-        <translation type="vanished">Αριστερόστροφα</translation>
-    </message>
-    <message>
-        <source>Clockwise</source>
-        <translation type="vanished">Δεξιόστροφα</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_ArcTangentialOptions</name>
-    <message>
-        <source>Tangential Arc Options</source>
-        <translation type="vanished">Επιλογές Tangential Arc</translation>
-    </message>
-    <message>
-        <source>If selected, tangental arc with specified radius will be created</source>
-        <translation type="vanished">Αν επιλεγεί, θα δημιουργηθεί ταλαντωτικό τόξο με καθορισμένη ακτίνα</translation>
-    </message>
-    <message>
-        <source>Radius of the tangential arc</source>
-        <translation type="vanished">Ακτίνα του εφαπτομένου τόξου</translation>
-    </message>
-    <message>
-        <source>If selected, arc with specified angle will be created</source>
-        <translation type="vanished">Αν επιλεγεί, θα δημιουργηθεί τόξο με καθορισμένη γωνία</translation>
-    </message>
-    <message>
-        <source>Total subtending angle of the tangential arc</source>
-        <translation type="vanished">Συνολική γωνία καθίζησης του εφαπτομένου τόξου</translation>
-    </message>
-    <message>
-        <source>Pick radius form drawing</source>
-        <translation type="vanished">Επιλογή σχεδίου σχήματος ακτίνας</translation>
-    </message>
-    <message>
-        <source>Radius</source>
-        <extracomment>Draw Tangential Arc by the given radius</extracomment>
-        <translation type="vanished">Ακτίνα</translation>
-    </message>
-    <message>
-        <source>Angle</source>
-        <extracomment>Draw Tangential Arc by the given radius</extracomment>
-        <translation type="vanished">Γωνία</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_BevelOptions</name>
-    <message>
-        <source>Bevel Options</source>
-        <translation type="vanished">Επιλογές Bevel</translation>
-    </message>
-    <message>
-        <source>Check to trim both entities to the bevel</source>
-        <translation type="vanished">Ελέγξτε για την περικοπή και των δύο οντοτήτων στο μπεζ</translation>
-    </message>
-    <message>
-        <source>Trim</source>
-        <translation type="vanished">Κόψιμο</translation>
-    </message>
-    <message>
-        <source>Length 1:</source>
-        <translation type="vanished">Μήκος 1:</translation>
-    </message>
-    <message>
-        <source>Length of bevel in X direction.</source>
-        <translation type="vanished">Μήκος του bevel προς την κατεύθυνση X.</translation>
-    </message>
-    <message>
-        <source>Pick first length form drawing</source>
-        <translation type="vanished">Επιλέξτε το πρώτο σχέδιο φόρμας μήκους</translation>
-    </message>
-    <message>
-        <source>Length 2:</source>
-        <translation type="vanished">Μήκος 2:</translation>
-    </message>
-    <message>
-        <source>Length of bevel in Y direction. </source>
-        <translation type="vanished">Μήκος μπεζ προς την κατεύθυνση Υ.</translation>
-    </message>
-    <message>
-        <source>Pick second length form drawing</source>
-        <translation type="vanished">Επιλογή δεύτερου μήκους σχέδιο φόρμας</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_CircleOptions</name>
-    <message>
-        <source>Circle Options</source>
-        <translation type="vanished">Επιλογές κύκλου</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Radius of circle</source>
-        <translation type="vanished">Ακτίνα του κύκλου</translation>
-    </message>
-    <message>
-        <source>Pick radius from drawing</source>
-        <translation type="vanished">Επιλέξτε ακτίνα από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_CircleTan2Options</name>
-    <message>
-        <source>Circle Tangential2 Options</source>
-        <translation type="vanished">Επιλογές κυκλώματος Tangential2</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Radius of the tangential circle to draw&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">Απόδοση Διαλόγων/Συγχρονισμός: Ακτίνα του εφαπτόμενου κύκλου για την σχεδίαση &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Radius of tangential circle</source>
-        <translation type="vanished">Ακτίνα εφαπτομένου κύκλου</translation>
-    </message>
-    <message>
-        <source>Pick radius from drawing</source>
-        <translation type="vanished">Επιλέξτε ακτίνα από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_DimLinearOptions</name>
-    <message>
-        <source>Angle:</source>
-        <translation type="obsolete">Γωνία:</translation>
-    </message>
-</context>
-<context>
     <name>Ui_DimOptions</name>
     <message>
         <location filename="../src/ui/action_options/dimensions/qg_dimoptions.ui" line="32"/>
@@ -55621,849 +50305,6 @@ Point: (%8 , %9)</source>
     </message>
 </context>
 <context>
-    <name>Ui_ImageOptions</name>
-    <message>
-        <source>Insert Options</source>
-        <translation type="vanished">Εισαγωγή επιλογών</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation Angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Scale Factor:</source>
-        <translation type="vanished">Συντελεστής κλίμακας:</translation>
-    </message>
-    <message>
-        <source>DPI:</source>
-        <translation type="vanished">DPI:</translation>
-    </message>
-    <message>
-        <source>Scale Factor</source>
-        <translation type="vanished">Συντελεστής κλίμακας</translation>
-    </message>
-    <message>
-        <source>DPI of Image</source>
-        <translation type="vanished">DPI εικόνας</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_InsertOptions</name>
-    <message>
-        <source>Insert Options</source>
-        <translation type="vanished">Εισαγωγή επιλογών</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation Angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Factor:</source>
-        <translation type="vanished">Παράγοντας:</translation>
-    </message>
-    <message>
-        <source>Scale Factor</source>
-        <translation type="vanished">Συντελεστής κλίμακας</translation>
-    </message>
-    <message>
-        <source>Array:</source>
-        <translation type="vanished">Διάταξη:</translation>
-    </message>
-    <message>
-        <source>Number of Columns</source>
-        <translation type="vanished">Αριθμός στηλών</translation>
-    </message>
-    <message>
-        <source>Number of Rows</source>
-        <translation type="vanished">Αριθμός γραμμών</translation>
-    </message>
-    <message>
-        <source>Pick row spacing from drawing</source>
-        <translation type="vanished">Επιλέξτε απόσταση γραμμής από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick column spacing from drawing</source>
-        <translation type="vanished">Επιλέξτε απόσταση στήλης από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Spacing:</source>
-        <translation type="vanished">Απόσταση:</translation>
-    </message>
-    <message>
-        <source>Column Spacing</source>
-        <translation type="vanished">Απόσταση στήλης</translation>
-    </message>
-    <message>
-        <source>Row Spacing</source>
-        <translation type="vanished">Απόσταση γραμμής</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LibraryInsertOptions</name>
-    <message>
-        <source>Library Insert Options</source>
-        <translation type="vanished">Επιλογές εισαγωγής βιβλιοθήκης</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation Angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Factor:</source>
-        <translation type="vanished">Παράγοντας:</translation>
-    </message>
-    <message>
-        <source>Scale Factor</source>
-        <translation type="vanished">Συντελεστής κλίμακας</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineAngleOptions</name>
-    <message>
-        <source>Line Angle Options</source>
-        <translation type="vanished">Επιλογές γωνίας γραμμής</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Point on created line that will be placed into insertion point</source>
-        <translation type="vanished">Σημείο στη δημιουργημένη γραμμή που θα τοποθετηθεί στο σημείο εισαγωγής</translation>
-    </message>
-    <message>
-        <source>Line angle</source>
-        <translation type="vanished">Γωνία γραμμής</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Length of line</source>
-        <translation type="vanished">Μήκος γραμμής</translation>
-    </message>
-    <message>
-        <source>Snap Point:</source>
-        <translation type="vanished">Σημείο snap:</translation>
-    </message>
-    <message>
-        <source>Pick line angle from drawing</source>
-        <translation type="vanished">Επιλέξτε γωνία γραμμής από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="vanished">Έναρξη</translation>
-    </message>
-    <message>
-        <source>Middle</source>
-        <translation type="vanished">Μεσαίο</translation>
-    </message>
-    <message>
-        <source>End</source>
-        <translation type="vanished">Τέλος</translation>
-    </message>
-    <message>
-        <source>PIck line length from drawing</source>
-        <translation type="vanished">Μήκος γραμμής Pick από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If selected, line will be orhotogonal to axis of angles basis. Otherwise - to screen axis</source>
-        <translation type="vanished">Εάν επιλεγεί, η γραμμή θα είναι οριζόντια προς τον άξονα της βάσης των γωνιών. Διαφορετικά - στον άξονα οθόνης</translation>
-    </message>
-    <message>
-        <source>To Angles Basis</source>
-        <translation type="vanished">Προς γωνία βάσης</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineBisectorOptions</name>
-    <message>
-        <source>Line Bisector Options</source>
-        <translation type="vanished">Επιλογές διατομών γραμμής</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Length of bisector</source>
-        <translation type="vanished">Μήκος του διχοτόμου</translation>
-    </message>
-    <message>
-        <source>Pick line length from drawing</source>
-        <translation type="vanished">Διαλέξτε το μήκος γραμμής από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Number of bisectors to create</source>
-        <translation type="vanished">Αριθμός διχοτομικών τομέων για τη δημιουργία</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineOptions</name>
-    <message>
-        <source>Line Options</source>
-        <translation type="vanished">Επιλογές γραμμής</translation>
-    </message>
-    <message>
-        <source>Form a closed contour from lines drawn</source>
-        <translation type="vanished">Σχηματίστε ένα κλειστό περίγραμμα από γραμμές που τραβήχτηκαν</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Κλείσιμο</translation>
-    </message>
-    <message>
-        <source>Undo the last line drawing</source>
-        <translation type="vanished">Αναίρεση του σχεδίου τελευταίας γραμμής</translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation type="vanished">Αναίρεση</translation>
-    </message>
-    <message>
-        <source>Redo the last line drawing</source>
-        <translation type="vanished">Επαναφορά του σχεδίου τελευταίας γραμμής</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="vanished">Επαναφορά</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineOptionsRel</name>
-    <message>
-        <source>Line Options</source>
-        <translation type="vanished">Επιλογές γραμμής</translation>
-    </message>
-    <message>
-        <source>Direction:</source>
-        <translation type="vanished">Κατεύθυνση:</translation>
-    </message>
-    <message>
-        <source>Creates polyline from line segments</source>
-        <translation type="vanished">Δημιουργεί πολυγραμμή από τμήματα γραμμών</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Vertical line</source>
-        <translation type="vanished">Κατακόρυφη γραμμή</translation>
-    </message>
-    <message>
-        <source>Y</source>
-        <translation type="vanished">Υ</translation>
-    </message>
-    <message>
-        <source>Line by specified angle</source>
-        <translation type="vanished">Γραμμή κατά καθορισμένη γωνία</translation>
-    </message>
-    <message>
-        <source>Angle</source>
-        <translation type="vanished">Γωνία</translation>
-    </message>
-    <message>
-        <source>Horizontal line</source>
-        <translation type="vanished">Οριζόντια γραμμή</translation>
-    </message>
-    <message>
-        <source>X</source>
-        <translation type="vanished">Χ</translation>
-    </message>
-    <message>
-        <source>If checked, angle is relative to previous segment</source>
-        <extracomment>Angle is relative to previous segment</extracomment>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η γωνία είναι σχετική με το προηγούμενο τμήμα</translation>
-    </message>
-    <message>
-        <source>Rel</source>
-        <translation type="vanished">Ρελ</translation>
-    </message>
-    <message>
-        <source>Undo the last line drawing</source>
-        <translation type="vanished">Αναίρεση του σχεδίου τελευταίας γραμμής</translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation type="vanished">Αναίρεση</translation>
-    </message>
-    <message>
-        <source>Form a closed contour from lines drawn</source>
-        <translation type="vanished">Σχηματίστε ένα κλειστό περίγραμμα από γραμμές που τραβήχτηκαν</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Κλείσιμο</translation>
-    </message>
-    <message>
-        <source>Redo the last line drawing</source>
-        <translation type="vanished">Επαναφορά του σχεδίου τελευταίας γραμμής</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="vanished">Επαναφορά</translation>
-    </message>
-    <message>
-        <source>Angle of line</source>
-        <translation type="vanished">Γωνία γραμμής</translation>
-    </message>
-    <message>
-        <source>Line to arbitrary point</source>
-        <translation type="vanished">Γραμμή σε αυθαίρετο σημείο</translation>
-    </message>
-    <message>
-        <source>Point</source>
-        <translation type="vanished">Σημείο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineParallelOptions</name>
-    <message>
-        <source>Line Parallel Options</source>
-        <translation type="vanished">Παράλληλες επιλογές γραμμής</translation>
-    </message>
-    <message>
-        <source>Distance:</source>
-        <translation type="vanished">Απόσταση:</translation>
-    </message>
-    <message>
-        <source>Distance to original entity</source>
-        <translation type="vanished">Απόσταση από την αρχική οντότητα</translation>
-    </message>
-    <message>
-        <source>Pick distance from drawing</source>
-        <translation type="vanished">Επιλογή απόστασης από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Number of parallels to create</source>
-        <translation type="vanished">Αριθμός παραλλήλων για δημιουργία</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineParallelThroughOptions</name>
-    <message>
-        <source>Line Parallel Through Options</source>
-        <translation type="vanished">Παράλληλη γραμμή μέσω επιλογών</translation>
-    </message>
-    <message>
-        <source>If checked, parallels will be created on both sides of entity</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, θα δημιουργηθούν παράλληλα και στις δύο πλευρές της οντότητας</translation>
-    </message>
-    <message>
-        <source>Symmetric</source>
-        <translation type="vanished">Συμμετρικό</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Number of parallels to create</source>
-        <translation type="vanished">Αριθμός παραλλήλων για δημιουργία</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LinePolygon2Options</name>
-    <message>
-        <source>Polygon Options</source>
-        <translation type="obsolete">Επιλογές πολυγώνου</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="obsolete">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>Number of edges</source>
-        <translation type="obsolete">Αριθμός ακμών</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LinePolygonOptions</name>
-    <message>
-        <source>Polygon Options</source>
-        <translation type="vanished">Επιλογές πολυγώνου</translation>
-    </message>
-    <message>
-        <source>Number:</source>
-        <translation type="vanished">Αριθμός:</translation>
-    </message>
-    <message>
-        <source>If checked, vertexes of polygon will be rounded. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, οι κορυφές του πολυγώνου θα στρογγυλοποιηθούν.</translation>
-    </message>
-    <message>
-        <source>Radius</source>
-        <translation type="vanished">Ακτίνα</translation>
-    </message>
-    <message>
-        <source>If checked, the polygon will be drawn as polyline. Otherwise, individual entities will be created. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, το πολύγωνο θα σχεδιαστεί ως πολυγραμμή. Διαφορετικά, θα δημιουργηθούν μεμονωμένες οντότητες.</translation>
-    </message>
-    <message>
-        <source>Polyline</source>
-        <translation type="vanished">Πολυλίνη</translation>
-    </message>
-    <message>
-        <source>Pick radius from drawing</source>
-        <translation type="vanished">Επιλέξτε ακτίνα από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Number of edges</source>
-        <translation type="vanished">Αριθμός ακμών</translation>
-    </message>
-    <message>
-        <source>Rounding radius for vertex bevel.</source>
-        <translation type="vanished">Ακτίνα περιστροφής για vertex bevel.</translation>
-    </message>
-    <message>
-        <source>If selected, reference points are for vertexes of polygon. Otherwise, they are for middle point of edges. </source>
-        <translation type="vanished">Εάν επιλεγεί, τα σημεία αναφοράς είναι για κορυφές πολυγώνου. Διαφορετικά, είναι για το μεσαίο σημείο των ακμών.</translation>
-    </message>
-    <message>
-        <source>Vertex to Vertex</source>
-        <translation type="vanished">Vertex προς Vertex</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_LineRelAngleOptions</name>
-    <message>
-        <source>Line Relative Angle Options</source>
-        <translation type="vanished">Επιλογές σχετικής γωνίας γραμμής</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Line angle</source>
-        <translation type="vanished">Γωνία γραμμής</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Length of line</source>
-        <translation type="vanished">Μήκος γραμμής</translation>
-    </message>
-    <message>
-        <source>Pick length from drawing</source>
-        <translation type="vanished">Διαλέξτε το μήκος από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_MTextOptions</name>
-    <message>
-        <source>Text Options</source>
-        <translation type="vanished">Επιλογές κειμένου</translation>
-    </message>
-    <message>
-        <source>Text:</source>
-        <translation type="vanished">Κείμενο:</translation>
-    </message>
-    <message>
-        <source>Text to insert</source>
-        <translation type="vanished">Κείμενο για εισαγωγή</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_ModifyOffsetOptions</name>
-    <message>
-        <source>Modify Offset Options</source>
-        <translation type="vanished">Τροποποίηση επιλογών Offset</translation>
-    </message>
-    <message>
-        <source>Distance for offset from original entity</source>
-        <translation type="vanished">Απόσταση αντιστάθμισης από την αρχική οντότητα</translation>
-    </message>
-    <message>
-        <source>If checked, created entities will be placed into current layer, otherwise they will be in original layers.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, οι δημιουργημένες οντότητες θα τοποθετηθούν στο τρέχον στρώμα, διαφορετικά θα βρίσκονται σε αρχικά στρώματα.</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>Number of copies.</source>
-        <translation type="vanished">Αριθμός αντιτύπων.</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will survive, otherwise they will be removed. </source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-    <message>
-        <source>If checked, fixes of distance of offset will be used, otherwise it will be defined by mouse.</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα χρησιμοποιηθούν διορθώσεις απόστασης όφσετ, διαφορετικά θα οριστεί από το ποντίκι.</translation>
-    </message>
-    <message>
-        <source>Fixed Distance</source>
-        <translation type="vanished">Σταθερή απόσταση</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be applied to created entities, otherwise original ones will be used. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα εφαρμοστούν σε δημιουργημένες οντότητες, διαφορετικά θα χρησιμοποιηθούν τα πρωτότυπα.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>Pick distance from the drawing</source>
-        <translation type="vanished">Απόσταση από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, multiple copies will be created. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθούν πολλαπλά αντίγραφα.</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_MoveRotateOptions</name>
-    <message>
-        <source>Move Rotate Options</source>
-        <translation type="vanished">Μετακίνηση επιλογών περιστροφής</translation>
-    </message>
-    <message>
-        <source>If checked, current attributes will be applied to created entities, otherwise original ones will be used. </source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, τα τρέχοντα χαρακτηριστικά θα εφαρμοστούν σε δημιουργημένες οντότητες, διαφορετικά θα χρησιμοποιηθούν τα πρωτότυπα.</translation>
-    </message>
-    <message>
-        <source>Use Current Attributes</source>
-        <translation type="vanished">Χρήση τρεχόντων χαρακτηριστικών</translation>
-    </message>
-    <message>
-        <source>If checked, multiple copies will be created. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, θα δημιουργηθούν πολλαπλά αντίγραφα.</translation>
-    </message>
-    <message>
-        <source>Multiple Copies</source>
-        <translation type="vanished">Πολλαπλά αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, all copies will be rotated by the same agle. Otherwise, angle will be proportional to number of each copy. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, όλα τα αντίγραφα θα περιστραφούν από τον ίδιο άξονα. Διαφορετικά, η γωνία θα είναι ανάλογη με τον αριθμό κάθε αντιγράφου.</translation>
-    </message>
-    <message>
-        <source>Same angle for copies</source>
-        <translation type="vanished">Ίδια γωνία για αντίγραφα</translation>
-    </message>
-    <message>
-        <source>Rotation angle. </source>
-        <translation type="vanished">Γωνία περιστροφής.</translation>
-    </message>
-    <message>
-        <source>Number of copies.</source>
-        <translation type="vanished">Αριθμός αντιτύπων.</translation>
-    </message>
-    <message>
-        <source>If checked, rotation angle is defined by mouse. Otherwise, specified value is used.</source>
-        <translation type="vanished">Εάν ενεργοποιηθεί, η γωνία περιστροφής ορίζεται από το ποντίκι. Διαφορετικά, χρησιμοποιείται καθορισμένη τιμή.</translation>
-    </message>
-    <message>
-        <source>Free</source>
-        <translation type="vanished">Δωρεάν</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>If checked, created entities will be placed into current layer, otherwise the will be in original layers. </source>
-        <translation type="vanished">Αν ενεργοποιηθεί, οι δημιουργημένες οντότητες θα τοποθετηθούν στο τρέχον στρώμα, διαφορετικά θα είναι σε αρχικά στρώματα.</translation>
-    </message>
-    <message>
-        <source>Use Current Layer</source>
-        <translation type="vanished">Χρήση τρέχοντος στρώματος</translation>
-    </message>
-    <message>
-        <source>If checked, original entities will survive, otherwise they will be removed. </source>
-        <translation type="vanished">Εάν ελεγχθεί, οι αρχικές οντότητες θα επιβιώσουν, διαφορετικά θα αφαιρεθούν.</translation>
-    </message>
-    <message>
-        <source>Keep Originals</source>
-        <translation type="vanished">Διατήρηση των αρχικών</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_PolylineOptions</name>
-    <message>
-        <source>Polyline Options</source>
-        <translation type="vanished">Επιλογές πολυγραμμών</translation>
-    </message>
-    <message>
-        <source>Connects ends of the polyline so closed contour is created</source>
-        <translation type="vanished">Συνδέει τα άκρα της πολυγραμμής έτσι ώστε να δημιουργείται κλειστό περίγραμμα</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Κλείσιμο</translation>
-    </message>
-    <message>
-        <source>Undo for previous vertex</source>
-        <translation type="vanished">Αναίρεση για προηγούμενη κορυφή</translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation type="vanished">Αναίρεση</translation>
-    </message>
-    <message>
-        <source>Segment Type:</source>
-        <translation type="vanished">Τύπος τμήματος:</translation>
-    </message>
-    <message>
-        <source>Defines which segment of polyline should be created</source>
-        <translation type="vanished">Καθορίζει ποιο τμήμα της πολυγραμμής θα πρέπει να δημιουργηθεί</translation>
-    </message>
-    <message>
-        <source>Line</source>
-        <translation type="vanished">Γραμμή</translation>
-    </message>
-    <message>
-        <source>Tangential</source>
-        <translation type="vanished">Επιφανειοδραστικό</translation>
-    </message>
-    <message>
-        <source>Tan Radius</source>
-        <translation type="vanished">Ταν Ακτίνα</translation>
-    </message>
-    <message>
-        <source>Tan Angle</source>
-        <translation type="vanished">Γωνία μαυρίσματος</translation>
-    </message>
-    <message>
-        <source>Angle</source>
-        <translation type="vanished">Γωνία</translation>
-    </message>
-    <message>
-        <source>Tangential arc</source>
-        <translation type="vanished">Τασενιακό τόξο</translation>
-    </message>
-    <message>
-        <source>Tangental arc with fixed radius</source>
-        <translation type="vanished">Τόξο με σταθερή ακτίνα</translation>
-    </message>
-    <message>
-        <source>Tangental arc with fixed angle</source>
-        <translation type="vanished">Τόξο με σταθερή γωνία</translation>
-    </message>
-    <message>
-        <source>Arc with angle</source>
-        <translation type="vanished">Τόξο με γωνία</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Radius of arc</source>
-        <translation type="vanished">Ακτίνα τόξου</translation>
-    </message>
-    <message>
-        <source>Pick radius form drawing</source>
-        <translation type="vanished">Επιλογή σχεδίου σχήματος ακτίνας</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Angle of arc</source>
-        <translation type="vanished">Γωνία του τόξου</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>Counter Clockwise</source>
-        <translation type="vanished">Μετρητής δεξιόστροφα</translation>
-    </message>
-    <message>
-        <source>Clockwise</source>
-        <translation type="vanished">Δεξιόστροφα</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_PrintPreviewOptions</name>
-    <message>
-        <source>Print Preview Options</source>
-        <translation type="vanished">Επιλογές προεπισκόπησης εκτύπωσης</translation>
-    </message>
-    <message>
-        <source>Landscape Orientation</source>
-        <translation type="vanished">Προσανατολισμός τοπίου</translation>
-    </message>
-    <message>
-        <source>Drawing Settings</source>
-        <translation type="vanished">Settings σχεδίασης</translation>
-    </message>
-    <message>
-        <source>Scale:</source>
-        <translation type="vanished">Κλίμακα:</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;printed size : drawing size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">το μέγεθος της εκτύπωσης είναι το μέγεθος του σχεδίου</translation>
-    </message>
-    <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Print Scale is locked to the current value&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">Η κλίμακα εκτύπωσης είναι κλειδωμένη στην τρέχουσα τιμή</translation>
-    </message>
-    <message>
-        <source>fixed</source>
-        <translation type="vanished">σταθερό</translation>
-    </message>
-    <message>
-        <source>Toggle Black / White mode</source>
-        <translation type="vanished">Εναλλαγή λειτουργίας μαύρου / λευκού</translation>
-    </message>
-    <message>
-        <source>Landscape Orientation of paper</source>
-        <translation type="vanished">Τοπίο Προσανατολισμός χαρτιού</translation>
-    </message>
-    <message>
-        <source>Portrait Orientation of paper</source>
-        <translation type="vanished">Πορτραίτο Προσανατολισμός χαρτιού</translation>
-    </message>
-    <message>
-        <source>Apply Print Scale to line width</source>
-        <translation type="vanished">Εφαρμογή κλίμακας εκτύπωσης σε πλάτος γραμμής</translation>
-    </message>
-    <message>
-        <source>Page in center of drawing</source>
-        <translation type="vanished">Σελίδα στο κέντρο της σχεδίασης</translation>
-    </message>
-    <message>
-        <source>Zoom to Print Area</source>
-        <translation type="vanished">Εστίαση στην περιοχή εκτύπωσης</translation>
-    </message>
-    <message>
-        <source>Fit to 1 Page</source>
-        <translation type="vanished">Ταίριασμα σε 1 σελίδα</translation>
-    </message>
-    <message>
-        <source>If enabled, paper space will include specified amount of pages organized in columns and rows</source>
-        <translation type="vanished">Αν ενεργοποιηθεί, ο χάρτινος χώρος θα περιλαμβάνει καθορισμένη ποσότητα σελίδων οργανωμένων σε στήλες και σειρές</translation>
-    </message>
-    <message>
-        <source>Tiled Print</source>
-        <translation type="vanished">Παράθεση εκτύπωσης</translation>
-    </message>
-    <message>
-        <source>Pages Rows::</source>
-        <translation type="vanished">Σελίδες γραμμές:</translation>
-    </message>
-    <message>
-        <source>Amount of pages columns</source>
-        <translation type="vanished">Ποσό σελίδων</translation>
-    </message>
-    <message>
-        <source>Pages Columns:</source>
-        <translation type="vanished">Στήλες σελίδων:</translation>
-    </message>
-    <message>
-        <source>Amount of pages rows</source>
-        <translation type="vanished">Ποσό των σειρών σελίδων</translation>
-    </message>
-    <message>
-        <source>Calculate number of pages needed to contain the drawing</source>
-        <translation type="vanished">Υπολογίστε τον αριθμό των σελίδων που απαιτούνται για να περιοριστεί το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_RoundOptions</name>
-    <message>
-        <source>Round Options</source>
-        <translation type="vanished">Επιλογές στρογγυλού γύρου</translation>
-    </message>
-    <message>
-        <source>Check to trim both edges to the rounding</source>
-        <translation type="vanished">Ελέγξτε να τελειώσετε και τις δύο άκρες της στρογγυλοποίησης</translation>
-    </message>
-    <message>
-        <source>Trim</source>
-        <translation type="vanished">Κόψιμο</translation>
-    </message>
-    <message>
-        <source>Radius:</source>
-        <translation type="vanished">Ακτίνα:</translation>
-    </message>
-    <message>
-        <source>Rounding radius</source>
-        <translation type="vanished">Ακτίνα στρογγυλοποίησης</translation>
-    </message>
-    <message>
-        <source>Pick radius from drawing</source>
-        <translation type="vanished">Επιλέξτε ακτίνα από το σχέδιο</translation>
-    </message>
-</context>
-<context>
     <name>Ui_SnapDistOptions</name>
     <message>
         <location filename="../src/ui/action_options/snap/qg_snapdistoptions.ui" line="32"/>
@@ -56502,99 +50343,6 @@ Point: (%8 , %9)</source>
         <location filename="../src/ui/action_options/snap/qg_snapmiddleoptions.ui" line="81"/>
         <source>Number of equidistant division points</source>
         <translation>Αριθμός ίσων σημείων διαίρεσης</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_SplineOptions</name>
-    <message>
-        <source>Spline Options</source>
-        <translation type="vanished">Επιλογές spline</translation>
-    </message>
-    <message>
-        <source>Degree:</source>
-        <translation type="vanished">Βαθμός:</translation>
-    </message>
-    <message>
-        <source>Spline&apos;s degree used for approximation between points</source>
-        <translation type="vanished">Πτυχίο Spline για την προσέγγιση μεταξύ των σημείων</translation>
-    </message>
-    <message>
-        <source>If selected, closed spline is created</source>
-        <translation type="vanished">Αν επιλεγεί, δημιουργείται κλειστό spline</translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation type="vanished">Κλειστό</translation>
-    </message>
-    <message>
-        <source>Undo previous point</source>
-        <translation type="vanished">Αναίρεση προηγούμενου σημείου</translation>
-    </message>
-    <message>
-        <source>Undo</source>
-        <translation type="vanished">Αναίρεση</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_TextOptions</name>
-    <message>
-        <source>Text Options</source>
-        <translation type="vanished">Επιλογές κειμένου</translation>
-    </message>
-    <message>
-        <source>Text:</source>
-        <translation type="vanished">Κείμενο:</translation>
-    </message>
-    <message>
-        <source>Angle:</source>
-        <translation type="vanished">Γωνία:</translation>
-    </message>
-    <message>
-        <source>Rotation angle</source>
-        <translation type="vanished">Γωνία περιστροφής</translation>
-    </message>
-    <message>
-        <source>Pick angle from drawing</source>
-        <translation type="vanished">Επιλογή γωνίας από το σχέδιο</translation>
-    </message>
-</context>
-<context>
-    <name>Ui_TrimAmountOptions</name>
-    <message>
-        <source>Trim Amount Options</source>
-        <translation type="vanished">Επιλογές ποσού κοπής</translation>
-    </message>
-    <message>
-        <source>Distance. Negative values for trimming, positive values for extending.</source>
-        <translation type="vanished">Απόσταση. Αρνητικές τιμές για το κόψιμο, θετικές τιμές για την επέκταση.</translation>
-    </message>
-    <message>
-        <source>Total</source>
-        <translation type="vanished">Σύνολο</translation>
-    </message>
-    <message>
-        <source>Length:</source>
-        <translation type="vanished">Μήκος:</translation>
-    </message>
-    <message>
-        <source>Distance. Negative values for trimming, positive values for extending. Negative sign is ignored when trimming to final total length.</source>
-        <translation type="vanished">Απόσταση. Αρνητικές τιμές για το κόψιμο, θετικές τιμές για την επέκταση. Αρνητικό σημάδι αγνοείται κατά το κόψιμο στο τελικό συνολικό μήκος.</translation>
-    </message>
-    <message>
-        <source>Pick length from drawing</source>
-        <translation type="vanished">Διαλέξτε το μήκος από το σχέδιο</translation>
-    </message>
-    <message>
-        <source>If checked, trim/extension is performed for both sides of line.</source>
-        <translation type="vanished">Εάν ελεγχθεί, γίνεται περικοπή/επέκταση και για τις δύο πλευρές της γραμμής.</translation>
-    </message>
-    <message>
-        <source>Symmetric</source>
-        <translation type="vanished">Συμμετρικό</translation>
-    </message>
-    <message>
-        <source>The input length is used as total length after trimming, instead of length increase</source>
-        <translation type="vanished">Το μήκος εισόδου χρησιμοποιείται ως συνολικό μήκος μετά το κόψιμο, αντί για αύξηση μήκους</translation>
     </message>
 </context>
 </TS>

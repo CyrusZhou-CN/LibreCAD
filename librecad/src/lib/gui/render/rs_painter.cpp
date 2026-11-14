@@ -27,11 +27,16 @@
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
+#include <queue>
+#include <utility>
+#include <vector>
 
 #include "dxf_format.h"
 #include "lc_graphicviewport.h"
 #include "lc_graphicviewportrenderer.h"
 #include "lc_linemath.h"
+#include "lc_linetypenames.h"
 #include "lc_splinepoints.h"
 #include "rs_arc.h"
 #include "rs_circle.h"
@@ -207,6 +212,119 @@ namespace {
 // RVT_PORT changed from RS_PainterQt::RS_PainterQt( const QPaintDevice* pd)
 RS_Painter::RS_Painter(QPaintDevice* pd)
     : QPainter{pd}, m_cachedDpmm{getDpmm()} {
+}
+
+QVector<qreal> RS_Painter::canonicalDashPattern(const std::vector<double>& raw, qreal* phaseOffset) {
+    // The engine helper is the one rule; the painter only ports its result.
+    double phase = 0.0;
+    const std::vector<double> dashes = LC_LineTypeNames::canonicalDashes(raw, &phase);
+    if (phaseOffset != nullptr)
+        *phaseOffset = phase;
+    return QVector<qreal>(dashes.begin(), dashes.end());
+}
+
+QVector<qreal> RS_Painter::dashPatternForQt(const QVector<qreal>& canonical, const double k) {
+    QVector<qreal> pattern = canonical;
+    for (qreal& dash : pattern)
+        dash *= k;
+    // The fold pairs dash with gap, so an odd list cannot draw.
+    if (pattern.size() % 2 != 0)
+        return {};
+    // Qt's stroker honours only the first 32 elements. Fold the shortest
+    // dash+gap pairs into their neighbours, keeping the first pair anchored so
+    // the DXF pattern phase does not rotate. A min-heap avoids quadratic scans.
+    constexpr qsizetype qtDashElementLimit = 32;
+    if (pattern.size() > qtDashElementLimit) {
+        struct DashPair {
+            qreal dash;
+            qreal gap;
+            std::size_t previous;
+            std::size_t following;
+            std::size_t revision;
+            bool alive;
+        };
+        struct Candidate {
+            qreal length;
+            std::size_t index;
+            std::size_t revision;
+        };
+        struct CandidateLater {
+            bool operator()(const Candidate& left, const Candidate& right) const {
+                if (left.length != right.length)
+                    return left.length > right.length;
+                return left.index > right.index;
+            }
+        };
+
+        const std::size_t pairCount = static_cast<std::size_t>(pattern.size() / 2);
+        std::vector<DashPair> pairs;
+        pairs.reserve(pairCount);
+        for (std::size_t i = 0; i < pairCount; ++i) {
+            const qsizetype dashIndex = static_cast<qsizetype>(2 * i);
+            pairs.push_back({pattern.at(dashIndex), pattern.at(dashIndex + 1),
+                             (i + pairCount - 1) % pairCount, (i + 1) % pairCount, 0, true});
+        }
+
+        std::priority_queue<Candidate, std::vector<Candidate>, CandidateLater> candidates;
+        auto queueCandidate = [&pairs, &candidates](const std::size_t index) {
+            if (index == 0 || !pairs[index].alive)
+                return;
+            const DashPair& pair = pairs[index];
+            candidates.push({pair.dash + pair.gap, index, pair.revision});
+        };
+        for (std::size_t i = 1; i < pairCount; ++i)
+            queueCandidate(i);
+
+        const std::size_t targetPairCount = static_cast<std::size_t>(qtDashElementLimit / 2);
+        std::size_t remaining = pairCount;
+        while (remaining > targetPairCount) {
+            const Candidate candidate = candidates.top();
+            candidates.pop();
+            DashPair& removed = pairs[candidate.index];
+            if (!removed.alive || removed.revision != candidate.revision)
+                continue;
+
+            const std::size_t previous = removed.previous;
+            const std::size_t following = removed.following;
+            pairs[previous].dash += removed.dash;
+            pairs[following].gap += removed.gap;
+            pairs[previous].following = following;
+            pairs[following].previous = previous;
+            removed.alive = false;
+            --remaining;
+
+            ++pairs[previous].revision;
+            ++pairs[following].revision;
+            queueCandidate(previous);
+            queueCandidate(following);
+        }
+
+        QVector<qreal> folded;
+        folded.reserve(static_cast<int>(qtDashElementLimit));
+        std::size_t index = 0;
+        do {
+            folded.push_back(pairs[index].dash);
+            folded.push_back(pairs[index].gap);
+            index = pairs[index].following;
+        } while (index != 0);
+        pattern.swap(folded);
+    }
+    // QPen requires strictly positive dash and gap lengths. A zero group 49
+    // element is a dot; with the pen cap it becomes a point at this tiny length.
+    const qreal dotLength = std::numeric_limits<qreal>::epsilon();
+    for (qreal& dash : pattern) {
+        if (dash == 0.0)
+            dash = dotLength;
+        if (!std::isfinite(dash) || dash <= 0.0)
+            return {};
+    }
+    return pattern;
+}
+
+bool RS_Painter::periodFitsQt(const double periodPx, const double diagonalPx) {
+    // Qt's stroker honours the first 32 dash elements only, and its repetition
+    // limit of 10000 periods across the view turns a line solid.
+    return periodPx >= std::max(3.0, diagonalPx / 10000.0);
 }
 
 /**
@@ -1340,17 +1458,33 @@ void RS_Painter::drawSplinePointsUI(const std::vector<RS_Vector> &uiControlPoint
 void RS_Painter::drawEntityPolyline(const RS_Polyline* polyline) {
     QPainterPath path;
     path.moveTo(toGuiPointF(polyline->getStartpoint()));
+    // A child that starts where the path ended continues the same subpath, so
+    // the dash phase runs through the join. The dash phase is the only reason
+    // to join subpaths: a solid pen keeps one subpath per segment, with its
+    // caps and joins. The comparison is in GUI pixels, the space
+    // currentPosition() lives in, with a tolerance below raster detail.
+    static constexpr double uiJoinTolerance = 1e-3;
+    auto continuesPath = [&path](const QPointF& start) {
+        const QPointF end = path.currentPosition();
+        return std::abs(end.x() - start.x()) <= uiJoinTolerance
+            && std::abs(end.y() - start.y()) <= uiJoinTolerance;
+    };
 
+    bool startNewSubpath = false;
     for (RS_Entity* entity : *polyline) {
         switch (entity->rtti()) {
             case RS2::EntityLine: {
-                path.moveTo(toGuiPointF(entity->getStartpoint()));
+                const QPointF start = toGuiPointF(entity->getStartpoint());
+                if (startNewSubpath || !penHasDashPattern() || !continuesPath(start))
+                    path.moveTo(start);
                 path.lineTo(toGuiPointF(entity->getEndpoint()));
+                startNewSubpath = false;
                 break;
             }
             case RS2::EntityArc: {
                 auto* arc = static_cast<RS_Arc*>(entity);
                 drawArcEntity(arc, path);
+                startNewSubpath = true;
                 break;
             }
             // well, actually this is just for fonts.. better to have separate entity for this. fixme - change latter
@@ -1371,6 +1505,7 @@ void RS_Painter::drawEntityPolyline(const RS_Polyline* polyline) {
                 else {
                     drawEllipseUI(uiCenter, {uiMajorRadius, uiMinorRadius}, toWorldAngleDegrees(data.angleDegrees));
                 }
+                startNewSubpath = true;
                 break;
             }
             default: LC_ERR << "Polyline may contain lines/arcs only: found rtti() =" << entity->rtti();
@@ -1574,6 +1709,15 @@ void RS_Painter::setPen(const RS_Pen& pen, const DashSpace dashSpace) {
     pColor.setAlphaF(pen.getAlpha());
     RS2::LineType lineType = pen.getLineType();
     Qt::PenStyle style = rsToQtLineType(lineType);
+    // A named pen may draw dashes from the drawing's line type table; without
+    // a renderer or outside model space the enum decides, as it always did.
+    const std::uint16_t lineTypeId = pen.getLineTypeId();
+    const QVector<qreal>* tablePattern = nullptr;
+    qreal tablePhaseOffset = 0.0;
+    if (lineTypeId != 0 && m_renderer != nullptr && dashSpace == DashSpace::Model)
+        tablePattern = m_renderer->resolveDashPattern(pen, &tablePhaseOffset);
+    if (tablePattern != nullptr)
+        style = Qt::CustomDashLine;
 
     double screenWidth = pen.getScreenWidth();
     if (style == Qt::CustomDashLine) {
@@ -1583,29 +1727,62 @@ void RS_Painter::setPen(const RS_Pen& pen, const DashSpace dashSpace) {
         if (m_viewport && screenWidth == 0.0)
             deviceScale *= getDevicePixelRatio();
         const double k = dashPatternScale(screenWidth, deviceScale);
-        // Rebuild when the line type, width or viewport scale changes.
-        if (!m_lastDashValid || m_lastDashLineType != lineType
+        // Rebuild when the spelled identity, line type, width or viewport scale changes.
+        if (!m_lastDashValid || m_lastDashLineTypeId != lineTypeId
+            || m_lastDashLineType != lineType
             || m_lastDashScreenWidth != screenWidth || m_lastDashDeviceScale != deviceScale) {
-            QVector<qreal> dashPattern = rsToQDashPattern(lineType, k);
+            QVector<qreal> dashPattern = tablePattern != nullptr
+                ? dashPatternForQt(*tablePattern, k) : rsToQDashPattern(lineType, k);
+            if (tablePattern != nullptr && !dashPattern.isEmpty()) {
+                // The period in device pixels: Qt multiplies each dash by the
+                // pen width, which k divides out again.
+                double period = 0.0;
+                for (const qreal dash : dashPattern)
+                    period += dash;
+                period *= screenWidth > 0.0 ? screenWidth : 1.0;
+                double diagonal = 0.0;
+                // The view diagonal is a conservative proxy for the device length
+                // Qt strokes; a longer entity may still exceed the repetition limit.
+                if (m_viewport != nullptr
+                    && m_wcsBoundingRect.width() > 0.0 && m_wcsBoundingRect.height() > 0.0)
+                    diagonal = std::hypot(toGuiDX(m_wcsBoundingRect.width()),
+                                          toGuiDY(m_wcsBoundingRect.height()));
+                // A cosmetic pen's period is in device pixels, so is its diagonal.
+                if (m_viewport != nullptr && screenWidth == 0.0)
+                    diagonal *= getDevicePixelRatio();
+                // A pattern Qt cannot draw at this zoom falls back to solid, as
+                // an empty pattern does.
+                if (!periodFitsQt(period, diagonal))
+                    dashPattern.clear();
+            }
             if (dashPattern.isEmpty()) {
                 style = Qt::SolidLine;
             }
             else {
                 m_lastUsedPen.setDashPattern(dashPattern); // also sets Qt::CustomDashLine
-                m_lastDashValid = true;
-                m_lastDashLineType = lineType;
-                m_lastDashScreenWidth = screenWidth;
-                m_lastDashDeviceScale = deviceScale;
             }
+            // A rejected or empty pattern validates the memo too, so the next
+            // install of this key rebuilds nothing.
+            m_lastDashValid = true;
+            m_lastDashLineTypeId = lineTypeId;
+            m_lastDashLineType = lineType;
+            m_lastDashScreenWidth = screenWidth;
+            m_lastDashDeviceScale = deviceScale;
+            m_lastDashSolid = dashPattern.isEmpty();
+        }
+        else if (m_lastDashSolid) {
+            // The memo holds a rejected pattern: reuse the solid fallback.
+            style = Qt::SolidLine;
         }
         if (style == Qt::CustomDashLine) {
-            // fixme - how this is related to RS_AtomicEntity::updateDashOffset??? Will we set dash offset twice?
-            m_lastUsedPen.setDashOffset(pen.dashOffset() * k);
+            m_lastUsedPen.setDashOffset((pen.dashOffset() + tablePhaseOffset) * k);
         }
     }
     if (style != Qt::CustomDashLine && m_lastUsedPen.style() != style) {
         m_lastUsedPen.setStyle(style); // drops any dash pattern
-        m_lastDashValid = false;
+        // A forced-solid memo is a verdict, not a stale pattern.
+        if (!m_lastDashSolid)
+            m_lastDashValid = false;
     }
     if (m_lastUsedPen.color() != pColor) {
         m_lastUsedPen.setColor(pColor);
@@ -1802,15 +1979,35 @@ void RS_Painter::setMinRenderableTextHeightInPx(const int i) {
     m_minRenderableTextHeightInPx = i;
 }
 
-void RS_Painter::updateDashOffset(const RS_Entity* e) {
-    // Adjust dash offset
-    if (m_lpen.getLineType() == RS2::SolidLine /*|| view.getGraphic() == nullptr*/) {
-        return;
-    }
+double RS_Painter::currentDashOffset(const DashSpace dashSpace) const {
+    const double scale = dashSpace == DashSpace::Model && m_viewport
+        ? std::abs(toGuiDX(1.0)) : getDpmmCached();
+    return scale > 0.0 ? m_currenPatternOffset / scale : 0.0;
+}
 
-    // factor from model space to GUI
-    const double toMm = m_defaultWidthFactor;
-    m_currenPatternOffset -= e->getLength() * toMm;
+void RS_Painter::updateDashOffset(const RS_Entity* e) {
+    if (!penHasDashPattern()) return;
+
+    // Track the rendered length in logical pixels so model and screen patterns can share it.
+    double length = e->getLength() * std::abs(toGuiDX(1.0));
+    if (m_viewPortFactor.x != m_viewPortFactor.y) {
+        if (const auto* line = dynamic_cast<const RS_Line*>(e)) {
+            const QPointF delta = toGuiPointF(line->getEndpoint()) - toGuiPointF(line->getStartpoint());
+            length = std::hypot(delta.x(), delta.y());
+        } else if (const auto* spline = dynamic_cast<const LC_SplinePoints*>(e)) {
+            const auto& data = spline->getData();
+            if (!data.controlPoints.empty()) {
+                std::vector<RS_Vector> points;
+                points.reserve(data.controlPoints.size());
+                std::transform(data.controlPoints.cbegin(), data.controlPoints.cend(), std::back_inserter(points),
+                               [this](const RS_Vector& point) { return toGui(point); });
+                QPainterPath path(QPointF(points.front().x, points.front().y));
+                addSplinePointsToPath(points, data.closed, path);
+                length = path.length();
+            }
+        }
+    }
+    m_currenPatternOffset += length;
 }
 
 int RS_Painter::determinePointScreenSize(const double pdsize) const {
@@ -2111,6 +2308,7 @@ void RS_Painter::pathForEntity(
     const RS_Entity* entity,
     double baseAngle,
     double fullAngleLength,
+    bool reversed,
     const std::function<double(const RS_Vector&)>& getParamFunc,
     const std::function<RS_Vector(double)>& getPointFunc,
     double approxRadius
@@ -2125,6 +2323,9 @@ void RS_Painter::pathForEntity(
   }
 
   const LC_Rect& vpRect = getWcsBoundingRect();
+  // The parameters below are the distances travelled from baseAngle, clockwise
+  // for a reversed arc, so they always grow from 0 to the arc's length.
+  const double direction = reversed ? -1. : 1.;
   std::vector<double> crossPoints;
   // Compute intersections with viewport borders
   const std::array<RS_Vector, 4> vertices = vpRect.vertices();
@@ -2135,7 +2336,13 @@ void RS_Painter::pathForEntity(
       const double ap1 = entity->getTangentDirection(vp).angle();
       const double ap2 = line.getTangentDirection(vp).angle();
       if (std::abs(RS_Math::correctAngle(ap2 - ap1)) > RS_TOLERANCE_ANGLE) {
-        const double param = RS_Math::getAngleDifference(baseAngle, getParamFunc(vp));
+        double param = RS_Math::getAngleDifference(baseAngle, getParamFunc(vp), reversed);
+        // vp is on the entity, within tolerance. A crossing at an end that
+        // rounds to the wrong side of it lands beyond the entity, about a full
+        // turn away from where it belongs: bring it back to the end it is at.
+        if (param > fullAngleLength) {
+          param = (param - fullAngleLength < 2. * M_PI - param) ? fullAngleLength : 0.;
+        }
         if (hasFiniteValue(param))
           crossPoints.push_back(param);
       }
@@ -2151,8 +2358,8 @@ void RS_Painter::pathForEntity(
   });
   crossPoints.erase(last, crossPoints.end());
   // Define point getter
-  auto getPointAtParam = [getPointFunc, baseAngle](double relParam) {
-    return getPointFunc(baseAngle + relParam);
+  auto getPointAtParam = [getPointFunc, baseAngle, direction](double relParam) {
+    return getPointFunc(baseAngle + direction * relParam);
   };
   pathForParametricCurve(path, crossPoints, getPointAtParam, approxRadius);
 }

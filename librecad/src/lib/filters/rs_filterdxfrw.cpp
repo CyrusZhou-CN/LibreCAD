@@ -46,7 +46,6 @@
 #include <sstream>
 #include <stack>
 #include <type_traits>
-#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -57,7 +56,6 @@
 #include <QLocale>
 #include <QRegularExpression>
 #include <QScopeGuard>
-#include <QSet>
 #include <QTemporaryFile>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
 #include <QByteArrayView>
@@ -98,6 +96,9 @@
 #include "rs_block.h"
 #include "rs_blocklist.h"
 #include "rs_circle.h"
+#include "lc_hatchdefinitionlines.h"
+#include "lc_hatchdensity.h"
+#include "lc_hatchdensitytext.h"
 #include "rs_dialogfactory.h"
 #include "rs_dialogfactoryinterface.h"
 #include "rs_dimaligned.h"
@@ -130,6 +131,13 @@
 #include "libdwgr.h"
 #include "rs_debug.h"
 #endif // DWGSUPPORT
+
+// Catch distribution builds against a libdxfrw before 0.6.4, where DRW_Hatch
+// stored DXF group 52 raw instead of radians. Without this guard every legacy
+// angle would be multiplied by 57.3 (see issue #1585).
+#if !defined(DRW_HATCH_ANGLE_RADIANS) || DRW_HATCH_ANGLE_RADIANS != 1
+#error "libdxfrw stores DXF hatch angles raw; LibreCAD needs DRW_HATCH_ANGLE_RADIANS 1 (libdxfrw 0.6.4)"
+#endif
 
 namespace {
 constexpr std::int32_t kLegacyRtlLayout = 1;
@@ -4287,6 +4295,8 @@ bool RS_FilterDXFRW::fileImport(RS_Graphic &g, const QString &file,
   // reset library version
   m_isLibDxfRw = false;
   m_libDxfRwVersion = 0;
+  m_dxflibMajor = 0;
+  m_legacyHatchRadians = false;
   m_unsupportedDwgObjects.clear();
   m_graphic->dwgAdvancedMetadata().clear();
   // Clear per-import caches so a reused filter instance does not carry stale
@@ -4498,8 +4508,8 @@ bool RS_FilterDXFRW::fileImport(RS_Graphic &g, const QString &file,
   /*set current layer */
   auto cl = m_graphic->findLayer(m_graphic->getVariableString("$CLAYER", "0"));
   if (cl) {
-    // require to notify
-    m_graphic->activateLayer(cl, true);
+    // require to notify; as saved, also when it is hidden or locked
+    m_graphic->restoreActiveLayer(cl);
   }
   RS_DEBUG->print("RS_FilterDXFRW::fileImport: updating inserts");
   const auto updateInsertsStart = std::chrono::steady_clock::now();
@@ -4549,6 +4559,39 @@ bool RS_FilterDXFRW::fileImport(RS_Graphic &g, const QString &file,
               .arg(orphans.size())
               .arg(orphans.join(QStringLiteral(", "))));
     }
+  }
+
+  // Count pattern hatches whose density guard tripped and tint-fill them in
+  // model-space, every block and every top-level insert's direct children.
+  // One summary message per import, so the user is told that some fills are
+  // shown as tints rather than pattern lines.
+  const auto denseFromHatch = [](const RS_Entity* e) -> bool {
+    if (e == nullptr || e->rtti() != RS2::EntityHatch) return false;
+    const auto* h = static_cast<const RS_Hatch*>(e);
+    return h->getUpdateError() == RS_Hatch::HATCH_TOO_DENSE;
+  };
+  int tooDenseCount = 0;
+  if (m_graphic != nullptr) {
+    for (const RS_Entity* en : std::as_const(*m_graphic)) {
+      if (denseFromHatch(en)) ++tooDenseCount;
+      if (en != nullptr && en->rtti() == RS2::EntityInsert) {
+        const auto* ins = static_cast<const RS_EntityContainer*>(en);
+        for (const RS_Entity* child : std::as_const(*ins)) {
+          if (denseFromHatch(child)) ++tooDenseCount;
+        }
+      }
+    }
+    for (unsigned i = 0; i < m_graphic->countBlocks(); ++i) {
+      const RS_Block* blk = m_graphic->blockAt(i);
+      if (blk == nullptr) continue;
+      for (const RS_Entity* en : std::as_const(*blk)) {
+        if (denseFromHatch(en)) ++tooDenseCount;
+      }
+    }
+  }
+  if (tooDenseCount > 0) {
+    RS_DIALOGFACTORY->commandMessage(
+        LC_HatchDensityText::importSummary(tooDenseCount));
   }
 
   RS_DEBUG->print("RS_FilterDXFRW::fileImport OK");
@@ -4615,8 +4658,15 @@ void RS_FilterDXFRW::addLayer(const DRW_Layer &data) {
   layer->setPen(attributesToPen(&data));
 
   RS_DEBUG->print("RS_FilterDXF::addLayer: flags");
-  if (data.flags & 0x01) {
+  // AutoCAD turns a layer off with a negative colour, and keeps that apart from
+  // frozen: either hides the layer, which remembers how it was saved
+  const bool frozen = (data.flags & 0x01) != 0;
+  const bool off = data.color < 0;
+  if (frozen || off) {
     layer->freeze(true);
+    layer->setHiddenAs(!off      ? RS_Layer::HiddenAs::Frozen
+                       : frozen ? RS_Layer::HiddenAs::FrozenAndOff
+                                : RS_Layer::HiddenAs::Off);
   }
   if (data.flags & 0x04) {
     layer->lock(true);
@@ -10268,10 +10318,26 @@ void RS_FilterDXFRW::snapSplineEdgeEndpoints(RS_EntityContainer *hatchLoop) {
  */
 void RS_FilterDXFRW::addHatch(const DRW_Hatch *data) {
   RS_DEBUG->print("RS_FilterDXF::addHatch()");
+  const double hatchAngle =
+      importedHatchAngle(data->angle, m_legacyHatchRadians, data->solid != 0);
   const auto hatch = new RS_Hatch(
-      m_currentContainer, RS_HatchData(data->solid, data->scale, data->angle,
+      m_currentContainer, RS_HatchData(data->solid, data->scale, hatchAngle,
                                        QString::fromUtf8(data->name.c_str())));
   setEntityAttributes(hatch, data);
+  // Strip the approximate definition-line tag the writer may have added so
+  // a round-trip through LibreCAD never duplicates it: the re-export rebuilds
+  // the tag from forExport()'s own approximate flag. The strip is case-
+  // insensitive on the 1001 group name. A caller may read whether the import
+  // carried the tag through the returned bool (unused today; a future step
+  // reads it to tell "this hatch was reconstructed through our placeholder"
+  // from "an exact LibreCAD export").
+  if (hatch->hasDrwExtData()) {
+    auto extData = hatch->getDrwExtData();
+    const bool importedApproximate =
+        LC_HatchDefinitionLines::stripApproximateTag(extData);
+    if (importedApproximate)
+      hatch->setDrwExtData(std::move(extData));
+  }
   if (data->basePoint.z != 0.0 || data->extPoint.x != 0.0 ||
       data->extPoint.y != 0.0 || data->extPoint.z != 1.0) {
     std::vector<std::shared_ptr<DRW_Variant>> payload;
@@ -11493,6 +11559,8 @@ void RS_FilterDXFRW::addHeader(const DRW_Header *data) {
   m_oldMText = false;
   m_isLibDxfRw = false;
   m_libDxfRwVersion = 0;
+  m_dxflibMajor = 0;
+  m_legacyHatchRadians = false;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
   constexpr auto option = Qt::SkipEmptyParts;
 #else
@@ -11505,24 +11573,70 @@ void RS_FilterDXFRW::addHeader(const DRW_Header *data) {
     if (0 < commentWords.size()) {
       if ("dxflib" == commentWords.at(0)) {
         m_oldMText = true;
+        // Record the dxflib major version so the hatch-angle reader can
+        // tell LibreCAD 1.x / QCAD 2 (raw radians) from QCAD 3 (degrees).
+        if (1 < commentWords.size()) {
+          m_dxflibMajor = commentWords.at(1).section('.', 0, 0).toInt();
+        }
         break;
       }
       if ("dxfrw" == commentWords.at(0)) {
-        const QStringList libVersionList =
-            commentWords.at(1).split('.', option);
-        if (2 < libVersionList.size()) {
-          m_isLibDxfRw = true;
-          m_libDxfRwVersion = LIBDXFRW_VERSION(libVersionList.at(0).toInt(),
-                                               libVersionList.at(1).toInt(),
-                                               libVersionList.at(2).toInt());
-          if (m_libDxfRwVersion < LIBDXFRW_VERSION(0, 5, 4)) {
-            m_oldMText = true;
+        if (1 < commentWords.size()) {
+          const QStringList libVersionList =
+              commentWords.at(1).split('.', option);
+          if (2 < libVersionList.size()) {
+            m_isLibDxfRw = true;
+            m_libDxfRwVersion = LIBDXFRW_VERSION(libVersionList.at(0).toInt(),
+                                                 libVersionList.at(1).toInt(),
+                                                 libVersionList.at(2).toInt());
+            if (m_libDxfRwVersion < LIBDXFRW_VERSION(0, 5, 4)) {
+              m_oldMText = true;
+            }
           }
         }
         break;
       }
     }
   }
+  // Legacy writers stored DXF hatch angle 52 raw. Every LibreCAD 2.x file
+  // (dxfrw < 0.6.4) and every dxflib 1.x / 2.x file; the standalone fork's
+  // 2.0.0 keeps raw too. Everything else, including bare "dxfrw" and
+  // dxflib 3+ (QCAD 3), is a degree writer.
+  m_legacyHatchRadians =
+      (1 <= m_dxflibMajor && m_dxflibMajor <= 2)
+      || (m_isLibDxfRw
+          && (m_libDxfRwVersion < kFirstDegreeHatchWriter
+              || m_libDxfRwVersion == kRawHatchForkVersion));
+}
+
+double RS_FilterDXFRW::importedHatchAngle(double drwAngle, bool legacyRadians,
+                                          bool solid) {
+  // libdxfrw now hands every DXF 52 value in radians (= raw / ARAD). Solids
+  // have no geometric angle, so leave them alone except for the normalisation
+  // that setAngle() applies.
+  double a = drwAngle;
+  if (legacyRadians && !solid) {
+    // The number that stood in group 52 before libdxfrw's divide: use it for
+    // the tie-break of the three cases below.
+    const double x = drwAngle * ARAD;
+    if (std::fabs(x) <= 2.0 * M_PI + 1.0e-9) {
+      // Within [-2pi, 2pi]: legacy LibreCAD/QCAD2 radians stored raw.
+      a = x;
+    } else {
+      // "Nice degrees" (a multiple of 0.5 deg) that is not already a nice
+      // radian value marks a DWG-origin radian value above 2pi (e.g. 7.854
+      // = 450 deg). Keep that interpretation.
+      const auto isNiceDegrees = [](double v) {
+        return std::fabs(v - 0.5 * std::round(2.0 * v)) <= 1.0e-6;
+      };
+      if (isNiceDegrees(x * ARAD) && !isNiceDegrees(x)) {
+        a = x;
+      }
+      // else: a degree value an older LibreCAD read raw and saved again.
+      // libdxfrw already divided by ARAD, so keep a = drwAngle.
+    }
+  }
+  return RS_Math::correctAngle(a);
 }
 
 /**
@@ -12837,6 +12951,26 @@ void RS_FilterDXFRW::prepareBlocks() {
         break;
       } // end switch
     } // end if !RS2::FlagUndone
+  }
+  // R12 writes every pattern hatch into a *U block of its own. When the
+  // density guard tripped the hatch has no pattern pieces, so the *U block
+  // and its INSERT end up empty. Warn the user once per export.
+  if (m_version == 1009) {
+    int r12DenseCount = 0;
+    for (RS_Entity *e :
+         lc::LC_ContainerTraverser{*m_graphic, RS2::ResolveNone}.entities()) {
+      if (e != nullptr && e->isAlive() && e->rtti() == RS2::EntityHatch) {
+        const auto *h = static_cast<const RS_Hatch *>(e);
+        if (!h->isSolid()
+            && h->getUpdateError() == RS_Hatch::HATCH_TOO_DENSE) {
+          ++r12DenseCount;
+        }
+      }
+    }
+    if (r12DenseCount > 0) {
+      RS_DIALOGFACTORY->commandMessage(
+          LC_HatchDensityText::r12Warning(r12DenseCount));
+    }
   }
 }
 
@@ -19648,85 +19782,42 @@ QString lineTypeNameToWrite(const RS_Pen &pen) {
   return LC_LineTypeNames::lineTypeToName(pen.getLineType());
 }
 
-// Every linetype name a writer emits as a string, first seen first, each once.
-// It walks what the writers walk: the top level of model space and of each
-// block, the children of pattern hatches, dimension overrides, layers, dim
-// styles, header variables and MLINESTYLE elements. Names given by handle are
-// left out: a handle only resolves through a record the file already has.
-std::vector<QString> referencedLineTypeNames(RS_Graphic &graphic) {
-  std::vector<QString> names;
-  QSet<QString> seenNames;
-  std::unordered_set<std::uint16_t> seenIds;
-  const auto addName = [&](const QString &name) {
-    if (name.trimmed().isEmpty() || !isWritableLineTypeName(name) ||
-        seenNames.contains(name))
-      return;
-    seenNames.insert(name);
-    names.push_back(name);
-  };
-  const auto addPen = [&](const RS_Pen &pen) {
-    if (pen.getLineTypeFoldId() != 0 &&
-        seenIds.insert(pen.getLineTypeId()).second)
-      addName(pen.getLineTypeName());
-  };
-  const auto addDimStyle = [&](const LC_DimStyle &style) {
-    addName(style.dimensionLine()->lineTypeName());
-    addName(style.extensionLine()->lineTypeFirstRaw());
-    addName(style.extensionLine()->lineTypeSecondRaw());
-  };
-  const auto addEntities = [&](const RS_EntityContainer &container) {
-    for (RS_Entity *e :
-         lc::LC_ContainerTraverser{container, RS2::ResolveNone}.entities()) {
-      if (e->getFlag(RS2::FlagDeleted))
-        continue;
-      addPen(e->getPen(false));
-      switch (e->rtti()) {
-      case RS2::EntityDimLinear:
-      case RS2::EntityDimOrdinate:
-      case RS2::EntityDimAligned:
-      case RS2::EntityDimAngular:
-      case RS2::EntityDimRadial:
-      case RS2::EntityDimDiametric:
-      case RS2::EntityDimArc:
-        if (const LC_DimStyle *style =
-                static_cast<RS_Dimension *>(e)->getDimStyleOverride())
-          addDimStyle(*style);
-        break;
-      case RS2::EntityHatch:
-        // R12 writes the pattern children with their own pens.
-        if (!static_cast<RS_Hatch *>(e)->isSolid()) {
-          for (RS_Entity *child :
-               lc::LC_ContainerTraverser{*static_cast<RS_Hatch *>(e),
-                                         RS2::ResolveNone}
-                   .entities())
-            addPen(child->getPen(false));
-        }
-        break;
-      default:
-        break;
-      }
-    }
-  };
-
-  addEntities(graphic);
-  for (unsigned i = 0; i < graphic.countBlocks(); i++) {
-    const RS_Block *block = graphic.blockAt(i);
-    if (!block->isDeleted())
-      addEntities(*block);
-  }
-  const RS_LayerList *layers = graphic.getLayerList();
-  for (unsigned i = 0; i < layers->count(); i++)
-    addPen(layers->at(i)->getPen());
-  for (const LC_DimStyle *style : *graphic.getDimStyleList()->getStylesList())
-    addDimStyle(*style);
-  for (const char *key : {"$CELTYPE", "$DIMLTYPE", "$DIMLTEX1", "$DIMLTEX2"})
-    addName(graphic.getVariableString(QLatin1String(key), QString()));
-  for (const auto &style : graphic.dwgAdvancedMetadata().mlineStyles()) {
-    for (const auto &element : style.elements)
-      addName(QString::fromStdString(element.linetype));
-  }
-  return names;
+// The record a list entry is written as: groups 73 and 40 follow the dashes.
+DRW_LType lineTypeToDrw(const std::string &name, const std::string &description,
+                        const std::vector<double> &pattern) {
+  double length = 0.0;
+  for (const double dash : pattern)
+    length += std::fabs(dash);
+  DRW_LType record;
+  record.updateValues(name, description, static_cast<int>(pattern.size()),
+                      length, pattern);
+  return record;
 }
+
+// The table holds the drawing's definition; the archived record stands in
+// for it only while the two agree, so a definition changed in the program
+// is the one saved. A twin spelling is another record, not this entry's.
+const LC_LineType *changedLineTypeDefinition(const RS_Graphic *graphic,
+                                             const DRW_LType &archived) {
+  if (graphic == nullptr)
+    return nullptr;
+  const LC_LineType *entry =
+      graphic->findLineType(QString::fromUtf8(archived.name.c_str()));
+  if (entry == nullptr ||
+      normalizeDwgTableName(entry->name.toStdString()) !=
+          normalizeDwgTableName(archived.name))
+    return nullptr;
+  if (entry->description.toStdString() != archived.desc)
+    return entry;
+  if (entry->pattern.size() != archived.path.size())
+    return entry;
+  for (std::size_t i = 0; i < entry->pattern.size(); ++i) {
+    if (entry->pattern[i] != archived.path[i])
+      return entry;
+  }
+  return nullptr;
+}
+
 } // namespace
 
 void RS_FilterDXFRW::writeLType(const UTF8STRING &lTypeName,
@@ -19739,12 +19830,25 @@ void RS_FilterDXFRW::writeLType(const UTF8STRING &lTypeName,
   if (const auto *source =
           m_graphic->dwgAdvancedMetadata().findLineTypeTableEntryByName(
               lTypeName)) {
-    if (source->path.empty() && source->segments.empty() && !ltPath.empty()) {
-      // A record that only names a built-in keeps its identity, not an empty
-      // pattern: copy the table entry part and leave the dashes to the literal.
+    if (source->path.empty() && source->segments.empty()) {
+      if (!ltPath.empty()) {
+        // A record that only names a built-in keeps its identity, not an
+        // empty pattern: copy the table entry part and leave the dashes to
+        // the literal.
+        static_cast<DRW_TableEntry &>(ltype) = *source;
+        if (!source->desc.empty())
+          ltype.desc = source->desc;
+      } else {
+        ltype = *source;
+      }
+    } else if (const LC_LineType *changed =
+                   changedLineTypeDefinition(m_graphic, *source)) {
+      // The table's definition replaced the record's; the record's table
+      // entry part still names the object the file references.
+      ltype = lineTypeToDrw(changed->name.toStdString(),
+                            changed->description.toStdString(),
+                            changed->pattern);
       static_cast<DRW_TableEntry &>(ltype) = *source;
-      if (!source->desc.empty())
-        ltype.desc = source->desc;
     } else {
       ltype = *source;
     }
@@ -19789,24 +19893,82 @@ void RS_FilterDXFRW::writeLTypes() {
   // re-emitted as they came in; writeLType() records the built-in names so a
   // new built-in type cannot end up written twice.
   std::set<std::string> emittedNames = m_builtinLTypeNames;
-  for (const auto &entry :
-       m_graphic->dwgAdvancedMetadata().lineTypeTableEntries()) {
+  const auto &records =
+      m_graphic->dwgAdvancedMetadata().lineTypeTableEntries();
+  // What the list calls each record, as addLType() read it: bytes that are
+  // not UTF-8 make it another spelling than the record's.
+  std::set<std::string> listedNames;
+  std::set<std::string> dashedNames;
+  for (const auto &entry : records) {
+    const std::string listed =
+        QString::fromUtf8(entry.first.c_str()).toStdString();
+    listedNames.insert(normalizeDwgTableName(listed));
+    if (!entry.second.path.empty())
+      dashedNames.insert(listed);
+  }
+  for (const auto &entry : records) {
     if (!emittedNames.insert(normalizeDwgTableName(entry.first)).second)
       continue;
     DRW_LType ltype = entry.second;
+    if (ltype.path.empty() && ltype.segments.empty()) {
+      // A record that only names a line type takes the dashes an insert or
+      // a paste gave its entry: the entry is spelt as the record and no
+      // record gave it those dashes. It is rebuilt around its own table
+      // entry part, because a parsed group 73 pins the size.
+      const LC_LineType *lineType =
+          m_graphic->findLineType(QString::fromUtf8(entry.first.c_str()));
+      if (lineType != nullptr && !lineType->pattern.empty() &&
+          normalizeDwgTableName(lineType->name.toStdString()) ==
+              normalizeDwgTableName(entry.first) &&
+          dashedNames.count(lineType->name.toStdString()) == 0) {
+        DRW_LType dashed =
+            lineTypeToDrw(ltype.name, ltype.desc, lineType->pattern);
+        static_cast<DRW_TableEntry &>(dashed) = ltype;
+        dashed.alignment = ltype.alignment;
+        dashed.xrefBlockHandle = ltype.xrefBlockHandle;
+        ltype = dashed;
+      }
+    } else if (const LC_LineType *changed =
+                   changedLineTypeDefinition(m_graphic, ltype)) {
+      // The table's definition replaced the record's; the record's table
+      // entry part still names the object the file references.
+      DRW_LType rewritten =
+          lineTypeToDrw(changed->name.toStdString(),
+                        changed->description.toStdString(), changed->pattern);
+      static_cast<DRW_TableEntry &>(rewritten) = ltype;
+      ltype = rewritten;
+    }
     (void)writeLTypeRecord(ltype);
   }
+  // An entry no record backs, brought in by an insert or a paste, gets a
+  // record of its own, spelt and described as the entry is.
+  for (unsigned i = 0; i < m_graphic->countLineTypes(); ++i) {
+    const LC_LineType *lineType = m_graphic->lineTypeAt(i);
+    if (!isWritableLineTypeName(lineType->name))
+      continue;
+    const std::string key =
+        normalizeDwgTableName(lineType->name.toStdString());
+    if (listedNames.count(key) != 0 || !emittedNames.insert(key).second)
+      continue;
+    DRW_LType record = lineTypeToDrw(lineType->name.toStdString(),
+                                     lineType->description.toStdString(),
+                                     lineType->pattern);
+    (void)writeLTypeRecord(record);
+  }
   // A name that only a pen, a layer or a style gives still needs a record.
-  // It gets the dashes of the built-in it is drawn as, which are none for a
-  // name LibreCAD does not know. These records only add to the ones above.
+  // It gets the dashes of the list entry its name folds to, else those of
+  // the built-in it is drawn as, which are none for a name LibreCAD does not
+  // know. These records only add to the ones above.
   // Blanks around a string do not make another name: pens have none, so
   // names without them go first, and a padded one adds a record only for a
   // name that has none yet.
-  std::vector<QString> names = referencedLineTypeNames(*m_graphic);
+  std::vector<QString> names = m_graphic->referencedLineTypeNames();
   std::stable_partition(names.begin(), names.end(), [](const QString &name) {
     return name.trimmed() == name;
   });
   for (const QString &name : names) {
+    if (!isWritableLineTypeName(name))
+      continue;
     const std::string utf8 = name.toStdString();
     const std::string trimmed =
         normalizeDwgTableName(name.trimmed().toStdString());
@@ -19814,19 +19976,20 @@ void RS_FilterDXFRW::writeLTypes() {
         !emittedNames.insert(normalizeDwgTableName(utf8)).second)
       continue;
     emittedNames.insert(trimmed);
-    const std::string family = normalizeDwgTableName(
-        LC_LineTypeNames::lineTypeToName(
-            LC_LineTypeNames::nameToLineType(name))
-            .toStdString());
-    const auto literal = m_builtinLTypePaths.find(family);
-    const std::vector<double> path = literal != m_builtinLTypePaths.end()
-                                         ? literal->second
-                                         : std::vector<double>{};
-    double length = 0.0;
-    for (const double dash : path)
-      length += std::fabs(dash);
-    DRW_LType marker;
-    marker.updateValues(utf8, "", static_cast<int>(path.size()), length, path);
+    const LC_LineType *entry = m_graphic->findLineType(name);
+    std::vector<double> path;
+    if (entry != nullptr && !entry->pattern.empty()) {
+      path = entry->pattern;
+    } else {
+      const std::string family = normalizeDwgTableName(
+          LC_LineTypeNames::lineTypeToName(
+              LC_LineTypeNames::nameToLineType(name))
+              .toStdString());
+      const auto literal = m_builtinLTypePaths.find(family);
+      if (literal != m_builtinLTypePaths.end())
+        path = literal->second;
+    }
+    DRW_LType marker = lineTypeToDrw(utf8, "", path);
     (void)writeLTypeRecord(marker);
   }
 }
@@ -19844,7 +20007,21 @@ void RS_FilterDXFRW::writeLayers() {
     lay.color24 = exact_rgb;
     lay.lWeight = widthToNumber(pen.getWidth());
     lay.lineType = lineTypeNameToWrite(pen).toStdString();
-    lay.flags = l->isFrozen() ? 0x01 : 0x00;
+    lay.flags = 0x00;
+    if (l->isFrozen()) {
+      // hidden: frozen, turned off (a negative colour) or both, as the layer
+      // was read; AutoCAD does not freeze the current layer, so that one is
+      // turned off
+      const RS_Layer::HiddenAs hiddenAs = l == m_graphic->getActiveLayer()
+                                              ? RS_Layer::HiddenAs::Off
+                                              : l->getHiddenAs();
+      if (hiddenAs != RS_Layer::HiddenAs::Off) {
+        lay.flags |= 0x01;
+      }
+      if (hiddenAs != RS_Layer::HiddenAs::Frozen) {
+        lay.color = (lay.color > 0 && lay.color < 256) ? -lay.color : -7;
+      }
+    }
     if (l->isLocked()) {
       lay.flags |= 0x04;
     }
@@ -32505,14 +32682,20 @@ makeDrwSplineFromSplinePoints(const LC_SplinePoints *sp) {
 // Emit an RS_Spline (general NURBS, degree 1-3, possibly rational) boundary
 // edge as a DRW_Spline carrying its full data. Mirrors weight into both
 // drw->weightlist[i] AND drw->controllist[i]->z so both DXF and DWG
-// consumers can read it correctly. See plan §C.3.
+// consumers can read it correctly.
+//
+// A closed RS_Spline repeats its first degree control points and weights at
+// the end of its data, with a knot vector to match, so that the data draws
+// the closed curve over [knots[degree], knots[count]] in any reader. Write it
+// as it is: getControlPoints() and getWeights() leave the repeats out, and
+// with the whole knot vector they gave an edge with degree knots too many.
 std::shared_ptr<DRW_Spline> makeDrwSplineFromRSSpline(const RS_Spline *sp) {
   auto drw = std::make_shared<DRW_Spline>();
   const auto &sd = sp->getData();
   drw->degree = static_cast<std::int32_t>(sd.degree);
 
-  const auto cps = sp->getControlPoints();
-  const auto ws = sp->getWeights();
+  const auto &cps = sd.controlPoints;
+  const auto &ws = sd.weights;
   const bool weightsAlign = (ws.size() == cps.size());
   const bool isRational =
       weightsAlign && std::any_of(ws.begin(), ws.end(), [](double w) {
@@ -32536,6 +32719,89 @@ std::shared_ptr<DRW_Spline> makeDrwSplineFromRSSpline(const RS_Spline *sp) {
   if (drw->knotslist.empty())
     fillClampedUniformKnots(*drw);
   return drw;
+}
+
+// Convert every atomic edge of `source` into a DRW boundary-edge object and
+// append it to `loop`. Shared by every path written by the hatch exporter
+// so the per-edge layout stays in one place. The container that encloses
+// an RS_Spline is handled by caller lookup: it reaches here as the
+// (chord-flattened or clone-preserving) container `exportLoops()` built.
+void appendHatchLoopEdges(DRW_HatchLoop& loop,
+                          const RS_EntityContainer& source) {
+  std::vector<const RS_Entity*> edges;
+  for (const RS_Entity* ed :
+       lc::LC_ContainerTraverser{source, RS2::ResolveNone}.entities()) {
+    if (ed == nullptr) continue;
+    if (ed->isContainer() && ed->rtti() != RS2::EntitySpline) {
+      const auto parts = lc::LC_ContainerTraverser{
+          *static_cast<const RS_EntityContainer*>(ed),
+          RS2::ResolveAll}.entities();
+      edges.insert(edges.end(), parts.begin(), parts.end());
+    } else {
+      edges.push_back(ed);
+    }
+  }
+  for (const RS_Entity* ed : edges) {
+    if (ed->rtti() == RS2::EntityLine) {
+      const auto* ln = static_cast<const RS_Line*>(ed);
+      auto line = std::make_shared<DRW_Line>();
+      line->basePoint.x = ln->getStartpoint().x;
+      line->basePoint.y = ln->getStartpoint().y;
+      line->secPoint.x = ln->getEndpoint().x;
+      line->secPoint.y = ln->getEndpoint().y;
+      loop.objlist.push_back(line);
+    } else if (ed->rtti() == RS2::EntityArc) {
+      const auto* ar = static_cast<const RS_Arc*>(ed);
+      auto arc = std::make_shared<DRW_Arc>();
+      arc->basePoint.x = ar->getCenter().x;
+      arc->basePoint.y = ar->getCenter().y;
+      arc->radious = ar->getRadius();
+      if (!ar->isReversed()) {
+        arc->staangle = ar->getAngle1();
+        arc->endangle = ar->getAngle2();
+        arc->isccw = true;
+      } else {
+        arc->staangle = 2 * M_PI - ar->getAngle1();
+        arc->endangle = 2 * M_PI - ar->getAngle2();
+        arc->isccw = false;
+      }
+      loop.objlist.push_back(arc);
+    } else if (ed->rtti() == RS2::EntityCircle) {
+      const auto* ci = static_cast<const RS_Circle*>(ed);
+      auto arc = std::make_shared<DRW_Arc>();
+      arc->basePoint.x = ci->getCenter().x;
+      arc->basePoint.y = ci->getCenter().y;
+      arc->radious = ci->getRadius();
+      arc->staangle = 0.0;
+      arc->endangle = 2 * M_PI;
+      arc->isccw = true;
+      loop.objlist.push_back(arc);
+    } else if (ed->rtti() == RS2::EntityEllipse) {
+      const auto* el = static_cast<const RS_Ellipse*>(ed);
+      auto ell = std::make_shared<DRW_Ellipse>();
+      ell->basePoint.x = el->getCenter().x;
+      ell->basePoint.y = el->getCenter().y;
+      ell->secPoint.x = el->getMajorP().x;
+      ell->secPoint.y = el->getMajorP().y;
+      ell->ratio = el->getRatio();
+      double rot = el->getMajorP().angle();
+      double startAng =
+          el->getCenter().angleTo(el->getStartpoint()) - rot;
+      double endAng = el->getCenter().angleTo(el->getEndpoint()) - rot;
+      if (startAng < 0) startAng = M_PI * 2 + startAng;
+      if (endAng < 0) endAng = M_PI * 2 + endAng;
+      ell->staparam = startAng;
+      ell->endparam = endAng;
+      ell->isccw = !el->isReversed();
+      loop.objlist.push_back(ell);
+    } else if (ed->rtti() == RS2::EntitySplinePoints) {
+      loop.objlist.push_back(makeDrwSplineFromSplinePoints(
+          static_cast<const LC_SplinePoints*>(ed)));
+    } else if (ed->rtti() == RS2::EntitySpline) {
+      loop.objlist.push_back(makeDrwSplineFromRSSpline(
+          static_cast<const RS_Spline*>(ed)));
+    }
+  }
 }
 
 } // namespace
@@ -32562,22 +32828,12 @@ void RS_FilterDXFRW::writeHatch(RS_Hatch *h) {
     return;
   }
 
-  bool writeIt = true;
-  if (h->countLoops() > 0) {
-    // check if all of the loops contain entities:
-    for (RS_Entity *l :
-         lc::LC_ContainerTraverser{*h, RS2::ResolveNone}.entities()) {
-      if (l->isContainer() && !l->getFlag(RS2::FlagTemp)) {
-        if (l->count() == 0) {
-          writeIt = false;
-        }
-      }
-    }
-  } else {
-    writeIt = false;
-  }
-
-  if (!writeIt) {
+  // Build one boundary path per extracted loop, in WCS, flagged by the
+  // loop's depth in the extracted tree. Dropped hatches are those whose
+  // validate() never produced an ordered tree; exportLoops() returns
+  // empty for them.
+  auto loops = h->exportLoops();
+  if (loops.empty()) {
     RS_DEBUG->print(RS_Debug::D_WARNING,
                     "RS_FilterDXF::writeHatch: Dropping Hatch");
     return;
@@ -32598,96 +32854,42 @@ void RS_FilterDXFRW::writeHatch(RS_Hatch *h) {
   } else {
     ha.name = h->getPattern().toUtf8().data();
   }
-  ha.loopsnum = h->countLoops();
 
-  for (RS_Entity *l = h->firstEntity(RS2::ResolveNone); l;
-       l = h->nextEntity(RS2::ResolveNone)) {
-    // Write hatch loops:
-    if (l->isContainer() && !l->getFlag(RS2::FlagTemp)) {
-      auto loop = static_cast<RS_EntityContainer *>(l);
-      std::shared_ptr<DRW_HatchLoop> lData = std::make_shared<DRW_HatchLoop>(0);
-
-      // a container other than a spline, such as a polyline, is written as its edges
-      std::vector<RS_Entity *> edges;
-      for (RS_Entity *ed :
-           lc::LC_ContainerTraverser{*loop, RS2::ResolveNone}.entities()) {
-        if (ed->isContainer() && ed->rtti() != RS2::EntitySpline) {
-          const auto parts = lc::LC_ContainerTraverser{
-              *static_cast<RS_EntityContainer *>(ed), RS2::ResolveAll}.entities();
-          edges.insert(edges.end(), parts.begin(), parts.end());
-        } else {
-          edges.push_back(ed);
-        }
-      }
-      for (RS_Entity *ed : edges) {
-        // Write hatch loop edges:
-        if (ed->rtti() == RS2::EntityLine) {
-          auto *ln = static_cast<RS_Line *>(ed);
-          std::shared_ptr<DRW_Line> line = std::make_shared<DRW_Line>();
-          line->basePoint.x = ln->getStartpoint().x;
-          line->basePoint.y = ln->getStartpoint().y;
-          line->secPoint.x = ln->getEndpoint().x;
-          line->secPoint.y = ln->getEndpoint().y;
-          lData->objlist.push_back(line);
-        } else if (ed->rtti() == RS2::EntityArc) {
-          auto ar = static_cast<RS_Arc *>(ed);
-          std::shared_ptr<DRW_Arc> arc = std::make_shared<DRW_Arc>();
-          arc->basePoint.x = ar->getCenter().x;
-          arc->basePoint.y = ar->getCenter().y;
-          arc->radious = ar->getRadius();
-          if (!ar->isReversed()) {
-            arc->staangle = ar->getAngle1();
-            arc->endangle = ar->getAngle2();
-            arc->isccw = true;
-          } else {
-            arc->staangle = 2 * M_PI - ar->getAngle1();
-            arc->endangle = 2 * M_PI - ar->getAngle2();
-            arc->isccw = false;
-          }
-          lData->objlist.push_back(arc);
-        } else if (ed->rtti() == RS2::EntityCircle) {
-          auto ci = static_cast<RS_Circle *>(ed);
-          std::shared_ptr<DRW_Arc> arc = std::make_shared<DRW_Arc>();
-          arc->basePoint.x = ci->getCenter().x;
-          arc->basePoint.y = ci->getCenter().y;
-          arc->radious = ci->getRadius();
-          arc->staangle = 0.0;
-          arc->endangle = 2 * M_PI; // 2*M_PI;
-          arc->isccw = true;
-          lData->objlist.push_back(arc);
-        } else if (ed->rtti() == RS2::EntityEllipse) {
-          auto el = static_cast<RS_Ellipse *>(ed);
-          std::shared_ptr<DRW_Ellipse> ell = std::make_shared<DRW_Ellipse>();
-          ell->basePoint.x = el->getCenter().x;
-          ell->basePoint.y = el->getCenter().y;
-          ell->secPoint.x = el->getMajorP().x;
-          ell->secPoint.y = el->getMajorP().y;
-          ell->ratio = el->getRatio();
-          double rot = el->getMajorP().angle();
-          double startAng = el->getCenter().angleTo(el->getStartpoint()) - rot;
-          double endAng = el->getCenter().angleTo(el->getEndpoint()) - rot;
-          if (startAng < 0) {
-            startAng = M_PI * 2 + startAng;
-          }
-          if (endAng < 0) {
-            endAng = M_PI * 2 + endAng;
-          }
-          ell->staparam = startAng;
-          ell->endparam = endAng;
-          ell->isccw = !el->isReversed();
-          lData->objlist.push_back(ell);
-        } else if (ed->rtti() == RS2::EntitySplinePoints) {
-          lData->objlist.push_back(makeDrwSplineFromSplinePoints(
-              static_cast<LC_SplinePoints *>(ed)));
-        } else if (ed->rtti() == RS2::EntitySpline) {
-          lData->objlist.push_back(
-              makeDrwSplineFromRSSpline(static_cast<RS_Spline *>(ed)));
-        }
-      }
-      lData->update(); // change to DRW_HatchLoop
-      ha.appendLoop(lData);
-    }
+  // Realized definition lines, pattern type 2, and the approximate XDATA tag.
+  // ODA File Converter 27.1 deletes every non-solid HATCH written with 78 = 0
+  // (LibreCAD before this change), so a pattern hatch always carries at least
+  // one line; a solid hatch keeps 78 = 0 and the stale tag is dropped. The
+  // 1001 kApplication group under which the tag lives is already registered
+  // by writeAppId (emitRequired("LibreCad")).
+  if (ha.solid) {
+    LC_HatchDefinitionLines::setApproximateTag(ha.extData, false);
+    ha.hpattern = 1;
+    ha.hstyle = 0;
+    ha.doubleflag = 0;
+  } else {
+    const LC_HatchDefinitionLines::ExportLines definition =
+        LC_HatchDefinitionLines::forExport(*h);
+    ha.patternLines.clear();
+    ha.patternLines.reserve(definition.lines.size());
+    for (const auto& line : definition.lines)
+      ha.patternLines.push_back(line);
+    ha.deflines = static_cast<int>(ha.patternLines.size());
+    ha.hpattern = 2;
+    ha.hstyle = 0;
+    ha.doubleflag = 0;
+    LC_HatchDefinitionLines::setApproximateTag(ha.extData,
+                                               definition.approximate);
   }
+
+  for (const auto& loop : loops) {
+    if (!loop.edges) continue;
+    auto lData = std::make_shared<DRW_HatchLoop>(
+        LC_HatchDefinitionLines::boundaryPathFlags(loop.depth));
+    appendHatchLoopEdges(*lData, *loop.edges);
+    lData->update();
+    ha.appendLoop(lData);
+  }
+  ha.loopsnum = static_cast<int>(ha.looplist.size());
   if (m_dwgW) {
     if (!m_dwgW->writeHatch(&ha))
       m_writeFailed = true;
@@ -33780,7 +33982,8 @@ RS_Pen RS_FilterDXFRW::attributesToPen(const DRW_Layer *att) const {
     col = RS_Color(att->color24 >> 16, att->color24 >> 8 & 0xFF,
                    att->color24 & 0xFF);
   } else {
-    col = LC_ColorNumbers::numberToColor(att->color);
+    // negative: the layer is turned off (addLayer())
+    col = LC_ColorNumbers::numberToColor(std::abs(att->color));
   }
   if (!att->colorName.empty()) {
     col.setColorName(QString::fromUtf8(att->colorName.c_str()));

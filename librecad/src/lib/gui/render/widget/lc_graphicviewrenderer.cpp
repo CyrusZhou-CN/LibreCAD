@@ -533,10 +533,13 @@ void LC_GraphicViewRenderer::setPenForEntity(RS_Painter* painter, const RS_Entit
     // try to avoid pen setup if the pen and entity flags are the same as for previous entity. This is important for performance reasons, so we'll reuse
     // painter pen set previously. This check assumed that that all previous entity drawing were performed via this function and no
     // arbitrary QPainter::setPen was called between drawing entities.
-    const double patternOffset = painter->currentDashOffset();
+    const auto dashSpace = selected && !overlayPaint ? RS_Painter::DashSpace::Screen : RS_Painter::DashSpace::Model;
+    const double patternOffset = painter->currentDashOffset(dashSpace);
     // fixme - replace several booleans by Flags value
     if (!m_lastPaintedDraft && m_lastPaintedHighlighted == highlighted && m_lastPaintedSelected == selected && m_lastPaintOverlay == overlayPaint && m_lastPenInVisualSnap == inVisualSnap) {
-        if (m_lastPaintEntityPen.isSameAs(pen, patternOffset, m_lastPaintedPattern)) {
+        // A named and an unnamed pen of one enum may draw different dashes.
+        if (m_lastPaintEntityPen.isSameAs(pen, patternOffset, m_lastPaintedPattern) &&
+            m_lastPaintEntityPen.hasLineTypeName() == pen.hasLineTypeName()) {
             return;
         }
     }
@@ -628,9 +631,7 @@ void LC_GraphicViewRenderer::setPenForEntity(RS_Painter* painter, const RS_Entit
         }
     }
 
-    if (pen.getLineType() != RS2::SolidLine) {
-        pen.setDashOffset(patternOffset * m_defaultWidthFactor);
-    }
+    pen.setDashOffset(patternOffset);
 
     // deleting not drawing:
 
@@ -638,12 +639,12 @@ void LC_GraphicViewRenderer::setPenForEntity(RS_Painter* painter, const RS_Entit
 #ifdef DEBUG_RENDERING
     setPenTime += setPenTimer.nsecsElapsed(); painterSetPenTimer.start();
 #endif
-    m_lastPaintedPattern = pen.getLineType() != RS2::SolidLine;
-    painter->setPen(pen, selected && !overlayPaint ? RS_Painter::DashSpace::Screen : RS_Painter::DashSpace::Model);
+    painter->setPen(pen, dashSpace);
 #ifdef DEBUG_RENDERING
     painterSetPenTime += painterSetPenTimer.nsecsElapsed();
 
 #endif
+    m_lastPaintedPattern = painter->penHasDashPattern();
 }
 
 void LC_GraphicViewRenderer::setPenForDraftEntity(RS_Painter* painter, const RS_Entity* e, const bool inOverlay) {
@@ -658,9 +659,12 @@ void LC_GraphicViewRenderer::setPenForDraftEntity(RS_Painter* painter, const RS_
     // try to avoid pen setup if the pen and entity flags are the same as for previous entity. This is important for performance reasons, so we'll reuse
     // painter pen set previously. This check assumed that that all previous entity drawing were performed via this function and no
     // arbitrary QPainter::setPen was called between drawing entities.
-    const double patternOffset = painter->currentDashOffset();
+    const auto dashSpace = selected && !overlayPaint ? RS_Painter::DashSpace::Screen : RS_Painter::DashSpace::Model;
+    const double patternOffset = painter->currentDashOffset(dashSpace);
     if (m_lastPaintedDraft && m_lastPaintedHighlighted == highlighted && m_lastPaintedSelected == selected && m_lastPaintOverlay == overlayPaint && m_lastPenInVisualSnap == inVisualSnap) {
-        if (m_lastPaintEntityPen.isSameAs(pen, patternOffset, m_lastPaintedPattern)) {
+        // A named and an unnamed pen of one enum may draw different dashes.
+        if (m_lastPaintEntityPen.isSameAs(pen, patternOffset, m_lastPaintedPattern) &&
+            m_lastPaintEntityPen.hasLineTypeName() == pen.hasLineTypeName()) {
             return;
         }
     }
@@ -716,16 +720,14 @@ void LC_GraphicViewRenderer::setPenForDraftEntity(RS_Painter* painter, const RS_
         }
     }
 
-    if (pen.getLineType() != RS2::SolidLine) {
-        pen.setDashOffset(patternOffset * m_defaultWidthFactor);
-    }
+    pen.setDashOffset(patternOffset);
 
     // LC_ERR << "PEN " << pen.getColor().name() << "Width: " << pen.getWidth() <<  " | " << pen.getScreenWidth() << " LT " << pen.getLineType();
-    m_lastPaintedPattern = pen.getLineType() != RS2::SolidLine;
-    painter->setPen(pen, selected && !overlayPaint ? RS_Painter::DashSpace::Screen : RS_Painter::DashSpace::Model);
+    painter->setPen(pen, dashSpace);
 #ifdef DEBUG_RENDERING
     setPenTime += setPenTimer.nsecsElapsed();
 #endif
+    m_lastPaintedPattern = painter->penHasDashPattern();
 }
 
 /**

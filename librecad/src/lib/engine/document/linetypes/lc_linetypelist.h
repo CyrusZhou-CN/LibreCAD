@@ -53,6 +53,18 @@ public:
     LC_LineType* find(const QString& name) const;
     /// takes ownership; returns the entry that holds the key afterwards
     LC_LineType* add(LC_LineType* entry);
+    /// copies the entries of another list whose key this one lacks, but no
+    /// built-in; an entry here without dashes takes those of its twin there
+    void merge(const LC_LineTypeList& source);
+    /// merge(), of the entries these names find there that have dashes
+    void merge(const LC_LineTypeList& source, const std::vector<QString>& names);
+    /// Whether an entry's dashes are the seed's, within a tolerance: the name
+    /// decides the seed, so an alias compares with its enum's row; reads the
+    /// built-in table only.
+    static bool patternMatchesSeed(const LC_LineType& entry);
+    /// Whether the entry redraws a built-in that has dashes of its own with other
+    /// dashes, so the drawing paints that built-in from this entry.
+    static bool redefinesBuiltIn(const LC_LineType& entry);
 
     bool isModified() const {
         return m_modified;
@@ -64,6 +76,7 @@ public:
 
 private:
     void seedBuiltins();
+    void take(const LC_LineType* incoming);
 
     QList<LC_LineType*> m_entries;
     bool m_modified = false;

@@ -22,9 +22,14 @@
 
 #include "lc_graphicviewportrenderer.h"
 
+#include <cmath>
+
 #include "lc_defaults.h"
 #include "lc_graphicviewport.h"
 #include "lc_linemath.h"
+#include "lc_linetype.h"
+#include "lc_linetypelist.h"
+#include "lc_linetypenames.h"
 #include "rs_entity.h"
 #include "rs_graphic.h"
 #include "rs_painter.h"
@@ -190,26 +195,102 @@ void LC_GraphicViewportRenderer::setBackground(const RS_Color &bg, const RS_Colo
 }
 
 void LC_GraphicViewportRenderer::updateGraphicRelatedSettings(RS_Graphic *g) {
-    updateUnitAndDefaultWidthFactors(g);
+    updateUnitFactors(g);
     updatePointEntitiesStyle(g);
     updateEndCapsStyle(g);
     updateJoinStyle(g);
     updateAnglesBasis(g);
 }
 
-void LC_GraphicViewportRenderer::updateUnitAndDefaultWidthFactors(const RS_Graphic *g) {
+void LC_GraphicViewportRenderer::updateUnitFactors(const RS_Graphic *g) {
     m_unitFactor = RS_Units::convert(1.0, RS2::Millimeter, g->getUnit());
     m_unitFactor100 =  m_unitFactor / 100.0;
-    m_defaultWidthFactor = g->getVariableDouble("$DIMSCALE", 1.0);
 }
 
 void LC_GraphicViewportRenderer::setupPainter(RS_Painter *painter) {
+    // The line type table is read once per pass; every paint path starts here.
+    m_dashByFold.clear();
+    m_dashByEnum.clear();
+    m_dashCacheBuilt = false;
     painter->setRenderer(this);
     painter->setViewPort(m_viewport);
     painter->updatePointsScreenSize(m_pdsize);
     painter->setPointsMode(m_pdmode);
-    painter->setDefaultWidthFactor(m_defaultWidthFactor);
+    // A new view rectangle invalidates the dash memo.
     painter->setWorldBoundingRect(m_renderBoundingClipRect);
+}
+
+const QVector<qreal>* LC_GraphicViewportRenderer::resolveDashPattern(const RS_Pen& pen, qreal* phaseOffset) {
+    // An unnamed pen paints as its enum says, whatever the table holds.
+    if (!pen.hasLineTypeName())
+        return nullptr;
+    if (!m_dashCacheBuilt)
+        buildDashPatternCache();
+    // No entry is ever added after the build, so the addresses stay valid.
+    const DashPattern* found = nullptr;
+    const std::uint16_t foldId = pen.getLineTypeFoldId();
+    if (foldId != 0) {
+        const auto it = m_dashByFold.constFind(foldId);
+        if (it != m_dashByFold.cend())
+            found = &it.value();
+    }
+    else {
+        const auto it = m_dashByEnum.constFind(static_cast<int>(pen.getLineType()));
+        if (it != m_dashByEnum.cend())
+            found = &it.value();
+    }
+    if (found == nullptr)
+        return nullptr;
+    if (phaseOffset != nullptr)
+        *phaseOffset = found->phaseOffset;
+    return &found->dashes;
+}
+
+void LC_GraphicViewportRenderer::buildDashPatternCache() {
+    m_dashCacheBuilt = true;
+    const RS_Graphic* graphic = m_viewport != nullptr ? m_viewport->getGraphic() : nullptr;
+    if (graphic == nullptr)
+        return;
+    // The stored list is group 49 before $LTSCALE, and the table is drawn once.
+    double lineTypeScale = graphic->getVariableDouble("$LTSCALE", 1.0);
+    if (!std::isfinite(lineTypeScale) || lineTypeScale <= 0.0)
+        lineTypeScale = 1.0;
+    const unsigned count = graphic->countLineTypes();
+    for (unsigned i = 0; i < count; ++i) {
+        const LC_LineType* entry = graphic->lineTypeAt(i);
+        if (entry == nullptr || entry->pattern.empty())
+            continue;
+        const bool known = LC_LineTypeNames::isKnownName(entry->key());
+        // A known name the entry does not redefine keeps the shipped screen pattern.
+        if (known && !LC_LineTypeList::redefinesBuiltIn(*entry))
+            continue;
+        RS_Pen probe;
+        probe.setLineTypeName(entry->name);
+        const std::uint16_t foldId = probe.getLineTypeFoldId();
+        qreal phaseOffset = 0.0;
+        QVector<qreal> pattern = RS_Painter::canonicalDashPattern(entry->pattern, &phaseOffset);
+        if (pattern.isEmpty())
+            continue;
+        bool valid = std::isfinite(phaseOffset);
+        for (qreal& dash : pattern) {
+            dash *= lineTypeScale;
+            valid = valid && std::isfinite(dash) && dash >= 0.0;
+        }
+        phaseOffset *= lineTypeScale;
+        if (!valid || !std::isfinite(phaseOffset))
+            continue;
+        if (known && foldId == 0) {
+            // The canonical spelling of a built-in: the enum map, which the
+            // painter reads only for a named pen.
+            const int enumKey = static_cast<int>(probe.getLineType());
+            if (!m_dashByEnum.contains(enumKey))
+                m_dashByEnum.insert(enumKey, DashPattern{pattern, phaseOffset});
+        }
+        else if (foldId != 0 && !m_dashByFold.contains(foldId)) {
+            // The first entry of a fold wins.
+            m_dashByFold.insert(foldId, DashPattern{pattern, phaseOffset});
+        }
+    }
 }
 
 bool LC_GraphicViewportRenderer::isTextLineNotRenderable([[maybe_unused]]double uiLineHeight) const {
